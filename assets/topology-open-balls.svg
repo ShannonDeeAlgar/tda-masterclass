@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="320" viewBox="0 0 960 320" role="img" aria-labelledby="title desc">
+  <title id="title">Open balls under three metrics</title>
+  <desc id="desc">Three coordinate panels compare a circular Euclidean open ball, a vertically compressed ellipse for a direction-weighted Euclidean metric, and a diamond-shaped L1 open ball. Dashed boundaries indicate that the boundary is excluded.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#6b4ca5"/>
+    </marker>
+    <style>
+      .title { font: 600 18px Georgia, serif; fill: #202124; }
+      .label { font: 15px Georgia, serif; fill: #202124; }
+      .small { font: 13px Georgia, serif; fill: #4a4d52; }
+      .axis { stroke: #6a6e73; stroke-width: 1.2; }
+      .ball { fill: #245b8a; fill-opacity: .10; stroke: #245b8a; stroke-width: 2.2; stroke-dasharray: 7 5; }
+      .centre { fill: #202124; }
+      .guide { stroke: #6b4ca5; stroke-width: 1.8; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect width="960" height="320" fill="#ffffff"/>
+
+  <g transform="translate(20,18)">
+    <rect x="0" y="0" width="290" height="280" rx="8" fill="#fafbfc" stroke="#d9dde2"/>
+    <text x="145" y="28" text-anchor="middle" class="title">Euclidean metric</text>
+    <line x1="45" y1="150" x2="250" y2="150" class="axis"/>
+    <line x1="145" y1="245" x2="145" y2="55" class="axis"/>
+    <text x="256" y="155" class="small">u</text><text x="150" y="54" class="small">v</text>
+    <circle cx="145" cy="150" r="67" class="ball"/>
+    <circle cx="145" cy="150" r="4" class="centre"/>
+    <text x="153" y="145" class="small">x₀</text>
+    <text x="145" y="267" text-anchor="middle" class="label">equal changes → equal cost</text>
+  </g>
+
+  <g transform="translate(335,18)">
+    <rect x="0" y="0" width="290" height="280" rx="8" fill="#fafbfc" stroke="#d9dde2"/>
+    <text x="145" y="28" text-anchor="middle" class="title">Direction-weighted metric</text>
+    <line x1="45" y1="150" x2="250" y2="150" class="axis"/>
+    <line x1="145" y1="245" x2="145" y2="55" class="axis"/>
+    <text x="256" y="155" class="small">u</text><text x="150" y="54" class="small">v</text>
+    <ellipse cx="145" cy="150" rx="82" ry="34" class="ball"/>
+    <circle cx="145" cy="150" r="4" class="centre"/>
+    <text x="153" y="145" class="small">x₀</text>
+    <line x1="228" y1="150" x2="228" y2="105" class="guide"/>
+    <text x="221" y="96" text-anchor="middle" class="small">v differences</text>
+    <text x="221" y="112" text-anchor="middle" class="small">cost more</text>
+    <text x="145" y="267" text-anchor="middle" class="label">same radius, unequal directions</text>
+  </g>
+
+  <g transform="translate(650,18)">
+    <rect x="0" y="0" width="290" height="280" rx="8" fill="#fafbfc" stroke="#d9dde2"/>
+    <text x="145" y="28" text-anchor="middle" class="title">L¹ metric</text>
+    <line x1="45" y1="150" x2="250" y2="150" class="axis"/>
+    <line x1="145" y1="245" x2="145" y2="55" class="axis"/>
+    <text x="256" y="155" class="small">u</text><text x="150" y="54" class="small">v</text>
+    <path d="M145 78 L217 150 L145 222 L73 150 Z" class="ball"/>
+    <circle cx="145" cy="150" r="4" class="centre"/>
+    <text x="153" y="145" class="small">x₀</text>
+    <text x="145" y="267" text-anchor="middle" class="label">diamond: |Δu| + |Δv| &lt; r</text>
+  </g>
+
+  <text x="480" y="315" text-anchor="middle" class="small">Dashed boundary: d(x,x₀)=r is not part of the open ball.</text>
+</svg>

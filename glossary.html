@@ -1,0 +1,1667 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Applied glossary – TDA for Static and Dynamic Data</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-849030d898501f26b12ac48814ce060c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-3a1cdef84951ecec82d91b6d0d23ca90.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-849030d898501f26b12ac48814ce060c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">TDA for Static and Dynamic Data</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./index.html" aria-current="page"> 
+<span class="menu-text">Course home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./run-practicals.html"> 
+<span class="menu-text">Run notebooks</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./glossary.html"> 
+<span class="menu-text">Glossary</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Applied glossary</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Course orientation</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./reading-map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Guiding texts and reading map</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Foundations</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./weeks/week-01/topology-survival-guide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Before Week 1: Topology survival guide</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./weeks/week-01/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 1: Shape, topology and the need for a computable invariant</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./weeks/week-02/algebra-survival-guide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Before Week 2: Algebra survival guide</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./weeks/week-02/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 2: Simplicial complexes and homology: building a computable hole-counter</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./weeks/week-03/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 3: Filtrations: setting the complex in motion</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./weeks/week-04/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 4: Persistent homology: homology with memory</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Interlude</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./design-decisions/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Every barcode has a modelling history</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Practice and validation</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./weeks/week-05/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 5: Static data in practice: choosing and computing filtered complexes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./weeks/week-06/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 6: Summaries, comparisons and validation</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Dynamic data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./weeks/week-07/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 7: Time-indexed static topology: repeated persistence through time</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./weeks/week-08/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 8: Beyond ordinary persistence: which advanced tool solves which problem?</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Application routes</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./applications/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./applications/dynamical-systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Application route: dynamical systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./applications/industry-template.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Industry case-study template</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#how-to-use-this-glossary" id="toc-how-to-use-this-glossary" class="nav-link active" data-scroll-target="#how-to-use-this-glossary">How to use this glossary</a></li>
+  <li><a href="#objects-and-representations" id="toc-objects-and-representations" class="nav-link" data-scroll-target="#objects-and-representations">Objects and representations</a></li>
+  <li><a href="#homology-as-linear-algebra" id="toc-homology-as-linear-algebra" class="nav-link" data-scroll-target="#homology-as-linear-algebra">Homology as linear algebra</a></li>
+  <li><a href="#filtrations-and-persistence" id="toc-filtrations-and-persistence" class="nav-link" data-scroll-target="#filtrations-and-persistence">Filtrations and persistence</a></li>
+  <li><a href="#dynamic-data" id="toc-dynamic-data" class="nav-link" data-scroll-target="#dynamic-data">Dynamic data</a></li>
+  <li><a href="#maintenance-rule" id="toc-maintenance-rule" class="nav-link" data-scroll-target="#maintenance-rule">Maintenance rule</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Applied glossary</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<p class="subtitle lead">Pure-mathematical terms translated without losing their conditions</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="how-to-use-this-glossary" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-use-this-glossary">How to use this glossary</h2>
+<p>The middle column gives an applied intuition, not a replacement definition. The final column records the boundary of that intuition. When a term is used in a scientific claim, return to the precise meaning and name the constructed object.</p>
+</section>
+<section id="objects-and-representations" class="level2">
+<h2 class="anchored" data-anchor-id="objects-and-representations">Objects and representations</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mathematical term</th>
+<th>Precise meaning</th>
+<th>Applied or intuitive translation</th>
+<th>Interpretation caution</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Topological space</td>
+<td>A set equipped with open sets satisfying the topology axioms.</td>
+<td>A specification of which points count as locally near one another, without requiring numerical distance.</td>
+<td>“Topology” is not a generic synonym for shape or network layout.</td>
+</tr>
+<tr class="even">
+<td>Homeomorphism</td>
+<td>A bijection whose forward and inverse maps are continuous.</td>
+<td>A reversible deformation that preserves topological structure.</td>
+<td>The rubber-sheet metaphor is only an intuition, and finite samples are not automatically homeomorphic to latent continuous spaces.</td>
+</tr>
+<tr class="odd">
+<td>Homotopy equivalence</td>
+<td>Maps in both directions whose composites are homotopic to the corresponding identity maps.</td>
+<td>Two spaces retain the same broad continuous shape after contractible detail is ignored.</td>
+<td>It is weaker than homeomorphism and does not preserve metric geometry.</td>
+</tr>
+<tr class="even">
+<td>Topological invariant</td>
+<td>A quantity or algebraic object unchanged under homeomorphism.</td>
+<td>A shape descriptor designed to ignore coordinates and reversible deformation.</td>
+<td>In data analysis it is computed on a constructed representation, not directly on an unknown physical system.</td>
+</tr>
+<tr class="odd">
+<td>Constructed representation</td>
+<td>A mathematical object built from observations and modelling choices.</td>
+<td>The point cloud, graph, image complex or embedding through which the system is analysed.</td>
+<td>It can amplify, erase or invent apparent organisation relative to the scientific object.</td>
+</tr>
+<tr class="even">
+<td>Metric</td>
+<td>A distance function satisfying non-negativity, identity, symmetry and the triangle inequality.</td>
+<td>The rule that decides which observations are similar enough to interact first.</td>
+<td>A convenient metric may be scientifically inappropriate.</td>
+</tr>
+<tr class="odd">
+<td>Point cloud</td>
+<td>A finite subset of a metric space.</td>
+<td>A collection of sampled states or observations represented as points.</td>
+<td>It is a representation of the system, not automatically the system or attractor itself.</td>
+</tr>
+<tr class="even">
+<td>Geometric descriptor</td>
+<td>A quantity or representation measuring a specified metric or coordinate property of a geometric object.</td>
+<td>One deliberately chosen answer to “what makes these shapes look different?”, such as spacing, area, direction or curvature.</td>
+<td>No short list of descriptors is a complete definition of shape; inspect what each retains and discards.</td>
+</tr>
+<tr class="odd">
+<td>Convex hull</td>
+<td>The smallest convex set containing a specified set of points.</td>
+<td>A tight elastic band placed around the outermost observations.</td>
+<td>It records the outer envelope but cannot detect internal gaps, density or concavity.</td>
+</tr>
+<tr class="even">
+<td>Anisotropy</td>
+<td>Dependence of measured properties on direction.</td>
+<td>Evidence that a cloud stretches or organises more strongly along some directions than others.</td>
+<td>A single anisotropy ratio can miss curvature, multiple branches and local changes in direction.</td>
+</tr>
+<tr class="odd">
+<td>Geometric simplex</td>
+<td>The convex hull of affinely independent vertices.</td>
+<td>A filled-in building block: point, segment, triangle, tetrahedron.</td>
+<td>A drawn triangle and three edges do not specify whether the face is filled.</td>
+</tr>
+<tr class="even">
+<td>Abstract simplex</td>
+<td>A finite set of vertices.</td>
+<td>A recorded multiway relation among the listed vertices.</td>
+<td>It need not have physical extent or a unique embedding.</td>
+</tr>
+<tr class="odd">
+<td>Simplicial complex</td>
+<td>A collection of simplices closed under taking faces.</td>
+<td>A consistent catalogue of relations at every included order.</td>
+<td>Its 1-skeleton does not determine its higher-dimensional simplices.</td>
+</tr>
+<tr class="even">
+<td>Geometric realisation <span class="math inline">\(|K|\)</span></td>
+<td>A topological space obtained by realising and gluing the simplices of <span class="math inline">\(K\)</span>.</td>
+<td>A spatial version of the abstract incidence data.</td>
+<td>The realisation is not necessarily the observed physical object.</td>
+</tr>
+<tr class="odd">
+<td>1-skeleton</td>
+<td>All vertices and edges of a complex.</td>
+<td>The network visible after discarding filled triangles and higher relations.</td>
+<td>Homology of the graph may differ from homology of the full complex.</td>
+</tr>
+<tr class="even">
+<td>Clique complex</td>
+<td>The complex containing a simplex for every clique of a graph.</td>
+<td>Treat every mutually pairwise-connected group as one higher-order unit.</td>
+<td>Clique filling is a modelling assumption about higher-order coherence.</td>
+</tr>
+<tr class="odd">
+<td>Graph cycle rank</td>
+<td>For a finite undirected graph, <span class="math inline">\(E-V+C\)</span>, the dimension of its cycle space over a field.</td>
+<td>The number of independent network loops before any higher-dimensional filling is added.</td>
+<td>It is not generally <span class="math inline">\(H_1\)</span> of the clique complex because triangles and higher simplices can fill graph cycles.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="homology-as-linear-algebra" class="level2">
+<h2 class="anchored" data-anchor-id="homology-as-linear-algebra">Homology as linear algebra</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mathematical term</th>
+<th>Precise meaning</th>
+<th>Applied or intuitive translation</th>
+<th>Interpretation caution</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Basis</td>
+<td>A linearly independent spanning set giving every vector unique coordinates.</td>
+<td>The agreed list of elementary pieces used to record a combination.</td>
+<td>Coordinates depend on the selected basis even when the vector does not.</td>
+</tr>
+<tr class="even">
+<td>Span</td>
+<td>All linear combinations of a specified set of vectors.</td>
+<td>Everything that can be assembled from the available building blocks.</td>
+<td>A long generating list may contain redundant vectors.</td>
+</tr>
+<tr class="odd">
+<td>Kernel</td>
+<td>For <span class="math inline">\(T:V\to W\)</span>, the subspace <span class="math inline">\(\{v:T(v)=0\}\)</span>.</td>
+<td>Input combinations whose effects cancel completely under the map.</td>
+<td>Being in a kernel is relative to a particular map.</td>
+</tr>
+<tr class="even">
+<td>Image</td>
+<td>For <span class="math inline">\(T:V\to W\)</span>, the subspace <span class="math inline">\(\{T(v):v\in V\}\)</span>.</td>
+<td>Output patterns that the available inputs can actually produce.</td>
+<td>The image need not equal the full codomain.</td>
+</tr>
+<tr class="odd">
+<td>Rank</td>
+<td>The dimension of the image of a linear map.</td>
+<td>The number of independent output directions produced by the map.</td>
+<td>Matrix rank is basis-independent, though the matrix entries are not.</td>
+</tr>
+<tr class="even">
+<td>Nullity</td>
+<td>The dimension of the kernel of a linear map.</td>
+<td>The number of independent input directions erased by the map.</td>
+<td>A large nullity has meaning only after the domain and map are named.</td>
+</tr>
+<tr class="odd">
+<td>Quotient vector space <span class="math inline">\(V/W\)</span></td>
+<td>Equivalence classes under <span class="math inline">\(v\sim v'\)</span> when <span class="math inline">\(v-v'\in W\)</span>.</td>
+<td>Treat differences lying in <span class="math inline">\(W\)</span> as irrelevant or already accounted for.</td>
+<td>The slash is not numerical division, and a class has many representatives.</td>
+</tr>
+<tr class="even">
+<td>Equivalence class <span class="math inline">\([v]\)</span></td>
+<td>All elements equivalent to <span class="math inline">\(v\)</span> under a specified relation.</td>
+<td>Every representation treated as the same after the agreed differences are ignored.</td>
+<td>A displayed representative is not canonical unless additional structure selects it.</td>
+</tr>
+<tr class="odd">
+<td>Coefficient field</td>
+<td>The field used for chain coefficients, here usually <span class="math inline">\(\mathbb F_2\)</span>.</td>
+<td>The arithmetic system used to combine and cancel building blocks.</td>
+<td>Features can depend on coefficients, especially in the presence of torsion.</td>
+</tr>
+<tr class="even">
+<td>Chain space <span class="math inline">\(C_p\)</span></td>
+<td>The vector space freely generated by the <span class="math inline">\(p\)</span>-simplices.</td>
+<td>All formal selections or combinations of <span class="math inline">\(p\)</span>-dimensional pieces.</td>
+<td>A chain is algebraic bookkeeping, not necessarily one connected geometric object.</td>
+</tr>
+<tr class="odd">
+<td>Boundary map <span class="math inline">\(\partial_p\)</span></td>
+<td>The linear map sending each <span class="math inline">\(p\)</span>-simplex to the signed sum of its faces.</td>
+<td>A rule extracting the exposed lower-dimensional boundary of a collection of pieces.</td>
+<td>Over <span class="math inline">\(\mathbb F_2\)</span> signs vanish; over other coefficients orientation matters.</td>
+</tr>
+<tr class="even">
+<td>Cycle <span class="math inline">\(Z_p\)</span></td>
+<td>A chain in <span class="math inline">\(\ker\partial_p\)</span>.</td>
+<td>A closed algebraic pattern with no remaining boundary.</td>
+<td>A cycle need not represent a nonzero hole; it may itself be a boundary.</td>
+</tr>
+<tr class="odd">
+<td>Boundary <span class="math inline">\(B_p\)</span></td>
+<td>A chain in <span class="math inline">\(\operatorname{im}\partial_{p+1}\)</span>.</td>
+<td>A closed pattern already filled by something one dimension higher.</td>
+<td>“Boundary” here is algebraic, not merely the visible edge of a plotted region.</td>
+</tr>
+<tr class="even">
+<td>Homology <span class="math inline">\(H_p\)</span></td>
+<td>The quotient <span class="math inline">\(Z_p/B_p\)</span>.</td>
+<td>Closed patterns counted only after filled or equivalent versions are identified.</td>
+<td>A class is an equivalence class of cycles, not a privileged loop.</td>
+</tr>
+<tr class="odd">
+<td>Betti number <span class="math inline">\(\beta_p\)</span></td>
+<td>The dimension of <span class="math inline">\(H_p\)</span> over the chosen field.</td>
+<td>The number of independent <span class="math inline">\(p\)</span>-dimensional topological degrees of freedom.</td>
+<td>It is a count at one object or scale and contains no feature identity.</td>
+</tr>
+<tr class="even">
+<td>Euler characteristic <span class="math inline">\(\chi\)</span></td>
+<td>The alternating sum of simplex counts, equivalently Betti numbers for a finite complex.</td>
+<td>A compact accounting checksum for the complex.</td>
+<td>Different homology can share the same Euler characteristic.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="filtrations-and-persistence" class="level2">
+<h2 class="anchored" data-anchor-id="filtrations-and-persistence">Filtrations and persistence</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mathematical term</th>
+<th>Precise meaning</th>
+<th>Applied or intuitive translation</th>
+<th>Interpretation caution</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Filtration</td>
+<td>A nested family <span class="math inline">\(K_a\subseteq K_b\)</span> for <span class="math inline">\(a\leq b\)</span>.</td>
+<td>A controlled sweep through a modelling threshold.</td>
+<td>The parameter is not automatically physical time.</td>
+</tr>
+<tr class="even">
+<td>Filtration function</td>
+<td>A face-monotone value assigned to every simplex.</td>
+<td>The rule deciding when each relation becomes available.</td>
+<td>Birth inherits meaning from this rule, not from topology alone.</td>
+</tr>
+<tr class="odd">
+<td>Čech complex</td>
+<td>The nerve of equal-radius balls centred on a point cloud.</td>
+<td>Record groups whose neighbourhoods share a genuinely common point.</td>
+<td>Joint intersection is stronger than pairwise intersection.</td>
+</tr>
+<tr class="even">
+<td>Vietoris–Rips complex</td>
+<td>The clique complex on pairs below a distance threshold.</td>
+<td>Infer higher-order groups from pairwise proximity.</td>
+<td>Check whether the parameter denotes radius or pairwise-distance threshold.</td>
+</tr>
+<tr class="odd">
+<td>Inclusion-induced map</td>
+<td>The map <span class="math inline">\(H_p(K_a)\to H_p(K_b)\)</span> induced by <span class="math inline">\(K_a\hookrightarrow K_b\)</span>.</td>
+<td>The rule describing what an earlier feature becomes after more simplices are added.</td>
+<td>The map need not be injective; an old class can map to zero.</td>
+</tr>
+<tr class="even">
+<td>Functor</td>
+<td>A rule sending objects to objects and maps to maps while preserving identities and composition.</td>
+<td>A consistent translation that retains both the states and how one state maps to another.</td>
+<td>The word adds no new empirical information; it records a structural compatibility.</td>
+</tr>
+<tr class="odd">
+<td>Persistence module</td>
+<td>Vector spaces <span class="math inline">\(H_p(K_a)\)</span> together with all compatible maps across scale.</td>
+<td>Homology with its cross-scale memory retained.</td>
+<td>A sequence of Betti numbers is not a persistence module.</td>
+</tr>
+<tr class="even">
+<td>Birth</td>
+<td>The first parameter at which a class appears in the module.</td>
+<td>The threshold where a new independent organisation becomes detectable.</td>
+<td>It is construction-dependent and may arise from sampling or ties.</td>
+</tr>
+<tr class="odd">
+<td>Death</td>
+<td>The parameter where a class merges into an older class or becomes a boundary.</td>
+<td>The threshold where that independent organisation is no longer distinguishable.</td>
+<td>The underlying chain may still exist after its class dies.</td>
+</tr>
+<tr class="even">
+<td>Persistence</td>
+<td>Death minus birth for a finite interval.</td>
+<td>The range of thresholds over which a class remains distinguishable.</td>
+<td>Long persistence is not automatically scientific importance.</td>
+</tr>
+<tr class="odd">
+<td>Interval module</td>
+<td>A module equal to the field on one interval and zero elsewhere.</td>
+<td>One idealised feature that is alive over one parameter range.</td>
+<td>The full module is usually a direct sum of many intervals.</td>
+</tr>
+<tr class="even">
+<td>Barcode</td>
+<td>The multiset of intervals in an interval decomposition.</td>
+<td>A timeline-like display of feature lifetimes across scale.</td>
+<td>Classification by barcodes needs suitable one-parameter finiteness or tameness assumptions.</td>
+</tr>
+<tr class="odd">
+<td>Persistence diagram</td>
+<td>Birth-death points encoding the same interval data.</td>
+<td>A scatter plot of when features appear and disappear.</td>
+<td>Distance from the diagonal measures persistence, not truth or usefulness.</td>
+</tr>
+<tr class="even">
+<td>Representative cycle</td>
+<td>A cycle chosen from a homology class.</td>
+<td>One concrete loop or void boundary used to localise an abstract feature.</td>
+<td>The choice is generally not unique, so its precise location should not be treated as canonical.</td>
+</tr>
+<tr class="odd">
+<td>Essential class</td>
+<td>A class with no finite death in the available filtration.</td>
+<td>Structure that remains after the sweep reaches its endpoint.</td>
+<td>It may be genuinely global or merely censored by a truncated parameter range.</td>
+</tr>
+<tr class="even">
+<td>Stability</td>
+<td>A theorem bounding diagram change by an appropriate change in input or filtration.</td>
+<td>Small permitted perturbations cannot arbitrarily move the persistence output.</td>
+<td>Stability does not imply interpretability, significance or predictive value.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="dynamic-data" class="level2">
+<h2 class="anchored" data-anchor-id="dynamic-data">Dynamic data</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mathematical term</th>
+<th>Precise meaning</th>
+<th>Applied or intuitive translation</th>
+<th>Interpretation caution</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Repeated persistence</td>
+<td>Separate static persistence computations at successive times or windows.</td>
+<td>A movie of barcode summaries.</td>
+<td>Similar-looking bars are not automatically the same tracked feature.</td>
+</tr>
+<tr class="even">
+<td>Vineyard</td>
+<td>Trajectories of persistence-diagram points under a changing function.</td>
+<td>Feature summaries traced continuously as data evolve.</td>
+<td>Matching diagram points is additional structure beyond repeated diagrams.</td>
+</tr>
+<tr class="odd">
+<td>Zigzag persistence</td>
+<td>Persistence for diagrams whose maps may point forward or backward.</td>
+<td>Track structure when observations or complexes can be added and removed.</td>
+<td>It solves a different problem from an ordinary increasing filtration.</td>
+</tr>
+<tr class="even">
+<td>Multiparameter persistence</td>
+<td>A module indexed by a partial order with two or more parameters.</td>
+<td>Retain several genuine modelling axes without collapsing them prematurely.</td>
+<td>There is generally no complete barcode classification analogous to the one-parameter case.</td>
+</tr>
+<tr class="odd">
+<td>Simplex tree</td>
+<td>A data structure storing simplices, faces and filtration values in a prefix tree.</td>
+<td>A computational index for querying and updating a filtered complex.</td>
+<td>It is a representation in software, not a new topological object.</td>
+</tr>
+<tr class="even">
+<td>Cubical complex</td>
+<td>A complex built from vertices, edges, pixels, voxels and higher-dimensional cubes.</td>
+<td>A topology-ready representation of gridded images, fields or volumes.</td>
+<td>Cell-value conventions and sublevel direction determine birth meaning.</td>
+</tr>
+<tr class="odd">
+<td>Lower-star filtration</td>
+<td>A filtration assigning each simplex the maximum value on its vertices.</td>
+<td>Activate a relation when its highest-valued required vertex becomes available.</td>
+<td>Negating values changes a low-feature question into a high-feature question.</td>
+</tr>
+<tr class="even">
+<td>Bottleneck distance</td>
+<td>The minimum possible maximum matching cost between diagrams, allowing diagonal matches.</td>
+<td>The size of the single worst discrepancy after optimal matching.</td>
+<td>It can ignore the accumulated effect of many smaller changes.</td>
+</tr>
+<tr class="odd">
+<td>Wasserstein distance</td>
+<td>An optimal matching cost that aggregates powered pointwise costs.</td>
+<td>Total diagram discrepancy rather than only the worst match.</td>
+<td>Its value depends on the order, ground metric and treatment of diagonal matches.</td>
+</tr>
+<tr class="even">
+<td>Betti curve</td>
+<td>The function counting intervals alive at each filtration value.</td>
+<td>A multiscale feature-count profile.</td>
+<td>It discards interval identity and can map different diagrams to the same curve.</td>
+</tr>
+<tr class="odd">
+<td>Persistence image</td>
+<td>A weighted, smoothed rasterisation of diagram points.</td>
+<td>A fixed-length feature array for statistics or machine learning.</td>
+<td>Resolution, smoothing and weighting are modelling parameters.</td>
+</tr>
+<tr class="even">
+<td>Persistence entropy</td>
+<td>Shannon entropy of normalised interval lengths, usually for finite intervals.</td>
+<td>A scalar describing how evenly persistence is distributed across features.</td>
+<td>It discards birth locations and feature identity, and conventions for essential or zero-length intervals matter.</td>
+</tr>
+<tr class="odd">
+<td>Mapper</td>
+<td>A graph or simplicial complex built from overlapping bins of a filter function and clusters within their inverse images.</td>
+<td>A compressed atlas of how observations organise along a chosen lens.</td>
+<td>Its topology depends on the filter, cover and clustering, and it is not a persistence diagram.</td>
+</tr>
+<tr class="even">
+<td>Null model</td>
+<td>A probability model representing structure expected without the target mechanism.</td>
+<td>The comparison world against which “unusual” is defined.</td>
+<td>An easy-to-simulate null may preserve the wrong properties.</td>
+</tr>
+<tr class="odd">
+<td>Surrogate data</td>
+<td>Synthetic or transformed observations generated under a null while preserving selected features.</td>
+<td>A controlled negative comparison passed through the same pipeline.</td>
+<td>Validity depends on what is preserved, destroyed and exchangeable.</td>
+</tr>
+<tr class="even">
+<td>CROCKER-style plot</td>
+<td>A display of Betti number or rank across physical time and filtration scale.</td>
+<td>A heat map of how multiscale topological counts evolve.</td>
+<td>It summarises repeated diagrams and does not track class identity.</td>
+</tr>
+<tr class="odd">
+<td>Physical time <span class="math inline">\(t\)</span></td>
+<td>The external index describing when a system is observed.</td>
+<td>Clock time, trial progress or window position.</td>
+<td>It must not be confused with filtration scale.</td>
+</tr>
+<tr class="even">
+<td>Filtration scale <span class="math inline">\(\varepsilon\)</span></td>
+<td>The ordered threshold within one persistence calculation.</td>
+<td>The resolution or relation-strength dial used to construct topology.</td>
+<td>It is not necessarily a physical unit unless the construction supports that interpretation.</td>
+</tr>
+<tr class="odd">
+<td>Feature tracking</td>
+<td>An explicit correspondence assigning identity to features across an external index.</td>
+<td>Saying which evolving feature is the continuation of which earlier feature.</td>
+<td>Nearest diagram points or similar lifetimes do not automatically establish identity.</td>
+</tr>
+<tr class="even">
+<td>Interleaving</td>
+<td>Compatible shifted maps between persistence modules.</td>
+<td>A controlled way to compare modules while allowing parameter tolerance.</td>
+<td>A small interleaving distance does not uniquely match generators.</td>
+</tr>
+<tr class="odd">
+<td>Vineyard module</td>
+<td>A time-indexed family of persistence modules with coherent transport maps.</td>
+<td>Vines plus the algebra describing how feature directions mix through time.</td>
+<td>It is richer than a vineyard and requires additional structure to estimate.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="maintenance-rule" class="level2">
+<h2 class="anchored" data-anchor-id="maintenance-rule">Maintenance rule</h2>
+<p>When a new mathematical term enters the course, add it here with:</p>
+<ol type="1">
+<li>a precise definition at the level used in the course;</li>
+<li>an applied translation tied to a data or scientific decision; and</li>
+<li>one sentence stating where that translation can mislead.</li>
+</ol>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/ShannonDeeAlgar\.github\.io\/tda-masterclass\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Applied glossary"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Pure-mathematical terms translated without losing their conditions"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">toc:</span><span class="co"> true</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## How to use this glossary</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>The middle column gives an applied intuition, not a replacement definition. The final column records the boundary of that intuition. When a term is used in a scientific claim, return to the precise meaning and name the constructed object.</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Objects and representations</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Mathematical term <span class="pp">|</span> Precise meaning <span class="pp">|</span> Applied or intuitive translation <span class="pp">|</span> Interpretation caution <span class="pp">|</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Topological space <span class="pp">|</span> A set equipped with open sets satisfying the topology axioms. <span class="pp">|</span> A specification of which points count as locally near one another, without requiring numerical distance. <span class="pp">|</span> “Topology” is not a generic synonym for shape or network layout. <span class="pp">|</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Homeomorphism <span class="pp">|</span> A bijection whose forward and inverse maps are continuous. <span class="pp">|</span> A reversible deformation that preserves topological structure. <span class="pp">|</span> The rubber-sheet metaphor is only an intuition, and finite samples are not automatically homeomorphic to latent continuous spaces. <span class="pp">|</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Homotopy equivalence <span class="pp">|</span> Maps in both directions whose composites are homotopic to the corresponding identity maps. <span class="pp">|</span> Two spaces retain the same broad continuous shape after contractible detail is ignored. <span class="pp">|</span> It is weaker than homeomorphism and does not preserve metric geometry. <span class="pp">|</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Topological invariant <span class="pp">|</span> A quantity or algebraic object unchanged under homeomorphism. <span class="pp">|</span> A shape descriptor designed to ignore coordinates and reversible deformation. <span class="pp">|</span> In data analysis it is computed on a constructed representation, not directly on an unknown physical system. <span class="pp">|</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Constructed representation <span class="pp">|</span> A mathematical object built from observations and modelling choices. <span class="pp">|</span> The point cloud, graph, image complex or embedding through which the system is analysed. <span class="pp">|</span> It can amplify, erase or invent apparent organisation relative to the scientific object. <span class="pp">|</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Metric <span class="pp">|</span> A distance function satisfying non-negativity, identity, symmetry and the triangle inequality. <span class="pp">|</span> The rule that decides which observations are similar enough to interact first. <span class="pp">|</span> A convenient metric may be scientifically inappropriate. <span class="pp">|</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Point cloud <span class="pp">|</span> A finite subset of a metric space. <span class="pp">|</span> A collection of sampled states or observations represented as points. <span class="pp">|</span> It is a representation of the system, not automatically the system or attractor itself. <span class="pp">|</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Geometric descriptor <span class="pp">|</span> A quantity or representation measuring a specified metric or coordinate property of a geometric object. <span class="pp">|</span> One deliberately chosen answer to “what makes these shapes look different?”, such as spacing, area, direction or curvature. <span class="pp">|</span> No short list of descriptors is a complete definition of shape; inspect what each retains and discards. <span class="pp">|</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Convex hull <span class="pp">|</span> The smallest convex set containing a specified set of points. <span class="pp">|</span> A tight elastic band placed around the outermost observations. <span class="pp">|</span> It records the outer envelope but cannot detect internal gaps, density or concavity. <span class="pp">|</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Anisotropy <span class="pp">|</span> Dependence of measured properties on direction. <span class="pp">|</span> Evidence that a cloud stretches or organises more strongly along some directions than others. <span class="pp">|</span> A single anisotropy ratio can miss curvature, multiple branches and local changes in direction. <span class="pp">|</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Geometric simplex <span class="pp">|</span> The convex hull of affinely independent vertices. <span class="pp">|</span> A filled-in building block: point, segment, triangle, tetrahedron. <span class="pp">|</span> A drawn triangle and three edges do not specify whether the face is filled. <span class="pp">|</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Abstract simplex <span class="pp">|</span> A finite set of vertices. <span class="pp">|</span> A recorded multiway relation among the listed vertices. <span class="pp">|</span> It need not have physical extent or a unique embedding. <span class="pp">|</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Simplicial complex <span class="pp">|</span> A collection of simplices closed under taking faces. <span class="pp">|</span> A consistent catalogue of relations at every included order. <span class="pp">|</span> Its 1-skeleton does not determine its higher-dimensional simplices. <span class="pp">|</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Geometric realisation $<span class="pp">|</span>K<span class="pp">|</span>$ <span class="pp">|</span> A topological space obtained by realising and gluing the simplices of $K$. <span class="pp">|</span> A spatial version of the abstract incidence data. <span class="pp">|</span> The realisation is not necessarily the observed physical object. <span class="pp">|</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 1-skeleton <span class="pp">|</span> All vertices and edges of a complex. <span class="pp">|</span> The network visible after discarding filled triangles and higher relations. <span class="pp">|</span> Homology of the graph may differ from homology of the full complex. <span class="pp">|</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Clique complex <span class="pp">|</span> The complex containing a simplex for every clique of a graph. <span class="pp">|</span> Treat every mutually pairwise-connected group as one higher-order unit. <span class="pp">|</span> Clique filling is a modelling assumption about higher-order coherence. <span class="pp">|</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Graph cycle rank <span class="pp">|</span> For a finite undirected graph, $E-V+C$, the dimension of its cycle space over a field. <span class="pp">|</span> The number of independent network loops before any higher-dimensional filling is added. <span class="pp">|</span> It is not generally $H_1$ of the clique complex because triangles and higher simplices can fill graph cycles. <span class="pp">|</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="fu">## Homology as linear algebra</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Mathematical term <span class="pp">|</span> Precise meaning <span class="pp">|</span> Applied or intuitive translation <span class="pp">|</span> Interpretation caution <span class="pp">|</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Basis <span class="pp">|</span> A linearly independent spanning set giving every vector unique coordinates. <span class="pp">|</span> The agreed list of elementary pieces used to record a combination. <span class="pp">|</span> Coordinates depend on the selected basis even when the vector does not. <span class="pp">|</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Span <span class="pp">|</span> All linear combinations of a specified set of vectors. <span class="pp">|</span> Everything that can be assembled from the available building blocks. <span class="pp">|</span> A long generating list may contain redundant vectors. <span class="pp">|</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Kernel <span class="pp">|</span> For $T:V\to W$, the subspace $<span class="sc">\{</span>v:T(v)=0<span class="sc">\}</span>$. <span class="pp">|</span> Input combinations whose effects cancel completely under the map. <span class="pp">|</span> Being in a kernel is relative to a particular map. <span class="pp">|</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Image <span class="pp">|</span> For $T:V\to W$, the subspace $<span class="sc">\{</span>T(v):v\in V<span class="sc">\}</span>$. <span class="pp">|</span> Output patterns that the available inputs can actually produce. <span class="pp">|</span> The image need not equal the full codomain. <span class="pp">|</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Rank <span class="pp">|</span> The dimension of the image of a linear map. <span class="pp">|</span> The number of independent output directions produced by the map. <span class="pp">|</span> Matrix rank is basis-independent, though the matrix entries are not. <span class="pp">|</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Nullity <span class="pp">|</span> The dimension of the kernel of a linear map. <span class="pp">|</span> The number of independent input directions erased by the map. <span class="pp">|</span> A large nullity has meaning only after the domain and map are named. <span class="pp">|</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Quotient vector space $V/W$ <span class="pp">|</span> Equivalence classes under $v\sim v'$ when $v-v'\in W$. <span class="pp">|</span> Treat differences lying in $W$ as irrelevant or already accounted for. <span class="pp">|</span> The slash is not numerical division, and a class has many representatives. <span class="pp">|</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Equivalence class $<span class="co">[</span><span class="ot">v</span><span class="co">]</span>$ <span class="pp">|</span> All elements equivalent to $v$ under a specified relation. <span class="pp">|</span> Every representation treated as the same after the agreed differences are ignored. <span class="pp">|</span> A displayed representative is not canonical unless additional structure selects it. <span class="pp">|</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Coefficient field <span class="pp">|</span> The field used for chain coefficients, here usually $\mathbb F_2$. <span class="pp">|</span> The arithmetic system used to combine and cancel building blocks. <span class="pp">|</span> Features can depend on coefficients, especially in the presence of torsion. <span class="pp">|</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Chain space $C_p$ <span class="pp">|</span> The vector space freely generated by the $p$-simplices. <span class="pp">|</span> All formal selections or combinations of $p$-dimensional pieces. <span class="pp">|</span> A chain is algebraic bookkeeping, not necessarily one connected geometric object. <span class="pp">|</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Boundary map $\partial_p$ <span class="pp">|</span> The linear map sending each $p$-simplex to the signed sum of its faces. <span class="pp">|</span> A rule extracting the exposed lower-dimensional boundary of a collection of pieces. <span class="pp">|</span> Over $\mathbb F_2$ signs vanish; over other coefficients orientation matters. <span class="pp">|</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Cycle $Z_p$ <span class="pp">|</span> A chain in $\ker\partial_p$. <span class="pp">|</span> A closed algebraic pattern with no remaining boundary. <span class="pp">|</span> A cycle need not represent a nonzero hole; it may itself be a boundary. <span class="pp">|</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Boundary $B_p$ <span class="pp">|</span> A chain in $\operatorname{im}\partial_{p+1}$. <span class="pp">|</span> A closed pattern already filled by something one dimension higher. <span class="pp">|</span> “Boundary” here is algebraic, not merely the visible edge of a plotted region. <span class="pp">|</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Homology $H_p$ <span class="pp">|</span> The quotient $Z_p/B_p$. <span class="pp">|</span> Closed patterns counted only after filled or equivalent versions are identified. <span class="pp">|</span> A class is an equivalence class of cycles, not a privileged loop. <span class="pp">|</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Betti number $\beta_p$ <span class="pp">|</span> The dimension of $H_p$ over the chosen field. <span class="pp">|</span> The number of independent $p$-dimensional topological degrees of freedom. <span class="pp">|</span> It is a count at one object or scale and contains no feature identity. <span class="pp">|</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Euler characteristic $\chi$ <span class="pp">|</span> The alternating sum of simplex counts, equivalently Betti numbers for a finite complex. <span class="pp">|</span> A compact accounting checksum for the complex. <span class="pp">|</span> Different homology can share the same Euler characteristic. <span class="pp">|</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="fu">## Filtrations and persistence</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Mathematical term <span class="pp">|</span> Precise meaning <span class="pp">|</span> Applied or intuitive translation <span class="pp">|</span> Interpretation caution <span class="pp">|</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Filtration <span class="pp">|</span> A nested family $K_a\subseteq K_b$ for $a\leq b$. <span class="pp">|</span> A controlled sweep through a modelling threshold. <span class="pp">|</span> The parameter is not automatically physical time. <span class="pp">|</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Filtration function <span class="pp">|</span> A face-monotone value assigned to every simplex. <span class="pp">|</span> The rule deciding when each relation becomes available. <span class="pp">|</span> Birth inherits meaning from this rule, not from topology alone. <span class="pp">|</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Čech complex <span class="pp">|</span> The nerve of equal-radius balls centred on a point cloud. <span class="pp">|</span> Record groups whose neighbourhoods share a genuinely common point. <span class="pp">|</span> Joint intersection is stronger than pairwise intersection. <span class="pp">|</span></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Vietoris–Rips complex <span class="pp">|</span> The clique complex on pairs below a distance threshold. <span class="pp">|</span> Infer higher-order groups from pairwise proximity. <span class="pp">|</span> Check whether the parameter denotes radius or pairwise-distance threshold. <span class="pp">|</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Inclusion-induced map <span class="pp">|</span> The map $H_p(K_a)\to H_p(K_b)$ induced by $K_a\hookrightarrow K_b$. <span class="pp">|</span> The rule describing what an earlier feature becomes after more simplices are added. <span class="pp">|</span> The map need not be injective; an old class can map to zero. <span class="pp">|</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Functor <span class="pp">|</span> A rule sending objects to objects and maps to maps while preserving identities and composition. <span class="pp">|</span> A consistent translation that retains both the states and how one state maps to another. <span class="pp">|</span> The word adds no new empirical information; it records a structural compatibility. <span class="pp">|</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Persistence module <span class="pp">|</span> Vector spaces $H_p(K_a)$ together with all compatible maps across scale. <span class="pp">|</span> Homology with its cross-scale memory retained. <span class="pp">|</span> A sequence of Betti numbers is not a persistence module. <span class="pp">|</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Birth <span class="pp">|</span> The first parameter at which a class appears in the module. <span class="pp">|</span> The threshold where a new independent organisation becomes detectable. <span class="pp">|</span> It is construction-dependent and may arise from sampling or ties. <span class="pp">|</span></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Death <span class="pp">|</span> The parameter where a class merges into an older class or becomes a boundary. <span class="pp">|</span> The threshold where that independent organisation is no longer distinguishable. <span class="pp">|</span> The underlying chain may still exist after its class dies. <span class="pp">|</span></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Persistence <span class="pp">|</span> Death minus birth for a finite interval. <span class="pp">|</span> The range of thresholds over which a class remains distinguishable. <span class="pp">|</span> Long persistence is not automatically scientific importance. <span class="pp">|</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Interval module <span class="pp">|</span> A module equal to the field on one interval and zero elsewhere. <span class="pp">|</span> One idealised feature that is alive over one parameter range. <span class="pp">|</span> The full module is usually a direct sum of many intervals. <span class="pp">|</span></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Barcode <span class="pp">|</span> The multiset of intervals in an interval decomposition. <span class="pp">|</span> A timeline-like display of feature lifetimes across scale. <span class="pp">|</span> Classification by barcodes needs suitable one-parameter finiteness or tameness assumptions. <span class="pp">|</span></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Persistence diagram <span class="pp">|</span> Birth-death points encoding the same interval data. <span class="pp">|</span> A scatter plot of when features appear and disappear. <span class="pp">|</span> Distance from the diagonal measures persistence, not truth or usefulness. <span class="pp">|</span></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Representative cycle <span class="pp">|</span> A cycle chosen from a homology class. <span class="pp">|</span> One concrete loop or void boundary used to localise an abstract feature. <span class="pp">|</span> The choice is generally not unique, so its precise location should not be treated as canonical. <span class="pp">|</span></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Essential class <span class="pp">|</span> A class with no finite death in the available filtration. <span class="pp">|</span> Structure that remains after the sweep reaches its endpoint. <span class="pp">|</span> It may be genuinely global or merely censored by a truncated parameter range. <span class="pp">|</span></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Stability <span class="pp">|</span> A theorem bounding diagram change by an appropriate change in input or filtration. <span class="pp">|</span> Small permitted perturbations cannot arbitrarily move the persistence output. <span class="pp">|</span> Stability does not imply interpretability, significance or predictive value. <span class="pp">|</span></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a><span class="fu">## Dynamic data</span></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Mathematical term <span class="pp">|</span> Precise meaning <span class="pp">|</span> Applied or intuitive translation <span class="pp">|</span> Interpretation caution <span class="pp">|</span></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|</span></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Repeated persistence <span class="pp">|</span> Separate static persistence computations at successive times or windows. <span class="pp">|</span> A movie of barcode summaries. <span class="pp">|</span> Similar-looking bars are not automatically the same tracked feature. <span class="pp">|</span></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Vineyard <span class="pp">|</span> Trajectories of persistence-diagram points under a changing function. <span class="pp">|</span> Feature summaries traced continuously as data evolve. <span class="pp">|</span> Matching diagram points is additional structure beyond repeated diagrams. <span class="pp">|</span></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Zigzag persistence <span class="pp">|</span> Persistence for diagrams whose maps may point forward or backward. <span class="pp">|</span> Track structure when observations or complexes can be added and removed. <span class="pp">|</span> It solves a different problem from an ordinary increasing filtration. <span class="pp">|</span></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Multiparameter persistence <span class="pp">|</span> A module indexed by a partial order with two or more parameters. <span class="pp">|</span> Retain several genuine modelling axes without collapsing them prematurely. <span class="pp">|</span> There is generally no complete barcode classification analogous to the one-parameter case. <span class="pp">|</span></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Simplex tree <span class="pp">|</span> A data structure storing simplices, faces and filtration values in a prefix tree. <span class="pp">|</span> A computational index for querying and updating a filtered complex. <span class="pp">|</span> It is a representation in software, not a new topological object. <span class="pp">|</span></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Cubical complex <span class="pp">|</span> A complex built from vertices, edges, pixels, voxels and higher-dimensional cubes. <span class="pp">|</span> A topology-ready representation of gridded images, fields or volumes. <span class="pp">|</span> Cell-value conventions and sublevel direction determine birth meaning. <span class="pp">|</span></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Lower-star filtration <span class="pp">|</span> A filtration assigning each simplex the maximum value on its vertices. <span class="pp">|</span> Activate a relation when its highest-valued required vertex becomes available. <span class="pp">|</span> Negating values changes a low-feature question into a high-feature question. <span class="pp">|</span></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Bottleneck distance <span class="pp">|</span> The minimum possible maximum matching cost between diagrams, allowing diagonal matches. <span class="pp">|</span> The size of the single worst discrepancy after optimal matching. <span class="pp">|</span> It can ignore the accumulated effect of many smaller changes. <span class="pp">|</span></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Wasserstein distance <span class="pp">|</span> An optimal matching cost that aggregates powered pointwise costs. <span class="pp">|</span> Total diagram discrepancy rather than only the worst match. <span class="pp">|</span> Its value depends on the order, ground metric and treatment of diagonal matches. <span class="pp">|</span></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Betti curve <span class="pp">|</span> The function counting intervals alive at each filtration value. <span class="pp">|</span> A multiscale feature-count profile. <span class="pp">|</span> It discards interval identity and can map different diagrams to the same curve. <span class="pp">|</span></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Persistence image <span class="pp">|</span> A weighted, smoothed rasterisation of diagram points. <span class="pp">|</span> A fixed-length feature array for statistics or machine learning. <span class="pp">|</span> Resolution, smoothing and weighting are modelling parameters. <span class="pp">|</span></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Persistence entropy <span class="pp">|</span> Shannon entropy of normalised interval lengths, usually for finite intervals. <span class="pp">|</span> A scalar describing how evenly persistence is distributed across features. <span class="pp">|</span> It discards birth locations and feature identity, and conventions for essential or zero-length intervals matter. <span class="pp">|</span></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Mapper <span class="pp">|</span> A graph or simplicial complex built from overlapping bins of a filter function and clusters within their inverse images. <span class="pp">|</span> A compressed atlas of how observations organise along a chosen lens. <span class="pp">|</span> Its topology depends on the filter, cover and clustering, and it is not a persistence diagram. <span class="pp">|</span></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Null model <span class="pp">|</span> A probability model representing structure expected without the target mechanism. <span class="pp">|</span> The comparison world against which “unusual” is defined. <span class="pp">|</span> An easy-to-simulate null may preserve the wrong properties. <span class="pp">|</span></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Surrogate data <span class="pp">|</span> Synthetic or transformed observations generated under a null while preserving selected features. <span class="pp">|</span> A controlled negative comparison passed through the same pipeline. <span class="pp">|</span> Validity depends on what is preserved, destroyed and exchangeable. <span class="pp">|</span></span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> CROCKER-style plot <span class="pp">|</span> A display of Betti number or rank across physical time and filtration scale. <span class="pp">|</span> A heat map of how multiscale topological counts evolve. <span class="pp">|</span> It summarises repeated diagrams and does not track class identity. <span class="pp">|</span></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Physical time $t$ <span class="pp">|</span> The external index describing when a system is observed. <span class="pp">|</span> Clock time, trial progress or window position. <span class="pp">|</span> It must not be confused with filtration scale. <span class="pp">|</span></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Filtration scale $\varepsilon$ <span class="pp">|</span> The ordered threshold within one persistence calculation. <span class="pp">|</span> The resolution or relation-strength dial used to construct topology. <span class="pp">|</span> It is not necessarily a physical unit unless the construction supports that interpretation. <span class="pp">|</span></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Feature tracking <span class="pp">|</span> An explicit correspondence assigning identity to features across an external index. <span class="pp">|</span> Saying which evolving feature is the continuation of which earlier feature. <span class="pp">|</span> Nearest diagram points or similar lifetimes do not automatically establish identity. <span class="pp">|</span></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Interleaving <span class="pp">|</span> Compatible shifted maps between persistence modules. <span class="pp">|</span> A controlled way to compare modules while allowing parameter tolerance. <span class="pp">|</span> A small interleaving distance does not uniquely match generators. <span class="pp">|</span></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Vineyard module <span class="pp">|</span> A time-indexed family of persistence modules with coherent transport maps. <span class="pp">|</span> Vines plus the algebra describing how feature directions mix through time. <span class="pp">|</span> It is richer than a vineyard and requires additional structure to estimate. <span class="pp">|</span></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="fu">## Maintenance rule</span></span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a>When a new mathematical term enters the course, add it here with:</span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>a precise definition at the level used in the course;</span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>an applied translation tied to a data or scientific decision; and</span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>one sentence stating where that translation can mislead.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
