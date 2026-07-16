@@ -1,0 +1,20 @@
+---
+title: "Application route: dynamical systems"
+toc: true
+---
+
+## Candidate data objects
+
+- Delay embeddings
+- State-space trajectories
+- Sliding-window point clouds
+- Time-indexed interaction graphs
+- Scalar fields derived from activity, density or recurrence
+
+## Escalation rule
+
+Begin with static persistence on carefully chosen snapshots or windows. Move to repeated persistence through time only when temporal change matters. Move to vineyards, zigzag or multiparameter persistence only when the scientific question requires the additional structure.
+
+## Baselines
+
+Topology should be compared with quantities such as recurrence statistics, clustering, spectral graph measures, order parameters, entropy or predictive performance without topological features.

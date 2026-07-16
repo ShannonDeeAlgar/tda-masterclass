@@ -1,0 +1,200 @@
+/*-- scss:defaults --*/
+$font-size-root: 17px;
+$headings-font-weight: 650;
+
+/*-- scss:rules --*/
+:root {
+  --sticking: #9b2c2c;
+  --qualification: #255a92;
+  --object-check: #28734f;
+  --tda-connection: #6b4ca5;
+  --course-accent: var(--bs-primary);
+  --course-border: color-mix(in srgb, var(--bs-body-color) 18%, transparent);
+  --course-panel: color-mix(in srgb, var(--bs-body-color) 4%, transparent);
+}
+
+main { max-width: 980px; }
+
+.sticking-point,
+.qualification,
+.object-check {
+  border-left: 0.34rem solid;
+  padding: 0.65rem 0.9rem;
+  margin: 1rem 0;
+  background: color-mix(in srgb, currentColor 5%, transparent);
+}
+.sticking-point { border-color: var(--sticking); }
+.qualification { border-color: var(--qualification); }
+.object-check { border-color: var(--object-check); }
+
+.phrase {
+  font-size: 1.08rem;
+  font-style: italic;
+  padding: 0.8rem 1.1rem;
+  border-left: 0.25rem solid #777;
+}
+
+.decision-question {
+  font-weight: 600;
+  margin-top: 1.1rem;
+}
+
+.numbered-sequence {
+  counter-reset: course-step;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1.2rem 0 2rem;
+}
+
+.numbered-step {
+  counter-increment: course-step;
+  position: relative;
+  padding: 3.6rem 1.1rem 1.1rem;
+  border: 1px solid var(--course-border);
+  border-radius: 0.7rem;
+  background: var(--course-panel);
+}
+
+.numbered-step::before {
+  content: counter(course-step);
+  position: absolute;
+  top: -0.72rem;
+  left: 1rem;
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border: 0.22rem solid var(--bs-body-bg);
+  border-radius: 50%;
+  background: var(--course-accent);
+  color: #fff;
+  font-size: 1.65rem;
+  font-weight: 750;
+  line-height: 1;
+}
+
+.numbered-step h3 {
+  margin-top: 0;
+}
+
+.audience-grid,
+.course-map {
+  display: grid;
+  gap: 1rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.audience-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.course-map {
+  grid-template-columns: 1fr;
+}
+
+.audience-card,
+.course-block {
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--course-border);
+  border-radius: 0.6rem;
+  background: var(--course-panel);
+}
+
+.audience-card h3,
+.course-block h3 {
+  margin-top: 0;
+}
+
+.course-block {
+  border-top: 0.24rem solid var(--course-accent);
+}
+
+.tda-connection {
+  border-left: 0.34rem solid var(--tda-connection);
+  padding: 0.65rem 0.9rem;
+  margin: 1rem 0 1.35rem;
+  background: color-mix(in srgb, var(--tda-connection) 7%, transparent);
+}
+
+.applied-translation {
+  padding: 0.7rem 0.9rem;
+  margin: 0.85rem 0 1.1rem;
+  border: 1px dashed color-mix(in srgb, var(--bs-body-color) 28%, transparent);
+  border-radius: 0.45rem;
+  background: color-mix(in srgb, var(--bs-body-color) 3%, transparent);
+}
+
+.data-translation {
+  padding: 0.7rem 0.9rem;
+  margin: 0.85rem 0 1.1rem;
+  border-left: 0.34rem solid #287f8f;
+  border-radius: 0.2rem 0.45rem 0.45rem 0.2rem;
+  background: color-mix(in srgb, #287f8f 7%, transparent);
+}
+
+.historical-note {
+  padding: 0.75rem 0.95rem;
+  margin: 1rem 0 1.3rem;
+  border-left: 0.34rem solid #a66a18;
+  border-radius: 0.2rem 0.45rem 0.45rem 0.2rem;
+  background: color-mix(in srgb, #a66a18 8%, transparent);
+}
+
+.historical-note ol,
+.historical-note ul {
+  margin-bottom: 0.25rem;
+}
+
+.foundation-definition {
+  margin: 1.25rem 0 1.6rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--course-border);
+  border-radius: 0.6rem;
+  background: var(--course-panel);
+}
+
+.foundation-definition > p:first-child {
+  margin-top: 0;
+}
+
+.foundation-steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.55rem;
+  margin-top: 0.9rem;
+}
+
+.foundation-step {
+  padding: 0.65rem 0.7rem;
+  border: 1px solid var(--course-border);
+  border-radius: 0.45rem;
+  background: color-mix(in srgb, var(--bs-body-bg) 96%, var(--course-accent));
+  font-size: 0.93rem;
+}
+
+.foundation-step.is-active {
+  border-color: var(--course-accent);
+  border-top: 0.3rem solid var(--course-accent);
+  background: color-mix(in srgb, var(--course-accent) 13%, var(--bs-body-bg));
+}
+
+.course-block ol,
+.course-block p:last-child,
+.audience-card p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 780px) {
+  .numbered-sequence,
+  .audience-grid,
+  .course-map {
+    grid-template-columns: 1fr;
+  }
+
+  .foundation-steps {
+    grid-template-columns: 1fr;
+  }
+}
+
+table { font-size: 0.92rem; }

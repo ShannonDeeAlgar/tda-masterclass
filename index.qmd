@@ -1,0 +1,158 @@
+---
+title: "Topological Data Analysis for Static and Dynamic Data"
+subtitle: "Foundations, filtrations and method choice for applied dynamical systems"
+toc: true
+---
+
+This MasterClass develops the judgement needed to **read, compute, question and adapt** persistent-homology pipelines for static and dynamic data.
+
+The central outcome is conceptual fluency. By the end of the course, you should be able to follow the mathematical argument in a technical TDA paper, identify the objects and maps being used, and judge what its conclusions do and do not say about the underlying system. We construct examples and run computations because doing so makes the ideas inspectable, not because implementing every method from scratch is the final goal.
+
+It is not organised as a software tutorial. The recurring question is:
+
+> What mathematical construction answers the scientific question, and what interpretation becomes possible or impossible because of that choice?
+
+## The guiding construction for Weeks 1–4
+
+The first four weeks build one definition in stages. Given a filtration of simplicial complexes
+
+$$
+K_a\subseteq K_b\qquad\text{whenever }a\leq b,
+$$
+
+its **$p$-dimensional persistent homology over a field $\mathbb F$** is the persistence module
+
+$$
+a\longmapsto H_p(K_a;\mathbb F),
+\qquad
+(a\leq b)\longmapsto
+(\iota_{a,b})_*:H_p(K_a;\mathbb F)\to H_p(K_b;\mathbb F).
+$$
+
+This says more than “compute holes at several scales”. It retains the homology vector space at every scale **and the maps recording what each earlier class becomes later**. Under suitable one-parameter finiteness or tameness conditions, the module decomposes into interval modules and can be summarised by a barcode or persistence diagram. The barcode is therefore a representation of the persistence module, not the starting definition.
+
+The parts are introduced in order:
+
+1. **[Week 1](weeks/week-01/index.qmd): scientific object, observations and representation.** Why might connectedness, recurrence or enclosure be worth preserving, and what information is deliberately forgotten by a topological lens?
+2. **[Week 2](weeks/week-02/index.qmd): $K_a$ and $H_p(K_a;\mathbb F)$.** What is a simplicial complex, how do boundary maps define homology, and what does the coefficient field change?
+3. **[Week 3](weeks/week-03/index.qmd): the nested family $K_a\subseteq K_b$.** How does a metric, relation or filtration function produce complexes that grow with a parameter?
+4. **[Week 4](weeks/week-04/index.qmd): the maps $(\iota_{a,b})_*$ and their interval summary.** How do homology classes persist, merge or become boundaries, and when may the resulting module be represented by a barcode?
+
+::: {.object-check}
+**◇ Object check.** The observations, each complex $K_a$, each homology space $H_p(K_a;\mathbb F)$, the persistence module and its barcode are different objects. The arrows between them are part of the definition and the modelling history.
+:::
+
+::: {.callout-important title="Running the code"}
+Website code boxes are static previews. Download the participant `.ipynb` file from each weekly page and run it directly in JupyterLab, Jupyter Notebook or VS Code. You do not need to copy individual cells.
+
+[Set up the environment and run a practical](run-practicals.qmd){.btn .btn-primary}
+:::
+
+The two notebooks have different roles. The **lecture walkthrough** follows the slide argument and is designed for live prediction and reveal. The **participant practical** supplies tools and framing but leaves threshold choices, controlled extensions and the final interpretation to students.
+
+::: {.callout-note title="What is available to whom?"}
+The participant practical is the student-facing notebook used during independent work. The lecture walkthrough is an instructor resource used to control prediction and reveal during the lecture. It can be released to students after the session as a worked record, but it is not intended to remove the decisions from the practical in advance.
+:::
+
+## Who this course is for
+
+::: {.audience-grid}
+::: {.audience-card}
+### Dynamical systems researchers
+
+Use topology alongside geometric, temporal and statistical descriptions of trajectories, attractors and collective dynamics.
+:::
+
+::: {.audience-card}
+### Honours and graduate students
+
+Build the algebraic-topology foundations needed to understand what TDA software constructs and computes.
+:::
+
+::: {.audience-card}
+### Applied and industry participants
+
+Evaluate whether connectedness, loops or multiscale organisation answer an operational question beyond existing baselines.
+:::
+:::
+
+No prior algebraic topology is assumed. The [pre-Week 1 topology survival guide](weeks/week-01/topology-survival-guide.qmd) separates the formal language of open sets, continuity and connectedness from the main teaching narrative. Familiarity with basic linear algebra is helpful; the [pre-Week 2 algebra survival guide](weeks/week-02/algebra-survival-guide.qmd) supplies a concise refresher at the point where it is needed. The practical notebooks introduce the required Python patterns as they are used.
+
+## Three ways to use the material
+
+::: {.numbered-sequence}
+::: {.numbered-step}
+### Learn
+
+Follow Weeks 1 to 4 for the conceptual and mathematical foundations.
+:::
+
+::: {.numbered-step}
+### Implement
+
+Download the participant notebooks to predict, compute, compare and interpret.
+:::
+
+::: {.numbered-step}
+### Apply
+
+Enter through a real-data case study and follow links back to only the mathematics you need.
+:::
+:::
+
+## Course structure
+
+::: {.course-map}
+::: {.course-block}
+### Foundations
+
+1. [Shape, topology and computable invariants](weeks/week-01/index.qmd)
+2. [Simplicial complexes and homology](weeks/week-02/index.qmd)
+3. [Filtrations](weeks/week-03/index.qmd)
+4. [Persistent homology and persistence modules](weeks/week-04/index.qmd)
+:::
+
+::: {.course-block}
+### Interlude
+
+[Every barcode has a modelling history](design-decisions/index.qmd)
+
+Pause between mathematical foundations and software workflows to expose the decisions already embedded in a persistence pipeline.
+:::
+
+::: {.course-block}
+### Practice and validation
+
+5. [Static data in practice](weeks/week-05/index.qmd)
+6. [Summaries, comparisons and validation](weeks/week-06/index.qmd)
+:::
+
+::: {.course-block}
+### Dynamic data
+
+7. [Repeated persistence through time](weeks/week-07/index.qmd)
+8. [Zigzag and multiparameter persistence, vineyards and vineyard modules](weeks/week-08/index.qmd)
+:::
+
+::: {.course-block}
+### Application routes
+
+Enter through a [dynamical systems or industry question](applications/index.qmd), then follow the relevant mathematics, notebook and sensitivity checks.
+:::
+:::
+
+## Reading symbols
+
+<div class="sticking-point">**▶ Likely sticking point.** A transition that looks small but commonly breaks the thread.</div>
+
+<div class="qualification">**† Qualification.** A condition or distinction that must not be hidden for convenience.</div>
+
+<div class="object-check">**◇ Object check.** A deliberate stop to name the current objects and maps.</div>
+
+<div class="tda-connection">**◆ TDA connection.** Why the current idea is needed later in the TDA pipeline.</div>
+
+<div class="applied-translation">**Applied translation.** The same idea restated as a modelling, computational or bookkeeping action.</div>
+
+<div class="data-translation">**Data-analysis translation.** What the idea changes in a data object, workflow, diagnostic or interpretation.</div>
+
+<div class="historical-note">**◷ Historical context.** A short chronology explaining which result came first and what a later result added.</div>

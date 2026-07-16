@@ -1,0 +1,253 @@
+---
+title: "Week 1: Shape, topology and computable invariants"
+subtitle: "TDA for Static and Dynamic Data"
+format:
+  revealjs:
+    theme: [simple, ../../assets/slides.scss]
+    slide-number: true
+    transition: fade
+    controls: true
+    chalkboard: true
+    footer: "TDA MasterClass"
+execute:
+  enabled: false
+---
+
+## The decision for today
+
+What object are we constructing?
+
+What does it retain?
+
+What claim could it support?
+
+---
+
+## Matching moments, different organisation
+
+Coordinate means, coordinate standard deviations and Pearson correlation can agree.
+
+The point clouds can still look different.
+
+![](../../assets/datasaurus-dozen.svg){fig-alt="Thirteen Datasaurus Dozen scatter plots on common axes." height="390"}
+
+::: {.qualification}
+**† Qualification.** No summary sees everything. Topology is another selective lens.
+:::
+
+[Lecture walkthrough: demonstration 1](solutions.ipynb)
+
+---
+
+## What did your eyes use?
+
+Density. Spacing. Direction.
+
+Boundary. Curvature. Symmetry.
+
+Clusters. Branches. Empty regions. Scale.
+
+::: {.sticking}
+**▶ Likely sticking point.** Visual recognition is already a rich multiscale spatial analysis.
+:::
+
+---
+
+## Geometry has not failed
+
+Coordinate means, coordinate standard deviations and Pearson correlation are six global values for each point cloud.
+
+Geometry can examine:
+
+- pairwise and nearest-neighbour distances
+- density and boundary
+- curvature, direction and symmetry
+- local and global scale
+
+---
+
+## One descriptor is one question
+
+Nearest-neighbour spacing asks about local crowding.
+
+Convex-hull area asks about the outer envelope.
+
+Radial variation asks about distance from a chosen centre.
+
+None is a complete definition of shape.
+
+[Lecture walkthrough: geometric comparison](solutions.ipynb)
+
+---
+
+## Three levels
+
+1. scientific object
+2. observations
+3. constructed representation
+
+::: {.object-check}
+**◇ Object check.** An attractor, a sampled trajectory and a delay-coordinate cloud are not the same object.
+:::
+
+---
+
+## Geometry and topology
+
+**Geometry:** distance, angle, curvature, scale.
+
+**Topology:** continuity, neighbourhoods, connectedness.
+
+A metric generates a topology, but retains more information.
+
+![](../../assets/week01-geometry-topology.svg){fig-alt="Circle versus ellipse, circle versus figure eight, and ring boundary versus filled disk." height="230"}
+
+---
+
+## Same topology, different geometry
+
+Circle $\longleftrightarrow$ ellipse
+
+Different lengths and curvature.
+
+Same continuous loop structure.
+
+---
+
+## Different topology
+
+Circle: one loop.
+
+Figure eight: two loops.
+
+Ring boundary: a loop-like hole.
+
+Filled disk: no hole.
+
+::: {.qualification}
+**† Qualification.** Homology is a coarse topological summary, not a complete description of a space.
+:::
+
+---
+
+## The rubber-sheet idea
+
+Bend and stretch. Do not cut or glue.
+
+Precisely, a homeomorphism is a bijection $f:X\to Y$ with both $f$ and $f^{-1}$ continuous.
+
+---
+
+## Paths connect the discrete and continuous stories
+
+Graph path: a sequence of incident edges.
+
+Topological path: a continuous map $\gamma:[0,1]\to X$.
+
+$H_0$ will count connected components of the constructed complex.
+
+---
+
+## Controlled forgetting
+
+$$
+\text{geometry}\to\text{topology}\to\text{homotopy}\to\text{homology}
+$$
+
+Less detail.
+
+More tractable invariants.
+
+---
+
+## Finite data do not arrive with a hole label
+
+A noisy circle is a finite metric space.
+
+We must choose:
+
+- representation
+- metric or relation
+- scale rule
+- complex
+
+---
+
+## The course spine
+
+$$
+\text{data}\to\text{complexes}\to\text{homology}
+\to\text{persistence}\to\text{summaries}
+$$
+
+Every arrow is a modelling decision.
+
+---
+
+## A first transparent diagnostic
+
+Threshold graph:
+
+$$\text{components},\qquad E-V+C.$$
+
+::: {.sticking}
+**▶ Likely sticking point.** Graph cycle rank is not $H_1$ of the full clique complex. Triangles may fill cycles.
+:::
+
+[Lecture walkthrough: demonstrations 3–5](solutions.ipynb)
+
+---
+
+## Keep the points fixed
+
+Translate. Rotate. Stretch.
+
+Which pairwise distances change?
+
+Which neighbourhood relations change at a fixed threshold?
+
+---
+
+## One threshold is a modelling choice
+
+One threshold gives one answer.
+
+Changing the threshold changes the constructed graph.
+
+The observations have stayed fixed.
+
+Do not mistake threshold sensitivity for a change in the underlying system.
+
+---
+
+## What might a topological lens ask?
+
+- How many pieces appear at a neighbourhood scale?
+- Which pieces join as the scale grows?
+- Which loop-like gaps close quickly?
+- Which organisation survives across several scales?
+
+::: {.qualification}
+**† Qualification.** Do not compute or rank persistence yet. First learn what object the calculation would describe.
+:::
+
+---
+
+## Dynamical systems question
+
+Could multiscale organisation complement:
+
+- geometric summaries?
+- recurrence statistics?
+- spectral or order parameters?
+
+---
+
+## Before we leave
+
+1. What is observed?
+2. What is constructed?
+3. Which choice changes the interpretation?
+4. When would this lens mislead us?
+
+[Participant practical](lab.ipynb)

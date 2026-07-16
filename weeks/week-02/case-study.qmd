@@ -1,0 +1,29 @@
+---
+title: "Week 2 application: Simplicial complexes and homology: building a computable hole-counter"
+subtitle: "A reusable real-data case-study shell"
+toc: true
+---
+
+## Problem
+
+State a concrete decision or scientific question before introducing topology.
+
+## Data object
+
+What is directly observed? What preprocessing or representation is constructed?
+
+## Topological construction
+
+Name the complex, filtration, coefficient field and homology dimensions.
+
+## Baseline
+
+What simpler geometric, graph-theoretic or statistical quantity must topology outperform or complement?
+
+## Result
+
+Show the result in a form legible to someone who has not taken the full MasterClass.
+
+## Interpretation boundary
+
+What may be concluded, and what would overstate the evidence?

@@ -1,0 +1,33 @@
+---
+title: "Industry case-study template"
+subtitle: "A stand-alone module for real operational data"
+toc: true
+---
+
+## The operational question
+
+Write the decision in language that does not presuppose topology.
+
+## Data and constraints
+
+Include sampling rate, missingness, latency, privacy, computational budget and what ground truth is available.
+
+## Why topology might help
+
+Name the specific structure a conventional summary may miss: connectivity, loops, voids, multiscale organisation or change in a topological signature.
+
+## Construction card
+
+| Choice | Selected option | Why it matches the question |
+|---|---|---|
+| Representation |  |  |
+| Metric or similarity |  |  |
+| Complex |  |  |
+| Filtration |  |  |
+| Homology dimension |  |  |
+| Summary or comparison |  |  |
+| Null model |  |  |
+
+## Evaluation
+
+Report accuracy or explanatory value against a simpler baseline, sensitivity to design choices, computational cost and failure modes.

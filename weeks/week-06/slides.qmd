@@ -1,0 +1,120 @@
+---
+title: "Week 6: Summaries, comparisons and validation"
+subtitle: "TDA for Static and Dynamic Data"
+format:
+  revealjs:
+    theme: [simple, ../../assets/slides.scss]
+    slide-number: true
+    transition: fade
+    controls: true
+    chalkboard: true
+    footer: "TDA MasterClass"
+execute:
+  enabled: false
+---
+
+## The decision for today
+
+What object are we constructing, what information does it retain, and what scientific claim could it support?
+
+
+[Lecture walkthrough](solutions.ipynb)
+
+---
+
+## Story
+
+Once diagrams exist, the next modelling choice is how to use them. A
+diagram can be compared directly, summarised by a scalar, converted into
+a function, turned into an image, or used as input to statistics and
+machine learning. These choices preserve and discard different
+information.
+
+---
+
+## Objects to introduce
+
+- Bottleneck distance: worst matched feature.
+
+- Wasserstein distance: accumulated matching cost.
+
+---
+
+## Examples
+
+Use two diagrams with the same longest bar but different clouds of
+shorter bars to show why single statistics can be misleading. Use a
+real-versus-shuffled comparison to show that the question is not “is
+there a barcode?” but “does this barcode differ from what this
+construction would produce anyway?”
+
+---
+
+## Direct comparison or vectorisation?
+
+Bottleneck: worst optimally matched discrepancy.
+
+Wasserstein: accumulated matching cost.
+
+Betti curve: number of intervals alive by scale.
+
+Persistence image: smoothed fixed-grid representation.
+
+Every step forgets something.
+
+---
+
+## Match one short feature to the diagonal
+
+![](../../assets/week06-diagram-matching.svg){fig-alt="Two persistence diagrams with cross-diagram matches and one short point matched to the diagonal." height="210"}
+
+$$D=\{(0,2),(1,1.4)\},\qquad E=\{(0.1,2.1)\}.$$
+
+Long-feature match: cost $0.1$.
+
+Short point to diagonal: cost $(1.4-1)/2=0.2$.
+
+Bottleneck sees the worst cost. Wasserstein accumulates costs.
+
+---
+
+## A null is a scientific model
+
+State what the surrogate preserves and destroys.
+
+Run the complete pipeline on every surrogate.
+
+Compare with a simpler baseline.
+
+::: {.qualification}
+**† Qualification.** Surrogate barcodes require a justified randomisation scheme before supporting inference.
+:::
+
+---
+
+## Same longest bar, different diagram
+
+Maximum persistence sees one interval. It ignores multiplicity, shorter
+structure and location in the birth-death plane.
+
+---
+
+## DP relevance
+
+This week asks whether topology adds explanatory or predictive value
+beyond simpler baselines. Reasonable first summaries include maximum
+persistence, total persistence, Betti curves, persistence entropy,
+diagram distances to a baseline and vectorised persistence images or
+landscapes. Vineyards are only justified if the identity or trajectory
+of features matters, not merely their distribution at each time or
+parameter value.
+
+## Before we leave
+
+1. What is the mathematical object?
+2. Which choice most changed its interpretation?
+3. When would this construction mislead us?
+
+See the [applied glossary](../../glossary.qmd) for the translation layer.
+
+[Participant practical](lab.ipynb)

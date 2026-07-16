@@ -1,0 +1,16 @@
+---
+title: "Application routes"
+subtitle: "Enter through the problem, not through the machinery"
+toc: true
+---
+
+Application pages are deliberately separable from the full eight-week sequence. Each should answer five questions:
+
+1. What decision or scientific question matters?
+2. What is the observed data object?
+3. Which topological object is constructed?
+4. What simpler baseline is used?
+5. What claim survives validation?
+
+- [Dynamical systems route](dynamical-systems.qmd)
+- [Industry case-study template](industry-template.qmd)

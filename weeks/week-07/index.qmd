@@ -1,0 +1,115 @@
+---
+title: "Week 7: Time-indexed static topology: repeated persistence through time"
+toc: true
+---
+
+::: {.callout-tip title="Week 7 resources"}
+[Slides](slides.qmd) · [Lecture walkthrough](solutions.ipynb) · [Application page](case-study.qmd)
+:::
+
+<a class="btn btn-primary" href="../../downloads/week-07-participant.ipynb" download="week-07-participant.ipynb">Download participant notebook</a>
+
+## Learning goals
+
+By the end of this week, you should be able to:
+
+1. explain repeated or framewise persistence as ordinary persistence applied separately along physical time;
+2. keep physical time, filtration scale and any delay-coordinate parameters distinct when reading a dynamic TDA analysis;
+3. read a CROCKER-style summary and connect a slice of it back to the corresponding framewise Betti information;
+4. explain what repeated persistence reveals beyond a simpler dynamic baseline; and
+5. state precisely why similar features in consecutive persistence diagrams have not thereby acquired a tracked identity.
+
+## Story
+
+Week 7 introduces the honest dynamic baseline. Given a sequence of
+time-indexed objects $X_t$, $G_t$, $I_t$, $W_t$ or $K_{\bullet,t}$,
+compute ordinary persistence independently at each time point or time
+window. The resulting diagrams or summaries are then treated as a time
+series.
+
+## Mathematics and summaries
+
+### From a time series to a state-space cloud
+
+::: {.callout-tip title="Keep the two notions of time visible"}
+The [lecture walkthrough](solutions.ipynb) follows a time series through delay coordinates, framewise persistence and a CROCKER-style display. The [participant practical](lab.ipynb) asks you to vary a representation choice while keeping physical time distinct from filtration scale.
+:::
+
+For a scalar observation $x(t)$, a delay-coordinate representation is
+
+$$
+\Phi_{m,\tau}(t)=
+\bigl(x(t),x(t-\tau),\ldots,x(t-(m-1)\tau)\bigr).
+$$
+
+The lag $\tau$, embedding dimension $m$, sampling interval and window
+length are upstream modelling choices. Treating the resulting vectors as
+a point cloud usually discards their temporal ordering unless time is
+retained separately. Sampling speed also changes point density: slow
+passage through a region can create many nearby points without creating a
+new invariant set.
+
+For multivariate observations, the measured state vector may already be a
+usable representation, but coordinate scaling, periodic variables and
+unobserved state still require attention.
+
+![A scalar signal is converted to a delay-coordinate cloud; repeating persistence in windows produces a summary indexed by physical time and filtration scale.](../../assets/week07-delay-crocker.svg){fig-alt="A scalar oscillatory time series maps to a ring-like delay-coordinate point cloud, then to a heat map whose axes are physical time and filtration scale."}
+
+This is not genuinely dynamic topology in the strongest sense because no
+method has identified a specific feature across time. It is repeated
+static persistence.
+
+**◇ Object check.**
+At each time $t$, there may be a complete ordinary persistence module
+$V_t$ and its diagram $D_t$. What is absent is a coherent family of maps
+connecting $V_s$ to $V_t$. A time series of diagrams is therefore not
+yet a vineyard module.
+
+Useful outputs include
+
+- framewise diagrams;
+
+- sliding-window diagrams;
+
+- Betti curves through scale;
+
+- Betti summaries through physical time;
+
+- diagram distances to a baseline;
+
+- CROCKER-style plots, which project repeated persistence into a
+  rank-function-like summary across scale and time.
+
+Writing $D_t$ for the diagram at physical time $t$, a CROCKER-style
+surface records
+
+$$
+C_p(t,\varepsilon)=\#\{(b,d)\in D_t^{(p)}:b\leq\varepsilon<d\}.
+$$
+
+This is the framewise Betti number across a two-dimensional display. It
+can reveal regimes and transitions, but it does not connect a class at
+time $s$ to a class at time $t$.
+
+Window length is part of the observation model. Short windows may be
+undersampled; long windows can mix regimes and turn temporal change into
+apparent spatial structure.
+
+> *A topological summary can change through time without any individual
+> hole being tracked through time.*
+
+## Examples
+
+Use moving point clouds, evolving graphs, sliding-window embeddings and
+time-indexed scalar fields. The key teaching contrast is between
+detecting change in topological summaries and tracking the identity of
+individual features.
+
+## DP relevance
+
+This is the first method to try for dynamic systems. It is implementable
+with standard tools, interpretable, and often already informative. The
+DP question is whether topological summaries over time reveal regime
+changes, memory, separability, stability or collective organisation
+beyond ordinary metrics. Only if feature identity through time matters
+should we escalate to more specialised machinery.

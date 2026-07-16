@@ -1,0 +1,228 @@
+---
+title: "Week 2: Simplicial complexes and homology: building a computable hole-counter"
+toc: true
+---
+
+::: {.callout-tip title="Week 2 resources"}
+[Slides](slides.qmd) · [Lecture walkthrough](solutions.ipynb) · [Application page](case-study.qmd)
+:::
+
+<a class="btn btn-primary" href="../../downloads/week-02-participant.ipynb" download="week-02-participant.ipynb">Download participant notebook</a>
+
+::: {.foundation-definition}
+**[Guiding definition for Weeks 1–4](../../index.qmd#the-guiding-construction-for-weeks-14).** For a filtration $K_a\subseteq K_b$ when $a\leq b$, persistent homology is the module
+$$a\mapsto H_p(K_a;\mathbb F),\qquad (a\leq b)\mapsto(\iota_{a,b})_*.$$
+
+::: {.foundation-steps}
+::: {.foundation-step}
+**1 · Representation**
+
+Scientific object, observations and the topological question.
+:::
+::: {.foundation-step .is-active}
+**2 · Homology**
+
+$K_a$ and $H_p(K_a;\mathbb F)$.
+:::
+::: {.foundation-step}
+**3 · Filtration**
+
+$K_a\subseteq K_b$ across scale.
+:::
+::: {.foundation-step}
+**4 · Memory**
+
+Induced maps, module and barcode.
+:::
+:::
+:::
+
+## Learning goals
+
+By the end of this week, you should be able to:
+
+1. look at a small example and distinguish the abstract simplicial complex, a geometric drawing of it and its 1-skeleton;
+2. explain what the chain space $C_p(K;\mathbb F_2)$ contains and how a chosen simplex ordering turns chains and boundary maps into columns and matrices;
+3. read a small boundary matrix, explain what its entries record and use $\partial_{p-1}\partial_p=0$ as a meaningful consistency check;
+4. explain cycles, boundaries and homology as the steps that separate closed chains from those already filled in; and
+5. predict how adding an edge, triangle or tetrahedron can change the Betti numbers, then confirm that prediction with a small calculation.
+
+## Story
+
+Week 2 moves from qualitative shape to a combinatorial object on which
+topology can be computed. The central message is that a simplicial
+complex is the finite bookkeeping device that lets topology become
+linear algebra. The complex is treated as already chosen. The aim is to
+understand what homology computes once $K$ has been chosen.
+
+## Mathematics to introduce
+
+::: {.callout-note title="Algebra checkpoint"}
+If basis, kernel, image, rank or quotient are unfamiliar, read the [pre-Week 2 algebra survival guide](algebra-survival-guide.qmd) before continuing. Its [coefficient-field section](algebra-survival-guide.qmd#coefficient-fields) explains why chains can be added without a field, why this MasterClass nevertheless begins over $\mathbb F_2$, and how that choice changes the cancellation rules used below.
+:::
+
+A $p$-simplex is a $p$-dimensional building block: vertices, edges,
+triangles, tetrahedra and their higher-dimensional analogues. A
+simplicial complex $K$ is a collection of simplices satisfying downward
+closure: if $\sigma\in K$ and $\tau\subseteq\sigma$, then $\tau\in K$.
+This condition is not decoration. It ensures that whenever a simplex is
+present, all of its faces are also present.
+
+There are two related viewpoints. A **geometric** $p$-simplex is the
+convex hull of $p+1$ affinely independent points. An **abstract**
+$p$-simplex is a set of $p+1$ vertices. The notebooks use abstract
+complexes because the boundary calculation needs incidence information,
+not coordinates. A geometric realisation supplies a space $|K|$ whose
+topology the abstract complex represents
+[@edelsbrunner2010computational, Chapter III.1; @postol2024algebraic,
+Section 4.1].
+
+::: {.qualification}
+**† Qualification.** Authors differ on whether the empty simplex is
+included. Here every simplex is non-empty, so vertices are 0-simplices
+and the ordinary chain complex begins at $C_0$. This does not change the
+ordinary homology computed in the notebooks.
+:::
+
+**◇ Object check.**
+At this stage, $K$ is the topological/combinatorial object. The vector
+spaces come next: one vector space $C_p(K;\mathbb F)$ for the
+$p$-simplices in each dimension.
+
+Over a field $\mathbb{F}$, a $p$-chain is a formal linear combination of
+$p$-simplices: $$c=\sum_i a_i\sigma_i,\qquad a_i\in\mathbb F.$$ Thus
+$C_p(K;\mathbb F)$ is a vector space whose basis elements are the
+$p$-simplices. Over $\mathbb{F}_2$, the coefficients are $0$ or $1$, so
+a chain can be viewed as a subset of the $p$-simplices. Addition is
+symmetric difference: simplices appearing twice cancel because $1+1=0$
+mod $2$.
+
+The boundary map lowers dimension and is linear:
+$$\partial_p:C_p(K;\mathbb F)\to C_{p-1}(K;\mathbb F).$$ The boundary of
+an edge is its two endpoints; the boundary of a triangle is its three
+edges; the boundary of a tetrahedron is its four triangular faces. The
+identity $\partial^2=0$ says that every boundary is automatically a
+cycle.
+
+Together these maps form the chain complex
+
+$$
+\cdots\longrightarrow C_2(K;\mathbb F_2)
+\xrightarrow{\partial_2}C_1(K;\mathbb F_2)
+\xrightarrow{\partial_1}C_0(K;\mathbb F_2)
+\longrightarrow0.
+$$
+
+After choosing simplex bases and fixing an order for their simplices, $\partial_p$ is a matrix whose
+columns are the boundaries of the $p$-simplices. Over $\mathbb F_2$ an
+entry is $1$ precisely when the row simplex is a codimension-one face
+of the column simplex. Matrix multiplication makes the identity visible:
+$$[\partial_{p-1}][\partial_p]=0.$$
+
+Cycles form the kernel $$Z_p=\ker \partial_p,$$ and boundaries form the
+image $$B_p=\operatorname{im}\partial_{p+1}.$$ Both are vector subspaces
+of $C_p$, with $B_p\subseteq Z_p$. Homology is therefore the quotient
+vector space $$H_p(K;\mathbb F)=Z_p/B_p.$$ Its elements are homology
+classes: cycles are identified when they differ by a boundary. The Betti
+number is $$\beta_p=\dim H_p(K;\mathbb F).$$
+
+The quotient notation deserves to be unpacked. Define
+
+$$z\sim z'\quad\Longleftrightarrow\quad z-z'\in B_p.$$
+
+Thus $[z]$ is not one selected cycle. It is the collection of all cycles
+that differ from $z$ by an available boundary. If two loops surround the
+same opening and the strip between them is tiled by 2-simplices, the
+difference of the two loops is the boundary of that strip. Homology treats
+them as representatives of the same class. A cycle represents the zero
+class exactly when it is itself a boundary.
+
+Rank-nullity gives the computational formula
+
+$$
+\beta_p=\dim C_p-\operatorname{rank}\partial_p
+-\operatorname{rank}\partial_{p+1}.
+$$
+
+For a finite complex, the Euler characteristic provides a useful
+cross-check:
+
+$$
+\chi(K)=\sum_p(-1)^p\dim C_p
+=\sum_p(-1)^p\beta_p.
+$$
+
+This identity checks aggregate dimensions. It does not replace homology,
+because different Betti vectors can have the same alternating sum
+[@edelsbrunner2010computational, Chapter IV].
+
+**▶ Likely sticking point.** Homology is a vector space because the chain
+coefficients have been chosen in a field, the boundary map is linear,
+and $H_p=Z_p/B_p$ is a quotient of vector spaces. A “hole” is
+represented by an equivalence class of cycles, not by one privileged
+geometric loop.
+
+**† Qualification.**
+With integer coefficients, $H_p(K;\mathbb Z)$ is generally an abelian
+group rather than a vector space. Persistent-homology computations
+usually use field coefficients because this makes the algebra and
+interval decomposition much cleaner.
+
+> *Homology counts cycles that are not merely the boundary of something
+> higher-dimensional.*
+
+## Examples
+
+::: {.callout-tip title="Work through the complexes"}
+Use the [lecture walkthrough](solutions.ipynb) while following the outline triangle, filled triangle, square loop and hollow tetrahedron below. The [participant practical](lab.ipynb) asks you to predict their cycles and boundaries, read the corresponding matrices, and explain the resulting Betti numbers.
+:::
+
+Use an outline triangle and a filled triangle. In the outline triangle,
+the sum of the three edges is a cycle with zero boundary. It is not the
+boundary of any two-chain because no triangular face is present, so it
+represents a nonzero class in $H_1$. In the filled triangle, the same
+edge cycle is now $\partial_2(\text{triangle})$, so its homology class
+is zero.
+
+![The outline and filled triangle have the same vertices and edges, but adding the 2-simplex changes the three-edge cycle into a boundary.](../../assets/week02-outline-filled.svg){fig-alt="An outline triangle has a cycle z in Z1 but not B1. A filled triangle with the same vertices and edges has z equal to the boundary of the face 012."}
+
+::: {.callout-note title="Return to the coefficient choice"}
+The [field and chain-addition explanation](algebra-survival-guide.qmd#coefficient-fields) works this same triangle over $\mathbb F_2$ and contrasts its parity cancellation with the signed calculation over $\mathbb Q$ or $\mathbb R$.
+:::
+
+The two triangles have the same 1-skeleton. Adding the face leaves
+$C_0$, $C_1$ and $\partial_1$ unchanged, but creates $C_2$ and a new
+map $\partial_2$. The cycle does not disappear as a chain. It becomes a
+boundary, so its class disappears in the quotient $Z_1/B_1$.
+
+::: {.applied-translation}
+**Dynamical systems translation.** Suppose three oscillators or agents have pairwise interactions. Their interaction graph contains the three edges of an outline triangle. Filling that triangle with a 2-simplex makes an additional modelling assertion: the three pairwise relations belong to one coherent three-way relation. The observations at the vertices and edges have not changed, but the chosen representation has, and the loop class is consequently filled. Whether that higher-order relation is scientifically justified must come from the coupling mechanism or construction rule, not from the triangular drawing alone.
+:::
+
+Use a square loop as the simplest visible $H_1$ class and a hollow
+tetrahedron as a first $H_2$ example. Ask explicitly which chains are
+cycles, which cycles are boundaries, and which distinctions survive in
+the quotient.
+
+The notebooks reproduce this algebra directly over $\mathbb F_2$,
+following the matrix viewpoint in Edelsbrunner and Harer
+[@edelsbrunner2010computational, Chapter IV] and the traditional
+simplicial-homology route in Postol [@postol2024algebraic, Section 4.1].
+
+For $H_1(S^1)$, the winding number gives useful intuition. Loops around
+a circle are classified by how many times they wind around the hole.
+Over $\mathbb{Z}$, this gives $H_1(S^1)\cong \mathbb{Z}$. For the
+computational pipeline, we usually work over a field such as
+$\mathbb{F}_2$, but the winding-number story helps explain why homology
+classes are algebraic representatives of holes rather than the holes
+themselves.
+
+## DP relevance
+
+Graphs enter as the simplest data-derived complexes. An interaction
+graph can be treated as a one-dimensional simplicial complex, with
+vertices and edges only. This supports component and graph-cycle
+homology. To study higher-dimensional topology, the graph must be
+promoted to another object, such as a clique complex. That promotion is
+a modelling assumption: pairwise mutual interaction is being treated as
+evidence of a higher-order collective unit.

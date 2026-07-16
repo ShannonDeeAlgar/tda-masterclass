@@ -1,0 +1,202 @@
+---
+title: "Week 8: Beyond ordinary persistence: which advanced tool solves which problem?"
+subtitle: "TDA for Static and Dynamic Data"
+format:
+  revealjs:
+    theme: [simple, ../../assets/slides.scss]
+    slide-number: true
+    transition: fade
+    controls: true
+    chalkboard: true
+    footer: "TDA MasterClass"
+execute:
+  enabled: false
+---
+
+## The decision for today
+
+What object are we constructing, what information does it retain, and what scientific claim could it support?
+
+
+[Lecture walkthrough](solutions.ipynb)
+
+---
+
+## Story
+
+Week 8 should be organised by problem type rather than by a list of
+advanced methods. The aim is to teach method selection: what breaks in
+ordinary persistence, and which tool responds to that break?
+
+---
+
+## Two levels for this week
+
+**Core:** diagnose the failure and choose the least elaborate adequate framework.
+
+**Research extension:** Turner example, transport maps, vineyard modules and indecomposability.
+
+The extension is not required for every participant.
+
+---
+
+## Escalation map
+
+![](../../assets/week08-escalation-map.svg){fig-alt="Decision tree for ordinary, zigzag and multiparameter persistence, vineyards and labelled extensions." height="330"}
+
+---
+
+## Case 1: complexes only grow
+
+If complexes only grow, ordinary one-parameter persistence is the
+natural tool. This is the clean barcode setting. The inclusion maps all
+point in the same direction:
+$$K_0\subseteq K_1\subseteq\cdots\subseteq K_n.$$
+
+---
+
+## Case 2: complexes grow and shrink
+
+If complexes grow and shrink, zigzag persistence is the natural
+extension. Instead of all maps pointing in one direction, the diagram
+can zigzag: $$K_0\to K_1 \leftarrow K_2 \to K_3 \leftarrow \cdots.$$
+Zigzag persistence is designed for insertions and deletions of
+simplices. It is mathematically appropriate for non-monotone sequences,
+but it can be computationally and interpretively heavy.
+
+> *Standard persistence tracks features that survive as a space grows.
+> Zigzag persistence tracks features that survive as a space changes.*
+
+---
+
+## Case 3: there is more than one genuine parameter
+
+If scale and time, scale and density, or another pair of parameters are
+both genuine, then multiparameter persistence is the relevant framework.
+The warning is essential: the clean barcode decomposition of
+one-parameter persistence does not carry over in the same way.
+Multiparameter persistence may be the right mathematical object even
+when a practical analysis later uses lower-dimensional summaries.
+
+**† Qualification.**
+The presence of two named variables does not by itself decide the
+framework. The question is whether they form one partial order to be
+analysed jointly, or whether one parameter indexes a controlled family
+of ordinary persistence modules with additional transport data.
+
+---
+
+## Case 4: a fixed complex has a smoothly changing filtration
+
+Vineyards apply when there is a fixed simplicial complex $K$ and a
+time-dependent filtration function $$f_t:K\to\mathbb{R}.$$ There are now
+two distinct parameters:
+$$\underbrace{t}_{\text{external or physical time}},
+\qquad
+\underbrace{a}_{\text{filtration height or scale}}.$$ At each fixed time
+$t$, the sublevel filtration of $f_t$ produces an ordinary persistence
+module $$V_t(a)=H_p(K_{t,a};\mathbb F)$$ and a persistence diagram
+$D_t$. A vineyard tracks how the birth–death points of $D_t$ move as $t$
+varies. Each tracked curve is a vine.
+
+The useful teaching picture is a landscape whose height function changes
+over time. Ordinary persistence studies flooding one fixed landscape. A
+vineyard studies what happens when the landscape itself slowly morphs.
+
+---
+
+## Vineyard modules: what the vineyard omits
+
+A vineyard module retains more than the visible trajectories. It
+consists of the persistence module $V_t$ at each external time together
+with coherent interleaving maps between the modules at different times.
+Schematically, the horizontal direction is ordinary persistence through
+filtration height, while the vertical direction transports information
+through physical time: $$\begin{array}{ccccc}
+V_s(a)&\longrightarrow&V_s(b)&\longrightarrow&V_s(c)\\
+\downarrow&&\downarrow&&\downarrow\\
+V_t(a+\varepsilon)&\longrightarrow&
+V_t(b+\varepsilon)&\longrightarrow&
+V_t(c+\varepsilon).
+\end{array}$$
+
+**▶ Likely sticking point.** For a single well-behaved one-parameter module,
+its barcode classifies the module up to isomorphism. But the source and
+target barcodes do not classify a particular map between two modules.
+Dynamic questions may depend on those maps.
+
+---
+
+## Concrete reading of Turner Figure 1
+
+Use Figure 1 of Turner, [*Representing Vineyard
+Modules*](https://arxiv.org/abs/2307.06020), as the concrete example.
+
+The domain is a disc divided into four pieces:
+
+---
+
+## Why the Figure 1 module is indecomposable
+
+Before the first critical event, a natural basis is $$[B],\qquad[D+B],$$
+whereas after the second critical event the forced basis is
+$$[B],\qquad[D].$$ Over $\mathbb F_2$, $$[D]=[D+B]+[B].$$ Thus the
+change of basis mixes the two visible vines. After coherent
+simplification, an off-diagonal term remains in a transport matrix of
+the form $$\begin{pmatrix}
+1&1\\
+0&1
+\end{pmatrix}.$$
+
+The off-diagonal $1$ means that transporting the second generator
+through time necessarily picks up part of the first. There is no
+globally coherent choice of bases that turns the family into two
+independent $1\times 1$ problems.
+
+---
+
+## Why vineyards are delicate
+
+Smooth motion of points does not necessarily imply smooth behaviour of
+the filtration order. In a moving point cloud, many distances can change
+relative order at once. Edges, triangles and higher-dimensional
+simplices can undergo large global reorderings. This makes it hard to
+identify the same topological feature across time. The persistence
+diagram may be stable in bottleneck distance, while feature identity is
+still unstable.
+
+This is the distinction to emphasise:
+$$\text{diagram stability} \neq \text{reliable feature tracking}.$$
+
+---
+
+## Case 5: labels, colours or types matter
+
+If points, regions or agents carry labels, colours or types, ordinary
+persistence may ignore the structure of interest. Chromatic or
+relative-style methods ask how different classes spatially mingle,
+separate or interact. Relative homology, image persistence, kernel
+persistence and cokernel persistence can be introduced conceptually here
+as tools for asking what part of a feature belongs to, is contributed
+by, or is shared across different subobjects.
+
+---
+
+## DP relevance
+
+For swarms or physical reservoirs, vineyards are attractive because they
+offer feature identity, continuous trajectories and potential online
+updates. But they are also high risk. A literal moving point-cloud Rips
+filtration may not satisfy the assumptions needed for vineyard tracking.
+
+Two more plausible strategies are:
+
+## Before we leave
+
+1. What is the mathematical object?
+2. Which choice most changed its interpretation?
+3. When would this construction mislead us?
+
+See the [applied glossary](../../glossary.qmd) for the translation layer.
+
+[Participant practical](lab.ipynb)

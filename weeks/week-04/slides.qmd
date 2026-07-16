@@ -1,0 +1,230 @@
+---
+title: "Week 4: Persistent homology: homology with memory"
+subtitle: "TDA for Static and Dynamic Data"
+format:
+  revealjs:
+    theme: [simple, ../../assets/slides.scss]
+    slide-number: true
+    transition: fade
+    controls: true
+    chalkboard: true
+    footer: "TDA MasterClass"
+execute:
+  enabled: false
+---
+
+## Homology at many scales is not enough
+
+A list of Betti numbers tells us how many classes exist.
+
+It does not tell us which earlier classes survived.
+
+
+[Lecture walkthrough](solutions.ipynb)
+
+---
+
+## Inclusion creates memory
+
+$$K_i\hookrightarrow K_j$$
+
+means every simplex of $K_i$ is also in $K_j$.
+
+$K_j$ may contain additional simplices; the old simplices do not grow.
+
+induces
+
+$$H_p(K_i;\mathbb F)\xrightarrow{(\iota_{i,j})_*}H_p(K_j;\mathbb F).$$
+
+The maps are the memory.
+
+---
+
+## Inclusion of complexes, not necessarily of homology
+
+Outline triangle $\hookrightarrow$ filled triangle.
+
+The edge cycle remains as a chain. It becomes the boundary of the new face:
+
+$$[z]\longmapsto0.$$
+
+::: {.sticking}
+**▶ Likely sticking point.** The induced map on homology need not be injective.
+:::
+
+---
+
+## Component merging is also a map
+
+Before: $H_0\cong\mathbb F_2^2=\langle e_1,e_2\rangle$.
+
+After:
+
+$$e_1\mapsto e,\qquad e_2\mapsto e.$$
+
+The direction $e_1+e_2$ is killed.
+
+---
+
+## Persistence module
+
+$$V_i=H_p(K_i;\mathbb F),\qquad\varphi_{i,j}=(\iota_{i,j})_*.$$
+
+$$\varphi_{j,k}\varphi_{i,j}=\varphi_{i,k}.$$
+
+::: {.object-check}
+**◇ Object check.** The module is every vector space and every compatible map, not merely the Betti numbers.
+:::
+
+---
+
+## One interval, one idealised lifetime
+
+$$I[b,d)_a=\begin{cases}\mathbb F,&b\leq a<d,\\0,&\text{otherwise}.\end{cases}$$
+
+For suitable one-parameter modules:
+
+$$V\cong\bigoplus_\ell I[b_\ell,d_\ell).$$
+
+---
+
+## Module, barcode, diagram
+
+Persistence module: spaces and maps.
+
+Barcode: interval summands.
+
+Diagram: birth-death points.
+
+Closely related, but not the same object by definition.
+
+---
+
+## What matrix reduction pairs
+
+Order simplices compatibly with the filtration.
+
+Reduce the boundary matrix over $\mathbb F_2$.
+
+Lowest 1 + column index $\longrightarrow$ birth-death pair.
+
+Unpaired birth $\longrightarrow$ essential within the computed range.
+
+---
+
+## One triangle, one complete story
+
+![](../../assets/week04-filtration-barcode.svg){fig-alt="Triangle filtration from vertices to a filled face with the corresponding H1 interval." height="230"}
+
+Vertices $\to$ component births.
+
+Connecting edges $\to$ component deaths.
+
+Final edge $\to$ one-cycle birth.
+
+Triangular face $\to$ one-cycle death.
+
+Matrix pairings $\to$ barcode intervals.
+
+---
+
+## Software changes the scale notation
+
+Week 3 used ball radius $r$: $d(x_i,x_j)\leq2r$.
+
+`ripser` reports the distance threshold
+
+$$\varepsilon=2r.$$
+
+Name the convention before interpreting coordinates.
+
+---
+
+## Persistence is not importance
+
+Long interval means survival across the selected filtration range.
+
+It does **not** automatically mean scientific relevance, statistical surprise, predictive value or robustness to a different model.
+
+---
+
+## Bottleneck distance
+
+Match diagram points to each other or to the diagonal.
+
+$$d_B(D,E)=\text{smallest possible worst matching cost}.$$
+
+Deleting a bar $[b,d)$ by matching it to the diagonal costs
+
+$$\frac{d-b}{2}.$$
+
+---
+
+## A stability theorem
+
+Fix a homology dimension and coefficient field.
+
+For tame $f,g:X\to\mathbb R$ on the **same** triangulable space, using sublevel sets:
+
+$$
+d_B(D_p(f),D_p(g))
+\leq
+\|f-g\|_\infty.
+$$
+
+If $|f(x)-g(x)|\leq\delta$ everywhere, their diagrams differ by at most $\delta$ in bottleneck distance.
+
+Here tame means that only finitely many homological changes occur in the filtration.
+
+---
+
+## What the bound means
+
+After the best matching, allowing matches to the diagonal:
+
+- every birth-death point moves by at most $\delta$;
+- a bar longer than $2\delta$ cannot simply be matched away; and
+- small uniform function noise cannot cause an arbitrarily large diagram change.
+
+**† Qualification.** Different point clouds, metrics or filtrations require their own stability result and input distance.
+
+Stability controls sensitivity, not scientific meaning.
+
+---
+
+## ◷ Why stability mattered historically
+
+2002: persistence and its algorithm.
+
+2005: the algebraic and barcode framework.
+
+2007: stability supplied the robustness guarantee needed for noisy data.
+
+> controlled input perturbation $\Longrightarrow$ controlled diagram perturbation
+
+It made persistence compelling for data analysis, but it does not validate the modelling choices before the theorem is applied.
+
+---
+
+## Applied translation
+
+Birth: a new independent organisation becomes detectable.
+
+Death: it merges or becomes filled under the construction.
+
+Persistence: the range over which it stays distinguishable.
+
+Then ask: under which representation, metric and filtration?
+
+---
+
+## Before we leave
+
+1. Which maps carry cross-scale information?
+2. Which assumptions justify the barcode?
+3. Which scale convention did the software report?
+4. What baseline must the feature beat?
+
+See the [applied glossary](../../glossary.qmd) for the running translation layer.
+
+[Participant practical](lab.ipynb)

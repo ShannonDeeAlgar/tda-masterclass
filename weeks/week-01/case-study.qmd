@@ -1,0 +1,63 @@
+---
+title: "Week 1 application: when two trajectories share summaries"
+subtitle: "A synthetic dynamical systems route"
+toc: true
+---
+
+## Operational question
+
+Suppose two experiments have similar coordinate means, variances and correlations. Is that enough to regard their state-space organisation as similar, or might one repeatedly circulate around a region that the other occupies?
+
+The application page frames the scientific question. The Week 1 notebook supplies a transparent synthetic calculation; Weeks 2 to 4 provide the homology and persistence needed for a defensible topological comparison.
+
+## Observed data and representation
+
+The observed object would be a multivariate time series. A state-space point cloud could be formed directly from measured state coordinates or, for a scalar signal, by a delay-coordinate construction.
+
+The dynamical system, sampled trajectory and state-space point cloud must remain distinct:
+
+$$
+\text{dynamical system}\to\text{sampled trajectory}
+\to\text{state-space point cloud}.
+$$
+
+The first arrow depends on measurement and sampling. The second may depend on coordinate selection, lag and embedding dimension.
+
+::: {.object-check}
+**◇ Object check.** A cloud that looks ring-like is evidence about the chosen representation. It is not by itself proof of a periodic orbit or a particular mechanism.
+:::
+
+## First baseline
+
+Start with summaries that a domain audience already understands:
+
+- coordinate means and variances;
+- covariance or correlation;
+- a scatter plot or phase portrait;
+- autocorrelation or a spectral summary when temporal order matters.
+
+Topology should complement coordinate moments, covariance, phase portraits and temporal summaries only if the scientific question concerns spatial organisation that those baselines do not retain.
+
+## Provisional construction
+
+Week 1 uses a Euclidean threshold graph because every step is visible. Connected components and graph cycle rank expose dependence on the distance threshold. They do not yet supply homology of a filled complex.
+
+Weeks 2 to 4 replace connected components and graph cycle rank with simplicial complexes, homology over a stated coefficient field and persistence across scale.
+
+## Sensitivity checks
+
+At minimum, vary one choice at a time:
+
+1. rescale coordinates or use a scientifically justified metric;
+2. change sampling density or add measurement noise;
+3. change the neighbourhood threshold;
+4. for delay coordinates, change the lag and embedding dimension; and
+5. compare with a surrogate that preserves the relevant simpler structure.
+
+## Interpretation boundary
+
+A persistent loop in a state-space representation may be consistent with recurrent circulation. It does not alone establish periodicity, causality or a governing mechanism. Those claims require temporal diagnostics, domain evidence and comparison with plausible alternatives.
+
+::: {.qualification}
+**† Qualification.** The synthetic ring and disk in the notebook are teaching objects. They are not empirical results and do not validate a particular dynamical-system application.
+:::

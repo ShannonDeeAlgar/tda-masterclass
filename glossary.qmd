@@ -1,0 +1,107 @@
+---
+title: "Applied glossary"
+subtitle: "Pure-mathematical terms translated without losing their conditions"
+toc: true
+---
+
+## How to use this glossary
+
+The middle column gives an applied intuition, not a replacement definition. The final column records the boundary of that intuition. When a term is used in a scientific claim, return to the precise meaning and name the constructed object.
+
+## Objects and representations
+
+| Mathematical term | Precise meaning | Applied or intuitive translation | Interpretation caution |
+|---|---|---|---|
+| Topological space | A set equipped with open sets satisfying the topology axioms. | A specification of which points count as locally near one another, without requiring numerical distance. | “Topology” is not a generic synonym for shape or network layout. |
+| Homeomorphism | A bijection whose forward and inverse maps are continuous. | A reversible deformation that preserves topological structure. | The rubber-sheet metaphor is only an intuition, and finite samples are not automatically homeomorphic to latent continuous spaces. |
+| Homotopy equivalence | Maps in both directions whose composites are homotopic to the corresponding identity maps. | Two spaces retain the same broad continuous shape after contractible detail is ignored. | It is weaker than homeomorphism and does not preserve metric geometry. |
+| Topological invariant | A quantity or algebraic object unchanged under homeomorphism. | A shape descriptor designed to ignore coordinates and reversible deformation. | In data analysis it is computed on a constructed representation, not directly on an unknown physical system. |
+| Constructed representation | A mathematical object built from observations and modelling choices. | The point cloud, graph, image complex or embedding through which the system is analysed. | It can amplify, erase or invent apparent organisation relative to the scientific object. |
+| Metric | A distance function satisfying non-negativity, identity, symmetry and the triangle inequality. | The rule that decides which observations are similar enough to interact first. | A convenient metric may be scientifically inappropriate. |
+| Point cloud | A finite subset of a metric space. | A collection of sampled states or observations represented as points. | It is a representation of the system, not automatically the system or attractor itself. |
+| Geometric descriptor | A quantity or representation measuring a specified metric or coordinate property of a geometric object. | One deliberately chosen answer to “what makes these shapes look different?”, such as spacing, area, direction or curvature. | No short list of descriptors is a complete definition of shape; inspect what each retains and discards. |
+| Convex hull | The smallest convex set containing a specified set of points. | A tight elastic band placed around the outermost observations. | It records the outer envelope but cannot detect internal gaps, density or concavity. |
+| Anisotropy | Dependence of measured properties on direction. | Evidence that a cloud stretches or organises more strongly along some directions than others. | A single anisotropy ratio can miss curvature, multiple branches and local changes in direction. |
+| Geometric simplex | The convex hull of affinely independent vertices. | A filled-in building block: point, segment, triangle, tetrahedron. | A drawn triangle and three edges do not specify whether the face is filled. |
+| Abstract simplex | A finite set of vertices. | A recorded multiway relation among the listed vertices. | It need not have physical extent or a unique embedding. |
+| Simplicial complex | A collection of simplices closed under taking faces. | A consistent catalogue of relations at every included order. | Its 1-skeleton does not determine its higher-dimensional simplices. |
+| Geometric realisation $|K|$ | A topological space obtained by realising and gluing the simplices of $K$. | A spatial version of the abstract incidence data. | The realisation is not necessarily the observed physical object. |
+| 1-skeleton | All vertices and edges of a complex. | The network visible after discarding filled triangles and higher relations. | Homology of the graph may differ from homology of the full complex. |
+| Clique complex | The complex containing a simplex for every clique of a graph. | Treat every mutually pairwise-connected group as one higher-order unit. | Clique filling is a modelling assumption about higher-order coherence. |
+| Graph cycle rank | For a finite undirected graph, $E-V+C$, the dimension of its cycle space over a field. | The number of independent network loops before any higher-dimensional filling is added. | It is not generally $H_1$ of the clique complex because triangles and higher simplices can fill graph cycles. |
+
+## Homology as linear algebra
+
+| Mathematical term | Precise meaning | Applied or intuitive translation | Interpretation caution |
+|---|---|---|---|
+| Basis | A linearly independent spanning set giving every vector unique coordinates. | The agreed list of elementary pieces used to record a combination. | Coordinates depend on the selected basis even when the vector does not. |
+| Span | All linear combinations of a specified set of vectors. | Everything that can be assembled from the available building blocks. | A long generating list may contain redundant vectors. |
+| Kernel | For $T:V\to W$, the subspace $\{v:T(v)=0\}$. | Input combinations whose effects cancel completely under the map. | Being in a kernel is relative to a particular map. |
+| Image | For $T:V\to W$, the subspace $\{T(v):v\in V\}$. | Output patterns that the available inputs can actually produce. | The image need not equal the full codomain. |
+| Rank | The dimension of the image of a linear map. | The number of independent output directions produced by the map. | Matrix rank is basis-independent, though the matrix entries are not. |
+| Nullity | The dimension of the kernel of a linear map. | The number of independent input directions erased by the map. | A large nullity has meaning only after the domain and map are named. |
+| Quotient vector space $V/W$ | Equivalence classes under $v\sim v'$ when $v-v'\in W$. | Treat differences lying in $W$ as irrelevant or already accounted for. | The slash is not numerical division, and a class has many representatives. |
+| Equivalence class $[v]$ | All elements equivalent to $v$ under a specified relation. | Every representation treated as the same after the agreed differences are ignored. | A displayed representative is not canonical unless additional structure selects it. |
+| Coefficient field | The field used for chain coefficients, here usually $\mathbb F_2$. | The arithmetic system used to combine and cancel building blocks. | Features can depend on coefficients, especially in the presence of torsion. |
+| Chain space $C_p$ | The vector space freely generated by the $p$-simplices. | All formal selections or combinations of $p$-dimensional pieces. | A chain is algebraic bookkeeping, not necessarily one connected geometric object. |
+| Boundary map $\partial_p$ | The linear map sending each $p$-simplex to the signed sum of its faces. | A rule extracting the exposed lower-dimensional boundary of a collection of pieces. | Over $\mathbb F_2$ signs vanish; over other coefficients orientation matters. |
+| Cycle $Z_p$ | A chain in $\ker\partial_p$. | A closed algebraic pattern with no remaining boundary. | A cycle need not represent a nonzero hole; it may itself be a boundary. |
+| Boundary $B_p$ | A chain in $\operatorname{im}\partial_{p+1}$. | A closed pattern already filled by something one dimension higher. | “Boundary” here is algebraic, not merely the visible edge of a plotted region. |
+| Homology $H_p$ | The quotient $Z_p/B_p$. | Closed patterns counted only after filled or equivalent versions are identified. | A class is an equivalence class of cycles, not a privileged loop. |
+| Betti number $\beta_p$ | The dimension of $H_p$ over the chosen field. | The number of independent $p$-dimensional topological degrees of freedom. | It is a count at one object or scale and contains no feature identity. |
+| Euler characteristic $\chi$ | The alternating sum of simplex counts, equivalently Betti numbers for a finite complex. | A compact accounting checksum for the complex. | Different homology can share the same Euler characteristic. |
+
+## Filtrations and persistence
+
+| Mathematical term | Precise meaning | Applied or intuitive translation | Interpretation caution |
+|---|---|---|---|
+| Filtration | A nested family $K_a\subseteq K_b$ for $a\leq b$. | A controlled sweep through a modelling threshold. | The parameter is not automatically physical time. |
+| Filtration function | A face-monotone value assigned to every simplex. | The rule deciding when each relation becomes available. | Birth inherits meaning from this rule, not from topology alone. |
+| Čech complex | The nerve of equal-radius balls centred on a point cloud. | Record groups whose neighbourhoods share a genuinely common point. | Joint intersection is stronger than pairwise intersection. |
+| Vietoris–Rips complex | The clique complex on pairs below a distance threshold. | Infer higher-order groups from pairwise proximity. | Check whether the parameter denotes radius or pairwise-distance threshold. |
+| Inclusion-induced map | The map $H_p(K_a)\to H_p(K_b)$ induced by $K_a\hookrightarrow K_b$. | The rule describing what an earlier feature becomes after more simplices are added. | The map need not be injective; an old class can map to zero. |
+| Functor | A rule sending objects to objects and maps to maps while preserving identities and composition. | A consistent translation that retains both the states and how one state maps to another. | The word adds no new empirical information; it records a structural compatibility. |
+| Persistence module | Vector spaces $H_p(K_a)$ together with all compatible maps across scale. | Homology with its cross-scale memory retained. | A sequence of Betti numbers is not a persistence module. |
+| Birth | The first parameter at which a class appears in the module. | The threshold where a new independent organisation becomes detectable. | It is construction-dependent and may arise from sampling or ties. |
+| Death | The parameter where a class merges into an older class or becomes a boundary. | The threshold where that independent organisation is no longer distinguishable. | The underlying chain may still exist after its class dies. |
+| Persistence | Death minus birth for a finite interval. | The range of thresholds over which a class remains distinguishable. | Long persistence is not automatically scientific importance. |
+| Interval module | A module equal to the field on one interval and zero elsewhere. | One idealised feature that is alive over one parameter range. | The full module is usually a direct sum of many intervals. |
+| Barcode | The multiset of intervals in an interval decomposition. | A timeline-like display of feature lifetimes across scale. | Classification by barcodes needs suitable one-parameter finiteness or tameness assumptions. |
+| Persistence diagram | Birth-death points encoding the same interval data. | A scatter plot of when features appear and disappear. | Distance from the diagonal measures persistence, not truth or usefulness. |
+| Representative cycle | A cycle chosen from a homology class. | One concrete loop or void boundary used to localise an abstract feature. | The choice is generally not unique, so its precise location should not be treated as canonical. |
+| Essential class | A class with no finite death in the available filtration. | Structure that remains after the sweep reaches its endpoint. | It may be genuinely global or merely censored by a truncated parameter range. |
+| Stability | A theorem bounding diagram change by an appropriate change in input or filtration. | Small permitted perturbations cannot arbitrarily move the persistence output. | Stability does not imply interpretability, significance or predictive value. |
+
+## Dynamic data
+
+| Mathematical term | Precise meaning | Applied or intuitive translation | Interpretation caution |
+|---|---|---|---|
+| Repeated persistence | Separate static persistence computations at successive times or windows. | A movie of barcode summaries. | Similar-looking bars are not automatically the same tracked feature. |
+| Vineyard | Trajectories of persistence-diagram points under a changing function. | Feature summaries traced continuously as data evolve. | Matching diagram points is additional structure beyond repeated diagrams. |
+| Zigzag persistence | Persistence for diagrams whose maps may point forward or backward. | Track structure when observations or complexes can be added and removed. | It solves a different problem from an ordinary increasing filtration. |
+| Multiparameter persistence | A module indexed by a partial order with two or more parameters. | Retain several genuine modelling axes without collapsing them prematurely. | There is generally no complete barcode classification analogous to the one-parameter case. |
+| Simplex tree | A data structure storing simplices, faces and filtration values in a prefix tree. | A computational index for querying and updating a filtered complex. | It is a representation in software, not a new topological object. |
+| Cubical complex | A complex built from vertices, edges, pixels, voxels and higher-dimensional cubes. | A topology-ready representation of gridded images, fields or volumes. | Cell-value conventions and sublevel direction determine birth meaning. |
+| Lower-star filtration | A filtration assigning each simplex the maximum value on its vertices. | Activate a relation when its highest-valued required vertex becomes available. | Negating values changes a low-feature question into a high-feature question. |
+| Bottleneck distance | The minimum possible maximum matching cost between diagrams, allowing diagonal matches. | The size of the single worst discrepancy after optimal matching. | It can ignore the accumulated effect of many smaller changes. |
+| Wasserstein distance | An optimal matching cost that aggregates powered pointwise costs. | Total diagram discrepancy rather than only the worst match. | Its value depends on the order, ground metric and treatment of diagonal matches. |
+| Betti curve | The function counting intervals alive at each filtration value. | A multiscale feature-count profile. | It discards interval identity and can map different diagrams to the same curve. |
+| Persistence image | A weighted, smoothed rasterisation of diagram points. | A fixed-length feature array for statistics or machine learning. | Resolution, smoothing and weighting are modelling parameters. |
+| Persistence entropy | Shannon entropy of normalised interval lengths, usually for finite intervals. | A scalar describing how evenly persistence is distributed across features. | It discards birth locations and feature identity, and conventions for essential or zero-length intervals matter. |
+| Mapper | A graph or simplicial complex built from overlapping bins of a filter function and clusters within their inverse images. | A compressed atlas of how observations organise along a chosen lens. | Its topology depends on the filter, cover and clustering, and it is not a persistence diagram. |
+| Null model | A probability model representing structure expected without the target mechanism. | The comparison world against which “unusual” is defined. | An easy-to-simulate null may preserve the wrong properties. |
+| Surrogate data | Synthetic or transformed observations generated under a null while preserving selected features. | A controlled negative comparison passed through the same pipeline. | Validity depends on what is preserved, destroyed and exchangeable. |
+| CROCKER-style plot | A display of Betti number or rank across physical time and filtration scale. | A heat map of how multiscale topological counts evolve. | It summarises repeated diagrams and does not track class identity. |
+| Physical time $t$ | The external index describing when a system is observed. | Clock time, trial progress or window position. | It must not be confused with filtration scale. |
+| Filtration scale $\varepsilon$ | The ordered threshold within one persistence calculation. | The resolution or relation-strength dial used to construct topology. | It is not necessarily a physical unit unless the construction supports that interpretation. |
+| Feature tracking | An explicit correspondence assigning identity to features across an external index. | Saying which evolving feature is the continuation of which earlier feature. | Nearest diagram points or similar lifetimes do not automatically establish identity. |
+| Interleaving | Compatible shifted maps between persistence modules. | A controlled way to compare modules while allowing parameter tolerance. | A small interleaving distance does not uniquely match generators. |
+| Vineyard module | A time-indexed family of persistence modules with coherent transport maps. | Vines plus the algebra describing how feature directions mix through time. | It is richer than a vineyard and requires additional structure to estimate. |
+
+## Maintenance rule
+
+When a new mathematical term enters the course, add it here with:
+
+1. a precise definition at the level used in the course;
+2. an applied translation tied to a data or scientific decision; and
+3. one sentence stating where that translation can mislead.

@@ -1,0 +1,22 @@
+---
+title: "Build status"
+subtitle: "What is real, what is a scaffold, and what comes next"
+toc: true
+---
+
+## Implemented
+
+- Site navigation and visual language
+- All eight reference-note pages imported from the planning document
+- RevealJS deck shells for every week
+- Consistent lab and solution notebook structure
+- Complete Week 4 first-principles notebook
+- Expanded design-decisions interlude and lab
+- Application-route templates
+- Codex instructions and bounded task roadmap
+
+## Deliberately still skeletal
+
+Most weekly practicals require the examples, datasets and software stack to be selected and tested. The scaffold marks these cells clearly rather than presenting invented results.
+
+See [`TASKS.md`](TASKS.md) for the development sequence.

@@ -1,0 +1,121 @@
+---
+title: "Week 7: Time-indexed static topology: repeated persistence through time"
+subtitle: "TDA for Static and Dynamic Data"
+format:
+  revealjs:
+    theme: [simple, ../../assets/slides.scss]
+    slide-number: true
+    transition: fade
+    controls: true
+    chalkboard: true
+    footer: "TDA MasterClass"
+execute:
+  enabled: false
+---
+
+## The decision for today
+
+What object are we constructing, what information does it retain, and what scientific claim could it support?
+
+
+[Lecture walkthrough](solutions.ipynb)
+
+---
+
+## Story
+
+Week 7 introduces the honest dynamic baseline. Given a sequence of
+time-indexed objects $X_t$, $G_t$, $I_t$, $W_t$ or $K_{\bullet,t}$,
+compute ordinary persistence independently at each time point or time
+window. The resulting diagrams or summaries are then treated as a time
+series.
+
+---
+
+## Mathematics and summaries
+
+This is not genuinely dynamic topology in the strongest sense because no
+method has identified a specific feature across time. It is repeated
+static persistence.
+
+**◇ Object check.**
+At each time $t$, there may be a complete ordinary persistence module
+$V_t$ and its diagram $D_t$. What is absent is a coherent family of maps
+connecting $V_s$ to $V_t$. A time series of diagrams is therefore not
+yet a vineyard module.
+
+---
+
+## A scalar time series is not yet a point cloud
+
+$$\Phi_{m,\tau}(t)=\bigl(x(t),x(t-\tau),\ldots,x(t-(m-1)\tau)\bigr).$$
+
+Choose lag, dimension, sampling and window length.
+
+Point-cloud persistence does not retain temporal order by itself.
+
+![](../../assets/week07-delay-crocker.svg){fig-alt="Signal to delay-coordinate cloud to time-and-scale topological summary." height="210"}
+
+---
+
+## Examples
+
+Use moving point clouds, evolving graphs, sliding-window embeddings and
+time-indexed scalar fields. The key teaching contrast is between
+detecting change in topological summaries and tracking the identity of
+individual features.
+
+---
+
+## Two axes, two meanings
+
+Physical time $t$: when the system is observed.
+
+Filtration scale $\varepsilon$: threshold inside one static computation.
+
+$$C_p(t,\varepsilon)=\#\{(b,d)\in D_t^{(p)}:b\leq\varepsilon<d\}.$$
+
+---
+
+## What a CROCKER-style plot says
+
+It displays framewise counts through time and scale.
+
+It can reveal transitions and regimes.
+
+It does not identify a class across frames.
+
+---
+
+## Window length is modelling
+
+Short: poor sampling. Long: mixed regimes. Overlap: smoother but more dependent.
+
+---
+
+## Baseline before escalation
+
+Compare with an order parameter, radial spread, recurrence statistic or graph measure.
+
+Escalate only if identity or transport through time matters.
+
+---
+
+## DP relevance
+
+This is the first method to try for dynamic systems. It is implementable
+with standard tools, interpretable, and often already informative. The
+DP question is whether topological summaries over time reveal regime
+changes, memory, separability, stability or collective organisation
+beyond ordinary metrics. Only if feature identity through time matters
+should we escalate to more specialised machinery.
+
+## Before we leave
+
+1. What is the mathematical object?
+2. Which choice most changed its interpretation?
+3. When would this construction mislead us?
+
+See the [applied glossary](../../glossary.qmd) for the translation layer.
+
+[Participant practical](lab.ipynb)

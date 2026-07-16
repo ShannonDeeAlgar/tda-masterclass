@@ -1,0 +1,1213 @@
+\documentclass[11pt,a4paper]{article}
+
+% ------------------------------------------------------------
+% Packages
+% ------------------------------------------------------------
+\usepackage[margin=2.1cm]{geometry}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+
+% ------------------------------------------------------------
+% Formatting
+% ------------------------------------------------------------
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+    citecolor=blue
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.6em}
+\setlist[itemize]{leftmargin=*, topsep=0.2em, itemsep=0.15em}
+\setlist[enumerate]{leftmargin=*, topsep=0.2em, itemsep=0.15em}
+
+\newcommand{\weekheading}[2]{%
+\section*{Week #1: #2}
+\addcontentsline{toc}{section}{Week #1: #2}
+}
+
+\newcommand{\planningbox}[2]{%
+\subsection*{#1}
+#2
+}
+
+\newcommand{\phrase}[1]{%
+\begin{quote}
+\emph{#1}
+\end{quote}
+}
+
+\newcommand{\stickingpoint}[1]{%
+\par\smallskip
+\noindent\textcolor{red!65!black}{\(\blacktriangleright\)\ \textbf{Likely sticking point.}} #1
+\par\smallskip
+}
+
+\newcommand{\qualification}[1]{%
+\par\smallskip
+\noindent\textcolor{blue!70!black}{\(\dagger\)\ \textbf{Qualification.}} #1
+\par\smallskip
+}
+
+\newcommand{\objectcheck}[1]{%
+\par\smallskip
+\noindent\textcolor{green!45!black}{\(\diamond\)\ \textbf{Object check.}} #1
+\par\smallskip
+}
+
+% ------------------------------------------------------------
+% Document
+% ------------------------------------------------------------
+\begin{document}
+
+\begin{center}
+    {\Large \textbf{Masterclass Narrative Planning Document}}\\[0.4em]
+    {\large \textbf{Topological Data Analysis for Static and Dynamic Data}}\\[0.5em]
+    \textit{Foundations, filtrations and method choice for applied dynamical systems}
+\end{center}
+
+\tableofcontents
+
+\section*{Purpose and shape of the document}
+\addcontentsline{toc}{section}{Purpose and shape of the document}
+
+This document turns the week-by-week planning table into a more narrative
+planning document. It is not yet a lecture script. Its purpose is to record the
+story each week needs to tell, the mathematical objects that must be introduced,
+the examples that should carry the intuition, and the phrases or explanatory
+moves that are worth preserving.
+
+The masterclass has two linked aims. The first is foundational: colleagues and
+incoming Honours students should become well-versed enough in algebraic topology
+and TDA to read, compute, question and adapt persistent-homology pipelines. The
+second is methodological: participants should be able to decide which
+topological tool is appropriate for which data object and scientific question.
+The Discovery Project motivates the masterclass, but reservoirs and swarms are
+used as examples rather than as the curriculum itself.
+
+\section*{Reading symbols}
+\addcontentsline{toc}{section}{Reading symbols}
+
+The following markers flag details that are easy to skate over but often become
+the point at which an otherwise mathematically sophisticated audience loses the
+thread.
+
+\stickingpoint{Marks a conceptual transition or an apparently simple statement
+that needs to be made concrete. These are the places most likely to prompt
+``but why is that true?'' or ``what exactly is larger here?''}
+
+\qualification{Marks a condition under which a statement is true, or a
+distinction that should not be suppressed for convenience.}
+
+\objectcheck{Stops to name the current objects and maps explicitly. In this
+material, confusion often comes from moving silently between spaces, chain
+spaces, homology groups, persistence modules and diagrams.}
+
+\section*{Recurring questions}
+\addcontentsline{toc}{section}{Recurring questions}
+
+These questions should recur throughout the masterclass.
+
+\begin{itemize}
+    \item What is the mathematical object?
+    \item What is the scientific object it is meant to represent?
+    \item What information is being forgotten?
+    \item What information is being added by the construction?
+    \item What does birth mean under this filtration?
+    \item What does death mean under this filtration?
+    \item At what level are we working: space, homology, module, barcode or summary?
+    \item Are the maps between objects part of the scientific information?
+    \item Is feature identity required, or are summaries enough?
+    \item Is there more than one genuine parameter?
+    \item What null model or surrogate should be used?
+    \item What simpler baseline must topology beat?
+    \item This construction would be misleading if \ldots
+\end{itemize}
+
+\weekheading{1}{Shape, topology and the need for a computable invariant}
+
+\planningbox{Story}{
+The first week should make the case for topology as a lens without pretending
+that topology is always the right lens. Begin with the distinction between a
+directly given object and a constructed representation. A mug, donut, circle or
+torus can be discussed as an object. A point cloud, scalar field, image, delay
+embedding, interaction graph or reservoir-state cloud is a representation built
+from observations, samples, relations or dynamics.
+
+The central move is from metric geometry to topology. Geometry measures
+distances, angles, curvature, scale and coordinates. Topology generalises the
+idea of closeness by replacing exact distance with neighbourhood structure. In
+a metric space, closeness is measured by a distance \(d(x,y)\). In a
+topological space, closeness is encoded by open sets. Open sets are the regions
+in which one can move a little without leaving the set.
+}
+
+\phrase{Openness in topology plays the role that distance plays in geometry:
+it is the formal structure that says what closeness means.}
+
+\planningbox{Mathematics to introduce}{
+A topological space is a set \(X\) together with a collection \(\mathcal{T}\) of
+subsets of \(X\), called open sets, such that
+\begin{itemize}
+    \item \(X\) and \(\varnothing\) are open;
+    \item any union of open sets is open;
+    \item any finite intersection of open sets is open.
+\end{itemize}
+The topology tells us what neighbourhoods, continuity, convergence,
+connectedness and compactness mean. For this masterclass, the point is not to
+develop point-set topology in detail, but to show that topology is a rule for
+locality and continuity, not a vague synonym for shape.
+
+A continuous function \(f:X\to \mathbb{R}\) assigns a real number to each point
+of a topological space and changes without jumps, in the topological sense.
+This language prepares the later use of sublevel sets.
+}
+
+\planningbox{Examples}{
+Use the mug and donut to separate geometry from topology. Use the circle and
+ellipse to show that topology preserves cyclic organisation while geometry
+distinguishes metric form. Use the noisy circle versus noisy disk to introduce
+the idea that homology asks a different question from precise geometry: does
+the constructed representation organise around a one-dimensional hole?
+
+The Datasaurus Dozen can motivate the general failure of scalar summaries, but
+it should be used with a disclaimer. The point is not that topology is always
+stronger than geometry. The point is that different summaries see different
+structure.
+}
+
+\planningbox{DP relevance}{
+For dynamical systems, the object of interest is often not directly visible. It
+may be an attractor, recurrent orbit, collective regime, interaction structure,
+state-space manifold or changing spatial pattern. The data are traces or
+representations of that object. The DP question is whether topology can provide
+computable witnesses of memory, separability, stability or collective
+organisation. At this stage, the DP is only a reason to care about the lens.
+}
+
+\weekheading{2}{Simplicial complexes and homology: building a computable hole-counter}
+
+\planningbox{Story}{
+Week 2 moves from qualitative shape to a combinatorial object on which topology
+can be computed. The central message is that a simplicial complex is the finite
+bookkeeping device that lets topology become linear algebra. The complex is
+treated as already chosen. The aim is to understand what homology computes once
+\(K\) has been chosen.
+}
+
+\planningbox{Mathematics to introduce}{
+A \(p\)-simplex is a \(p\)-dimensional building block: vertices, edges,
+triangles, tetrahedra and their higher-dimensional analogues. A simplicial
+complex \(K\) is a collection of simplices satisfying downward closure: if
+\(\sigma\in K\) and \(\tau\subseteq\sigma\), then \(\tau\in K\). This condition
+is not decoration. It ensures that whenever a simplex is present, all of its
+faces are also present.
+
+\objectcheck{At this stage, \(K\) is the topological/combinatorial object.
+The vector spaces come next: one vector space \(C_p(K;\mathbb F)\) for the
+\(p\)-simplices in each dimension.}
+
+Over a field \(\mathbb{F}\), a \(p\)-chain is a formal linear combination of
+\(p\)-simplices:
+\[
+c=\sum_i a_i\sigma_i,\qquad a_i\in\mathbb F.
+\]
+Thus \(C_p(K;\mathbb F)\) is a vector space whose basis elements are the
+\(p\)-simplices. Over \(\mathbb{F}_2\), the coefficients are \(0\) or \(1\), so
+a chain can be viewed as a subset of the \(p\)-simplices. Addition is symmetric
+difference: simplices appearing twice cancel because \(1+1=0\) mod \(2\).
+
+The boundary map lowers dimension and is linear:
+\[
+\partial_p:C_p(K;\mathbb F)\to C_{p-1}(K;\mathbb F).
+\]
+The boundary of an edge is its two endpoints; the boundary of a triangle is its
+three edges; the boundary of a tetrahedron is its four triangular faces. The
+identity \(\partial^2=0\) says that every boundary is automatically a cycle.
+
+Cycles form the kernel
+\[
+Z_p=\ker \partial_p,
+\]
+and boundaries form the image
+\[
+B_p=\operatorname{im}\partial_{p+1}.
+\]
+Both are vector subspaces of \(C_p\), with \(B_p\subseteq Z_p\). Homology is
+therefore the quotient vector space
+\[
+H_p(K;\mathbb F)=Z_p/B_p.
+\]
+Its elements are homology classes: cycles are identified when they differ by a
+boundary. The Betti number is
+\[
+\beta_p=\dim H_p(K;\mathbb F).
+\]
+
+\stickingpoint{Homology is a vector space because the chain coefficients have
+been chosen in a field, the boundary map is linear, and \(H_p=Z_p/B_p\) is a
+quotient of vector spaces. A ``hole'' is represented by an equivalence class of
+cycles, not by one privileged geometric loop.}
+
+\qualification{With integer coefficients, \(H_p(K;\mathbb Z)\) is generally an
+abelian group rather than a vector space. Persistent-homology computations
+usually use field coefficients because this makes the algebra and interval
+decomposition much cleaner.}
+}
+
+\phrase{Homology counts cycles that are not merely the boundary of something
+higher-dimensional.}
+
+\planningbox{Examples}{
+Use an outline triangle and a filled triangle. In the outline triangle, the sum
+of the three edges is a cycle with zero boundary. It is not the boundary of any
+two-chain because no triangular face is present, so it represents a nonzero
+class in \(H_1\). In the filled triangle, the same edge cycle is now
+\(\partial_2(\text{triangle})\), so its homology class is zero.
+
+Use a square loop as the simplest visible \(H_1\) class and a hollow tetrahedron
+as a first \(H_2\) example. Ask explicitly which chains are cycles, which cycles
+are boundaries, and which distinctions survive in the quotient.
+
+For \(H_1(S^1)\), the winding number gives useful intuition. Loops around a
+circle are classified by how many times they wind around the hole. Over
+\(\mathbb{Z}\), this gives \(H_1(S^1)\cong \mathbb{Z}\). For the computational
+pipeline, we usually work over a field such as \(\mathbb{F}_2\), but the
+winding-number story helps explain why homology classes are algebraic
+representatives of holes rather than the holes themselves.
+}
+
+\planningbox{DP relevance}{
+Graphs enter as the simplest data-derived complexes. An interaction graph can
+be treated as a one-dimensional simplicial complex, with vertices and edges
+only. This supports component and graph-cycle homology. To study
+higher-dimensional topology, the graph must be promoted to another object, such
+as a clique complex. That promotion is a modelling assumption: pairwise mutual
+interaction is being treated as evidence of a higher-order collective unit.
+}
+
+\weekheading{3}{Filtrations: setting the complex in motion}
+
+\planningbox{Story}{
+Week 3 introduces the filtration. The key move is that one complex is not
+enough for data analysis because a single threshold is usually arbitrary. A
+filtration records how a complex grows as a meaningful parameter changes. The
+parameter may be distance, density, intensity, similarity, interaction
+strength, energy or time.
+}
+
+\planningbox{Mathematics to introduce}{
+A filtration function assigns a real number to each simplex:
+\[
+f:K\to\mathbb{R}.
+\]
+It must be monotone on faces:
+\[
+\tau\subseteq\sigma \quad\Longrightarrow\quad f(\tau)\leq f(\sigma).
+\]
+This ensures that a face appears before any simplex that contains it. Sorting
+simplices by filtration value gives a nested sequence
+\[
+\varnothing=K_0\subseteq K_1\subseteq\cdots\subseteq K_n=K,
+\]
+also denoted \(K_\bullet\).
+
+\stickingpoint{Here ``\(K_j\) is larger than \(K_i\)'' means larger as a
+simplicial complex: every simplex already in \(K_i\) is still present in
+\(K_j\), and \(K_j\) may contain additional edges, triangles, tetrahedra or
+higher-dimensional simplices. It need not occupy a larger region of ambient
+space.}
+
+For a topological space with a function \(f:X\to\mathbb{R}\), the sublevel set
+at threshold \(a\) is
+\[
+X_a=\{x\in X:f(x)\leq a\}.
+\]
+Persistent homology often studies the homology of these sublevel sets as
+\(a\) increases. In theoretical settings, \(f\) may be given. In data practice,
+\(f\) is usually constructed to reveal structure.
+
+All the usual filtrations can be read as sublevel-set filtrations on some
+object. Rips, \v{C}ech, lower-star and cubical filtrations differ because they
+choose different objects and different filtration functions.
+}
+
+\planningbox{Key constructions}{
+For a Vietoris--Rips filtration on a metric point cloud,
+\[
+f(\sigma)=\max_{i,j\in\sigma} d(i,j).
+\]
+This means a simplex appears when all of its vertices are pairwise close enough.
+
+\qualification{The increasingly dense graph is only the \(1\)-skeleton of the
+Vietoris--Rips complex. Every clique is also filled by the corresponding
+higher-dimensional simplex. Those filled triangles and higher simplices are
+often exactly what kill homology classes.}
+
+For a lower-star filtration based on a vertex function \(g\), define
+\[
+f(\sigma)=\max_{v\in\sigma} g(v).
+\]
+A simplex is born when its highest-valued vertex activates. This automatically
+satisfies the monotone-on-faces condition. The vertex function does not need to
+come from geometry. It could encode intensity, density, activity, behavioural
+state or another scalar quantity.
+}
+
+\phrase{The filtration function is the modelling decision that decides what it
+means for structure to appear.}
+
+\planningbox{Examples}{
+The main example is growing balls around points. At small radius there are many
+components. At intermediate radius a loop may appear. At large radius that loop
+fills.
+
+Make the nested-complex language concrete with three vertices. At one scale,
+\(K_i\) may contain the three vertices and three edges, giving an outline
+triangle. At a later scale, \(K_j\) contains all of those simplices plus the
+two-simplex filling the triangle. Thus \(K_i\subseteq K_j\): the later complex
+is made of more simplices, and the new two-simplex kills the earlier
+one-dimensional class.
+
+A bad example should also be used: if a triangle appears before one of its
+edges, the sublevel object is not a simplicial complex.
+
+Use the Rips--\v{C}ech contrast carefully. A Rips triangle appears when all
+pairs are close enough. A \v{C}ech triangle appears when the three balls have a
+common intersection. Thus Rips infers higher-order structure from pairwise
+conditions, while \v{C}ech requires a genuinely joint geometric condition.
+}
+
+\planningbox{DP relevance}{
+For a dynamical or collective system, a filtration could be built from distance,
+interaction strength, alignment, density or a behavioural score. A lower-star
+filtration is useful to keep in mind because vertex values need not be metric.
+For example, a vertex value could encode an agent's internal state or local
+behavioural feature. This gives a way to study topological structure driven by
+behaviour rather than position.
+}
+
+\weekheading{4}{Persistent homology: homology with memory}
+
+\planningbox{Story}{
+Week 4 closes the first-half definition. Homology is now read across the
+filtration using maps induced by inclusion. Persistent homology is not just
+``holes at many scales''. It is homology with memory: it records which classes
+are born, how long they survive, and when they die.
+}
+
+\planningbox{Mathematics to introduce}{
+For \(i\leq j\), the inclusion
+\[
+\iota_{i,j}:K_i\hookrightarrow K_j
+\]
+induces a linear map on homology:
+\[
+(\iota_{i,j})_*:H_p(K_i;\mathbb F)\to H_p(K_j;\mathbb F).
+\]
+
+The intuition should be made explicit. Every simplex and chain in \(K_i\) is
+also present in \(K_j\). A cycle in \(K_i\) can therefore be regarded as the
+same chain in \(K_j\), where it is still a cycle. If two cycles differed by a
+boundary in \(K_i\), they still differ by that boundary in \(K_j\), so the rule
+on homology classes is well defined.
+
+\stickingpoint{The induced map on homology is not necessarily an inclusion.
+The larger complex may contain a new higher-dimensional chain that fills an old
+cycle. The old chain still exists, but its homology class can map to zero.}
+
+For example, let \(K_i\) be the outline triangle and \(K_j\) the filled
+triangle. The loop class is nonzero in \(H_1(K_i)\), but
+\[
+(\iota_{i,j})_*([z])=0\in H_1(K_j)
+\]
+because \(z\) has become the boundary of the new two-simplex. This is the
+algebraic meaning of death.
+
+In \(H_0\), let two components at scale \(i\) have basis vectors \(e_1,e_2\).
+After they merge at scale \(j\), both map to the same component \(e\):
+\[
+e_1\mapsto e,\qquad e_2\mapsto e.
+\]
+Hence the difference \(e_1-e_2\) maps to zero. This is the algebra beneath the
+merging-components picture and the elder rule.
+
+The persistent homology group from \(i\) to \(j\) is the image
+\[
+\operatorname{im}\!\bigl(
+H_p(K_i;\mathbb F)\xrightarrow{(\iota_{i,j})_*}H_p(K_j;\mathbb F)
+\bigr),
+\]
+and its dimension is the persistent Betti number.
+
+The full \(p\)-dimensional persistence module is the entire collection
+\[
+V_i=H_p(K_i;\mathbb F),\qquad
+\varphi_{i,j}=(\iota_{i,j})_*,
+\]
+with
+\[
+\varphi_{i,i}=\operatorname{id},
+\qquad
+\varphi_{j,k}\circ\varphi_{i,j}=\varphi_{i,k}.
+\]
+
+\objectcheck{A filtration is a functor from an ordered parameter set into
+simplicial complexes. Homology is a functor from complexes to vector spaces.
+Their composition is the persistence module:
+\[
+(\mathbb R,\leq)\longrightarrow \mathbf{Simp}
+\longrightarrow \mathbf{Vect}_{\mathbb F}.
+\]
+The module is therefore not just the complexes or their inclusions. It is the
+homology vector space at every scale together with all compatible linear maps.}
+
+For suitable finite or tame one-parameter persistence modules, there is an
+interval decomposition
+\[
+V\cong \bigoplus_{\ell} I[b_\ell,d_\ell).
+\]
+A single interval module is
+\[
+I[b,d)_a=
+\begin{cases}
+\mathbb F, & b\leq a<d,\\
+0, & \text{otherwise},
+\end{cases}
+\]
+with identity maps while the feature is alive. Thus
+\[
+\text{one interval module}=\text{one bar},
+\]
+whereas the full persistence module is generally a direct sum of many interval
+modules. At any filtration value \(a\), \(\dim V_a\) is the number of bars
+crossing \(a\).
+
+\qualification{The barcode does not replace the persistence module by
+definition. It records its interval decomposition in the especially
+well-behaved one-parameter setting. The finiteness or tameness assumptions are
+what make this clean classification possible.}
+}
+
+\phrase{A persistence diagram is not just a picture of holes. It is a compressed
+record of how homology classes survive through a filtration.}
+
+\planningbox{Stability}{
+State the stability result in words: small changes in the filtration function
+imply small changes in the persistence diagram. This is the theorem that makes
+persistent homology useful for noisy data. But stability is not the same as
+interpretability. A stable feature can still be caused by a bad modelling
+choice.
+}
+
+\planningbox{Examples}{
+Build the week around two small calculations before showing a noisy point
+cloud.
+
+First, use \(H_0\) for two components merging. Write the source and target vector
+spaces and the linear map explicitly, so the audience sees that persistence is
+tracking classes rather than merely recounting components at each scale.
+
+Second, use the outline triangle included in the filled triangle. The same
+one-cycle is present as a chain in both complexes, but it maps from a nonzero
+homology class to zero once the triangular face is available.
+
+Then use the noisy circle as the success case: one long \(H_1\) bar appears
+above a cloud of short bars. Use an annulus versus filled disk to show that
+persistence is about survival across scale, not presence at a single scale.
+Finally, draw several bars and take a vertical slice through them to show that
+the vector space at that parameter has one basis direction for each interval
+alive there.
+}
+
+\planningbox{DP relevance}{
+The DP use is initially diagnostic. Rather than asking whether a topological
+feature exists at one threshold, ask whether it persists across a meaningful
+range of scales. Candidate interpretations might involve fragmentation,
+recurrence, circulation, communication pathways or collective organisation. At
+this point, the right question is still modest: does static persistence add
+information beyond simpler metrics?
+}
+
+\section*{Interlude: every barcode has a modelling history}
+\addcontentsline{toc}{section}{Interlude: every barcode has a modelling history}
+
+\planningbox{Story}{
+The interlude should pause the mathematical build and make the complete modelling
+pipeline explicit:
+\[
+\text{scientific system}
+\to \text{observed data}
+\to \text{data object}
+\to K
+\to f
+\to K_\bullet
+\to \underbrace{H_p(K_\bullet)}_{\text{persistence module}}
+\to \text{barcode or diagram}
+\to \text{summary, comparison or claim}.
+\]
+By this point, participants have already encountered most of these choices, but
+many will have appeared as though they were simply part of the definition.
+The purpose of the interlude is to expose them as modelling decisions. Persistent
+homology is not one method applied after the data have been prepared. It is a
+family of pipelines in which each decision determines what can later be called
+a component, loop, cavity, birth, death or persistent feature.
+
+\stickingpoint{The persistence module is the evolving homology calculation.
+The barcode or persistence diagram is the interval-decomposition summary of
+that module in the ordinary one-parameter setting. The diagram does not erase
+the modelling history that produced the module.}
+}
+
+\planningbox{Core message}{
+A barcode is never independent of the construction that produced it. The same
+observations with a different representation, the same point cloud with a
+different metric, the same graph with a different complex, or the same scalar
+field with a sublevel rather than superlevel filtration may produce different
+diagrams. These are not necessarily competing estimates of one hidden truth.
+They may be answers to different scientific questions.
+}
+
+\phrase{Before interpreting a bar, reconstruct the sequence of choices that
+made that bar possible.}
+
+\planningbox{Design decisions already in play}{
+The table should be used actively. For each row, ask participants first to name
+the choice made in the examples so far, then to predict what would change under
+one alternative. The final column should not be read as a fixed dictionary. It
+records the kind of interpretive claim that becomes available, or unavailable,
+after that decision.
+
+\begingroup
+\small
+\renewcommand{\arraystretch}{1.22}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.16\textwidth}
+                    >{\raggedright\arraybackslash}p{0.20\textwidth}
+                    >{\raggedright\arraybackslash}p{0.25\textwidth}
+                    >{\raggedright\arraybackslash}p{0.30\textwidth}@{}}
+\toprule
+\textbf{Design decision} &
+\textbf{Choice used so far} &
+\textbf{Some alternatives} &
+\textbf{What changes in the interpretation} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Design decision} &
+\textbf{Choice used so far} &
+\textbf{Some alternatives} &
+\textbf{What changes in the interpretation} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{\small\itshape Continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+
+Scientific object and representation
+& A point cloud is treated as the object to be analysed.
+& A raw trajectory, delay embedding, interaction graph, scalar field, image,
+  time window or state-space sample.
+& The resulting topology belongs to the chosen representation. A loop in a
+  delay embedding is a statement about recurrent state-space organisation, not
+  necessarily a literal loop in physical space. \\
+
+Sampling and preprocessing
+& Observed points are used directly and on their given coordinate scales.
+& Resampling, denoising, subsampling, standardising coordinates, changing the
+  observation window, or retaining temporal order.
+& Apparent topology may reflect sampling density, anisotropic units, noise or
+  window length. Preprocessing can reveal structure, but can also manufacture
+  or remove it. \\
+
+Meaning of closeness
+& Euclidean distance on the point cloud.
+& Periodic distance, geodesic distance, correlation distance, diffusion
+  distance, a learned metric, or a domain-specific dissimilarity.
+& Neighbourhoods change, so every later simplex and homology class changes. A
+  persistent feature means coherence under the selected notion of closeness,
+  not under closeness in general. \\
+
+Combinatorial object $K$
+& A Vietoris--Rips complex, or a simplicial complex already supplied.
+& \v{C}ech, alpha, witness, cubical, graph, clique or another complex adapted to
+  the data type.
+& The construction decides which relations are represented explicitly and
+  which higher-order relations are inferred. Different complexes can answer
+  different questions even when built from the same data. \\
+
+Graph versus clique complex
+& Pairwise edges are allowed to generate higher-dimensional Rips simplices.
+& Retain only the graph as a one-dimensional complex, or fill every clique to
+  form the flag complex.
+& A triangle in the graph has an $H_1$ cycle if its interior is not filled. The
+  same three pairwise relations have no $H_1$ class in the clique complex.
+  Filling cliques asserts that mutual pairwise relation constitutes a
+  higher-order unit. \\
+
+Filtration function $f$
+& Distance controls a Rips filtration; a vertex value controls a lower-star
+  filtration.
+& Density, intensity, interaction weight, alignment, energy, activity or
+  another scalar attached to vertices, edges or cells.
+& The filtration decides what it means for structure to appear. Birth and death
+  inherit their scientific meaning from $f$; they do not have a universal
+  interpretation. \\
+
+Filtration direction
+& Sublevel sets add low-valued parts first.
+& Superlevel sets add high-valued parts first, often implemented by filtering
+  on $-f$.
+& A sublevel filtration detects structures organised around low values; a
+  superlevel filtration detects structures organised around high values. Peaks
+  and basins exchange roles. \\
+
+Rips scale convention
+& A simplex enters when all pairwise distances are at most the reported
+  threshold.
+& Some accounts grow balls of radius $r$ and use a Rips threshold $2r$; software
+  and papers vary in whether the parameter denotes radius or diameter.
+& The same filtration can receive birth and death coordinates differing by a
+  factor of two. The topology is unchanged, but the numerical scale and any
+  physical interpretation of persistence are not. \\
+
+Parameter range and sampling
+& The filtration is shown as a finite nested sequence of thresholds.
+& A finer or coarser grid, adaptive critical values, a different maximum scale,
+  or stopping before all features die.
+& Coarse sampling can hide short-lived changes. Truncation can censor deaths and
+  make a bar appear essential when it is only unresolved within the chosen
+  range. \\
+
+Ties in filtration value
+& Simplices with the same filtration value are conceptually added together.
+& Software may impose an internal order among tied simplices while respecting
+  face-before-coface constraints.
+& Arbitrary ordering inside a tie should not be mistaken for scientific time.
+  It can affect representatives and create zero-length intermediate events even
+  when the persistence module at the stated parameter values is unchanged. \\
+
+Coefficient system
+& Homology is computed over $\mathbb{F}_2$.
+& Another field $\mathbb{F}_p$, or integer coefficients when torsion and
+  orientation matter.
+& Over $\mathbb{F}_2$, signs disappear and chains are easy to compute. Changing
+  coefficients can alter which classes are visible, especially when torsion is
+  present. A Betti number is always relative to the chosen coefficients. \\
+
+Homological dimension $p$
+& $H_0$ for components and $H_1$ for loops, with $H_2$ introduced through a
+  hollow tetrahedron.
+& Compute one degree only, or several degrees with dimension-specific
+  constructions and scales.
+& Different degrees describe different forms of organisation. A construction
+  suitable for components may be computationally or scientifically inadequate
+  for cavities. \\
+
+Ordinary or reduced $H_0$
+& Ordinary homology leaves one component class alive indefinitely.
+& Reduced homology removes the final global component.
+& The difference is a convention about the unavoidable connected component,
+  not evidence for or against clustering. It changes the essential $H_0$ bar
+  and must be checked when comparing software outputs. \\
+
+Object retained after computation
+& The persistence module is summarised by its interval decomposition, shown as
+  a barcode or persistence diagram.
+& Retain the module and its maps, its rank information, selected generators, or
+  only a scalar or vector summary.
+& For a suitably finite one-parameter module, the barcode classifies the module
+  up to isomorphism. It does not automatically retain chosen cycle
+  representatives or maps between different modules. The discarded information
+  matters later for feature tracking and vineyard modules. \\
+
+Null model and baseline
+& The noisy circle and disk are interpreted by visual expectation.
+& Shuffled values, random geometric graphs, phase-randomised surrogates,
+  resampled point clouds, simpler geometric statistics or domain-specific nulls.
+& Persistence alone does not establish that a feature is surprising or useful.
+  The null determines what ``more structured than expected'' means, while the
+  baseline determines whether topology adds anything beyond a simpler measure.
+\\
+\end{longtable}
+\endgroup
+
+\qualification{Not every row is an independent dial. The data representation
+may determine the available complexes; the complex constrains valid filtration
+functions; the coefficient field and homological degree affect the algebra; and
+the scientific question should constrain all of them. The table is a map of
+dependencies, not a menu from which choices should be mixed arbitrarily.}
+
+\objectcheck{At the end of the pipeline, ask which object is actually being
+interpreted: a feature of the scientific system, a feature of the observed data,
+a class in $H_p(K_a)$, an interval in a persistence module, a point in a diagram,
+or a scalar summary of many diagram points. Claims become weaker as more of the
+pipeline is forgotten.}
+}
+
+\planningbox{Implementation provocations}{
+The class should investigate a small selection of the table rows in code. Each
+exercise should begin with a prediction, followed by computation, comparison and
+an explanation of what changed in the pipeline. The point is not to generate
+many diagrams, but to develop the habit of locating the source of a difference.
+
+\begin{enumerate}
+    \item \textbf{Graph or filled complex?} Begin with three vertices and all
+    three edges. Compute $H_1$ when the object is retained as a graph and when it
+    is completed to its clique complex. The data and pairwise relations are
+    identical; only the interpretation of a three-way relation changes.
+
+    \item \textbf{Which notion of closeness?} Use one anisotropic point cloud
+    and compare Euclidean distance before and after standardising the coordinate
+    axes. Alternatively, compare Euclidean and periodic distance for points near
+    opposite boundaries of a periodic domain. Identify which apparent
+    components or loops were properties of the metric choice.
+
+    \item \textbf{What does birth mean?} Apply lower-star persistence to a
+    simple scalar field, then repeat with the negated field. Compare the sublevel
+    and superlevel stories and state explicitly whether the features organise
+    around low values or high values.
+
+    \item \textbf{What did the software assume?} For a small point cloud, record
+    whether the library's Rips parameter is a pairwise-distance threshold or a
+    ball radius, whether it returns ordinary or reduced $H_0$, how it represents
+    infinite deaths, and how it orders tied simplices. Reconcile any discrepancy
+    between two packages before treating it as a mathematical disagreement.
+
+    \item \textbf{Do coefficients matter here?} Compute a supplied triangulation
+    with $\mathbb{F}_2$ and with an odd-prime field. A circle should provide the
+    control case; a space with torsion, such as a triangulated projective plane,
+    shows that coefficient choice can change the answer rather than merely the
+    notation.
+
+    \item \textbf{Can topology beat the obvious baseline?} Compare a structured
+    example with a suitable surrogate and with one simpler statistic. Require a
+    claim of the form: ``under this construction and relative to this null, the
+    persistence output reveals \ldots''. If that sentence cannot be completed,
+    the pipeline has not yet earned an interpretation.
+\end{enumerate}
+
+\stickingpoint{When two outputs differ, the first question should not be ``which
+barcode is correct?'' It should be ``which upstream choice changed, and what
+question does each pipeline now answer?''}
+}
+
+\planningbox{Examples to revisit}{
+Return to examples already used in Weeks 1--4 and deliberately alter one choice
+at a time:
+\begin{itemize}
+    \item noisy circle versus noisy disk: change sampling density, metric or
+    maximum scale;
+    \item outline triangle versus filled triangle: keep the same vertices and
+    edges but change whether the two-simplex is included;
+    \item merging components: compare ordinary and reduced $H_0$ and identify
+    the surviving essential class;
+    \item a greyscale field: compare sublevel and superlevel filtrations;
+    \item an interaction graph: compare graph-cycle homology with clique-complex
+    homology.
+\end{itemize}
+The repeated examples should make clear that a different answer need not be a
+failure of robustness. It may be the mathematically correct consequence of
+asking a different question.
+}
+
+
+\weekheading{5}{Static data in practice: choosing and computing filtered complexes}
+
+\planningbox{Story}{
+Week 5 is the first practical week. The aim is not just to compute persistence,
+but to choose a construction appropriate to the data object. The data object
+comes first; the complex follows.
+}
+
+\planningbox{Method map}{
+\begin{itemize}
+    \item Point cloud with coordinates: alpha or Rips complexes.
+    \item Pairwise distances only: Vietoris--Rips complexes.
+    \item Image, volume or gridded scalar field: cubical complexes or lower-star filtrations.
+    \item Weighted graph: graph filtration or clique complex.
+    \item Large point cloud: sparse Rips or witness constructions.
+    \item Labelled or coloured point cloud: chromatic or relative-style constructions.
+\end{itemize}
+}
+
+\planningbox{Computational cautions}{
+Rips complexes grow quickly. For an \(N\)-point cloud, the Vietoris--Rips
+filtration contains \(O(N^2)\) edges, \(O(N^3)\) triangles, \(O(N^4)\)
+tetrahedra and so on. Even when truncating at dimension 2, the size can scale
+like \(O(N^3)\). This is why the choice of maximum dimension, maximum
+filtration value and sparsification strategy is not merely technical.
+}
+
+\planningbox{Examples}{
+Use a noisy circle versus noisy disk as a sanity check. Use an annulus with
+uneven sampling to show that persistence is not immune to sampling effects.
+Use a greyscale image to introduce lower-star or cubical persistence. Use a
+small weighted graph to ask whether pairwise cycles or clique-complex holes are
+the object of interest.
+}
+
+\planningbox{DP relevance}{
+Static persistence is not claiming that a dynamical system is static. It freezes
+one representation: a time window, a state cloud, a snapshot, an interaction
+graph or a scalar field. This is the lowest-risk baseline. If a single
+topological snapshot cannot distinguish regimes or performance-relevant
+states, then more sophisticated dynamic topology needs stronger justification.
+}
+
+\weekheading{6}{Summaries, comparisons and validation}
+
+\planningbox{Story}{
+Once diagrams exist, the next modelling choice is how to use them. A diagram
+can be compared directly, summarised by a scalar, converted into a function,
+turned into an image, or used as input to statistics and machine learning.
+These choices preserve and discard different information.
+}
+
+\planningbox{Objects to introduce}{
+\begin{itemize}
+    \item Bottleneck distance: worst matched feature.
+    \item Wasserstein distance: accumulated matching cost.
+    \item Betti curves: Betti numbers as functions of filtration scale.
+    \item Persistence landscapes: functional summaries in a vector space.
+    \item Persistence images: stable vector summaries for machine learning.
+    \item Persistence entropy, total persistence, maximum persistence and thresholded counts.
+\end{itemize}
+
+\qualification{These objects compare or vectorise persistence diagrams. They do
+not, by themselves, recover the maps between persistence modules or establish
+the identity of a feature through external time.}
+}
+
+\phrase{Stable does not mean automatically interpretable, and vectorised does
+not mean scientifically meaningful.}
+
+\planningbox{Examples}{
+Use two diagrams with the same longest bar but different clouds of shorter bars
+to show why single statistics can be misleading. Use a real-versus-shuffled
+comparison to show that the question is not ``is there a barcode?'' but
+``does this barcode differ from what this construction would produce anyway?''
+}
+
+\planningbox{DP relevance}{
+This week asks whether topology adds explanatory or predictive value beyond
+simpler baselines. Reasonable first summaries include maximum persistence,
+total persistence, Betti curves, persistence entropy, diagram distances to a
+baseline and vectorised persistence images or landscapes. Vineyards are only
+justified if the identity or trajectory of features matters, not merely their
+distribution at each time or parameter value.
+}
+
+\weekheading{7}{Time-indexed static topology: repeated persistence through time}
+
+\planningbox{Story}{
+Week 7 introduces the honest dynamic baseline. Given a sequence of time-indexed
+objects \(X_t\), \(G_t\), \(I_t\), \(W_t\) or \(K_{\bullet,t}\), compute ordinary
+persistence independently at each time point or time window. The resulting
+diagrams or summaries are then treated as a time series.
+}
+
+\planningbox{Mathematics and summaries}{
+This is not genuinely dynamic topology in the strongest sense because no
+method has identified a specific feature across time. It is repeated static
+persistence.
+
+\objectcheck{At each time \(t\), there may be a complete ordinary persistence
+module \(V_t\) and its diagram \(D_t\). What is absent is a coherent family of
+maps connecting \(V_s\) to \(V_t\). A time series of diagrams is therefore not
+yet a vineyard module.}
+
+Useful outputs include
+\begin{itemize}
+    \item framewise diagrams;
+    \item sliding-window diagrams;
+    \item Betti curves through scale;
+    \item Betti summaries through physical time;
+    \item diagram distances to a baseline;
+    \item CROCKER-style plots, which project repeated persistence into a rank-function-like summary across scale and time.
+\end{itemize}
+}
+
+\phrase{A topological summary can change through time without any individual
+hole being tracked through time.}
+
+\planningbox{Examples}{
+Use moving point clouds, evolving graphs, sliding-window embeddings and
+time-indexed scalar fields. The key teaching contrast is between detecting
+change in topological summaries and tracking the identity of individual
+features.
+}
+
+\planningbox{DP relevance}{
+This is the first method to try for dynamic systems. It is implementable with
+standard tools, interpretable, and often already informative. The DP question
+is whether topological summaries over time reveal regime changes, memory,
+separability, stability or collective organisation beyond ordinary metrics.
+Only if feature identity through time matters should we escalate to more
+specialised machinery.
+}
+
+\weekheading{8}{Beyond ordinary persistence: which advanced tool solves which problem?}
+
+\planningbox{Story}{
+Week 8 should be organised by problem type rather than by a list of advanced
+methods. The aim is to teach method selection: what breaks in ordinary
+persistence, and which tool responds to that break?
+}
+
+\planningbox{Case 1: complexes only grow}{
+If complexes only grow, ordinary one-parameter persistence is the natural tool.
+This is the clean barcode setting. The inclusion maps all point in the same
+direction:
+\[
+K_0\subseteq K_1\subseteq\cdots\subseteq K_n.
+\]
+}
+
+\planningbox{Case 2: complexes grow and shrink}{
+If complexes grow and shrink, zigzag persistence is the natural extension.
+Instead of all maps pointing in one direction, the diagram can zigzag:
+\[
+K_0\to K_1 \leftarrow K_2 \to K_3 \leftarrow \cdots.
+\]
+Zigzag persistence is designed for insertions and deletions of simplices. It is
+mathematically appropriate for non-monotone sequences, but it can be
+computationally and interpretively heavy.
+}
+
+\phrase{Standard persistence tracks features that survive as a space grows.
+Zigzag persistence tracks features that survive as a space changes.}
+
+\planningbox{Case 3: there is more than one genuine parameter}{
+If scale and time, scale and density, or another pair of parameters are both
+genuine, then multiparameter persistence is the relevant framework. The warning
+is essential: the clean barcode decomposition of one-parameter persistence does
+not carry over in the same way. Multiparameter persistence may be the right
+mathematical object even when a practical analysis later uses lower-dimensional
+summaries.
+
+\qualification{The presence of two named variables does not by itself decide
+the framework. The question is whether they form one partial order to be
+analysed jointly, or whether one parameter indexes a controlled family of
+ordinary persistence modules with additional transport data.}
+}
+
+\planningbox{Case 4: a fixed complex has a smoothly changing filtration}{
+Vineyards apply when there is a fixed simplicial complex \(K\) and a
+time-dependent filtration function
+\[
+f_t:K\to\mathbb{R}.
+\]
+There are now two distinct parameters:
+\[
+\underbrace{t}_{\text{external or physical time}},
+\qquad
+\underbrace{a}_{\text{filtration height or scale}}.
+\]
+At each fixed time \(t\), the sublevel filtration of \(f_t\) produces an
+ordinary persistence module
+\[
+V_t(a)=H_p(K_{t,a};\mathbb F)
+\]
+and a persistence diagram \(D_t\). A vineyard tracks how the birth--death
+points of \(D_t\) move as \(t\) varies. Each tracked curve is a vine.
+
+The useful teaching picture is a landscape whose height function changes over
+time. Ordinary persistence studies flooding one fixed landscape. A vineyard
+studies what happens when the landscape itself slowly morphs.
+
+Vineyards assume controlled change. The set of simplices is fixed, filtration
+values vary continuously, and changes in the filtration order occur through
+adjacent swaps. Between swaps, persistence pairings remain fixed and vines move
+linearly or smoothly. At a swap, the reduced boundary matrix is updated locally
+rather than recomputed from scratch.
+
+\qualification{A vineyard is a geometric record of moving birth--death points.
+It does not automatically retain the full linear maps connecting the
+persistence modules at different times.}
+}
+
+\phrase{A vineyard is not a stack of unrelated diagrams. It is a one-parameter
+family of persistence diagrams realised as curves in birth--death--time space.}
+
+\planningbox{Vineyard modules: what the vineyard omits}{
+A vineyard module retains more than the visible trajectories. It consists of
+the persistence module \(V_t\) at each external time together with coherent
+interleaving maps between the modules at different times. Schematically, the
+horizontal direction is ordinary persistence through filtration height, while
+the vertical direction transports information through physical time:
+\[
+\begin{array}{ccccc}
+V_s(a)&\longrightarrow&V_s(b)&\longrightarrow&V_s(c)\\
+\downarrow&&\downarrow&&\downarrow\\
+V_t(a+\varepsilon)&\longrightarrow&
+V_t(b+\varepsilon)&\longrightarrow&
+V_t(c+\varepsilon).
+\end{array}
+\]
+
+\stickingpoint{For a single well-behaved one-parameter module, its barcode
+classifies the module up to isomorphism. But the source and target barcodes do
+not classify a particular map between two modules. Dynamic questions may depend
+on those maps.}
+
+A direct sum of vine modules would mean that each visible vine can be treated as
+one independent algebraic feature for all time:
+\[
+I[\gamma_1]\oplus\cdots\oplus I[\gamma_m].
+\]
+Turner's central point is that a vineyard may visibly contain several vines
+while its vineyard module is nevertheless indecomposable. The homology
+generators can mix under transport through time.
+}
+
+\planningbox{Concrete reading of Turner Figure~1}{
+Use Figure~1 of Turner,
+\href{https://arxiv.org/abs/2307.06020}{\emph{Representing Vineyard Modules}},
+as the concrete example.
+
+The domain is a disc divided into four pieces:
+\begin{itemize}
+    \item \(A\): the open inner disc;
+    \item \(B\): the inner boundary circle;
+    \item \(C\): the open surrounding annulus;
+    \item \(D\): the outer boundary circle.
+\end{itemize}
+The time-dependent function assigns
+\[
+f_t(A)=21-t,\qquad f_t(B)=14-t,\qquad
+f_t(C)=15+t,\qquad f_t(D)=t.
+\]
+
+\objectcheck{The horizontal axis in the figure is external time \(t\). The
+vertical axis is filtration height \(a\). The four black sloping lines are the
+values of \(f_t\) on \(A,B,C,D\). At a fixed \(t\), move vertically upward to
+watch the sublevel set acquire these four pieces.}
+
+The critical ordering changes when lines cross:
+\[
+f_3(A)=f_3(C),\qquad f_7(B)=f_7(D).
+\]
+Hence the dashed vertical lines at \(t=3\) and \(t=7\) divide three regimes.
+At every fixed time there are two \(H_1\) bars:
+\[
+[14-t,21-t)
+\qquad\text{and}\qquad
+[t,15+t).
+\]
+The coloured vertical segments drawn at selected times are these bars.
+Following each colour through time produces a vine.
+
+The first bar is born when \(B\) enters and dies when \(A\) fills its inner
+loop. The second is born when \(D\) enters and dies when \(C\) fills the
+annular class.
+
+\stickingpoint{The coloured curves make the example look like two independent
+features, but the visible vines do not determine how their homology generators
+are transported through time. That missing information is exactly what the
+vineyard module retains.}
+}
+
+\planningbox{Why the Figure~1 module is indecomposable}{
+Before the first critical event, a natural basis is
+\[
+[B],\qquad[D+B],
+\]
+whereas after the second critical event the forced basis is
+\[
+[B],\qquad[D].
+\]
+Over \(\mathbb F_2\),
+\[
+[D]=[D+B]+[B].
+\]
+Thus the change of basis mixes the two visible vines. After coherent
+simplification, an off-diagonal term remains in a transport matrix of the form
+\[
+\begin{pmatrix}
+1&1\\
+0&1
+\end{pmatrix}.
+\]
+
+The off-diagonal \(1\) means that transporting the second generator through
+time necessarily picks up part of the first. There is no globally coherent
+choice of bases that turns the family into two independent \(1\times1\)
+problems.
+
+\phrase{Two visible vines do not necessarily mean two independent evolving
+homology classes.}
+
+This is the conceptual reason to care about persistence modules rather than
+only diagrams: the diagram records where classes are born and die; the
+module-level maps record how classes are related and transported.
+}
+
+\planningbox{Why vineyards are delicate}{
+Smooth motion of points does not necessarily imply smooth behaviour of the
+filtration order. In a moving point cloud, many distances can change relative
+order at once. Edges, triangles and higher-dimensional simplices can undergo
+large global reorderings. This makes it hard to identify the same topological
+feature across time. The persistence diagram may be stable in bottleneck
+distance, while feature identity is still unstable.
+
+This is the distinction to emphasise:
+\[
+\text{diagram stability} \neq \text{reliable feature tracking}.
+\]
+}
+
+\planningbox{Case 5: labels, colours or types matter}{
+If points, regions or agents carry labels, colours or types, ordinary
+persistence may ignore the structure of interest. Chromatic or relative-style
+methods ask how different classes spatially mingle, separate or interact.
+Relative homology, image persistence, kernel persistence and cokernel
+persistence can be introduced conceptually here as tools for asking what part
+of a feature belongs to, is contributed by, or is shared across different
+subobjects.
+}
+
+\planningbox{DP relevance}{
+For swarms or physical reservoirs, vineyards are attractive because they offer
+feature identity, continuous trajectories and potential online updates. But
+they are also high risk. A literal moving point-cloud Rips filtration may not
+satisfy the assumptions needed for vineyard tracking.
+
+Two more plausible strategies are:
+\begin{enumerate}
+    \item fix an interaction-graph or clique-complex scaffold and let edge or
+    simplex weights vary smoothly through time;
+    \item fix an ambient mesh and define a smooth density or activity field
+    from the swarm or reservoir state.
+\end{enumerate}
+Both strategies disconnect the fixed simplicial object from the raw moving
+agent geometry. The topology then belongs to an interaction structure or
+ambient field rather than directly to the moving point cloud.
+}
+
+\section*{Closing planning note}
+\addcontentsline{toc}{section}{Closing planning note}
+
+The masterclass should not sell advanced TDA as automatically better. The
+desired outcome is judgement. Participants should leave able to say:
+ordinary persistence is enough here; this is really a zigzag problem; this has
+two genuine parameters; this is a labelled point-cloud problem; this is a
+possible vineyard problem only if we can define a fixed \(K\) and a controlled
+\(f_t\); this question requires the maps between persistence modules rather
+than only their diagrams; or topology is not adding enough beyond a simpler
+baseline.
+
+That judgement is the foundation needed for the Discovery Project. It is also
+the foundation needed for Honours students to use TDA responsibly rather than
+as a black-box feature generator.
+
+\end{document}

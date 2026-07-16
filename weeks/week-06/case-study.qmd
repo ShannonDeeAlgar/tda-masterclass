@@ -1,0 +1,25 @@
+---
+title: "Week 6 application: is the swarm signature unusual?"
+subtitle: "Synthetic validation case study"
+toc: true
+---
+
+## Operational question
+
+Is the observed ring-like persistence stronger than expected from a surrogate preserving selected non-topological properties?
+
+## Statistic and null
+
+Pre-register maximum $H_1$ persistence, a Betti curve distance and radial variation. A teaching surrogate independently permutes one coordinate, preserving the separate coordinate marginals while destroying their pairing.
+
+## Complete-pipeline comparison
+
+Reconstruct the point cloud, Rips filtration and diagram for every surrogate. Compare the observed statistic with the empirical distribution, then repeat under a second justified surrogate when moving to scientific data.
+
+## Baseline
+
+Radial coefficient of variation may already detect the deliberately constructed ring. Topology adds value only if it supplies information or robustness beyond that baseline.
+
+## Interpretation boundary
+
+Coordinate shuffling is transparent but rarely a sufficient physical null for a swarm. An exceedance proportion is not a calibrated scientific p-value without an exchangeability or data-generating argument.

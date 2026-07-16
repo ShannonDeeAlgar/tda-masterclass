@@ -1,0 +1,19 @@
+name: tda-masterclass
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - jupyterlab
+  - numpy
+  - scipy
+  - pandas
+  - matplotlib
+  - networkx
+  - scikit-learn
+  - pyyaml
+  - nbformat
+  - pip
+  - pip:
+      - ripser
+      - persim
+      - gudhi

@@ -1,0 +1,25 @@
+---
+title: "Week 7 application: a swarm changes regime"
+subtitle: "Synthetic repeated-persistence case study"
+toc: true
+---
+
+## Operational question
+
+When does a synthetic swarm move from ring-like organisation to a filled configuration and back?
+
+## Data and windows
+
+At each physical time $t$, positions form a separate point cloud. A scientific analysis would state sampling rate, window length, overlap, missing agents and whether identity labels are used in constructing the representation.
+
+## Topological construction
+
+Compute an ordinary Rips persistence diagram $D_t$ independently at every frame. Display maximum $H_1$ persistence and the CROCKER-style surface $C_1(t,\varepsilon)$.
+
+## Baseline and sensitivity
+
+Compare with radial variation or an order parameter. Repeat with different window lengths, subsampling, metric choices and threshold ranges.
+
+## Interpretation boundary
+
+The method detects change in diagram summaries. It does not establish that a bar at time $t$ is the same feature as a bar at time $t+1$. Smooth output can also result from overlapping windows.

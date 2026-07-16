@@ -1,0 +1,126 @@
+---
+title: "Week 5: Static data in practice: choosing and computing filtered complexes"
+subtitle: "TDA for Static and Dynamic Data"
+format:
+  revealjs:
+    theme: [simple, ../../assets/slides.scss]
+    slide-number: true
+    transition: fade
+    controls: true
+    chalkboard: true
+    footer: "TDA MasterClass"
+execute:
+  enabled: false
+---
+
+## The decision for today
+
+What object are we constructing, what information does it retain, and what scientific claim could it support?
+
+
+[Lecture walkthrough](solutions.ipynb)
+
+---
+
+## Story
+
+Week 5 is the first practical week. The aim is not just to compute
+persistence, but to choose a construction appropriate to the data
+object. The data object comes first; the complex follows.
+
+---
+
+## Method map
+
+- Point cloud with coordinates: alpha or Rips complexes.
+
+- Pairwise distances only: Vietoris–Rips complexes.
+
+---
+
+## Computational cautions
+
+Rips complexes grow quickly. For an $N$-point cloud, the Vietoris–Rips
+filtration contains $O(N^2)$ edges, $O(N^3)$ triangles, $O(N^4)$
+tetrahedra and so on. Even when truncating at dimension 2, the size can
+scale like $O(N^3)$. This is why the choice of maximum dimension,
+maximum filtration value and sparsification strategy is not merely
+technical.
+
+---
+
+## Examples
+
+Use a noisy circle versus noisy disk as a sanity check. Use an annulus
+with uneven sampling to show that persistence is not immune to sampling
+effects. Use a greyscale image to introduce lower-star or cubical
+persistence. Use a small weighted graph to ask whether pairwise cycles
+or clique-complex holes are the object of interest.
+
+---
+
+## One stack, three objects
+
+![](../../assets/week05-data-constructions.svg){fig-alt="Point cloud, weighted graph and scalar grid mapped to three different filtered constructions." height="210"}
+
+| Input | Construction | Filtration value |
+|---|---|---|
+| Point cloud | Rips complex | Distance threshold |
+| Weighted graph | Graph or clique complex | Edge weight |
+| Scalar grid | Cubical complex | Cell value |
+
+The common software does not make these the same mathematical object.
+
+---
+
+## Where do the scalar values live?
+
+Lower star: values begin on vertices.
+
+Cubical practical: values begin on top-dimensional grid cells.
+
+State the convention before interpreting birth.
+
+Alpha complexes are optional, not part of the core practical.
+
+---
+
+## Sensitivity or a new question?
+
+Subsample the same point cloud: sensitivity check.
+
+Fill graph cliques: new higher-order assumption.
+
+Negate a scalar field: switch from low-valued to high-valued structure.
+
+::: {.sticking}
+**▶ Likely sticking point.** Not every software setting is a harmless tuning parameter.
+:::
+
+---
+
+## Computational reporting
+
+State observation and simplex counts, maximum dimension and threshold,
+coefficient field, sparsification, runtime and memory failures.
+
+---
+
+## DP relevance
+
+Static persistence is not claiming that a dynamical system is static. It
+freezes one representation: a time window, a state cloud, a snapshot, an
+interaction graph or a scalar field. This is the lowest-risk baseline.
+If a single topological snapshot cannot distinguish regimes or
+performance-relevant states, then more sophisticated dynamic topology
+needs stronger justification.
+
+## Before we leave
+
+1. What is the mathematical object?
+2. Which choice most changed its interpretation?
+3. When would this construction mislead us?
+
+See the [applied glossary](../../glossary.qmd) for the translation layer.
+
+[Participant practical](lab.ipynb)

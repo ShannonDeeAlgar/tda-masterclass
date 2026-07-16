@@ -1,0 +1,367 @@
+---
+title: "Before Week 1: Topology survival guide"
+subtitle: "The familiar ideas underneath continuity, connectedness and shape"
+toc: true
+---
+
+This guide isolates the formal topology used by the course. The main weekly notes develop the TDA argument; return here when a word such as *open*, *continuous*, *connected* or *homeomorphic* needs a precise meaning.
+
+The aim is recognition and interpretation. You do not need to prove general topology theorems before starting Week 1.
+
+## Sets, subsets and collections
+
+A **set** is a collection of objects. If $X$ is a set, then $U\subseteq X$ means that every element of $U$ is also an element of $X$. The **empty set** $\varnothing$ has no elements. The **power set** $\mathcal P(X)$ is the collection of every subset of $X$.
+
+These levels must remain distinct:
+
+- $x\in X$ says that $x$ is a point of the set;
+- $U\subseteq X$ says that $U$ is a subset of points; and
+- $\mathcal T\subseteq\mathcal P(X)$ says that $\mathcal T$ is a collection of selected subsets.
+
+::: {.callout-note collapse="true" title="Example: points, subsets and a collection of subsets"}
+Let
+
+$$
+X=\{a,b,c\}.
+$$
+
+Here $a\in X$ is one element. The set $U=\{a,c\}$ is a subset, so $U\subseteq X$, but $U$ is not an element of $X$. The power set is
+
+$$
+\mathcal P(X)=\{\varnothing,\{a\},\{b\},\{c\},
+\{a,b\},\{a,c\},\{b,c\},X\}.
+$$
+
+The object
+
+$$
+\mathcal C=\{\varnothing,\{a\},\{b,c\},X\}
+$$
+
+is a collection of subsets, so $\mathcal C\subseteq\mathcal P(X)$. This is the kind of object that can be tested against the topology axioms in the next section.
+:::
+
+::: {.object-check}
+**◇ Object check.** In $(X,\mathcal T)$, the elements of $X$ are points. The elements of $\mathcal T$ are subsets of $X$. Thus $x\in X$, while an open set satisfies $U\in\mathcal T$.
+:::
+
+::: {.data-translation}
+**Data-analysis translation.** A row, a selected group of rows and a collection of candidate groups occupy the same three levels. Confusing them leads to questions such as treating one observation as though it were a cluster, or treating a list of clusters as though it were another subset of observations.
+:::
+
+## A topology and its open sets
+
+A **topology** on a set $X$ is a collection $\mathcal T$ of subsets of $X$. The subsets belonging to $\mathcal T$ are, by definition, the **open sets**. The pair $(X,\mathcal T)$ is a **topological space**.
+
+A subset is therefore not intrinsically open. It is open relative to the chosen topology $\mathcal T$. This collection must satisfy three rules:
+
+1. $\varnothing\in\mathcal T$ and $X\in\mathcal T$;
+2. if $\{U_i\}_{i\in I}$ is any family with every $U_i\in\mathcal T$, then
+   $$\bigcup_{i\in I}U_i\in\mathcal T;$$
+3. if $U_1,\ldots,U_n\in\mathcal T$ is any finite family, then
+   $$U_1\cap\cdots\cap U_n\in\mathcal T.$$
+
+The first rule explicitly mentions $\mathcal T$: both the empty subset and the whole set must belong to the collection of open sets. The shorthand “$X$ and $\varnothing$ are open” means exactly this.
+
+::: {.callout-note collapse="true" title="Example: a topology on three points"}
+Return to $X=\{a,b,c\}$ and choose
+
+$$
+\mathcal T=\{\varnothing,\{a\},\{b,c\},X\}.
+$$
+
+This is a topology. It contains $\varnothing$ and $X$; every union of its members is still one of its members; and every finite intersection is also a member. Therefore $(X,\mathcal T)$ is a topological space.
+
+The subset $\{a\}$ is open and $\{b,c\}$ is open, but $\{a,b\}$ is not open because it is not in $\mathcal T$. The topology distinguishes $a$ from the pair $\{b,c\}$ but does not separate $b$ from $c$ using open sets.
+
+If instead we choose $\mathcal T=\mathcal P(X)$, every subset is open. The underlying set of three points has not changed, but its topology has.
+:::
+
+### What open is trying to capture
+
+The intuition is that an open set contains a little room around each of its points.
+
+::: {.callout-note collapse="true" title="Example: open and non-open intervals"}
+In the usual topology on $\mathbb R$, the interval $(2,5)$ is open because every $x\in(2,5)$ has some sufficiently small interval $(x-\varepsilon,x+\varepsilon)$ contained in $(2,5)$. The interval $[2,5]$ is not open in $\mathbb R$: every interval around the endpoint $2$ extends partly outside $[2,5]$.
+:::
+
+The axioms make neighbourhood reasoning consistent:
+
+- **$X\in\mathcal T$:** every point has at least the whole space as an open neighbourhood;
+- **$\varnothing\in\mathcal T$:** the empty case requires no exception and is the union of an empty family;
+- **arbitrary unions:** joining open regions leaves room around every point in the union; and
+- **finite intersections:** imposing finitely many open conditions still leaves room around every point satisfying all of them.
+
+The word **finite** is essential because openness requires some positive amount of room around each point. If $x$ lies in finitely many open sets $U_1,\ldots,U_n$, each set supplies a positive radius $r_i$ around $x$. The smallest of finitely many positive numbers,
+
+$$
+r=\min\{r_1,\ldots,r_n\},
+$$
+
+is still positive, so $B_r(x)$ lies inside every $U_i$. For infinitely many open sets, the available radii can shrink towards zero. There may then be no positive radius that works for all of them.
+
+::: {.callout-note collapse="true" title="Example: why arbitrary intersections are not required"}
+Imagine open intervals squeezing around 0. The first has radius 1, the next radius $1/2$, then $1/3$, and so on. Every nonzero point is eventually excluded: given $x\ne0$, choose $n>1/|x|$, and then $x\notin(-1/n,1/n)$. Only 0 survives all the conditions. Therefore
+
+$$
+\bigcap_{n=1}^{\infty}(-1/n,1/n)=\{0\},
+$$
+
+The single point $\{0\}$ has no breathing room: every ball of positive radius around 0 contains other points. It is therefore not open. The example shows exactly what can fail for an infinite intersection: the common neighbourhood radii have shrunk to zero.
+:::
+
+### The same set can carry different topologies
+
+At one extreme, $\mathcal T=\{\varnothing,X\}$ is a topology that distinguishes almost no local structure. At the other, $\mathcal T=\mathcal P(X)$ makes every subset open. Between these extremes lie topologies that encode useful notions of neighbourhood.
+
+This is why a bare set of observations does not yet have the continuous shape one may wish to study. A relation, metric, graph, complex or other construction supplies additional structure.
+
+::: {.data-translation}
+**Data-analysis translation.** A table does not arrive with one intrinsic neighbourhood structure. Declaring observations close by Euclidean distance, shared categories, a correlation threshold or network adjacency creates different neighbourhood systems. The resulting analysis answers a question about that choice as well as about the observations.
+:::
+
+## How a distance produces open sets
+
+A **metric** on $X$ is a function $d:X\times X\to\mathbb R$ satisfying non-negativity, identity of indiscernibles, symmetry and the triangle inequality. It makes “how far apart?” precise.
+
+The **open ball** of radius $r>0$ about $x$ is
+
+$$
+B_r(x)=\{y\in X:d(x,y)<r\}.
+$$
+
+A subset $U\subseteq X$ is declared open when every $x\in U$ has some $r>0$ for which $B_r(x)\subseteq U$. These open sets form the **topology induced by the metric**.
+
+The metric retains exact distances. Its induced topology retains which subsets act as open neighbourhoods. Different metrics can induce the same topology, so passing from metric geometry to topology deliberately discards information.
+
+::: {.data-translation}
+**Data-analysis translation.** Standardising columns, weighting features, choosing a dissimilarity for mixed data or replacing raw variables with an embedding changes which records are neighbours. This is an upstream modelling decision, not neutral preprocessing. Inspect units, missingness and feature dominance before interpreting any downstream topological summary.
+:::
+
+![Open balls depend on the metric: Euclidean distance gives a circle, a direction-weighted Euclidean metric gives an ellipse in the original coordinates, and the $L^1$ metric gives a diamond.](../../assets/topology-open-balls.svg){fig-alt="Three coordinate plots show an open Euclidean ball as a circle, a weighted Euclidean ball as a vertically compressed ellipse, and an L1 ball as a diamond, all centred at x zero."}
+
+::: {.callout-note collapse="true" title="Example: a metric on a two-variable state space"}
+Suppose a dynamical system has state $x=(u,v)\in\mathbb R^2$. The Euclidean metric is
+
+$$
+d(x,y)=\sqrt{(u_x-u_y)^2+(v_x-v_y)^2}.
+$$
+
+Its open ball $B_r(x)$ is a disk centred at $x$. This treats equal changes in $u$ and $v$ as equally important after units have been made comparable.
+
+Suppose instead that the $v$ direction is dynamically more sensitive. It may align with a strongly expanding direction of the flow, or a small change in $v$ may represent a much larger energy or observational change than the same numerical change in $u$. A simple direction-weighted metric is
+
+$$
+d_w(x,y)=\sqrt{(u_x-u_y)^2+9(v_x-v_y)^2}.
+$$
+
+An open ball for $d_w$ appears as an ellipse in the original $(u,v)$ coordinates. It is narrower in the $v$ direction because a $v$ difference counts three times as much in distance. This does not claim that ellipses are inherently more dynamical. It illustrates that “equally near” depends on the metric and should reflect units, uncertainty or mechanism.
+
+Other metrics produce other ball shapes. The $L^1$ metric
+
+$$
+d_1(x,y)=|u_x-u_y|+|v_x-v_y|
+$$
+
+has diamond-shaped balls, which are squares rotated by $45^\circ$ in Cartesian coordinates. These three metrics induce the usual topology on $\mathbb R^2$: they disagree about numerical distance and fixed-radius neighbourhoods, but agree about which subsets are open.
+:::
+
+::: {.applied-translation}
+**Dynamical systems translation.** A metric specifies how separation in state space is measured. Rescaling a state variable, choosing an energy-weighted norm or combining variables with different units changes that geometry. The induced topology retains the local notion of continuous variation while forgetting the precise numerical separation.
+:::
+
+::: {.tda-connection}
+**◆ TDA translation.** Point-cloud constructions use the metric more strongly than its induced topology alone: a threshold decides which observations become neighbours. [Week 3](../week-03/index.qmd#from-points-to-unions-of-balls) shows how metric balls generate Čech and Vietoris–Rips complexes across scale.
+:::
+
+## Continuity
+
+A map $f:(X,\mathcal T_X)\to(Y,\mathcal T_Y)$ is **continuous** when
+
+$$
+f^{-1}(V)=\{x\in X:f(x)\in V\}\in\mathcal T_X
+$$
+
+for every $V\in\mathcal T_Y$. In words, pulling an open region of the output space back through $f$ must produce an open region of the input space.
+
+For familiar metric spaces, this agrees with the idea that sufficiently small input changes cannot force a sudden finite output jump. The open-set definition expresses that idea without relying on particular coordinates.
+
+::: {.callout-note collapse="true" title="Example: continuity of a flow"}
+For a dynamical system with flow $\phi_t:X\to X$, continuity of $\phi_t$ means that nearby initial states cannot be sent to macroscopically separated states at a fixed finite time without passing through intermediate behaviour. A trajectory $\gamma(t)=\phi_t(x_0)$ is a continuous map from a time interval into state space: it moves without teleporting between separated regions.
+:::
+
+::: {.applied-translation}
+**Dynamical systems translation.** Continuity formalises the assumption that state evolution and finite-time dependence on initial conditions have no instantaneous jumps. Sensitive dependence can amplify a small difference rapidly while the finite-time map remains continuous.
+:::
+
+::: {.tda-connection}
+**◆ TDA translation.** Topological summaries are often interpreted under continuous changes of representation or perturbations. That does not make every finite-data pipeline invariant: sampling, metric and representation remain explicit choices in [Week 1](index.qmd#why-topology-is-relevant-to-data).
+:::
+
+::: {.data-translation}
+**Data-analysis translation.** A continuous transformation can include a smooth recalibration or monotone rescaling, but continuity alone does not guarantee that a finite-sample statistic is unchanged. The relevant practical question is which perturbations the entire fitted pipeline tolerates, including preprocessing and neighbourhood construction.
+:::
+
+## Connectedness and paths
+
+A topological space is **connected** if it cannot be written as the union of two disjoint, non-empty open sets. Intuitively, it cannot be separated into two open pieces.
+
+It is **path-connected** if, for every $x,y\in X$, there is a continuous map $\gamma:[0,1]\to X$ with $\gamma(0)=x$ and $\gamma(1)=y$. A path is therefore a continuous route between points.
+
+Path-connectedness implies connectedness. The converse can fail for unusual spaces, but the distinction does not obstruct the finite complexes and familiar manifolds used in this course.
+
+::: {.callout-note collapse="true" title="Example: one regime or two separated pieces"}
+An interval $[0,1]$ is path-connected: $\gamma(t)=(1-t)x+ty$ joins any $x,y\in[0,1]$. The union $[0,1]\cup[2,3]$ is disconnected because it separates into two non-empty pieces with a gap between them. No continuous path contained in the union can travel from the first interval to the second.
+:::
+
+::: {.applied-translation}
+**Dynamical systems translation.** Connected components can represent separated regions of an invariant set or distinct pieces of an admissible state space. This alone does not establish distinct dynamical regimes: that interpretation also needs temporal and mechanistic evidence.
+:::
+
+::: {.tda-connection}
+**◆ TDA translation.** In a graph, edge paths determine graph components. In a simplicial complex, $H_0$ records connected components. The [Week 2 examples](../week-02/index.qmd#examples) make this statement computable, while Week 3 shows why the component count depends on neighbourhood scale.
+:::
+
+::: {.data-translation}
+**Data-analysis translation.** Connected components resemble clusters only after the neighbourhood rule and scale have been stated. Sparse sampling, outliers and a single bridging observation can merge or split components. Compare the result with a conventional clustering or density diagnostic before calling the components populations, regimes or segments.
+:::
+
+## Homeomorphisms: same topology
+
+A **homeomorphism** is a bijection $f:X\to Y$ such that both $f$ and $f^{-1}$ are continuous. If such a map exists, $X$ and $Y$ are **homeomorphic**.
+
+The two directions matter. Continuity of $f$ prevents tearing when going from $X$ to $Y$; continuity of $f^{-1}$ prevents information from being irreversibly collapsed.
+
+::: {.callout-note collapse="true" title="Example: homeomorphic and non-homeomorphic spaces"}
+A circle and an ellipse are homeomorphic: one can be stretched continuously into the other and the stretching can be continuously reversed. A circle and a line segment are not homeomorphic. Removing one point from a circle leaves a connected open arc, while removing an interior point from a segment separates it into two pieces. A homeomorphism would have to preserve that distinction.
+:::
+
+::: {.callout-note collapse="true" title="Example: the coffee cup and doughnut, stated carefully"}
+The classical slogan says that a coffee cup with one handle and a doughnut are topologically equivalent. In an idealised model, a cup-shaped solid with one through-handle can be continuously deformed into a solid torus without cutting, gluing or collapsing material. Corresponding idealised one-handled surfaces can likewise be homeomorphic.
+
+The conclusion depends on **which space has been selected**. The solid material of the cup, its outer surface, the region available to the coffee and a finite scan of the cup are different mathematical objects. A real handle might itself be hollow, adding an internal channel or extra boundary surface. A thick-walled cup also has an inner cavity and a rim whose treatment must be specified. Those details can change the topology, so the slogan is not a claim about every manufactured mug or every way of representing one. It illustrates homeomorphism only after the object and idealisation have been fixed.
+:::
+
+::: {.applied-translation}
+**Dynamical systems translation.** A smooth invertible change of state coordinates may distort lengths, angles and densities while preserving topological organisation. Topological equivalence is therefore closer to asking whether two descriptions have the same continuous organisation than whether their plotted trajectories have the same geometry.
+:::
+
+::: {.tda-connection}
+**◆ TDA translation.** The circle-versus-ellipse comparison appears in the [Week 1 shape discussion](index.qmd#what-a-topological-lens-asks). The data are finite samples, however, so the comparison becomes computational only after a metric complex is constructed.
+:::
+
+::: {.data-translation}
+**Data-analysis translation.** Topological equivalence is stronger than visual resemblance and different from statistical similarity. Two scatter plots may share means and covariances without being homeomorphic representations of one underlying space; conversely, a smooth coordinate warp can preserve topology while greatly changing those summaries.
+:::
+
+The rubber-sheet metaphor describes this reversible deformation informally. It applies to the continuous spaces, not automatically to two finite samples drawn from them.
+
+::: {.sticking-point}
+**▶ Likely sticking point.** A finite point cloud is a discrete set under its metric-induced topology. A sampled circle does not literally inherit a loop merely because the points resemble one. TDA constructs a complex from neighbourhood relations and studies the topology of that constructed object.
+:::
+
+## Homotopy, homology and controlled forgetting
+
+A **homotopy** is a continuous deformation from one map to another. Spaces are **homotopy equivalent** when maps between them compose to something homotopic to the relevant identity maps. This is weaker than being homeomorphic.
+
+A **homology group** $H_p(X)$ is an algebraic invariant assigned to a space in dimension $p$. Informally, $H_0$ records connected components, $H_1$ records independent loop classes and $H_2$ records independent void-enclosing surface classes. Homology is not a deformation itself. It is a computable algebraic summary that remains unchanged under homotopy equivalence.
+
+The direction of implication is important:
+
+$$
+X\simeq Y\quad\Longrightarrow\quad H_p(X)\cong H_p(Y)
+\quad\text{for every }p,
+$$
+
+but having isomorphic homology groups does not generally imply that two spaces are homotopy equivalent.
+
+::: {.callout-note collapse="true" title="Example: homotopy contracts a disk"}
+A filled disk is not homeomorphic to a single point: there is no bijection between them. It is nevertheless homotopy equivalent to a point because the disk can contract continuously to its centre. A circle cannot contract to a point while remaining inside the circle, so a circle is not homotopy equivalent to a point.
+:::
+
+::: {.callout-note collapse="true" title="Example: homology distinguishes an outline from a filling"}
+The outline triangle and filled triangle in [Week 2](../week-02/index.qmd#examples) have the same vertices and edges. The outline has one nonzero $H_1$ class. Adding the triangular face makes that edge cycle a boundary, so the filled triangle has $H_1=0$. Homology detects the presence versus filling of the loop without retaining the triangle's side lengths or angles.
+:::
+
+::: {.callout-note collapse="true" title="Example: the same homology need not mean the same homotopy type"}
+A torus and the wedge $S^1\vee S^1\vee S^2$ have the same integral homology groups: one connected component, two independent $H_1$ generators and one $H_2$ generator. They are not homotopy equivalent. Their fundamental groups differ: the torus has commuting loop generators, while the two circle loops in the wedge generate a non-commutative free group. Homology has deliberately forgotten that distinction.
+:::
+
+::: {.applied-translation}
+**Dynamical systems translation.** Homotopy asks whether one continuous organisation can be deformed into another. Homology replaces that full deformation question with counts and algebraic relations among selected features. It is coarser, but substantially easier to compute from a finite representation.
+:::
+
+::: {.tda-connection}
+**◆ TDA translation.** Week 2 constructs homology from cycles modulo boundaries. [Week 4](../week-04/index.qmd) then follows those homology classes through a filtration. Persistent homology tracks the algebraic invariants across scale; it does not compute a homotopy between successive data sets.
+:::
+
+The course uses the following hierarchy as controlled forgetting:
+
+$$
+\text{metric geometry}\longrightarrow\text{topology}
+\longrightarrow\text{homotopy type}\longrightarrow\text{homology}.
+$$
+
+The arrows do not mean that one description is universally better. They mean that a particular kind of information is deliberately set aside.
+
+| Description retained | What is forgotten at the next step | What can come into clearer focus |
+|---|---|---|
+| **Metric geometry:** exact distances, angles, curvature, size and coordinate scale. | Passing to topology forgets exact lengths, angles, curvature and the amount of stretching. | A circle and an ellipse can be recognised as having the same continuous organisation despite different geometry. |
+| **Topology:** neighbourhoods, continuity, connectedness and distinctions preserved by homeomorphism. | Passing to homotopy type forgets point-for-point structure, local thickness and attached pieces that can be continuously contracted away. | A filled disk and a point are both seen as contractible, so their non-essential geometric extent no longer distracts from their deformation type. |
+| **Homotopy type:** information preserved by continuous contraction and expansion, including more about how loops interact. | Passing to homology forgets the full interaction and composition of loops, exact representatives and much of the remaining deformation structure. | Components, loop classes and void-enclosing classes become linear-algebraic objects that can be computed from finite matrices. |
+| **Homology:** algebraic classes in each dimension for a chosen coefficient system. | Replacing the groups by Betti numbers forgets torsion, representatives and every distinction except dimension. | A small list of counts becomes easy to compare, although it is a substantially coarser summary. |
+
+Forgetting helps when the discarded variation is a nuisance. A change of units, smooth coordinate distortion or local stretching can obscure that two state-space representations have the same broad organisation. Ignoring those quantities can bring separated components, recurrent loop-like organisation or enclosure into focus. Forgetting is harmful when amplitude, distance, curvature, density, orientation or time ordering carries the mechanism of interest.
+
+::: {.applied-translation}
+**Dynamical systems translation.** A smooth observation or coordinate change may distort the geometry of a reconstructed state space while leaving broad topological organisation intact. Moving towards homology can therefore emphasise recurrence or enclosure that survives such distortion. It simultaneously discards rates of contraction, oscillation frequency, amplitude and temporal ordering, so those quantities require complementary dynamical or geometric summaries.
+:::
+
+::: {.tda-connection}
+**◆ TDA translation.** Persistent homology later restores a record of the scales over which homology classes appear and disappear. It does not restore all geometry that was forgotten. A long interval reports survival across the chosen filtration parameter, not the original curvature, density or physical-time evolution of the system.
+:::
+
+Homology does not classify all spaces: two spaces can have the same Betti numbers without being homeomorphic or homotopy equivalent.
+
+## Putting the data choices together
+
+The scientific object, finite observations and constructed topological representation must remain distinct. A typical route is
+
+$$
+\text{scientific system}
+\longrightarrow
+\text{observations}
+\xrightarrow{\text{choose a metric or relation}}
+\text{finite representation}
+\xrightarrow{\text{compute}}
+\text{homology of that representation}.
+$$
+
+The **metric or relation is a modelling choice**: it decides which observations count as close or related. Once that choice has been made, a second rule constructs a **finite representation** of the resulting neighbourhood organisation. A graph is one possible representation. A simplicial complex is another and will be introduced carefully in Week 2; it is not assumed knowledge here.
+
+Homology is then computed from the chosen representation. It is not extracted directly from an unstructured table of observations, and it is not automatically the homology of the underlying scientific system. Sampling, preprocessing, metric, representation and scale all sit between the system and the algebraic result.
+
+::: {.applied-translation}
+**Dynamical systems translation.** Choosing Euclidean distance, an energy norm, a phase-aware distance or a weighted state-space metric changes what “nearby states” means. That decision should follow the variables, units and mechanism rather than software convenience.
+:::
+
+::: {.tda-connection}
+**◆ TDA translation.** [Week 2](../week-02/index.qmd) introduces a simplicial complex as one possible finite representation and computes its homology. [Week 3](../week-03/index.qmd) then shows how a metric and a changing scale construct a nested family of such representations.
+:::
+
+Topology becomes useful when connectedness, recurrence, enclosure or other relational organisation is scientifically meaningful and exact coordinates are partly incidental. It is not automatically the right lens. The chosen representation, scale, sampling and metric determine which topological claims can be supported.
+
+## You are ready to return to Week 1
+
+::: {.callout-tip title="What to retain before returning"}
+Topology specifies which subsets count as open neighbourhoods. A metric is one way to generate those neighbourhoods, while retaining more numerical information than the topology alone. Continuity, connectedness and homeomorphism are defined using the open sets. Homotopy describes continuous deformation; homology is a coarser algebraic invariant preserved by that deformation. TDA builds finite representations so that selected homology groups can be computed and followed across scale.
+:::
+
+You are ready to return to [Week 1](index.qmd) if you can explain, in your own words:
+
+1. why an open set means membership in a chosen collection $\mathcal T$;
+2. how a metric supplies open neighbourhoods;
+3. what continuity and connectedness mean intuitively;
+4. why a homeomorphism is reversible;
+5. how homotopy differs from homology; and
+6. why a finite point cloud is not automatically the continuous shape it resembles.

@@ -1,0 +1,179 @@
+---
+title: "Week 3: Filtrations: setting the complex in motion"
+toc: true
+---
+
+::: {.callout-tip title="Week 3 resources"}
+[Slides](slides.qmd) · [Lecture walkthrough](solutions.ipynb) · [Application page](case-study.qmd)
+:::
+
+<a class="btn btn-primary" href="../../downloads/week-03-participant.ipynb" download="week-03-participant.ipynb">Download participant notebook</a>
+
+::: {.foundation-definition}
+**[Guiding definition for Weeks 1–4](../../index.qmd#the-guiding-construction-for-weeks-14).** For a filtration $K_a\subseteq K_b$ when $a\leq b$, persistent homology is the module
+$$a\mapsto H_p(K_a;\mathbb F),\qquad (a\leq b)\mapsto(\iota_{a,b})_*.$$
+
+::: {.foundation-steps}
+::: {.foundation-step}
+**1 · Representation**
+
+Scientific object, observations and the topological question.
+:::
+::: {.foundation-step}
+**2 · Homology**
+
+$K_a$ and $H_p(K_a;\mathbb F)$.
+:::
+::: {.foundation-step .is-active}
+**3 · Filtration**
+
+$K_a\subseteq K_b$ across scale.
+:::
+::: {.foundation-step}
+**4 · Memory**
+
+Induced maps, module and barcode.
+:::
+:::
+:::
+
+## Learning goals
+
+By the end of this week, you should be able to:
+
+1. explain a filtration as a nested sequence of representations rather than as a collection of unrelated threshold choices;
+2. recognise whether assigned simplex values define a valid filtration and explain why faces cannot appear after the simplices they bound;
+3. read the Čech and Vietoris–Rips rules for a metric point cloud and explain the modelling idea behind each;
+4. distinguish a proximity graph from its full clique complex and predict when their higher-dimensional simplices differ;
+5. explain, at the level needed to follow a TDA argument, what the Nerve Theorem contributes to the union-of-balls interpretation; and
+6. state what a filtration parameter means in the application and how changing it changes the question being asked.
+
+## Why one complex is not enough
+
+A data-derived complex usually depends on a threshold. Choosing one threshold and reporting its homology hides how strongly the answer depends on that choice. A **filtration** retains the nested family produced as the threshold changes:
+
+$$
+K_a\subseteq K_b\qquad\text{whenever }a\leq b.
+$$
+
+The parameter might be distance, density, intensity, similarity, interaction strength, energy, time or a behavioural score. Its interpretation is part of the model.
+
+> *The filtration function decides what it means for structure to appear.*
+
+## Filtration functions
+
+A function on the simplices of a complex,
+
+$$f:K\to\mathbb R,$$
+
+defines subcomplexes $K_a=\{\sigma\in K:f(\sigma)\leq a\}$ only if it is monotone on faces:
+
+$$
+\tau\subseteq\sigma\quad\Longrightarrow\quad f(\tau)\leq f(\sigma).
+$$
+
+This is not optional bookkeeping. A triangle cannot be present while one of its edges is absent. Equal values are allowed, so a simplex and some faces may enter together.
+
+::: {.sticking-point}
+**▶ Likely sticking point.** “Larger” means containing more simplices. It does not mean occupying a larger part of the ambient space.
+:::
+
+For a function $h:X\to\mathbb R$ on a topological space, the sublevel sets $X_a=h^{-1}(-\infty,a]$ are nested. A simplicial filtration is the finite combinatorial counterpart. Edelsbrunner and Harer emphasise that the family across scales is often more informative than any supposed best radius [@edelsbrunner2010computational, Chapter III].
+
+## From points to unions of balls
+
+Let $S\subset\mathbb R^d$ be a finite point cloud. At radius $r\geq0$, form
+
+$$U_r=\bigcup_{x\in S}B(x,r).$$
+
+As $r$ grows, $U_r$ changes from many disconnected balls to a connected region, may develop or reveal loops, and eventually fills them. The union is geometrically meaningful but awkward to store directly. A nerve converts intersection information into a simplicial complex.
+
+## Čech complexes and the Nerve Theorem
+
+The Čech complex is the nerve of the radius-$r$ balls:
+
+$$
+\check C_r(S)=\left\{\sigma\subseteq S:
+\bigcap_{x\in\sigma}B(x,r)\ne\varnothing\right\}.
+$$
+
+A simplex records a genuinely joint intersection. Every non-empty finite intersection of Euclidean balls is convex and therefore contractible. The Nerve Theorem consequently gives
+
+$$|\check C_r(S)|\simeq U_r.$$
+
+The equivalence is homotopy equivalence. It supports equality of homotopy-invariant information such as homology; it does not say that the geometric realisation and union are equal as subsets of space.
+
+In applied language, the union of balls and the Čech complex can be continuously simplified to the same broad shape. They need not have the same coordinates, distances or visible geometry, but corresponding components and holes agree. The convex-intersection condition is what licenses this conclusion here.
+
+::: {.object-check}
+**◇ Object check.** $S$ is the observed point cloud, $U_r$ is a union of geometric balls, $\check C_r(S)$ is an abstract simplicial complex, and $H_p(\check C_r(S);\mathbb F_2)$ is a vector space. The Nerve Theorem relates some of these objects without identifying them.
+:::
+
+## Vietoris–Rips complexes
+
+We use the ball-radius convention from Edelsbrunner and Harer:
+
+$$
+\operatorname{Rips}_r(S)=\{\sigma\subseteq S:\operatorname{diam}(\sigma)\leq2r\}.
+$$
+
+Equivalently, connect pairs whose distance is at most $2r$ and fill every clique. This pairwise test is computationally attractive, but the full Rips complex is not merely the resulting graph.
+
+::: {.qualification}
+**† Qualification.** Some books and libraries define $\operatorname{Rips}_\varepsilon$ using pairwise distance at most $\varepsilon$. Their parameter $\varepsilon$ equals $2r$ in the convention used here. A silent factor of two changes numerical birth and death values and their physical interpretation.
+:::
+
+With our convention, Čech and Rips have the same vertices and edges, and
+
+$$
+\check C_r(S)\subseteq\operatorname{Rips}_r(S).
+$$
+
+The inclusion can be strict. Pairwise intersection of three balls does not guarantee a common triple intersection. Rips fills the corresponding triangle; Čech does not. More generally, Rips infers higher-order simplices from pairwise relations. The two filtrations nevertheless approximate each other through scale-dependent inclusions [@edelsbrunner2010computational, Chapter III.2].
+
+![Čech requires a joint intersection, whereas Rips promotes pairwise proximity to a filled clique.](../../assets/week03-cech-rips.svg){fig-alt="Three overlapping balls have pairwise overlaps but no common triple overlap on the left. On the right, the same three pairwise relations form a filled Rips triangle."}
+
+## A three-point calculation
+
+::: {.callout-tip title="Follow the example through scale"}
+The [lecture walkthrough](solutions.ipynb) reveals the Čech and Rips constructions one scale at a time. In the [participant practical](lab.ipynb), you choose scales, predict which edges and triangles enter, and check whether the resulting simplex values form a valid filtration.
+:::
+
+Take an equilateral triangle of side length $1.9$ and balls of radius $r=1$.
+
+- Every pair of balls intersects because $1.9<2r$, so both complexes contain all three edges.
+- The smallest ball containing all three centres has radius $1.9/\sqrt{3}\approx1.097>1$.
+- Therefore the three balls have no common intersection, so Čech has no 2-simplex.
+- Rips sees a three-clique and fills it.
+
+The graph and Čech complex have one $H_1$ class over $\mathbb F_2$. The full Rips complex does not. The point cloud and scale are fixed; only the higher-order construction rule changes.
+
+## Graph versus clique complex
+
+An interaction graph can be treated as a one-dimensional simplicial complex. A triangle of edges then represents a graph cycle. Its clique complex contains the triangular 2-simplex, so that cycle is a boundary.
+
+Clique filling asserts that mutual pairwise interaction is evidence of a coherent higher-order unit. In some applications this is sensible; in others it erases precisely the cycles of interest. The mathematical distinction is exact, while the scientific choice is contextual.
+
+## Lower-star filtrations
+
+Distance is not the only useful parameter. Given values $g(v)$ on vertices, define
+
+$$f(\sigma)=\max_{v\in\sigma}g(v).$$
+
+This lower-star rule is automatically monotone on faces. The values could encode intensity, local density, activity or a behavioural state. Sublevel and superlevel choices answer different questions: low-valued structure appears first in one, high-valued structure in the other.
+
+## Dynamical systems interpretation
+
+For a trajectory or collective system, the point cloud itself is already a representation. Euclidean distance may ignore temporal order, periodic coordinates, anisotropic units or dynamically meaningful similarity. A defensible analysis therefore states:
+
+1. the observed scientific object and how the points were constructed;
+2. the metric or dissimilarity;
+3. the complex and scale convention;
+4. whether clique filling represents a plausible higher-order relation; and
+5. what simpler geometric or graph baseline the topological result must beat.
+
+Postol provides a supplementary route from sublevel sets and graph constructions into persistent homology [@postol2024algebraic, Chapter 5]. The computational geometry details used here follow Edelsbrunner and Harer [@edelsbrunner2010computational, Chapter III].
+
+## Before moving to persistence
+
+At the end of Week 3 we have a nested family of complexes. We have not yet tracked homology classes through the inclusion maps. That additional structure is the persistence module introduced in Week 4.

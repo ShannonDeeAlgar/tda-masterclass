@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 390" role="img" aria-labelledby="title desc">
+<title id="title">Labelled triangle complex and chain-space bases</title><desc id="desc">A triangle complex K with vertices v0 v1 v2 and edges e01 e12 e02. The vertices form the basis of C0 and the edges form the basis of C1.</desc>
+<defs><style>.edge{stroke:#222;stroke-width:2.4;fill:none}.node{fill:#fff;stroke:#222;stroke-width:2}.lab{font:italic 22px Georgia,serif;fill:#111}.note{font:19px Georgia,serif;fill:#333}.accent{fill:#245b8a}</style></defs>
+<rect width="760" height="390" fill="#fff"/>
+<path class="edge" d="M150 300 L380 70 L610 300 Z"/>
+<circle class="node" cx="150" cy="300" r="7"/><circle class="node" cx="380" cy="70" r="7"/><circle class="node" cx="610" cy="300" r="7"/>
+<text class="lab" x="119" y="332">v₀</text><text class="lab" x="370" y="45">v₁</text><text class="lab" x="621" y="332">v₂</text>
+<text class="lab" x="235" y="170">e₀₁</text><text class="lab" x="505" y="170">e₁₂</text><text class="lab" x="366" y="329">e₀₂</text>
+<text class="lab accent" x="371" y="212" font-size="36">K</text>
+<path d="M82 83 H248" stroke="#245b8a" stroke-width="1.5"/><text class="note" x="82" y="70">C₀ basis: vertices</text>
+<path d="M512 83 H678" stroke="#245b8a" stroke-width="1.5"/><text class="note" x="512" y="70">C₁ basis: edges</text>
+<text class="note" x="190" y="373">K is the complex; C₀ and C₁ are vector spaces built from its simplices.</text>
+</svg>

@@ -1,0 +1,72 @@
+---
+title: "Run the practical notebooks"
+toc: true
+---
+
+## What the website code boxes do
+
+Code shown on the website is a **static preview**. The Show/Hide Code control and copy button help you read the calculation, but they do not run Python in the browser.
+
+You do not need to copy cells into a new notebook. Download the participant notebook and work directly in that file.
+
+## Recommended workflow
+
+1. [Download the course environment file](environment.yml){.btn .btn-secondary download="environment.yml"}.
+2. Create the environment once.
+3. Download the participant notebook from the relevant weekly page.
+4. Open the downloaded `.ipynb` file in JupyterLab, Jupyter Notebook or VS Code.
+5. Select the `tda-masterclass` Python kernel.
+6. Run the setup cell, then work from Observe through Interpret.
+7. Save the notebook under a new name if you want to preserve a clean copy.
+
+## Create the course environment
+
+The environment file specifies Python 3.11 and the packages used across the course, including NumPy, Matplotlib, GUDHI, Ripser and Persim.
+
+### Why the course currently uses Python
+
+All practical notebooks are currently written in Python. Python gives the mixed course audience a widely used notebook environment and a mature collection of interoperable tools for numerical work, plotting and TDA. Using one language also lets the course concentrate on mathematical constructions and modelling decisions instead of maintaining two parallel implementations.
+
+Julia is an intended future extension, especially for dynamical systems workflows and research-scale numerical experiments. The plan is to add Julia translations after the Python notebooks and their outputs are stable and tested. Until then, Python is the supported teaching route rather than an endorsement that TDA must be done in Python.
+
+From a terminal opened in the folder containing `environment.yml`, run:
+
+```bash
+conda env create -f environment.yml
+conda activate tda-masterclass
+jupyter lab
+```
+
+If the environment already exists and the file has changed, update it with:
+
+```bash
+conda env update -f environment.yml --prune
+```
+
+::: {.callout-note title="Using Miniforge, Anaconda or Mambaforge"}
+Any recent Conda-compatible installation can create the environment. With Mamba, replace `conda` by `mamba` in the commands above.
+:::
+
+## Select the kernel
+
+In JupyterLab or Jupyter Notebook, open the notebook and choose the kernel named **Python [conda env:tda-masterclass]** or **tda-masterclass**.
+
+In VS Code:
+
+1. open the `.ipynb` file;
+2. choose **Select Kernel** at the upper right; and
+3. select the Python interpreter belonging to `tda-masterclass`.
+
+Run the first setup cell. A successful setup normally prints a readiness message or the installed library version.
+
+## Which file should I download?
+
+| File | Intended use |
+|---|---|
+| Participant practical | Your editable investigation. Predictions, short calculations and interpretation remain for you. |
+| Lecture walkthrough | The completed example used during teaching. Use it to revisit the lecture argument after attempting the practical. |
+| Static website page | Convenient reading and searching. Its code controls do not execute Python. |
+
+## Browser-only environments
+
+The course does not currently make Colab the default. Several weeks use compiled TDA packages, and installation behaviour can change between hosted sessions. A tested Conda environment gives participants and instructors the most consistent results. A Colab route can be added later as a separately tested convenience, not as the primary workflow.

@@ -1,0 +1,176 @@
+---
+title: "Week 3: Filtrations: setting the complex in motion"
+subtitle: "TDA for Static and Dynamic Data"
+format:
+  revealjs:
+    theme: [simple, ../../assets/slides.scss]
+    slide-number: true
+    transition: fade
+    controls: true
+    chalkboard: true
+    footer: "TDA MasterClass"
+execute:
+  enabled: false
+---
+
+## The problem with one threshold
+
+One point cloud. One chosen radius. One answer.
+
+What would change if the radius moved slightly?
+
+
+[Lecture walkthrough](solutions.ipynb)
+
+---
+
+## A filtration retains the family
+
+$$K_a\subseteq K_b\qquad(a\leq b).$$
+
+The parameter could mean distance, density, activity, interaction strength or energy.
+
+> The filtration decides what it means for structure to appear.
+
+---
+
+## Validity condition
+
+$$f:K\to\mathbb R,$$
+
+$$\tau\subseteq\sigma\Longrightarrow f(\tau)\leq f(\sigma).$$
+
+Faces must arrive no later than their cofaces.
+
+::: {.sticking}
+**▶ Likely sticking point.** A later complex is larger because it contains more simplices, not because it occupies more ambient space.
+:::
+
+---
+
+## Begin with geometry
+
+For $S\subset\mathbb R^d$:
+
+$$U_r=\bigcup_{x\in S}B(x,r).$$
+
+Small $r$: components.
+
+Intermediate $r$: possible loops.
+
+Large $r$: loops may fill.
+
+---
+
+## Čech records joint intersections
+
+$$\check C_r(S)=\left\{\sigma:\bigcap_{x\in\sigma}B(x,r)\ne\varnothing\right\}.$$
+
+For Euclidean balls, the Nerve Theorem gives
+
+$$|\check C_r(S)|\simeq U_r.$$
+
+---
+
+## Rips uses pairwise tests
+
+$$\operatorname{Rips}_r(S)=\{\sigma:\operatorname{diam}(\sigma)\leq2r\}.$$
+
+Connect close pairs, then fill every clique.
+
+::: {.qualification}
+**† Qualification.** Here $r$ is ball radius. Many libraries report the distance threshold $2r$ instead.
+:::
+
+---
+
+## Same edges, different triangles
+
+With the ball-radius convention:
+
+$$\check C_r(S)\subseteq\operatorname{Rips}_r(S).$$
+
+Čech asks: do all balls meet?
+
+Rips asks: does every pair meet?
+
+Pairwise does not imply joint.
+
+![](../../assets/week03-cech-rips.svg){fig-alt="Pairwise ball overlap without triple overlap compared with a filled Rips triangle." height="230"}
+
+---
+
+## Three points at one fixed scale
+
+Equilateral side length $1.9$, radius $r=1$.
+
+- all pairwise distances are below $2r$;
+- common enclosing radius is $1.9/\sqrt{3}>1$.
+
+Čech: outline triangle, $\beta_1=1$.
+
+Rips: filled triangle, $\beta_1=0$.
+
+---
+
+## A graph is not its clique complex
+
+Same vertices. Same edges. Different object.
+
+Graph: triangle is an $H_1$ cycle.
+
+Clique complex: triangle is the boundary of a 2-simplex.
+
+::: {.object-check}
+**◇ Object check.** The graph is the 1-skeleton. Clique filling adds higher-dimensional simplices.
+:::
+
+---
+
+## What did clique filling assert?
+
+Pairwise mutual interaction
+
+$$\Downarrow$$
+
+one coherent higher-order unit
+
+Is that scientifically justified for the system?
+
+---
+
+## Distance is also a choice
+
+Euclidean distance may ignore:
+
+- periodic boundaries;
+- anisotropic units;
+- temporal order;
+- dynamically meaningful similarity.
+
+The filtration can be mathematically valid and scientifically poor.
+
+---
+
+## Beyond distance
+
+Vertex values $g(v)$ induce a lower-star filtration:
+
+$$f(\sigma)=\max_{v\in\sigma}g(v).$$
+
+Values might encode density, activity or behavioural state.
+
+What does “birth” mean under that choice?
+
+---
+
+## Before we leave
+
+1. Which object was observed, and which was constructed?
+2. Was the Rips parameter a radius or a distance threshold?
+3. Which higher-order relations were inferred from pairs?
+4. What does the filtration parameter mean scientifically?
+
+Next: inclusion maps turn the filtered family into homology with memory.
+
+[Participant practical](lab.ipynb)

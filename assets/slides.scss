@@ -1,0 +1,13 @@
+/*-- scss:defaults --*/
+$presentation-font-size-root: 34px;
+$presentation-heading-font-weight: 650;
+
+/*-- scss:rules --*/
+.reveal .slides { text-align: left; }
+.reveal h1, .reveal h2 { letter-spacing: -0.02em; }
+.reveal blockquote { width: 90%; font-size: 1.08em; }
+.reveal .small { font-size: 0.72em; }
+.reveal .tiny { font-size: 0.58em; }
+.reveal .sticking { border-left: 8px solid #9b2c2c; padding-left: 0.7em; }
+.reveal .qualification { border-left: 8px solid #255a92; padding-left: 0.7em; }
+.reveal .object-check { border-left: 8px solid #28734f; padding-left: 0.7em; }
