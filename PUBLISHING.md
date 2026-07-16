@@ -16,11 +16,12 @@ The public website is published with GitHub Pages. The source lives on the
    git push -u origin main
    ```
 
-4. On GitHub, open **Settings > Pages**. Under **Build and deployment**, set
+4. Open the repository's **Actions** tab and wait for **Publish Quarto website**
+   to finish. The first run creates the `gh-pages` branch automatically.
+5. On GitHub, open **Settings > Pages**. Under **Build and deployment**, set
    **Source** to **Deploy from a branch**, select the `gh-pages` branch and the
    `/(root)` folder, then save.
-5. Open the repository's **Actions** tab and wait for **Publish Quarto website**
-   to finish. GitHub will display the public URL in **Settings > Pages**.
+6. GitHub will display the public URL in **Settings > Pages**.
 
 The usual URL is:
 

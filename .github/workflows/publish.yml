@@ -22,6 +22,18 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
+      - name: Initialise the publication branch when needed
+        shell: bash
+        run: |
+          if ! git ls-remote --exit-code --heads origin gh-pages >/dev/null 2>&1; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git switch --orphan gh-pages
+            git commit --allow-empty -m "Initialise GitHub Pages"
+            git push origin gh-pages
+            git switch main
+          fi
+
       - name: Publish to GitHub Pages branch
         uses: quarto-dev/quarto-actions/publish@v2
         with:
