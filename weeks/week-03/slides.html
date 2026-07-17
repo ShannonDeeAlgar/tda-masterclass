@@ -9,7 +9,7 @@
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.9.38">
 
-  <title>TDA for Static and Dynamic Data – Week 3: Filtrations: setting the complex in motion</title>
+  <title>TDA for Static and Dynamic Data – Week 3: Filtrations</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -131,8 +131,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Week 3: Filtrations: setting the complex in motion</h1>
-  <p class="subtitle">TDA for Static and Dynamic Data</p>
+  <h1 class="title">Week 3: Filtrations</h1>
 
 <div class="quarto-title-authors">
 </div>
@@ -152,6 +151,26 @@
 <p>The filtration decides what it means for structure to appear.</p>
 </blockquote>
 </section>
+<section id="first-height-as-a-filtration-parameter" class="slide level2">
+<h2>First: height as a filtration parameter</h2>
+<p><img data-src="../../assets/week03-height-sublevel.svg" alt="A landscape is included from below at three increasing height thresholds." height="285"></p>
+<p><span class="math display">\[X_a=\{x:h(x)\leq a\},\qquad a\leq b\Longrightarrow X_a\subseteq X_b.\]</span></p>
+<p>Low regions appear first. Components join when the threshold crosses a saddle. Height orders the space.</p>
+</section>
+<section id="its-discrete-counterpart-lower-star" class="slide level2">
+<h2>Its discrete counterpart: lower star</h2>
+<p>Give every vertex a scalar value <span class="math inline">\(g(v)\)</span> and set</p>
+<p><span class="math display">\[f(\sigma)=\max_{v\in\sigma}g(v).\]</span></p>
+<p>A simplex enters when its highest-valued vertex enters. Faces therefore arrive no later than their cofaces.</p>
+<p>Energy, activity, density or instability would give “birth” different scientific meanings.</p>
+</section>
+<section id="then-resolution-as-a-parameter" class="slide level2">
+<h2>Then: resolution as a parameter</h2>
+<p><img data-src="../../assets/week04-multiscale-letters.svg" alt="Many small Cs form several Bs, and the Bs form one large A." height="345"></p>
+<p>Little blur: many separate marks. More blur: local groups. Still more blur: a global structure.</p>
+<p>A proximity filtration makes this grouping rule precise and retains every resolution.</p>
+<p>For a sampled trajectory, proximity is similarity in the chosen state-space metric, not necessarily proximity in time.</p>
+</section>
 <section id="validity-condition" class="slide level2">
 <h2>Validity condition</h2>
 <p><span class="math display">\[f:K\to\mathbb R,\]</span></p>
@@ -168,6 +187,7 @@
 <p>Small <span class="math inline">\(r\)</span>: components.</p>
 <p>Intermediate <span class="math inline">\(r\)</span>: possible loops.</p>
 <p>Large <span class="math inline">\(r\)</span>: loops may fill.</p>
+<p>For trajectory data, this thickens sampled states; it does not restore their temporal order.</p>
 </section>
 <section id="čech-records-joint-intersections" class="slide level2">
 <h2>Čech records joint intersections</h2>
@@ -179,6 +199,7 @@
 <h2>Rips uses pairwise tests</h2>
 <p><span class="math display">\[\operatorname{Rips}_r(S)=\{\sigma:\operatorname{diam}(\sigma)\leq2r\}.\]</span></p>
 <p>Connect close pairs, then fill every clique.</p>
+<p>For collective systems, clique filling turns mutual pairwise proximity into a higher-order relation.</p>
 <div class="qualification">
 <p><strong>† Qualification.</strong> Here <span class="math inline">\(r\)</span> is ball radius. Many libraries report the distance threshold <span class="math inline">\(2r\)</span> instead.</p>
 </div>
@@ -202,22 +223,6 @@
 <p>Čech: outline triangle, <span class="math inline">\(\beta_1=1\)</span>.</p>
 <p>Rips: filled triangle, <span class="math inline">\(\beta_1=0\)</span>.</p>
 </section>
-<section id="a-graph-is-not-its-clique-complex" class="slide level2">
-<h2>A graph is not its clique complex</h2>
-<p>Same vertices. Same edges. Different object.</p>
-<p>Graph: triangle is an <span class="math inline">\(H_1\)</span> cycle.</p>
-<p>Clique complex: triangle is the boundary of a 2-simplex.</p>
-<div class="object-check">
-<p><strong>◇ Object check.</strong> The graph is the 1-skeleton. Clique filling adds higher-dimensional simplices.</p>
-</div>
-</section>
-<section id="what-did-clique-filling-assert" class="slide level2">
-<h2>What did clique filling assert?</h2>
-<p>Pairwise mutual interaction</p>
-<p><span class="math display">\[\Downarrow\]</span></p>
-<p>one coherent higher-order unit</p>
-<p>Is that scientifically justified for the system?</p>
-</section>
 <section id="distance-is-also-a-choice" class="slide level2">
 <h2>Distance is also a choice</h2>
 <p>Euclidean distance may ignore:</p>
@@ -228,13 +233,6 @@
 <li>dynamically meaningful similarity.</li>
 </ul>
 <p>The filtration can be mathematically valid and scientifically poor.</p>
-</section>
-<section id="beyond-distance" class="slide level2">
-<h2>Beyond distance</h2>
-<p>Vertex values <span class="math inline">\(g(v)\)</span> induce a lower-star filtration:</p>
-<p><span class="math display">\[f(\sigma)=\max_{v\in\sigma}g(v).\]</span></p>
-<p>Values might encode density, activity or behavioural state.</p>
-<p>What does “birth” mean under that choice?</p>
 </section>
 <section id="before-we-leave" class="slide level2">
 <h2>Before we leave</h2>

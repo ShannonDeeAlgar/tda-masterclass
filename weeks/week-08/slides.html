@@ -9,7 +9,7 @@
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.9.38">
 
-  <title>TDA for Static and Dynamic Data – Week 8: Beyond ordinary persistence: which advanced tool solves which problem?</title>
+  <title>TDA for Static and Dynamic Data – Week 8: Beyond ordinary persistence</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -131,8 +131,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Week 8: Beyond ordinary persistence: which advanced tool solves which problem?</h1>
-  <p class="subtitle">TDA for Static and Dynamic Data</p>
+  <h1 class="title">Week 8: Beyond ordinary persistence</h1>
 
 <div class="quarto-title-authors">
 </div>
@@ -143,8 +142,8 @@
 <p>What object are we constructing, what information does it retain, and what scientific claim could it support?</p>
 <p><a href="../../weeks/week-08/solutions.html">Lecture walkthrough</a></p>
 </section>
-<section id="story" class="slide level2">
-<h2>Story</h2>
+<section id="where-week-8-sits" class="slide level2">
+<h2>Where Week 8 sits</h2>
 <p>Week 8 should be organised by problem type rather than by a list of advanced methods. The aim is to teach method selection: what breaks in ordinary persistence, and which tool responds to that break?</p>
 </section>
 <section id="two-levels-for-this-week" class="slide level2">
@@ -168,10 +167,17 @@
 <p><em>Standard persistence tracks features that survive as a space grows. Zigzag persistence tracks features that survive as a space changes.</em></p>
 </blockquote>
 </section>
+<section id="a-backward-arrow-is-still-an-inclusion" class="slide level2">
+<h2>A backward arrow is still an inclusion</h2>
+<p><span class="math display">\[K_0\longrightarrow K_1\longleftarrow K_2\]</span></p>
+<p>means <span class="math inline">\(K_0\subseteq K_1\)</span> and <span class="math inline">\(K_2\subseteq K_1\)</span>.</p>
+<p>Example: path <span class="math inline">\(a-b-c\)</span> <span class="math inline">\(\to\)</span> triangular outline <span class="math inline">\(\leftarrow\)</span> path <span class="math inline">\(a-b-c\)</span>. The <span class="math inline">\(H_1\)</span> class exists only at the middle index, producing one transient zigzag interval.</p>
+</section>
 <section id="case-3-there-is-more-than-one-genuine-parameter" class="slide level2">
 <h2>Case 3: there is more than one genuine parameter</h2>
-<p>If scale and time, scale and density, or another pair of parameters are both genuine, then multiparameter persistence is the relevant framework. The warning is essential: the clean barcode decomposition of one-parameter persistence does not carry over in the same way. Multiparameter persistence may be the right mathematical object even when a practical analysis later uses lower-dimensional summaries.</p>
+<p>Week 7 built the scale-by-codensity example. If two parameters are jointly ordered, multiparameter persistence is the relevant framework. The warning is essential: the clean barcode decomposition of one-parameter persistence does not carry over in the same way. Multiparameter persistence may be the right mathematical object even when a practical analysis later uses lower-dimensional summaries.</p>
 <p><strong>† Qualification.</strong> The presence of two named variables does not by itself decide the framework. The question is whether they form one partial order to be analysed jointly, or whether one parameter indexes a controlled family of ordinary persistence modules with additional transport data.</p>
+<p>Time is a valid second parameter for cumulative data <span class="math inline">\(X_t\subseteq X_{t'}\)</span>. Independent snapshots do not become a bifiltration merely because they have timestamps.</p>
 </section>
 <section id="case-4-a-fixed-complex-has-a-smoothly-changing-filtration" class="slide level2">
 <h2>Case 4: a fixed complex has a smoothly changing filtration</h2>
@@ -212,11 +218,6 @@ V_t(c+\varepsilon).
 <section id="case-5-labels-colours-or-types-matter" class="slide level2">
 <h2>Case 5: labels, colours or types matter</h2>
 <p>If points, regions or agents carry labels, colours or types, ordinary persistence may ignore the structure of interest. Chromatic or relative-style methods ask how different classes spatially mingle, separate or interact. Relative homology, image persistence, kernel persistence and cokernel persistence can be introduced conceptually here as tools for asking what part of a feature belongs to, is contributed by, or is shared across different subobjects.</p>
-</section>
-<section id="dp-relevance" class="slide level2">
-<h2>DP relevance</h2>
-<p>For swarms or physical reservoirs, vineyards are attractive because they offer feature identity, continuous trajectories and potential online updates. But they are also high risk. A literal moving point-cloud Rips filtration may not satisfy the assumptions needed for vineyard tracking.</p>
-<p>Two more plausible strategies are:</p>
 </section>
 <section id="before-we-leave" class="slide level2">
 <h2>Before we leave</h2>

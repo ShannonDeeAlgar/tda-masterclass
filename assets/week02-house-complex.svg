@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="560" viewBox="0 0 760 560" role="img" aria-labelledby="title desc">
+  <title id="title">Labelled house simplicial complex</title>
+  <desc id="desc">Five labelled vertices form a house with six labelled edges and one filled triangular roof.</desc>
+  <defs><style>
+    .edge{stroke:#343434;stroke-width:6;stroke-linecap:round}.face{fill:#7d95b6;fill-opacity:.38;stroke:none}
+    .vertex{fill:#fff;stroke:#343434;stroke-width:4}.vl{font:italic 25px Georgia,serif;fill:#222}.el{font:italic 23px Georgia,serif;fill:#255a92}
+    .fl{font:italic 23px Georgia,serif;fill:#5a3d82}
+  </style></defs>
+  <polygon class="face" points="380,70 180,220 580,220"/>
+  <line class="edge" x1="380" y1="70" x2="580" y2="220"/><line class="edge" x1="580" y1="220" x2="580" y2="470"/>
+  <line class="edge" x1="580" y1="470" x2="180" y2="470"/><line class="edge" x1="180" y1="470" x2="180" y2="220"/>
+  <line class="edge" x1="180" y1="220" x2="380" y2="70"/><line class="edge" x1="180" y1="220" x2="580" y2="220"/>
+  <g><circle class="vertex" cx="380" cy="70" r="18"/><circle class="vertex" cx="580" cy="220" r="18"/><circle class="vertex" cx="580" cy="470" r="18"/><circle class="vertex" cx="180" cy="470" r="18"/><circle class="vertex" cx="180" cy="220" r="18"/></g>
+  <text class="vl" x="370" y="38">A</text><text class="vl" x="610" y="228">B</text><text class="vl" x="610" y="480">C</text><text class="vl" x="145" y="510">D</text><text class="vl" x="140" y="210">E</text>
+  <text class="el" x="493" y="125">x</text><text class="el" x="598" y="350">y</text><text class="el" x="375" y="505">z</text><text class="el" x="145" y="350">u</text><text class="el" x="260" y="125">v</text><text class="el" x="375" y="205">w</text>
+  <text class="fl" x="368" y="155">t</text>
+</svg>

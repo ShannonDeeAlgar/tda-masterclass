@@ -69,7 +69,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../applications/dynamical-systems.html" rel="next">
-<link href="../weeks/week-08/index.html" rel="prev">
+<link href="../weeks/week-08/vineyards-extension.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -81,9 +81,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-849030d898501f26b12ac48814ce060c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-3a1cdef84951ecec82d91b6d0d23ca90.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-849030d898501f26b12ac48814ce060c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-76da663e9bc12284c1cae1fcfa354fac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-f9dc6aa0dc1e83da225dc5b6849a1c34.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-76da663e9bc12284c1cae1fcfa354fac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -349,7 +349,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../reading-map.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Guiding texts and reading map</span></a>
+ <span class="menu-text">Sources and data provenance</span></a>
   </div>
 </li>
       </ul>
@@ -365,8 +365,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../weeks/week-01/topology-familiar-shapes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Topology refresher A: familiar shapes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../weeks/week-01/topology-survival-guide.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Before Week 1: Topology survival guide</span></a>
+ <span class="menu-text">Topology refresher B: formal specifics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -384,19 +390,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../weeks/week-02/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 2: Simplicial complexes and homology: building a computable hole-counter</span></a>
+ <span class="menu-text">Week 2: Simplicial complexes and homology</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../weeks/week-03/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 3: Filtrations: setting the complex in motion</span></a>
+ <span class="menu-text">Week 3: Filtrations</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../weeks/week-04/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 4: Persistent homology: homology with memory</span></a>
+ <span class="menu-text">Week 4: Persistent homology</span></a>
   </div>
 </li>
       </ul>
@@ -404,7 +410,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
- <span class="menu-text">Interlude</span></a>
+ <span class="menu-text">From definitions to decisions</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -427,10 +433,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Static data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../weeks/week-05/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 5: Static data in practice: choosing and computing filtered complexes</span></a>
+ <span class="menu-text">Week 5: Static data in practice</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -441,38 +456,58 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
-        <li class="sidebar-item sidebar-item-section">
+          <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
  <span class="menu-text">Dynamic data</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../weeks/week-07/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 7: Time-indexed static topology: repeated persistence through time</span></a>
+ <span class="menu-text">Week 7: Repeated persistence through time</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week-07/sw1pers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Expert subtopic: SW1PerS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week-07/multiparameter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Expert subtopic: multiparameter persistence</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../weeks/week-08/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 8: Beyond ordinary persistence: which advanced tool solves which problem?</span></a>
+ <span class="menu-text">Week 8: Topology for genuinely changing systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week-08/vineyards-extension.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Expert submodule: vineyards</span></a>
   </div>
 </li>
       </ul>
   </li>
+      </ul>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
  <span class="menu-text">Application routes</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../applications/index.html" class="sidebar-item-text sidebar-link active">
@@ -488,7 +523,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../applications/industry-template.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Industry case-study template</span></a>
+ <span class="menu-text">Industry application route: planned</span></a>
   </div>
 </li>
       </ul>
@@ -535,8 +570,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <ul>
 <li><a href="../applications/dynamical-systems.html">Dynamical systems route</a></li>
-<li><a href="../applications/industry-template.html">Industry case-study template</a></li>
+<li><a href="../applications/industry-template.html">Industry application route: planned</a></li>
 </ul>
+<div class="callout callout-style-default callout-note callout-titled" title="Real-data development marker">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Real-data development marker
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The mathematical and synthetic examples are currently more developed than the real-data application layer. A public dynamical dataset and a later industry route are planned. Until their complete pipelines and baselines are available, the course does not present synthetic results as empirical validation.</p>
+</div>
+</div>
 
 
 <!-- -->
@@ -1009,8 +1057,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../weeks/week-08/index.html" class="pagination-link" aria-label="Week 8: Beyond ordinary persistence: which advanced tool solves which problem?">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Week 8: Beyond ordinary persistence: which advanced tool solves which problem?</span>
+      <a href="../weeks/week-08/vineyards-extension.html" class="pagination-link" aria-label="Expert submodule: vineyards">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Expert submodule: vineyards</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
@@ -1034,7 +1082,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>What claim survives validation?</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Dynamical systems route</span><span class="co">](dynamical-systems.qmd)</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Industry case-study template</span><span class="co">](industry-template.qmd)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Industry application route: planned</span><span class="co">](industry-template.qmd)</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="Real-data development marker"}</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>The mathematical and synthetic examples are currently more developed than the</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>real-data application layer. A public dynamical dataset and a later industry</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>route are planned. Until their complete pipelines and baselines are available,</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>the course does not present synthetic results as empirical validation.</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 320" role="img" aria-labelledby="title desc">
+  <title id="title">Coffee cup and torus schematic</title>
+  <desc id="desc">A line drawing of a coffee cup with one handle, a reversible deformation arrow, and a torus.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#7057a8"/>
+    </marker>
+    <style>
+      .line{fill:none;stroke:#263238;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+      .soft{fill:#edf3f4;stroke:#263238;stroke-width:5}
+      .accent{fill:none;stroke:#7057a8;stroke-width:4;stroke-linecap:round}
+      .label{font: 22px sans-serif;fill:#263238;text-anchor:middle}
+      .small{font: 17px sans-serif;fill:#5f6b70;text-anchor:middle}
+    </style>
+  </defs>
+  <ellipse class="soft" cx="220" cy="92" rx="112" ry="25"/>
+  <path class="soft" d="M108 92 L126 246 Q220 282 314 246 L332 92 Q220 128 108 92 Z"/>
+  <ellipse class="line" cx="220" cy="92" rx="112" ry="25"/>
+  <path class="line" d="M320 126 C405 105 415 220 330 222"/>
+  <path class="line" d="M326 151 C372 139 374 192 334 195"/>
+  <path class="accent" d="M420 157 C470 118 525 118 575 157" marker-end="url(#arrow)"/>
+  <path class="accent" d="M575 185 C525 224 470 224 420 185" marker-end="url(#arrow)"/>
+  <ellipse class="soft" cx="705" cy="160" rx="132" ry="86"/>
+  <ellipse fill="#ffffff" stroke="#263238" stroke-width="5" cx="705" cy="160" rx="52" ry="31"/>
+  <path class="line" d="M581 132 C620 166 648 176 653 160" opacity=".45"/>
+  <path class="line" d="M757 160 C764 177 792 166 829 132" opacity=".45"/>
+  <text class="label" x="220" y="302">one-handled cup</text>
+  <text class="label" x="705" y="302">torus</text>
+  <text class="small" x="497" y="94">continuous reversible deformation</text>
+</svg>

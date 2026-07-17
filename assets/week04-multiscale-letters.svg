@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="650" viewBox="0 0 1000 650" role="img" aria-labelledby="title desc">
+  <title id="title">Letters at three scales</title><desc id="desc">Small Cs form B-shaped groups, and the groups form a large A.</desc>
+  <defs><style>
+    .c{font:700 17px Arial,sans-serif;fill:#b33f69}.guide{fill:none;stroke:#d6d6d2;stroke-width:2;stroke-dasharray:7 7}.label{font:20px Georgia,serif;fill:#333}.arrow{stroke:#666;stroke-width:2;fill:none}
+  </style>
+  <g id="b">
+    <text class="c" x="0" y="14">C</text><text class="c" x="0" y="32">C</text><text class="c" x="0" y="50">C</text><text class="c" x="0" y="68">C</text>
+    <text class="c" x="17" y="14">C</text><text class="c" x="25" y="28">C</text><text class="c" x="17" y="39">C</text><text class="c" x="25" y="55">C</text><text class="c" x="17" y="68">C</text>
+  </g></defs>
+  <path class="guide" d="M500 55 L170 555 M500 55 L830 555 M315 340 L685 340"/>
+  <use href="#b" transform="translate(480 50) scale(1.05)"/>
+  <use href="#b" transform="translate(390 150) scale(1.05)"/><use href="#b" transform="translate(570 150) scale(1.05)"/>
+  <use href="#b" transform="translate(310 260) scale(1.05)"/><use href="#b" transform="translate(650 260) scale(1.05)"/>
+  <use href="#b" transform="translate(235 375) scale(1.05)"/><use href="#b" transform="translate(725 375) scale(1.05)"/>
+  <use href="#b" transform="translate(165 495) scale(1.05)"/><use href="#b" transform="translate(795 495) scale(1.05)"/>
+  <use href="#b" transform="translate(390 315) scale(1.05)"/><use href="#b" transform="translate(520 315) scale(1.05)"/>
+  <text class="label" x="70" y="80">close view: individual C</text><path class="arrow" d="M275 75 L466 70"/>
+  <text class="label" x="690" y="115">middle view: each cluster is B</text><path class="arrow" d="M720 125 L615 165"/>
+  <text class="label" x="380" y="620">far view: one A</text>
+</svg>

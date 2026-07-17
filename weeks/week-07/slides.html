@@ -9,7 +9,7 @@
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.9.38">
 
-  <title>TDA for Static and Dynamic Data – Week 7: Time-indexed static topology: repeated persistence through time</title>
+  <title>TDA for Static and Dynamic Data – Week 7: Time varying data, periodicity and multiparameter persistence</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -131,8 +131,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Week 7: Time-indexed static topology: repeated persistence through time</h1>
-  <p class="subtitle">TDA for Static and Dynamic Data</p>
+  <h1 class="title">Week 7: Time varying data, periodicity and multiparameter persistence</h1>
 
 <div class="quarto-title-authors">
 </div>
@@ -143,9 +142,43 @@
 <p>What object are we constructing, what information does it retain, and what scientific claim could it support?</p>
 <p><a href="../../weeks/week-07/solutions.html">Lecture walkthrough</a></p>
 </section>
-<section id="story" class="slide level2">
-<h2>Story</h2>
-<p>Week 7 introduces the honest dynamic baseline. Given a sequence of time-indexed objects <span class="math inline">\(X_t\)</span>, <span class="math inline">\(G_t\)</span>, <span class="math inline">\(I_t\)</span>, <span class="math inline">\(W_t\)</span> or <span class="math inline">\(K_{\bullet,t}\)</span>, compute ordinary persistence independently at each time point or time window. The resulting diagrams or summaries are then treated as a time series.</p>
+<section id="where-week-7-sits" class="slide level2">
+<h2>Where Week 7 sits</h2>
+<p>Week 7 distinguishes three constructions: repeated persistence through physical time, sliding-window persistence for periodicity, and a genuine two-parameter bifiltration.</p>
+</section>
+<section id="what-are-the-time-indexed-objects" class="slide level2">
+<h2>What are the time-indexed objects?</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Symbol</th>
+<th>Object at time <span class="math inline">\(t\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(X_t\)</span></td>
+<td>point cloud</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(G_t\)</span></td>
+<td>graph</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(I_t\)</span></td>
+<td>image or scalar field</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(W_t\)</span></td>
+<td>sliding-window point cloud</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(K_{\bullet,t}\)</span></td>
+<td>filtration across scale at fixed <span class="math inline">\(t\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>The notation says when each object was observed. It does not create maps between consecutive objects.</p>
 </section>
 <section id="mathematics-and-summaries" class="slide level2">
 <h2>Mathematics and summaries</h2>
@@ -159,10 +192,6 @@
 <p>Point-cloud persistence does not retain temporal order by itself.</p>
 <p><img data-src="../../assets/week07-delay-crocker.svg" alt="Signal to delay-coordinate cloud to time-and-scale topological summary." height="210"></p>
 </section>
-<section id="examples" class="slide level2">
-<h2>Examples</h2>
-<p>Use moving point clouds, evolving graphs, sliding-window embeddings and time-indexed scalar fields. The key teaching contrast is between detecting change in topological summaries and tracking the identity of individual features.</p>
-</section>
 <section id="two-axes-two-meanings" class="slide level2">
 <h2>Two axes, two meanings</h2>
 <p>Physical time <span class="math inline">\(t\)</span>: when the system is observed.</p>
@@ -171,9 +200,25 @@
 </section>
 <section id="what-a-crocker-style-plot-says" class="slide level2">
 <h2>What a CROCKER-style plot says</h2>
-<p>It displays framewise counts through time and scale.</p>
+<p><strong>CROCKER:</strong> Contour Realization Of Computed <span class="math inline">\(k\)</span>-dimensional hole Evolution in the Rips complex.</p>
+<p>It displays <span class="math inline">\(\beta_k(t,\varepsilon)\)</span> through time and scale.</p>
 <p>It can reveal transitions and regimes.</p>
-<p>It does not identify a class across frames.</p>
+<p>It forgets birth-death pairing and does not identify a class across frames.</p>
+</section>
+<section id="sw1pers-periodicity-as-a-loop" class="slide level2">
+<h2>SW1PerS: periodicity as a loop</h2>
+<p><span class="math display">\[\operatorname{SW}_{m,\tau}x(t)
+=(x(t),x(t+\tau),\ldots,x(t+m\tau)).\]</span></p>
+<p>A periodic signal repeatedly visits the same phases, producing a loop-like sliding-window cloud after centring and normalising.</p>
+<p>Persistent <span class="math inline">\(H_1\)</span> measures the strength of that loop. Lag, window length and sampling remain modelling choices.</p>
+</section>
+<section id="two-axes-do-not-automatically-make-a-bifiltration" class="slide level2">
+<h2>Two axes do not automatically make a bifiltration</h2>
+<p>Independent frames <span class="math inline">\(X_t\)</span> need not satisfy <span class="math inline">\(X_t\subseteq X_{t+1}\)</span>.</p>
+<p>For codensity <span class="math inline">\(q(x)\)</span>, instead let</p>
+<p><span class="math display">\[X_\delta=\{x:q(x)\leq\delta\},\qquad
+K_{\delta,\varepsilon}=\operatorname{VR}_\varepsilon(X_\delta).\]</span></p>
+<p>Increasing either <span class="math inline">\(\delta\)</span> or <span class="math inline">\(\varepsilon\)</span> gives inclusions: this is a genuine two-parameter module.</p>
 </section>
 <section id="window-length-is-modelling" class="slide level2">
 <h2>Window length is modelling</h2>
@@ -183,10 +228,6 @@
 <h2>Baseline before escalation</h2>
 <p>Compare with an order parameter, radial spread, recurrence statistic or graph measure.</p>
 <p>Escalate only if identity or transport through time matters.</p>
-</section>
-<section id="dp-relevance" class="slide level2">
-<h2>DP relevance</h2>
-<p>This is the first method to try for dynamic systems. It is implementable with standard tools, interpretable, and often already informative. The DP question is whether topological summaries over time reveal regime changes, memory, separability, stability or collective organisation beyond ordinary metrics. Only if feature identity through time matters should we escalate to more specialised machinery.</p>
 </section>
 <section id="before-we-leave" class="slide level2">
 <h2>Before we leave</h2>

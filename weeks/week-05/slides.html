@@ -9,7 +9,7 @@
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.9.38">
 
-  <title>TDA for Static and Dynamic Data – Week 5: Static data in practice: choosing and computing filtered complexes</title>
+  <title>TDA for Static and Dynamic Data – Week 5: Static data in practice</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -131,8 +131,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Week 5: Static data in practice: choosing and computing filtered complexes</h1>
-  <p class="subtitle">TDA for Static and Dynamic Data</p>
+  <h1 class="title">Week 5: Static data in practice</h1>
 
 <div class="quarto-title-authors">
 </div>
@@ -143,28 +142,113 @@
 <p>What object are we constructing, what information does it retain, and what scientific claim could it support?</p>
 <p><a href="../../weeks/week-05/solutions.html">Lecture walkthrough</a></p>
 </section>
-<section id="story" class="slide level2">
-<h2>Story</h2>
-<p>Week 5 is the first practical week. The aim is not just to compute persistence, but to choose a construction appropriate to the data object. The data object comes first; the complex follows.</p>
+<section id="where-week-5-sits" class="slide level2">
+<h2>Where Week 5 sits</h2>
+<p>Weeks 2–4: inspect the construction by hand.</p>
+<p>Week 5: carry out and audit an end-to-end computation.</p>
+<p><span class="math display">\[
+\text{stored data}\to\text{filtered object}\to
+\text{software output}\to\text{checked interpretation}.
+\]</span></p>
+<p>The data object comes first; the complex follows.</p>
+</section>
+<section id="the-practical-audit-loop" class="slide level2">
+<h2>The practical audit loop</h2>
+<ol type="1">
+<li>Inspect the stored object and units.</li>
+<li>Predict visible topology and its plausible scale.</li>
+<li>Construct and count the filtered object.</li>
+<li>Compute with explicit conventions.</li>
+<li>Check one small result by hand.</li>
+<li>Change one decision at a time.</li>
+<li>Report a qualified interpretation.</li>
+</ol>
 </section>
 <section id="method-map" class="slide level2">
 <h2>Method map</h2>
-<ul>
-<li><p>Point cloud with coordinates: alpha or Rips complexes.</p></li>
-<li><p>Pairwise distances only: Vietoris–Rips complexes.</p></li>
-</ul>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Starting object</th>
+<th>Core construction</th>
+<th>Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Point cloud or distances</td>
+<td>Rips</td>
+<td>pairwise threshold</td>
+</tr>
+<tr class="even">
+<td>Weighted graph</td>
+<td>graph or clique complex</td>
+<td>edge weight</td>
+</tr>
+<tr class="odd">
+<td>Scalar grid</td>
+<td>cubical complex</td>
+<td>cell value</td>
+</tr>
+<tr class="even">
+<td>Values on complex vertices</td>
+<td>lower star</td>
+<td>vertex-derived value</td>
+</tr>
+</tbody>
+</table>
+<p>The Interlude contains the broader menu. This week practises three routes deeply enough to audit their implementation.</p>
 </section>
 <section id="computational-cautions" class="slide level2">
 <h2>Computational cautions</h2>
 <p>Rips complexes grow quickly. For an <span class="math inline">\(N\)</span>-point cloud, the Vietoris–Rips filtration contains <span class="math inline">\(O(N^2)\)</span> edges, <span class="math inline">\(O(N^3)\)</span> triangles, <span class="math inline">\(O(N^4)\)</span> tetrahedra and so on. Even when truncating at dimension 2, the size can scale like <span class="math inline">\(O(N^3)\)</span>. This is why the choice of maximum dimension, maximum filtration value and sparsification strategy is not merely technical.</p>
 </section>
-<section id="examples" class="slide level2">
-<h2>Examples</h2>
-<p>Use a noisy circle versus noisy disk as a sanity check. Use an annulus with uneven sampling to show that persistence is not immune to sampling effects. Use a greyscale image to introduce lower-star or cubical persistence. Use a small weighted graph to ask whether pairwise cycles or clique-complex holes are the object of interest.</p>
+<section id="the-cost-of-asking-for-higher-homology" class="slide level2">
+<h2>The cost of asking for higher homology</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Request</th>
+<th>Must construct through</th>
+<th style="text-align: right;">Worst-case count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(H_0\)</span></td>
+<td>edges</td>
+<td style="text-align: right;"><span class="math inline">\(\binom N2\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(H_1\)</span></td>
+<td>triangles</td>
+<td style="text-align: right;"><span class="math inline">\(\binom N3\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(H_2\)</span></td>
+<td>tetrahedra</td>
+<td style="text-align: right;"><span class="math inline">\(\binom N4\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(H_p\)</span></td>
+<td><span class="math inline">\((p+1)\)</span>-simplices</td>
+<td style="text-align: right;"><span class="math inline">\(\binom N{p+2}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[C_{p+1}\xrightarrow{\partial_{p+1}}C_p
+\xrightarrow{\partial_p}C_{p-1}.\]</span></p>
+<p>To know whether a <span class="math inline">\(p\)</span>-cycle is filled, the computation needs the next dimension.</p>
 </section>
-<section id="one-stack-three-objects" class="slide level2">
-<h2>One stack, three objects</h2>
-<p><img data-src="../../assets/week05-data-constructions.svg" alt="Point cloud, weighted graph and scalar grid mapped to three different filtered constructions." height="210"></p>
+<section id="a-dangerous-truncation" class="slide level2">
+<h2>A dangerous truncation</h2>
+<p>Requesting <code>max_dimension=1</code> may display graph cycles but omit the triangles that should kill them.</p>
+<p>For correct <span class="math inline">\(H_1\)</span>, construct through dimension 2.</p>
+<p>For correct <span class="math inline">\(H_2\)</span>, construct through dimension 3.</p>
+<p>Dimensions above <span class="math inline">\(p+1\)</span> cannot change <span class="math inline">\(H_p\)</span> and consume unnecessary memory.</p>
+</section>
+<section id="one-stack-three-implementation-clinics" class="slide level2">
+<h2>One stack, three implementation clinics</h2>
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -193,6 +277,12 @@
 </table>
 <p>The common software does not make these the same mathematical object.</p>
 </section>
+<section id="cubical-means-filled-grid-cells" class="slide level2">
+<h2>Cubical means filled grid cells</h2>
+<p><img data-src="../../assets/week05-cubical-sublevel.svg" alt="A scalar grid enters as filled square cells. Low-valued cells form a ring and the central high-valued cell later fills its hole." height="280"></p>
+<p>Each pixel is a square 2-cell. Its edges and vertices enter with it.</p>
+<p>Birth and death coordinates are field values, not distances.</p>
+</section>
 <section id="where-do-the-scalar-values-live" class="slide level2">
 <h2>Where do the scalar values live?</h2>
 <p>Lower star: values begin on vertices.</p>
@@ -209,13 +299,24 @@
 <p><strong>▶ Likely sticking point.</strong> Not every software setting is a harmless tuning parameter.</p>
 </div>
 </section>
+<section id="weighted-graph-walkthrough" class="slide level2">
+<h2>Weighted graph walkthrough</h2>
+<p>Graph only:</p>
+<p><span class="math display">\[[0.45,\infty),\qquad[0.85,\infty).\]</span></p>
+<p>Clique expansion adds filled triangles at 0.45 and 0.85, so both cycles are born and filled at the same parameter value. No positive-length <span class="math inline">\(H_1\)</span> bars remain.</p>
+<p>Same weighted edges; different higher-order representation.</p>
+</section>
+<section id="scalar-image-walkthrough" class="slide level2">
+<h2>Scalar-image walkthrough</h2>
+<p><span class="math display">\[f(x,y)=(x^2+y^2-1)^2.\]</span></p>
+<p>Low-valued pixels form an annular band.</p>
+<p>Computed main interval:</p>
+<p><span class="math display">\[[0.0055,1.0000).\]</span></p>
+<p>Birth reflects grid discretisation near the unit circle. Death occurs when the high-valued centre enters and fills the opening.</p>
+</section>
 <section id="computational-reporting" class="slide level2">
 <h2>Computational reporting</h2>
-<p>State observation and simplex counts, maximum dimension and threshold, coefficient field, sparsification, runtime and memory failures.</p>
-</section>
-<section id="dp-relevance" class="slide level2">
-<h2>DP relevance</h2>
-<p>Static persistence is not claiming that a dynamical system is static. It freezes one representation: a time window, a state cloud, a snapshot, an interaction graph or a scalar field. This is the lowest-risk baseline. If a single topological snapshot cannot distinguish regimes or performance-relevant states, then more sophisticated dynamic topology needs stronger justification.</p>
+<p>State data dimensions and units, preprocessing, metric or cell convention, complex, parameter meaning, coefficient field, maximum dimension and threshold, simplex or cell counts, software version, runtime and memory failures.</p>
 </section>
 <section id="before-we-leave" class="slide level2">
 <h2>Before we leave</h2>
