@@ -1,22 +1,52 @@
 ---
-title: "Before Week 1: Topology survival guide"
-subtitle: "The familiar ideas underneath continuity, connectedness and shape"
+title: "Topology refresher B: the formal specifics"
+subtitle: "Sets, open regions, metrics, continuity and precise distinctions"
 toc: true
 ---
 
-This guide isolates the formal topology used by the course. The main weekly notes develop the TDA argument; return here when a word such as *open*, *continuous*, *connected* or *homeomorphic* needs a precise meaning.
+Part A begins with the familiar [coffee-cup and doughnut
+example](topology-familiar-shapes.qmd). This second refresher isolates the
+formal topology used by the course. Return here when a word such as *open*,
+*continuous*, *connected* or *homeomorphic* needs a precise meaning.
 
-The aim is recognition and interpretation. You do not need to prove general topology theorems before starting Week 1.
+The aim is recognition and interpretation. You do not need to complete this
+page before starting Week 1.
+
+::: {.callout-note title="Optional formal background"}
+Sections explaining the topology axioms, infinite intersections and finer
+homotopy qualifications are **expert-level background**. They can be skipped
+on a first pass. Each is retained so that a technical paper's terminology can
+be checked when needed.
+:::
 
 ## Sets, subsets and collections
 
-A **set** is a collection of objects. If $X$ is a set, then $U\subseteq X$ means that every element of $U$ is also an element of $X$. The **empty set** $\varnothing$ has no elements. The **power set** $\mathcal P(X)$ is the collection of every subset of $X$.
+A **mathematical object** is simply a thing currently being discussed in
+mathematics. It may be a number, vector, point, set, function, matrix, graph or
+space. The word can sound more formal than it is. It is useful because the kind
+of object determines which operations and questions make sense: two numbers
+can be added, a point can belong to a set, a function can map between sets, and
+a matrix can represent a linear map.
 
-These levels must remain distinct:
+This course will use an **object check** whenever several related kinds of
+object could easily be confused. The check asks: what are the objects here,
+what kind of thing is each one, and how are they related?
 
-- $x\in X$ says that $x$ is a point of the set;
-- $U\subseteq X$ says that $U$ is a subset of points; and
+A **set** is a collection of objects, called its **elements**. If $X$ is a
+set, then $U\subseteq X$ means that every element of $U$ is also an element of
+$X$. The **empty set** $\varnothing$ has no elements. The **power set**
+$\mathcal P(X)$ is the collection of every subset of $X$.
+
+Keep the following statements distinct:
+
+- $x\in X$ says that $x$ is an **element** of the set $X$;
+- $U\subseteq X$ says that $U$ is a subset whose elements all belong to $X$; and
 - $\mathcal T\subseteq\mathcal P(X)$ says that $\mathcal T$ is a collection of selected subsets.
+
+When $X$ is being treated as a geometric or topological space, its elements
+are conventionally called **points**. “Point” and “element” do not name two
+different things in that setting. *Element* describes the membership relation
+$x\in X$; *point* signals that we are thinking of $X$ as a space.
 
 ::: {.callout-note collapse="true" title="Example: points, subsets and a collection of subsets"}
 Let
@@ -42,26 +72,154 @@ is a collection of subsets, so $\mathcal C\subseteq\mathcal P(X)$. This is the k
 :::
 
 ::: {.object-check}
-**◇ Object check.** In $(X,\mathcal T)$, the elements of $X$ are points. The elements of $\mathcal T$ are subsets of $X$. Thus $x\in X$, while an open set satisfies $U\in\mathcal T$.
+**◇ Object check.** In the example, $X$ is a set and $a$ is one element of
+$X$. If we later treat $X$ as a space, we will also call $a$ a point of $X$;
+this is the same object described from a spatial viewpoint. The object $U$ is
+a subset of $X$, while $\mathcal C$ is a collection of subsets. Thus
+$a\in X$, $U\subseteq X$ and $\mathcal C\subseteq\mathcal P(X)$ describe
+three different relationships.
 :::
 
 ::: {.data-translation}
-**Data-analysis translation.** A row, a selected group of rows and a collection of candidate groups occupy the same three levels. Confusing them leads to questions such as treating one observation as though it were a cluster, or treating a list of clusters as though it were another subset of observations.
+**Data-analysis translation.** Let $X$ be the 1,000 rows in a sensor dataset.
+One row $x\in X$ is one recorded observation. A subset $U\subseteq X$ might
+contain the rows recorded while a machine was overheating. A collection
+$\mathcal C\subseteq\mathcal P(X)$ might contain several candidate operating
+regimes produced by a clustering method. A row, one selected group of rows and
+a collection of groups are different kinds of object, even though all are
+stored using familiar data structures.
 :::
+
+## Open and closed sets: the first intuition
+
+A distance gives the most concrete definition first. A **metric** on $X$ is a
+function $d:X\times X\to\mathbb R$ that behaves like a distance: it is
+non-negative, $d(x,y)=0$ exactly when $x=y$, distance is symmetric, and the
+triangle inequality holds.
+
+The condition $d(x,y)=0$ exactly when $x=y$ is sometimes called the
+**identity of indiscernibles**. It simply says that two distinct points cannot
+be zero distance apart. If the distance is zero, the two labels refer to the
+same point.
+
+The **open ball** of radius $r>0$ about $x$ is
+
+$$
+B_r(x)=\{y\in X:d(x,y)<r\}.
+$$
+
+It contains all points less than distance $r$ from $x$. A subset
+$U\subseteq X$ is **open** when
+
+$$
+\text{for every }x\in U,\text{ there is some }r>0
+\text{ such that }B_r(x)\subseteq U.
+$$
+
+In common language, every point of an open set has some breathing room that
+remains inside the set. The radius may be different at different points.
+
+::: {.callout-note collapse="true" title="Example: open and non-open intervals"}
+In $\mathbb R$ with the usual distance $d(x,y)=|x-y|$, the interval $(2,5)$
+is open. Every $x\in(2,5)$ has some sufficiently small interval
+$(x-r,x+r)$ contained in $(2,5)$. The interval $[2,5]$ is not open in
+$\mathbb R$: every ball around the endpoint 2 also contains numbers below 2.
+:::
+
+Once open sets have been specified, a set is **closed** when its complement is
+open. Thus $[2,5]$ is closed in $\mathbb R$ because
+$\mathbb R\setminus[2,5]$ is open. Informally, a closed set contains the limit
+points that form its boundary. “Open” and “closed” are not opposites in the
+ordinary-language sense: a set can be neither, and $\varnothing$ and the whole
+space are both open and closed.
+
+These definitions depend on the surrounding space and its metric. For example,
+$[2,5]$ is not open as a subset of $\mathbb R$, but it is open when regarded
+as the whole metric space $X=[2,5]$: a ball in $X$ contains only points that
+belong to $X$.
 
 ## A topology and its open sets
 
-A **topology** on a set $X$ is a collection $\mathcal T$ of subsets of $X$. The subsets belonging to $\mathcal T$ are, by definition, the **open sets**. The pair $(X,\mathcal T)$ is a **topological space**.
+A definition of topology is often one of the hardest definitions in this
+course to absorb. At a high level, a topology is a **consistent rulebook for
+which subsets count as neighbourhood-like regions**. It does not record exact
+distance. Instead, it records enough local structure to discuss continuity,
+connectedness and deformation. The topology axioms ensure that these allowable
+regions remain allowable when we combine them using “or” and finitely many
+“and” conditions.
 
-A subset is therefore not intrinsically open. It is open relative to the chosen topology $\mathcal T$. This collection must satisfy three rules:
+A metric tells us which subsets are open, but topology can begin directly with
+the open subsets and forget the numerical distances that produced them. A
+**topology** on a set $X$ is a collection $\mathcal T$ of subsets of $X$. The
+subsets belonging to $\mathcal T$ are declared to be the **open sets**. The
+pair $(X,\mathcal T)$ is a **topological space**.
+
+A statement such as “$U$ is open” is incomplete until the surrounding
+topological space is understood. What it means precisely is
+$U\subseteq X$ and $U\in\mathcal T$. The collection $\mathcal T$ must satisfy
+three rules:
 
 1. $\varnothing\in\mathcal T$ and $X\in\mathcal T$;
-2. if $\{U_i\}_{i\in I}$ is any family with every $U_i\in\mathcal T$, then
-   $$\bigcup_{i\in I}U_i\in\mathcal T;$$
+2. the union of any collection of members of $\mathcal T$ also belongs to
+   $\mathcal T$; and
 3. if $U_1,\ldots,U_n\in\mathcal T$ is any finite family, then
    $$U_1\cap\cdots\cap U_n\in\mathcal T.$$
 
-The first rule explicitly mentions $\mathcal T$: both the empty subset and the whole set must belong to the collection of open sets. The shorthand “$X$ and $\varnothing$ are open” means exactly this.
+In common language:
+
+1. **The two unavoidable cases are allowed.** The whole space $X$ is an
+   allowable open region, and the region containing no points, $\varnothing$,
+   is allowed too. This ensures that “everywhere” and “nowhere” do not require
+   exceptions. If either were missing, the proposed collection would fail
+   before any local structure was considered.
+2. **Any number of open alternatives may be joined.** If a point may lie in
+   region $U$ *or* region $V$ *or* any of a larger collection of open regions,
+   their union is still open. Without this rule, combining valid
+   neighbourhoods using “or” could produce an invalid neighbourhood.
+3. **Finitely many open requirements may be imposed together.** If a point
+   must lie in $U$ *and* $V$, their intersection is still open; the same holds
+   for any finite number of open conditions. Without this rule, two compatible
+   local requirements could each be valid separately but invalid when asked
+   together.
+
+These are closure requirements on the collection $\mathcal T$. They make
+neighbourhood reasoning stable under the elementary operations used throughout
+topology. A randomly selected list of subsets will usually fail one of them.
+
+::: {.callout-note collapse="true" title="Example: what failure of an axiom looks like"}
+Let $X=\{a,b,c\}$.
+
+- The collection $\{\varnothing,\{a\}\}$ fails rule 1 because it omits $X$.
+- The collection $\{\varnothing,\{a\},\{b\},X\}$ fails rule 2 because
+  $\{a\}\cup\{b\}=\{a,b\}$ is missing.
+- The collection $\{\varnothing,\{a,b\},\{b,c\},X\}$ fails rule 3 because
+  $\{a,b\}\cap\{b,c\}=\{b\}$ is missing.
+
+In each case the subsets may look reasonable individually, but the collection
+does not behave consistently enough to be a topology.
+:::
+
+### Why metric-open sets satisfy the rules
+
+The earlier breathing-room definition now explains the axioms rather than
+sitting separately from them:
+
+- **The whole space is open.** For any $x\in X$, every metric ball
+  $B_r(x)$ is already a subset of $X$.
+- **The empty set is open.** There is no point in $\varnothing$ at which the
+  breathing-room condition could fail. This is an example of a condition being
+  *vacuously true* because there are no cases to check.
+- **Arbitrary unions are open.** If $x$ belongs to a union of open sets, then
+  it belongs to at least one of them. That particular set supplies a small ball
+  around $x$, and the ball also lies inside the union.
+- **Finite intersections are open.** If $x\in U\cap V$, openness of $U$
+  supplies one ball around $x$ and openness of $V$ supplies another. Choose the
+  smaller radius. The resulting ball lies inside both sets, so it lies inside
+  $U\cap V$. The same argument works for any finite number of sets.
+
+Thus the axioms capture exactly the behaviour already seen in ordinary metric
+neighbourhoods, while allowing topology to discuss spaces for which no metric
+has been specified.
 
 ::: {.callout-note collapse="true" title="Example: a topology on three points"}
 Return to $X=\{a,b,c\}$ and choose
@@ -77,34 +235,45 @@ The subset $\{a\}$ is open and $\{b,c\}$ is open, but $\{a,b\}$ is not open beca
 If instead we choose $\mathcal T=\mathcal P(X)$, every subset is open. The underlying set of three points has not changed, but its topology has.
 :::
 
-### What open is trying to capture
+::: {.callout-note collapse="true" title="Picture: open patches on a surface"}
+Imagine $X$ as a continuous surface and $U$ and $V$ as two overlapping open
+patches painted on it. A point inside either patch can move a sufficiently
+small amount along the surface without leaving that patch.
 
-The intuition is that an open set contains a little room around each of its points.
+![Open patches on a surface illustrate the topology rules: the whole surface is open, overlapping open patches may be joined, and their overlap remains open.](../../assets/topology-open-regions.svg){fig-alt="Four schematic panels show a surface X, two overlapping open patches U and V, their union, and their intersection."}
 
-::: {.callout-note collapse="true" title="Example: open and non-open intervals"}
-In the usual topology on $\mathbb R$, the interval $(2,5)$ is open because every $x\in(2,5)$ has some sufficiently small interval $(x-\varepsilon,x+\varepsilon)$ contained in $(2,5)$. The interval $[2,5]$ is not open in $\mathbb R$: every interval around the endpoint $2$ extends partly outside $[2,5]$.
+The union $U\cup V$ gives the combined painted region. A point in it inherits
+breathing room from whichever patch contains it. The intersection $U\cap V$
+is the overlap. A point in the overlap has some smaller region that stays
+inside both patches. The figure is only a local picture; the complete topology
+contains all open patches satisfying the rules, not merely the two drawn here.
+
+The coffee-cup and doughnut example appears later under
+[homeomorphisms](#homeomorphisms-same-topology). It answers a different
+question: when do two apparently different spaces carry the same continuous
+organisation?
 :::
 
-The axioms make neighbourhood reasoning consistent:
+### What open is trying to capture
 
-- **$X\in\mathcal T$:** every point has at least the whole space as an open neighbourhood;
-- **$\varnothing\in\mathcal T$:** the empty case requires no exception and is the union of an empty family;
-- **arbitrary unions:** joining open regions leaves room around every point in the union; and
-- **finite intersections:** imposing finitely many open conditions still leaves room around every point satisfying all of them.
+In a metric space, the neighbourhood intuition becomes literal: an open set
+contains a little room around each of its points.
 
-The word **finite** is essential because openness requires some positive amount of room around each point. If $x$ lies in finitely many open sets $U_1,\ldots,U_n$, each set supplies a positive radius $r_i$ around $x$. The smallest of finitely many positive numbers,
+The word **finite** in the third axiom matters. For two open sets, we can use
+the smaller of the two available neighbourhoods. For five open sets, we can
+still choose the smallest of five positive radii. More generally, every finite
+list of positive radii has a positive minimum, so some breathing room remains
+after imposing all the conditions.
 
-$$
-r=\min\{r_1,\ldots,r_n\},
-$$
-
-is still positive, so $B_r(x)$ lies inside every $U_i$. For infinitely many open sets, the available radii can shrink towards zero. There may then be no positive radius that works for all of them.
+An infinite list behaves differently. Its radii may become smaller and smaller
+without any positive smallest radius. The intersection can then squeeze all
+the breathing room away.
 
 ::: {.callout-note collapse="true" title="Example: why arbitrary intersections are not required"}
 Imagine open intervals squeezing around 0. The first has radius 1, the next radius $1/2$, then $1/3$, and so on. Every nonzero point is eventually excluded: given $x\ne0$, choose $n>1/|x|$, and then $x\notin(-1/n,1/n)$. Only 0 survives all the conditions. Therefore
 
 $$
-\bigcap_{n=1}^{\infty}(-1/n,1/n)=\{0\},
+\bigcap_{n=1}^{\infty}(-1/n,1/n)=\{0\}.
 $$
 
 The single point $\{0\}$ has no breathing room: every ball of positive radius around 0 contains other points. It is therefore not open. The example shows exactly what can fail for an infinite intersection: the common neighbourhood radii have shrunk to zero.
@@ -114,28 +283,71 @@ The single point $\{0\}$ has no breathing room: every ball of positive radius ar
 
 At one extreme, $\mathcal T=\{\varnothing,X\}$ is a topology that distinguishes almost no local structure. At the other, $\mathcal T=\mathcal P(X)$ makes every subset open. Between these extremes lie topologies that encode useful notions of neighbourhood.
 
-This is why a bare set of observations does not yet have the continuous shape one may wish to study. A relation, metric, graph, complex or other construction supplies additional structure.
+The two extremes do not by themselves prove that data need more structure.
+They demonstrate something narrower: the underlying elements of $X$ do not
+determine which subsets should count as neighbourhoods. A topology is
+additional information attached to the set.
+
+### Why topology for discrete data is sensible
+
+For a finite dataset, adding a metric does **not** turn the observed points into
+a continuous object. With its metric-induced topology, a finite point cloud is
+discrete: each individual observation can be isolated in a sufficiently small
+open ball. A graph or simplicial complex also remains a finite combinatorial
+object.
+
+The purpose of the extra structure is different. A metric or relation records
+a modelling judgement about which observations should count as near. A graph
+or simplicial complex then records selected neighbourhood relationships. Its
+**geometric realisation** replaces abstract edges by intervals, triangles by
+filled triangular regions and so on, producing a continuous space associated
+with the finite construction. TDA computes the homology of that constructed
+space. It does not claim that the original observations were already joined by
+continuous material.
+
+Why is this useful rather than artificial? Often the observations are discrete
+because measurement and storage are discrete, while the scientific object of
+interest may not be. A trajectory is sampled at finitely many times; an image
+is stored as pixels; a spatial field is recorded at finitely many locations;
+or a continuous state space is observed through a finite point cloud. The
+neighbourhood construction asks which continuous organisation is supported by
+those samples at a stated resolution.
+
+There are three important qualifications:
+
+1. **The continuous object is a hypothesis, not something contained literally
+   in the rows.** The complex is a representation built from the observations.
+2. **The representation depends on choices.** Metric, preprocessing,
+   neighbourhood rule and scale decide which simplices appear.
+3. **The connection to an underlying space requires conditions.** With suitable
+   sampling and geometric assumptions, results such as the Nerve Theorem and
+   reconstruction theorems can relate a complex to a continuous space. Without
+   such conditions, homology still describes the constructed representation,
+   but it is not automatically the topology of the latent system.
+
+Persistent homology later repeats the construction across scale. This reduces
+dependence on one arbitrary threshold and asks which features survive across a
+range of neighbourhood sizes. It does not remove the upstream choices or turn
+the representation into direct evidence of mechanism.
+
+## Why the metric choice remains visible
+
+The collection of open sets obtained from a metric is the **topology induced by
+the metric**. The metric retains exact distances. Its induced topology retains
+which subsets act as open neighbourhoods. Different metrics can induce the
+same topology, so passing from metric geometry to topology deliberately
+discards information.
 
 ::: {.data-translation}
-**Data-analysis translation.** A table does not arrive with one intrinsic neighbourhood structure. Declaring observations close by Euclidean distance, shared categories, a correlation threshold or network adjacency creates different neighbourhood systems. The resulting analysis answers a question about that choice as well as about the observations.
-:::
-
-## How a distance produces open sets
-
-A **metric** on $X$ is a function $d:X\times X\to\mathbb R$ satisfying non-negativity, identity of indiscernibles, symmetry and the triangle inequality. It makes “how far apart?” precise.
-
-The **open ball** of radius $r>0$ about $x$ is
-
-$$
-B_r(x)=\{y\in X:d(x,y)<r\}.
-$$
-
-A subset $U\subseteq X$ is declared open when every $x\in U$ has some $r>0$ for which $B_r(x)\subseteq U$. These open sets form the **topology induced by the metric**.
-
-The metric retains exact distances. Its induced topology retains which subsets act as open neighbourhoods. Different metrics can induce the same topology, so passing from metric geometry to topology deliberately discards information.
-
-::: {.data-translation}
-**Data-analysis translation.** Standardising columns, weighting features, choosing a dissimilarity for mixed data or replacing raw variables with an embedding changes which records are neighbours. This is an upstream modelling decision, not neutral preprocessing. Inspect units, missingness and feature dominance before interpreting any downstream topological summary.
+**Data-analysis translation.** A data table supplies observations and
+variables, but it does not specify which differences should count as small.
+Using Euclidean distance, standardising columns, weighting variables, choosing
+a mixed-data dissimilarity or first constructing an embedding can produce
+different nearest neighbours. A later graph or complex turns those chosen
+neighbour relations into the representation whose topology is computed. The
+result therefore describes the observations **through that choice of
+neighbourhood**, not the table independently of the choice. Units, missingness
+and dominating variables should be checked before interpreting the result.
 :::
 
 ![Open balls depend on the metric: Euclidean distance gives a circle, a direction-weighted Euclidean metric gives an ellipse in the original coordinates, and the $L^1$ metric gives a diamond.](../../assets/topology-open-balls.svg){fig-alt="Three coordinate plots show an open Euclidean ball as a circle, a weighted Euclidean ball as a vertically compressed ellipse, and an L1 ball as a diamond, all centred at x zero."}
@@ -208,7 +420,11 @@ A topological space is **connected** if it cannot be written as the union of two
 
 It is **path-connected** if, for every $x,y\in X$, there is a continuous map $\gamma:[0,1]\to X$ with $\gamma(0)=x$ and $\gamma(1)=y$. A path is therefore a continuous route between points.
 
-Path-connectedness implies connectedness. The converse can fail for unusual spaces, but the distinction does not obstruct the finite complexes and familiar manifolds used in this course.
+Path-connectedness implies connectedness. The converse can fail for unusual
+spaces (for example, the **topologist's sine curve**, formed by the graph
+$y=\sin(1/x)$ for $x>0$ together with its limiting vertical segment at $x=0$,
+is connected but not path-connected). The distinction does not obstruct the
+finite complexes and familiar manifolds used in this course.
 
 ::: {.callout-note collapse="true" title="Example: one regime or two separated pieces"}
 An interval $[0,1]$ is path-connected: $\gamma(t)=(1-t)x+ty$ joins any $x,y\in[0,1]$. The union $[0,1]\cup[2,3]$ is disconnected because it separates into two non-empty pieces with a gap between them. No continuous path contained in the union can travel from the first interval to the second.
@@ -229,6 +445,19 @@ An interval $[0,1]$ is path-connected: $\gamma(t)=(1-t)x+ty$ joins any $x,y\in[0
 ## Homeomorphisms: same topology
 
 A **homeomorphism** is a bijection $f:X\to Y$ such that both $f$ and $f^{-1}$ are continuous. If such a map exists, $X$ and $Y$ are **homeomorphic**.
+
+The **rubber-sheet metaphor** is an informal way to picture this definition.
+Imagine a space made from perfectly flexible rubber. It may be stretched,
+bent, twisted or compressed. It may not be cut, torn, punctured, glued to a
+previously separate part, or crushed so that distinct regions become
+irreversibly identified. The change must be reversible: the rubber can be
+returned continuously to its original form. This is what the continuity of
+both $f$ and $f^{-1}$ is protecting.
+
+The metaphor concerns continuous spaces. Two finite samples do not become
+homeomorphic merely because one point cloud can be visually warped to resemble
+the other. For data, a continuous representation must first be constructed,
+and the conclusion concerns that representation.
 
 The two directions matter. Continuity of $f$ prevents tearing when going from $X$ to $Y$; continuity of $f^{-1}$ prevents information from being irreversibly collapsed.
 
@@ -254,8 +483,6 @@ The conclusion depends on **which space has been selected**. The solid material 
 **Data-analysis translation.** Topological equivalence is stronger than visual resemblance and different from statistical similarity. Two scatter plots may share means and covariances without being homeomorphic representations of one underlying space; conversely, a smooth coordinate warp can preserve topology while greatly changing those summaries.
 :::
 
-The rubber-sheet metaphor describes this reversible deformation informally. It applies to the continuous spaces, not automatically to two finite samples drawn from them.
-
 ::: {.sticking-point}
 **▶ Likely sticking point.** A finite point cloud is a discrete set under its metric-induced topology. A sampled circle does not literally inherit a loop merely because the points resemble one. TDA constructs a complex from neighbourhood relations and studies the topology of that constructed object.
 :::
@@ -277,15 +504,70 @@ but having isomorphic homology groups does not generally imply that two spaces a
 
 ::: {.callout-note collapse="true" title="Example: homotopy contracts a disk"}
 A filled disk is not homeomorphic to a single point: there is no bijection between them. It is nevertheless homotopy equivalent to a point because the disk can contract continuously to its centre. A circle cannot contract to a point while remaining inside the circle, so a circle is not homotopy equivalent to a point.
+
+“Remaining inside the circle” refers to the target space of the deformation.
+A contraction of the circle would be a continuous family of maps
+$H:S^1\times[0,1]\to S^1$ beginning with the identity map and ending with a
+constant map. At every intermediate time, every image point must still lie on
+$S^1$. Allowing the circle to move through the filled disk would instead give
+a deformation inside $D^2$, a different ambient space. The disk provides the
+interior points needed for contraction; the circle alone does not.
 :::
 
 ::: {.callout-note collapse="true" title="Example: homology distinguishes an outline from a filling"}
-The outline triangle and filled triangle in [Week 2](../week-02/index.qmd#examples) have the same vertices and edges. The outline has one nonzero $H_1$ class. Adding the triangular face makes that edge cycle a boundary, so the filled triangle has $H_1=0$. Homology detects the presence versus filling of the loop without retaining the triangle's side lengths or angles.
+This is the finite combinatorial version of the preceding circle-versus-disk
+example. The geometric realisation of an outline triangle is a circle: its
+three edges form a closed loop with no interior. The geometric realisation of
+a filled triangle is a disk.
+
+The two complexes in [Week 2](../week-02/index.qmd#examples) have the same
+vertices and edges. The outline has one nonzero $H_1$ class. Adding the
+triangular face supplies the missing interior and makes the edge cycle a
+boundary, so the filled triangle has $H_1=0$. Homology detects the presence
+versus filling of the loop without retaining side lengths or angles.
 :::
 
 ::: {.callout-note collapse="true" title="Example: the same homology need not mean the same homotopy type"}
-A torus and the wedge $S^1\vee S^1\vee S^2$ have the same integral homology groups: one connected component, two independent $H_1$ generators and one $H_2$ generator. They are not homotopy equivalent. Their fundamental groups differ: the torus has commuting loop generators, while the two circle loops in the wedge generate a non-commutative free group. Homology has deliberately forgotten that distinction.
+A **wedge**, written $X\vee Y$, is formed by choosing one point in each space
+and identifying those chosen points. The symbol $\vee$ therefore means
+“attach at one common point”. The space
+$S^1\vee S^1\vee S^2$ consists of two circles and one 2-sphere joined at a
+single point.
+
+![A torus and the wedge of two circles with a sphere have the same integral homology groups but are not homotopy equivalent.](../../assets/topology-torus-wedge.svg){fig-alt="A torus is shown beside two loops and a sphere attached at one shared wedge point."}
+
+A torus and $S^1\vee S^1\vee S^2$ have the same integral homology groups: one
+connected component, two independent $H_1$ generators and one $H_2$
+generator. They are not homotopy equivalent. Their fundamental groups differ:
+the torus has commuting loop generators, while the two circle loops in the
+wedge generate a non-commutative free group. Homology has deliberately
+forgotten that distinction.
 :::
+
+### A comparison matrix
+
+The entries below compare the spaces in pairs. All homology comparisons use
+integer coefficients.
+
+- **Homeomorphic** means the spaces match point for point by a continuous map
+  with a continuous inverse.
+- **Homotopy equivalent** means they have the same deformation type.
+- **Same homology** means all their homology groups are isomorphic.
+- **None** means that none of these three relationships holds.
+
+|  | Point | Filled triangle $D^2$ | Circle $S^1$ | Outline triangle | Torus $T^2$ | Wedge $S^1\vee S^1\vee S^2$ |
+|---|---|---|---|---|---|---|
+| **Point** | Homeomorphic; homotopy equivalent; same homology | Homotopy equivalent; same homology | None | None | None | None |
+| **Filled triangle $D^2$** | Homotopy equivalent; same homology | Homeomorphic; homotopy equivalent; same homology | None | None | None | None |
+| **Circle $S^1$** | None | None | Homeomorphic; homotopy equivalent; same homology | Homeomorphic; homotopy equivalent; same homology | None | None |
+| **Outline triangle** | None | None | Homeomorphic; homotopy equivalent; same homology | Homeomorphic; homotopy equivalent; same homology | None | None |
+| **Torus $T^2$** | None | None | None | None | Homeomorphic; homotopy equivalent; same homology | Same homology only |
+| **Wedge $S^1\vee S^1\vee S^2$** | None | None | None | None | Same homology only | Homeomorphic; homotopy equivalent; same homology |
+
+The matrix makes the hierarchy visible. Homeomorphic pairs also appear as
+homotopy equivalent and homologically identical. The point and filled triangle
+show that homotopy equivalence need not imply homeomorphism. The torus and
+wedge show that matching homology need not imply matching homotopy type.
 
 ::: {.applied-translation}
 **Dynamical systems translation.** Homotopy asks whether one continuous organisation can be deformed into another. Homology replaces that full deformation question with counts and algebraic relations among selected features. It is coarser, but substantially easier to compute from a finite representation.

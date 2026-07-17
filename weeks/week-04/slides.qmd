@@ -1,6 +1,5 @@
 ---
-title: "Week 4: Persistent homology: homology with memory"
-subtitle: "TDA for Static and Dynamic Data"
+title: "Week 4: Persistent homology"
 format:
   revealjs:
     theme: [simple, ../../assets/slides.scss]
@@ -21,6 +20,18 @@ It does not tell us which earlier classes survived.
 
 
 [Lecture walkthrough](solutions.ipynb)
+
+---
+
+## From filtration to memory
+
+Week 3 used the A, B and C example to motivate multiple resolutions and built
+the nested family
+
+$$K_0\subseteq K_1\subseteq\cdots.$$
+
+Week 4 asks what the nested complexes alone do not tell us: which earlier
+homology class became which later class?
 
 ---
 
@@ -128,6 +139,24 @@ Matrix pairings $\to$ barcode intervals.
 
 ---
 
+## Return to the house
+
+![](../../assets/week04-house-filtration.svg){fig-alt="A four-stage filtration of the house complex, ending with the triangular roof filled." height="230"}
+
+At the first edge stage, the outer cycle is $c$. Adding the roof-base edge
+splits our convenient description into the roof cycle $r$ and room cycle $q$:
+
+$$c=r+q.$$
+
+Filling the roof sends $[r]\mapsto0$ while $[q]$ survives. Thus
+
+$$[c]\mapsto[r+q]\mapsto[q].$$
+
+The [Week 4 notes](index.qmd#return-to-the-house-persistent-homology-through-a-richer-filtration)
+show the complete matrices and induced maps.
+
+---
+
 ## Software changes the scale notation
 
 Week 3 used ball radius $r$: $d(x_i,x_j)\leq2r$.
@@ -145,6 +174,22 @@ Name the convention before interpreting coordinates.
 Long interval means survival across the selected filtration range.
 
 It does **not** automatically mean scientific relevance, statistical surprise, predictive value or robustness to a different model.
+
+---
+
+## Perturb, recompute, compare
+
+The walkthrough now computes a persistence diagram, slightly perturbs the
+observations and computes a second diagram.
+
+We need to ask:
+
+1. Which points correspond?
+2. How large is the worst movement after the best matching?
+3. Can a small input change cause an arbitrarily large output change?
+
+The first two questions motivate bottleneck distance. The third motivates the
+stability theorem.
 
 ---
 
@@ -175,6 +220,11 @@ $$
 If $|f(x)-g(x)|\leq\delta$ everywhere, their diagrams differ by at most $\delta$ in bottleneck distance.
 
 Here tame means that only finitely many homological changes occur in the filtration.
+
+Triangulable means that $X$ has the topological type of a simplicial complex.
+It is a classical regularity hypothesis that excludes pathological spaces and
+makes the homology changes manageable. Later formulations use broader
+tameness conditions.
 
 ---
 

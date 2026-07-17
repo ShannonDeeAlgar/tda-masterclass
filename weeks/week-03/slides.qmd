@@ -1,6 +1,5 @@
 ---
-title: "Week 3: Filtrations: setting the complex in motion"
-subtitle: "TDA for Static and Dynamic Data"
+title: "Week 3: Filtrations"
 format:
   revealjs:
     theme: [simple, ../../assets/slides.scss]
@@ -34,6 +33,46 @@ The parameter could mean distance, density, activity, interaction strength or en
 
 ---
 
+## First: height as a filtration parameter
+
+![](../../assets/week03-height-sublevel.svg){fig-alt="A landscape is included from below at three increasing height thresholds." height="285"}
+
+$$X_a=\{x:h(x)\leq a\},\qquad a\leq b\Longrightarrow X_a\subseteq X_b.$$
+
+Low regions appear first. Components join when the threshold crosses a
+saddle. Height orders the space.
+
+---
+
+## Its discrete counterpart: lower star
+
+Give every vertex a scalar value $g(v)$ and set
+
+$$f(\sigma)=\max_{v\in\sigma}g(v).$$
+
+A simplex enters when its highest-valued vertex enters. Faces therefore arrive
+no later than their cofaces.
+
+Energy, activity, density or instability would give “birth” different
+scientific meanings.
+
+---
+
+## Then: resolution as a parameter
+
+![](../../assets/week04-multiscale-letters.svg){fig-alt="Many small Cs form several Bs, and the Bs form one large A." height="345"}
+
+Little blur: many separate marks. More blur: local groups. Still more blur: a
+global structure.
+
+A proximity filtration makes this grouping rule precise and retains every
+resolution.
+
+For a sampled trajectory, proximity is similarity in the chosen state-space
+metric, not necessarily proximity in time.
+
+---
+
 ## Validity condition
 
 $$f:K\to\mathbb R,$$
@@ -60,6 +99,9 @@ Intermediate $r$: possible loops.
 
 Large $r$: loops may fill.
 
+For trajectory data, this thickens sampled states; it does not restore their
+temporal order.
+
 ---
 
 ## Čech records joint intersections
@@ -77,6 +119,9 @@ $$|\check C_r(S)|\simeq U_r.$$
 $$\operatorname{Rips}_r(S)=\{\sigma:\operatorname{diam}(\sigma)\leq2r\}.$$
 
 Connect close pairs, then fill every clique.
+
+For collective systems, clique filling turns mutual pairwise proximity into a
+higher-order relation.
 
 ::: {.qualification}
 **† Qualification.** Here $r$ is ball radius. Many libraries report the distance threshold $2r$ instead.
@@ -113,32 +158,6 @@ Rips: filled triangle, $\beta_1=0$.
 
 ---
 
-## A graph is not its clique complex
-
-Same vertices. Same edges. Different object.
-
-Graph: triangle is an $H_1$ cycle.
-
-Clique complex: triangle is the boundary of a 2-simplex.
-
-::: {.object-check}
-**◇ Object check.** The graph is the 1-skeleton. Clique filling adds higher-dimensional simplices.
-:::
-
----
-
-## What did clique filling assert?
-
-Pairwise mutual interaction
-
-$$\Downarrow$$
-
-one coherent higher-order unit
-
-Is that scientifically justified for the system?
-
----
-
 ## Distance is also a choice
 
 Euclidean distance may ignore:
@@ -149,18 +168,6 @@ Euclidean distance may ignore:
 - dynamically meaningful similarity.
 
 The filtration can be mathematically valid and scientifically poor.
-
----
-
-## Beyond distance
-
-Vertex values $g(v)$ induce a lower-star filtration:
-
-$$f(\sigma)=\max_{v\in\sigma}g(v).$$
-
-Values might encode density, activity or behavioural state.
-
-What does “birth” mean under that choice?
 
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: "Week 2: Simplicial complexes and homology: building a computable hole-counter"
+title: "Week 2: Simplicial complexes and homology"
 toc: true
 ---
 
@@ -8,6 +8,13 @@ toc: true
 :::
 
 <a class="btn btn-primary" href="../../downloads/week-02-participant.ipynb" download="week-02-participant.ipynb">Download participant notebook</a>
+
+::: {.callout-note title="Optional reading for this week"}
+Edelsbrunner and Harer, Chapters III.1 and IV.1–IV.2, provide the simplicial
+complex, homology and matrix reduction spine. Postol, Sections 3.3–3.4 and
+4.1, provide a slower route through fields, vector spaces, simplicial homology
+and induced maps.
+:::
 
 ::: {.foundation-definition}
 **[Guiding definition for Weeks 1–4](../../index.qmd#the-guiding-construction-for-weeks-14).** For a filtration $K_a\subseteq K_b$ when $a\leq b$, persistent homology is the module
@@ -22,7 +29,10 @@ Scientific object, observations and the topological question.
 ::: {.foundation-step .is-active}
 **2 · Homology**
 
-$K_a$ and $H_p(K_a;\mathbb F)$.
+$K_a$ and $H_p(K_a;\mathbb F)$. This week treats the complex as already
+chosen and asks what homology computes from it. A simplicial complex becomes a
+finite bookkeeping device whose chains and boundary maps turn qualitative
+shape into linear algebra.
 :::
 ::: {.foundation-step}
 **3 · Filtration**
@@ -47,135 +57,285 @@ By the end of this week, you should be able to:
 4. explain cycles, boundaries and homology as the steps that separate closed chains from those already filled in; and
 5. predict how adding an edge, triangle or tetrahedron can change the Betti numbers, then confirm that prediction with a small calculation.
 
-## Story
+## Simplices: the building blocks
 
-Week 2 moves from qualitative shape to a combinatorial object on which
-topology can be computed. The central message is that a simplicial
-complex is the finite bookkeeping device that lets topology become
-linear algebra. The complex is treated as already chosen. The aim is to
-understand what homology computes once $K$ has been chosen.
+A **simplex** is one building block. Its dimension is one less than its number
+of vertices:
 
-## Mathematics to introduce
+| Dimension | Name | Abstract notation | What is actually present? |
+|---:|---|---|---|
+| $0$ | vertex | $\{A\}$ | one labelled vertex |
+| $1$ | edge | $\{A,B\}$ or $AB$ | the edge and its two endpoint vertices |
+| $2$ | triangle | $\{A,B,E\}$ or $[A,B,E]$ | a **filled** triangular face, its three edges and its vertices |
+| $3$ | tetrahedron | $\{A,B,C,D\}$ | a filled solid tetrahedron, its four triangular faces, edges and vertices |
+| $p$ | $p$-simplex | $\{v_0,\ldots,v_p\}$ | a $p$-dimensional block with $p+1$ vertices and all its faces |
 
-::: {.callout-note title="Algebra checkpoint"}
-If basis, kernel, image, rank or quotient are unfamiliar, read the [pre-Week 2 algebra survival guide](algebra-survival-guide.qmd) before continuing. Its [coefficient-field section](algebra-survival-guide.qmd#coefficient-fields) explains why chains can be added without a field, why this MasterClass nevertheless begins over $\mathbb F_2$, and how that choice changes the cancellation rules used below.
-:::
+The word **filled** matters. Three vertices joined by three edges form an
+outline triangle, but they do not form a 2-simplex unless the triangular face
+is also included.
 
-A $p$-simplex is a $p$-dimensional building block: vertices, edges,
-triangles, tetrahedra and their higher-dimensional analogues. A
-simplicial complex $K$ is a collection of simplices satisfying downward
-closure: if $\sigma\in K$ and $\tau\subseteq\sigma$, then $\tau\in K$.
-This condition is not decoration. It ensures that whenever a simplex is
-present, all of its faces are also present.
+In a drawing, a vertex is shown as a point. More precisely, the **vertex** is
+the combinatorial item, such as the label $A$, while the plotted **point** is a
+chosen geometric location used to realise it. Moving that plotted point does
+not change the abstract complex provided the same incidences are retained.
 
-There are two related viewpoints. A **geometric** $p$-simplex is the
-convex hull of $p+1$ affinely independent points. An **abstract**
-$p$-simplex is a set of $p+1$ vertices. The notebooks use abstract
-complexes because the boundary calculation needs incidence information,
-not coordinates. A geometric realisation supplies a space $|K|$ whose
-topology the abstract complex represents
-[@edelsbrunner2010computational, Chapter III.1; @postol2024algebraic,
-Section 4.1].
+A geometric $p$-simplex is the convex hull of $p+1$ affinely independent
+points. An abstract $p$-simplex is simply a set of $p+1$ vertex labels. We use
+abstract simplices because the calculation needs to know which vertices belong
+to which edges and faces; coordinates are optional.
 
-::: {.qualification}
-**† Qualification.** Authors differ on whether the empty simplex is
-included. Here every simplex is non-empty, so vertices are 0-simplices
-and the ordinary chain complex begins at $C_0$. This does not change the
-ordinary homology computed in the notebooks.
-:::
+:::: {.worked-example}
+### Running example: read the house as a collection of simplices
 
-**◇ Object check.**
-At this stage, $K$ is the topological/combinatorial object. The vector
-spaces come next: one vector space $C_p(K;\mathbb F)$ for the
-$p$-simplices in each dimension.
+![The house complex has five vertices, six edges and one filled triangular roof.](../../assets/week02-house-complex.svg){fig-alt="A labelled house complex has vertices A through E, outer edges x through v, diagonal roof-base edge w, and one filled triangular face ABE."}
 
-Over a field $\mathbb{F}$, a $p$-chain is a formal linear combination of
-$p$-simplices: $$c=\sum_i a_i\sigma_i,\qquad a_i\in\mathbb F.$$ Thus
-$C_p(K;\mathbb F)$ is a vector space whose basis elements are the
-$p$-simplices. Over $\mathbb{F}_2$, the coefficients are $0$ or $1$, so
-a chain can be viewed as a subset of the $p$-simplices. Addition is
-symmetric difference: simplices appearing twice cancel because $1+1=0$
-mod $2$.
+The house contains:
 
-The boundary map lowers dimension and is linear:
-$$\partial_p:C_p(K;\mathbb F)\to C_{p-1}(K;\mathbb F).$$ The boundary of
-an edge is its two endpoints; the boundary of a triangle is its three
-edges; the boundary of a tetrahedron is its four triangular faces. The
-identity $\partial^2=0$ says that every boundary is automatically a
-cycle.
+- five 0-simplices: $A,B,C,D,E$;
+- six 1-simplices: $x=AB$, $y=BC$, $z=CD$, $u=DE$, $v=EA$ and $w=EB$;
+- one 2-simplex: the filled roof $t=[A,B,E]$; and
+- no simplices in dimension 3 or above.
 
-Together these maps form the chain complex
+The square room is bounded by four edges, but its interior is not a simplex.
+The roof is different: its shaded triangular interior is explicitly part of
+the complex.
+::::
+
+## From simplices to a simplicial complex
+
+A **simplicial complex** $K$ is a collection of simplices with one consistency
+rule called **downward closure**:
 
 $$
-\cdots\longrightarrow C_2(K;\mathbb F_2)
-\xrightarrow{\partial_2}C_1(K;\mathbb F_2)
-\xrightarrow{\partial_1}C_0(K;\mathbb F_2)
+\sigma\in K,\quad \varnothing\ne\tau\subseteq\sigma
+\quad\Longrightarrow\quad \tau\in K.
+$$
+
+In ordinary language: if a simplex is present, every face of that simplex must
+also be present. The rule lets us move down one dimension without leaving the
+collection.
+
+:::: {.worked-example}
+### Example and counterexample: what downward closure requires
+
+**The house satisfies the rule.** Because the roof $t=[A,B,E]$ is included,
+its three edges $AB$, $BE$ and $EA$ must be included. Because those edges are
+included, their endpoint vertices $A$, $B$ and $E$ must also be included.
+
+**A football-team hyperedge need not satisfy the rule.** Suppose a hypergraph
+contains the group
+
+$$
+T=\{A,B,C,D\}
+$$
+
+to record that four players belong to the same team. The data may not assert
+that every pair socialises or interacts separately; perhaps $A$ and $C$ never
+spend time together. A hypergraph may therefore contain the four-person
+hyperedge $T$ without containing all six pairwise edges.
+
+That collection is a valid hypergraph but not a simplicial complex. If $T$ were
+included as a 3-simplex, downward closure would require every three-player
+face, every pairwise edge and every player vertex. Converting a team hyperedge
+into a simplex therefore adds relational claims that the original data may not
+support.
+::::
+
+::: {.object-check}
+**◇ Object check.** The complex is $K$, the whole downward-closed collection.
+A simplex such as $t=[A,B,E]$ is one member of $K$. A drawing is a geometric
+realisation of that combinatorial information, not the definition of $K$.
+:::
+
+::: {.qualification}
+**† Qualification.** Authors differ on whether the empty simplex is included.
+Here every displayed simplex is non-empty, vertices are 0-simplices and the
+ordinary chain complex begins at $C_0$.
+:::
+
+## Chains: selecting simplices algebraically
+
+::: {.callout-note title="Algebra checkpoint"}
+If basis, kernel, image, rank or quotient are unfamiliar, read the [pre-Week 2 algebra survival guide](algebra-survival-guide.qmd). Its [coefficient-field section](algebra-survival-guide.qmd#coefficient-fields) explains the arithmetic over $\mathbb F_2$ used below.
+:::
+
+For each dimension $p$, the **chain space** $C_p(K;\mathbb F_2)$ has the
+$p$-simplices as a basis. For the house,
+
+$$
+C_2=\operatorname{span}\{t\},\qquad
+C_1=\operatorname{span}\{x,y,z,u,v,w\},\qquad
+C_0=\operatorname{span}\{A,B,C,D,E\}.
+$$
+
+A 1-chain is any selection of house edges. For example,
+
+$$
+y+u
+$$
+
+is a perfectly valid chain even though the two edges are disconnected. A
+chain is an algebraic selection, not necessarily a path or loop. Two more
+useful 1-chains are
+
+$$
+r=x+v+w \quad\text{(the roof outline)},
+\qquad
+q=y+z+u+w \quad\text{(the room outline)}.
+$$
+
+Over $\mathbb F_2$, a coefficient is either 0 or 1: omit a simplex or include
+it. Adding chains uses symmetric difference because an edge selected twice
+cancels, $1+1=0$.
+
+## Boundary maps: record the faces of a chain
+
+The boundary map lowers dimension by one:
+
+$$
+\partial_p:C_p\longrightarrow C_{p-1}.
+$$
+
+For an edge, the boundary is its two endpoints. In the house,
+
+$$
+\begin{aligned}
+\partial_1x&=A+B,& \partial_1y&=B+C,& \partial_1z&=C+D,\\
+\partial_1u&=D+E,& \partial_1v&=E+A,& \partial_1w&=E+B.
+\end{aligned}
+$$
+
+For the filled roof, the boundary is its three surrounding edges:
+
+$$
+\partial_2t=x+v+w=r.
+$$
+
+Linearity means that the boundary of a chain is the sum of the boundaries of
+its selected simplices. For the room outline,
+
+$$
+\begin{aligned}
+\partial_1q
+&=\partial_1(y+z+u+w)\\
+&=(B+C)+(C+D)+(D+E)+(E+B)=0.
+\end{aligned}
+$$
+
+Every vertex occurs twice and cancels. The same calculation gives
+$\partial_1r=0$. Moreover,
+
+$$
+\partial_1\partial_2t=\partial_1r=0.
+$$
+
+This is the concrete meaning of $\partial_{p-1}\partial_p=0$: the boundary of
+a boundary has no boundary left over.
+
+With vertex rows $(A,B,C,D,E)$ and edge columns $(x,y,z,u,v,w)$, the same
+information is recorded in the matrix
+
+$$
+[\partial_1]=
+\begin{array}{c|cccccc}
+ &x&y&z&u&v&w\\\hline
+A&1&0&0&0&1&0\\
+B&1&1&0&0&0&1\\
+C&0&1&1&0&0&0\\
+D&0&0&1&1&0&0\\
+E&0&0&0&1&1&1
+\end{array}.
+$$
+
+For example, the column labelled $y$ contains 1 in rows $B$ and $C$ because
+$\partial_1y=B+C$. A matrix is therefore not an unexplained array: each column
+is the boundary of the basis simplex named above it.
+
+Together the house maps form
+
+$$
+0\longrightarrow C_2
+\xrightarrow{\partial_2}C_1
+\xrightarrow{\partial_1}C_0
 \longrightarrow0.
 $$
 
-After choosing simplex bases and fixing an order for their simplices, $\partial_p$ is a matrix whose
-columns are the boundaries of the $p$-simplices. Over $\mathbb F_2$ an
-entry is $1$ precisely when the row simplex is a codimension-one face
-of the column simplex. Matrix multiplication makes the identity visible:
-$$[\partial_{p-1}][\partial_p]=0.$$
+## Cycles, boundaries and homology in the house
 
-Cycles form the kernel $$Z_p=\ker \partial_p,$$ and boundaries form the
-image $$B_p=\operatorname{im}\partial_{p+1}.$$ Both are vector subspaces
-of $C_p$, with $B_p\subseteq Z_p$. Homology is therefore the quotient
-vector space $$H_p(K;\mathbb F)=Z_p/B_p.$$ Its elements are homology
-classes: cycles are identified when they differ by a boundary. The Betti
-number is $$\beta_p=\dim H_p(K;\mathbb F).$$
+A **cycle** is a chain with zero boundary:
 
-The quotient notation deserves to be unpacked. Define
+$$Z_1=\ker\partial_1.$$
 
-$$z\sim z'\quad\Longleftrightarrow\quad z-z'\in B_p.$$
+Both $r$ and $q$ are cycles. Row reduction gives
+$\operatorname{rank}\partial_1=4$, so rank-nullity gives
 
-Thus $[z]$ is not one selected cycle. It is the collection of all cycles
-that differ from $z$ by an available boundary. If two loops surround the
-same opening and the strip between them is tiled by 2-simplices, the
-difference of the two loops is the boundary of that strip. Homology treats
-them as representatives of the same class. A cycle represents the zero
-class exactly when it is itself a boundary.
+$$
+\dim Z_1=6-4=2,
+\qquad Z_1=\operatorname{span}\{r,q\}.
+$$
 
-Rank-nullity gives the computational formula
+A **boundary** in dimension 1 is the boundary of an available 2-chain:
+
+$$
+B_1=\operatorname{im}\partial_2=\operatorname{span}\{r\}.
+$$
+
+The roof outline $r$ is therefore both a cycle and a boundary. The room outline
+$q$ is a cycle but not a boundary because no filled 2-dimensional region has
+the room as its boundary.
+
+Homology keeps cycles while identifying boundaries with zero:
+
+$$
+H_1=Z_1/B_1
+=\operatorname{span}\{[q]\}\cong\mathbb F_2,
+\qquad \beta_1=1.
+$$
+
+The quotient is visible in this example. The outer house outline is
+
+$$c=x+y+z+u+v=r+q.$$
+
+Because $c$ and $q$ differ by the boundary $r$, homology treats them as two
+representatives of the same class:
+
+$$[c]=[q].$$
+
+It has deliberately forgotten whether the representative travels around the
+roof as well as the room; the filled roof makes that difference removable.
+
+The house is connected, so $\beta_0=1$. Also $\partial_2t=r\ne0$, so the
+2-simplex is not a 2-cycle and $\beta_2=0$. Hence
+
+$$
+(\beta_0,\beta_1,\beta_2)=(1,1,0).
+$$
+
+Rank-nullity gives the general computational formula
 
 $$
 \beta_p=\dim C_p-\operatorname{rank}\partial_p
 -\operatorname{rank}\partial_{p+1}.
 $$
 
-For a finite complex, the Euler characteristic provides a useful
-cross-check:
+For the house, the Euler check is
 
 $$
-\chi(K)=\sum_p(-1)^p\dim C_p
-=\sum_p(-1)^p\beta_p.
+\chi=5-6+1=0=1-1+0
+=\beta_0-\beta_1+\beta_2.
 $$
 
-This identity checks aggregate dimensions. It does not replace homology,
-because different Betti vectors can have the same alternating sum
-[@edelsbrunner2010computational, Chapter IV].
-
-**▶ Likely sticking point.** Homology is a vector space because the chain
-coefficients have been chosen in a field, the boundary map is linear,
-and $H_p=Z_p/B_p$ is a quotient of vector spaces. A “hole” is
-represented by an equivalence class of cycles, not by one privileged
-geometric loop.
-
-**† Qualification.**
-With integer coefficients, $H_p(K;\mathbb Z)$ is generally an abelian
-group rather than a vector space. Persistent-homology computations
-usually use field coefficients because this makes the algebra and
-interval decomposition much cleaner.
-
-> *Homology counts cycles that are not merely the boundary of something
-> higher-dimensional.*
+> *Homology keeps closed chains and removes those already explained as the
+> boundary of something one dimension higher.*
 
 ## Examples
 
 ::: {.callout-tip title="Work through the complexes"}
 Use the [lecture walkthrough](solutions.ipynb) while following the outline triangle, filled triangle, square loop and hollow tetrahedron below. The [participant practical](lab.ipynb) asks you to predict their cycles and boundaries, read the corresponding matrices, and explain the resulting Betti numbers.
 :::
+
+:::: {.worked-example}
+### Worked example: outline and filled triangle
 
 Use an outline triangle and a filled triangle. In the outline triangle,
 the sum of the three edges is a cycle with zero boundary. It is not the
@@ -198,6 +358,10 @@ boundary, so its class disappears in the quotient $Z_1/B_1$.
 ::: {.applied-translation}
 **Dynamical systems translation.** Suppose three oscillators or agents have pairwise interactions. Their interaction graph contains the three edges of an outline triangle. Filling that triangle with a 2-simplex makes an additional modelling assertion: the three pairwise relations belong to one coherent three-way relation. The observations at the vertices and edges have not changed, but the chosen representation has, and the loop class is consequently filled. Whether that higher-order relation is scientifically justified must come from the coupling mechanism or construction rule, not from the triangular drawing alone.
 :::
+::::
+
+:::: {.worked-example}
+### Further examples: square loop and hollow tetrahedron
 
 Use a square loop as the simplest visible $H_1$ class and a hollow
 tetrahedron as a first $H_2$ example. Ask explicitly which chains are
@@ -216,13 +380,28 @@ computational pipeline, we usually work over a field such as
 $\mathbb{F}_2$, but the winding-number story helps explain why homology
 classes are algebraic representatives of holes rather than the holes
 themselves.
+::::
 
-## DP relevance
+## Graph versus clique complex
 
-Graphs enter as the simplest data-derived complexes. An interaction
-graph can be treated as a one-dimensional simplicial complex, with
-vertices and edges only. This supports component and graph-cycle
-homology. To study higher-dimensional topology, the graph must be
-promoted to another object, such as a clique complex. That promotion is
-a modelling assumption: pairwise mutual interaction is being treated as
-evidence of a higher-order collective unit.
+:::: {.worked-example}
+### Worked example: the same triangle graph, with and without clique filling
+
+An interaction graph may be treated as a one-dimensional simplicial complex:
+it contains vertices and edges but no two-dimensional faces. A triangle of
+three edges is then a cycle and, because no face is available, it represents a
+nonzero $H_1$ class.
+
+The **clique complex** of a graph adds a simplex for every complete subgraph.
+The same three mutually adjacent vertices therefore generate a triangular
+2-simplex. Its boundary is the three-edge cycle, so that cycle represents zero
+in $H_1$.
+
+![The same three vertices and edges form an unfilled graph cycle or a filled triangle in its clique complex.](../../assets/week02-outline-filled.svg){fig-alt="An outline triangle represents the graph alone, while a filled triangle represents the clique complex obtained by adding the triangular face."}
+
+**What changed?** Not the vertices or pairwise observations. Clique filling
+adds the modelling assertion that mutual pairwise interaction is evidence of
+one coherent higher-order unit. This may be appropriate for a coordination
+network and inappropriate when the graph cycles themselves are the scientific
+objects of interest.
+::::

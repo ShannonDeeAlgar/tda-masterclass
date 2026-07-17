@@ -1,6 +1,5 @@
 ---
-title: "Week 7: Time-indexed static topology: repeated persistence through time"
-subtitle: "TDA for Static and Dynamic Data"
+title: "Week 7: Time varying data, periodicity and multiparameter persistence"
 format:
   revealjs:
     theme: [simple, ../../assets/slides.scss]
@@ -22,13 +21,26 @@ What object are we constructing, what information does it retain, and what scien
 
 ---
 
-## Story
+## Where Week 7 sits
 
-Week 7 introduces the honest dynamic baseline. Given a sequence of
-time-indexed objects $X_t$, $G_t$, $I_t$, $W_t$ or $K_{\bullet,t}$,
-compute ordinary persistence independently at each time point or time
-window. The resulting diagrams or summaries are then treated as a time
-series.
+Week 7 distinguishes three constructions: repeated persistence through
+physical time, sliding-window persistence for periodicity, and a genuine
+two-parameter bifiltration.
+
+---
+
+## What are the time-indexed objects?
+
+| Symbol | Object at time $t$ |
+|---|---|
+| $X_t$ | point cloud |
+| $G_t$ | graph |
+| $I_t$ | image or scalar field |
+| $W_t$ | sliding-window point cloud |
+| $K_{\bullet,t}$ | filtration across scale at fixed $t$ |
+
+The notation says when each object was observed. It does not create maps
+between consecutive objects.
 
 ---
 
@@ -58,15 +70,6 @@ Point-cloud persistence does not retain temporal order by itself.
 
 ---
 
-## Examples
-
-Use moving point clouds, evolving graphs, sliding-window embeddings and
-time-indexed scalar fields. The key teaching contrast is between
-detecting change in topological summaries and tracking the identity of
-individual features.
-
----
-
 ## Two axes, two meanings
 
 Physical time $t$: when the system is observed.
@@ -79,11 +82,41 @@ $$C_p(t,\varepsilon)=\#\{(b,d)\in D_t^{(p)}:b\leq\varepsilon<d\}.$$
 
 ## What a CROCKER-style plot says
 
-It displays framewise counts through time and scale.
+**CROCKER:** Contour Realization Of Computed $k$-dimensional hole Evolution in
+the Rips complex.
+
+It displays $\beta_k(t,\varepsilon)$ through time and scale.
 
 It can reveal transitions and regimes.
 
-It does not identify a class across frames.
+It forgets birth-death pairing and does not identify a class across frames.
+
+---
+
+## SW1PerS: periodicity as a loop
+
+$$\operatorname{SW}_{m,\tau}x(t)
+=(x(t),x(t+\tau),\ldots,x(t+m\tau)).$$
+
+A periodic signal repeatedly visits the same phases, producing a loop-like
+sliding-window cloud after centring and normalising.
+
+Persistent $H_1$ measures the strength of that loop. Lag, window length and
+sampling remain modelling choices.
+
+---
+
+## Two axes do not automatically make a bifiltration
+
+Independent frames $X_t$ need not satisfy $X_t\subseteq X_{t+1}$.
+
+For codensity $q(x)$, instead let
+
+$$X_\delta=\{x:q(x)\leq\delta\},\qquad
+K_{\delta,\varepsilon}=\operatorname{VR}_\varepsilon(X_\delta).$$
+
+Increasing either $\delta$ or $\varepsilon$ gives inclusions: this is a genuine
+two-parameter module.
 
 ---
 
@@ -100,15 +133,6 @@ Compare with an order parameter, radial spread, recurrence statistic or graph me
 Escalate only if identity or transport through time matters.
 
 ---
-
-## DP relevance
-
-This is the first method to try for dynamic systems. It is implementable
-with standard tools, interpretable, and often already informative. The
-DP question is whether topological summaries over time reveal regime
-changes, memory, separability, stability or collective organisation
-beyond ordinary metrics. Only if feature identity through time matters
-should we escalate to more specialised machinery.
 
 ## Before we leave
 

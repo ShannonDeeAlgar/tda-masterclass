@@ -1,5 +1,5 @@
 ---
-title: "Week 7: Time-indexed static topology: repeated persistence through time"
+title: "Week 7: Repeated persistence through time"
 toc: true
 ---
 
@@ -9,6 +9,24 @@ toc: true
 
 <a class="btn btn-primary" href="../../downloads/week-07-participant.ipynb" download="week-07-participant.ipynb">Download participant notebook</a>
 
+::: {.callout-note title="Optional reading for this week"}
+Topaz, Ziegelmeier and Halverson introduce CROCKER plots for biological
+aggregation models [@topaz2015aggregation]. Xian and collaborators review
+topological summaries for time-varying data and extend CROCKER plots to
+CROCKER stacks [@xian2022dynamics]. Perea and Harer introduce SW1PerS for
+periodicity in sliding-window point clouds [@perea2015sw1pers]. These papers
+are optional. The core page develops repeated persistence; SW1PerS and
+multiparameter persistence are separated into optional subtopics.
+:::
+
+::: {.foundation-definition}
+**Where this week sits.** Ordinary persistence follows structure through
+filtration scale. Week 7 introduces the honest dynamic baseline: compute that
+ordinary persistence separately for each physical time or time window, then
+treat the diagrams or summaries as a time series. No cross-time feature
+identity has yet been created.
+:::
+
 ## Learning goals
 
 By the end of this week, you should be able to:
@@ -16,18 +34,37 @@ By the end of this week, you should be able to:
 1. explain repeated or framewise persistence as ordinary persistence applied separately along physical time;
 2. keep physical time, filtration scale and any delay-coordinate parameters distinct when reading a dynamic TDA analysis;
 3. read a CROCKER-style summary and connect a slice of it back to the corresponding framewise Betti information;
-4. explain what repeated persistence reveals beyond a simpler dynamic baseline; and
-5. state precisely why similar features in consecutive persistence diagrams have not thereby acquired a tracked identity.
-
-## Story
-
-Week 7 introduces the honest dynamic baseline. Given a sequence of
-time-indexed objects $X_t$, $G_t$, $I_t$, $W_t$ or $K_{\bullet,t}$,
-compute ordinary persistence independently at each time point or time
-window. The resulting diagrams or summaries are then treated as a time
-series.
+4. state precisely why similar features in consecutive persistence diagrams have not thereby acquired a tracked identity; and
+5. recognise when SW1PerS or multiparameter persistence addresses a different question from repeated persistence.
 
 ## Mathematics and summaries
+
+### What is the object at each time?
+
+Several kinds of observations can be repeated through time. The notation is a
+compact menu, not a list of objects that was previously defined as one family:
+
+| Symbol | Object available at time $t$ | Typical source |
+|---|---|---|
+| $X_t$ | metric point cloud | agent positions or a window of state vectors |
+| $G_t$ | graph | a changing interaction or contact network |
+| $I_t$ | image or gridded scalar field | density, activity or spatial concentration |
+| $W_t$ | sliding-window point cloud | delay vectors made from a signal near time $t$ |
+| $K_{\bullet,t}$ | a complete filtration at fixed $t$ | complexes $K_{\varepsilon,t}$ across scale $\varepsilon$ |
+
+For example, a moving swarm supplies point clouds $X_t$. Choosing a Rips
+construction at each frame produces $K_{\varepsilon,t}$, and homology produces
+a diagram $D_t$. The complete chain is
+
+$$
+\text{observation at }t
+\longrightarrow K_{\varepsilon,t}
+\longrightarrow H_p(K_{\varepsilon,t})
+\longrightarrow D_t.
+$$
+
+The same notation does **not** imply that $X_t\subseteq X_{t+1}$ or that a map
+between consecutive frames exists.
 
 ### From a time series to a state-space cloud
 
@@ -91,6 +128,16 @@ This is the framewise Betti number across a two-dimensional display. It
 can reveal regimes and transitions, but it does not connect a class at
 time $s$ to a class at time $t$.
 
+**CROCKER** stands for **Contour Realization Of Computed $k$-dimensional
+hole Evolution in the Rips complex**. The construction was introduced by
+Topaz, Ziegelmeier and Halverson for biological aggregation models
+[@topaz2015aggregation]. One vertical slice is the Betti curve of one frame;
+one horizontal slice shows how the number of features alive at a chosen scale
+changes with physical time. A contour or heat map makes regimes visible, but
+forgets birth-death pairing and feature identity. CROCKER stacks add a
+persistence threshold so that short bars can be suppressed
+[@xian2022dynamics].
+
 Window length is part of the observation model. Short windows may be
 undersampled; long windows can mix regimes and turn temporal change into
 apparent spatial structure.
@@ -98,18 +145,28 @@ apparent spatial structure.
 > *A topological summary can change through time without any individual
 > hole being tracked through time.*
 
-## Examples
+## Optional subtopics
 
-Use moving point clouds, evolving graphs, sliding-window embeddings and
-time-indexed scalar fields. The key teaching contrast is between
-detecting change in topological summaries and tracking the identity of
-individual features.
+The following routes use persistence for related but different questions.
+Their high-level ideas are useful; their detailed development can be skipped
+unless they match the participant's data.
 
-## DP relevance
+### [SW1PerS and periodicity](sw1pers.qmd)
 
-This is the first method to try for dynamic systems. It is implementable
-with standard tools, interpretable, and often already informative. The
-DP question is whether topological summaries over time reveal regime
-changes, memory, separability, stability or collective organisation
-beyond ordinary metrics. Only if feature identity through time matters
-should we escalate to more specialised machinery.
+Sliding-window coordinates turn a scalar signal into a point cloud. A
+persistent loop can quantify repeated traversal of one periodic phase cycle.
+This is a periodicity method, not a way to track a class across changing
+frames.
+
+### [Multiparameter persistence](multiparameter.qmd)
+
+A genuine bifiltration retains two jointly ordered construction parameters.
+It requires compatible inclusions in both directions; merely plotting
+physical time against filtration scale is not enough.
+
+## What Week 7 adds
+
+The core method describes how static topological summaries change through
+physical time. It is often the honest first dynamic analysis. The optional
+subtopics answer different questions and should be selected only when their
+additional structure is scientifically needed.

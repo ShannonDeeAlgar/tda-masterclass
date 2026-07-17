@@ -30,29 +30,39 @@ website:
           - href: index.qmd
             text: Course overview
           - href: reading-map.qmd
-            text: Guiding texts and reading map
+            text: Sources and data provenance
       - section: "Foundations"
         contents:
+          - href: weeks/week-01/topology-familiar-shapes.qmd
+            text: "Topology refresher A: familiar shapes"
           - href: weeks/week-01/topology-survival-guide.qmd
-            text: "Before Week 1: Topology survival guide"
+            text: "Topology refresher B: formal specifics"
           - weeks/week-01/index.qmd
           - href: weeks/week-02/algebra-survival-guide.qmd
             text: "Before Week 2: Algebra survival guide"
           - weeks/week-02/index.qmd
           - weeks/week-03/index.qmd
           - weeks/week-04/index.qmd
-      - section: "Interlude"
+      - section: "From definitions to decisions"
         contents:
           - href: design-decisions/index.qmd
             text: "Every barcode has a modelling history"
       - section: "Practice and validation"
         contents:
-          - weeks/week-05/index.qmd
-          - weeks/week-06/index.qmd
-      - section: "Dynamic data"
-        contents:
-          - weeks/week-07/index.qmd
-          - weeks/week-08/index.qmd
+          - section: "Static data"
+            contents:
+              - weeks/week-05/index.qmd
+              - weeks/week-06/index.qmd
+          - section: "Dynamic data"
+            contents:
+              - weeks/week-07/index.qmd
+              - href: weeks/week-07/sw1pers.qmd
+                text: "Expert subtopic: SW1PerS"
+              - href: weeks/week-07/multiparameter.qmd
+                text: "Expert subtopic: multiparameter persistence"
+              - weeks/week-08/index.qmd
+              - href: weeks/week-08/vineyards-extension.qmd
+                text: "Expert submodule: vineyards"
       - section: "Application routes"
         contents:
           - href: applications/index.qmd

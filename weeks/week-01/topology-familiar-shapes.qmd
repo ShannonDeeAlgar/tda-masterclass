@@ -1,0 +1,130 @@
+---
+title: "Topology refresher A: the coffee cup and doughnut"
+subtitle: "Ideas you may already recognise"
+toc: true
+---
+
+This first refresher begins with the version of topology many people have
+already encountered: the coffee cup and doughnut. Its purpose is to recover
+useful intuition, connect that intuition to data, and identify where the
+metaphor stops being sufficient.
+
+You can follow the main course after reading this page. The separate
+[Topology refresher B](topology-survival-guide.qmd) supplies open sets,
+topological spaces, metric details and finer distinctions when you want the
+formal background.
+
+## The familiar example
+
+A solid coffee cup with one handle and a solid doughnut each have one tunnel.
+In the rubber-sheet metaphor, one can be continuously reshaped into the other
+without cutting, gluing or tearing. A suitable deformation narrows the cup,
+thickens its handle and rounds the result into a torus.
+
+This reversible continuous correspondence is called a **homeomorphism**. Two
+spaces related this way are **homeomorphic**. Topology deliberately ignores
+their different lengths, angles, curvature and coordinates while retaining
+their continuous organisation.
+
+![A coffee cup and a torus are connected by a reversible deformation when both are treated as solid surfaces with one handle or tunnel.](../../assets/topology-cup-torus.svg){fig-alt="A schematic coffee cup with one handle is connected by a reversible deformation arrow to a torus."}
+
+::: {.qualification}
+**† Qualification.** The material description matters. A hollow vessel, its
+thin surface and a completely solid object are different spaces. The standard
+metaphor assumes objects chosen so that the handle and torus represent the
+same one-tunnel organisation.
+:::
+
+## What topology keeps and forgets
+
+Geometry asks about distance, angle, curvature, coordinates and scale.
+Topology asks which relationships survive reversible continuous deformation.
+For elementary examples this includes:
+
+- how many connected pieces there are;
+- whether paths can move between regions;
+- whether loop-like or void-like structure is present; and
+- whether deformation can remove a feature without cutting or filling.
+
+Neither lens replaces the other. A circle and a highly stretched ellipse have
+the same topology but different geometry. A filled disc and its circular
+outline may occupy the same outer location, but only the outline supports a
+non-filled loop.
+
+## Homeomorphism, homotopy and homology
+
+These terms answer different questions.
+
+| Idea | High-level question | What it provides |
+|---|---|---|
+| Homeomorphism | Are the spaces the same up to reversible continuous deformation? | A strong equivalence of spaces |
+| Homotopy equivalence | Do they have the same broad continuous shape after contractible detail is ignored? | A weaker equivalence |
+| Homology | How many independent cycle-like features occur in each dimension? | Algebraic invariants, not a complete description |
+
+A filled triangle and a single point are not homeomorphic, but the triangle
+can contract to a point and is homotopy equivalent to it. An outline triangle
+cannot contract to a point while remaining inside the outline. Homology sees
+that distinction through a nonzero $H_1$ class for the outline.
+
+Homology is deliberately incomplete. Different spaces can have the same
+homology. That makes it a computable summary, not a universal definition of
+shape.
+
+::: {.callout-note title="Expert-level detail: safe to skip"}
+Precise constructions of homotopies, induced maps and counterexamples where
+homology fails to distinguish spaces belong to algebraic topology. The main
+course needs only the hierarchy above: homeomorphism is stronger than homotopy
+equivalence, and homology is an invariant that may agree even when the spaces
+are not equivalent.
+:::
+
+## Why this is not yet topology for data
+
+A scatter plot is a finite set of observations, not a rubber sheet. Two
+finite samples are not automatically homeomorphic to the continuous objects
+they appear to trace. In fact, with sufficiently small neighbourhoods, every
+point of a finite point cloud can be isolated.
+
+TDA therefore inserts a construction:
+
+$$
+\text{observations}
+\longrightarrow
+\text{neighbourhood representation}
+\longrightarrow
+\text{homology}.
+$$
+
+A metric or relation decides which observations count as near. A graph,
+simplicial complex or cubical complex records those relationships. Homology is
+then computed on that constructed representation. Persistent homology repeats
+the calculation across a range of thresholds.
+
+::: {.data-translation}
+**Data-analysis translation.** Standardising variables, selecting a metric,
+constructing an embedding and choosing a neighbourhood scale change which
+records become neighbours. The topological output describes the data through
+those choices, not independently of them.
+:::
+
+::: {.applied-translation}
+**Dynamical systems translation.** A continuous attractor may be observed only
+through finitely sampled states. A point-cloud complex can test which
+connected or recurrent organisation the samples support across resolution.
+It does not automatically prove that the complex has recovered the invariant
+set or its mechanism.
+:::
+
+## What to retain
+
+You are ready for Week 1 if you can explain that:
+
+1. topology deliberately forgets metric detail;
+2. the coffee cup and doughnut illustrate reversible continuous deformation;
+3. homeomorphism, homotopy and homology are not synonyms;
+4. finite data require a representation before homology is computed; and
+5. the result belongs first to that representation.
+
+Continue to [Week 1](index.qmd). Use [Topology refresher B](topology-survival-guide.qmd)
+when the course needs precise language about sets, metrics, open sets,
+continuity or topological spaces.

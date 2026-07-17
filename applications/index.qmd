@@ -13,4 +13,11 @@ Application pages are deliberately separable from the full eight-week sequence. 
 5. What claim survives validation?
 
 - [Dynamical systems route](dynamical-systems.qmd)
-- [Industry case-study template](industry-template.qmd)
+- [Industry application route: planned](industry-template.qmd)
+
+::: {.callout-note title="Real-data development marker"}
+The mathematical and synthetic examples are currently more developed than the
+real-data application layer. A public dynamical dataset and a later industry
+route are planned. Until their complete pipelines and baselines are available,
+the course does not present synthetic results as empirical validation.
+:::

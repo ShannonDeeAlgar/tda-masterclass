@@ -1,6 +1,5 @@
 ---
-title: "Week 8: Beyond ordinary persistence: which advanced tool solves which problem?"
-subtitle: "TDA for Static and Dynamic Data"
+title: "Week 8: Beyond ordinary persistence"
 format:
   revealjs:
     theme: [simple, ../../assets/slides.scss]
@@ -22,7 +21,7 @@ What object are we constructing, what information does it retain, and what scien
 
 ---
 
-## Story
+## Where Week 8 sits
 
 Week 8 should be organised by problem type rather than by a list of
 advanced methods. The aim is to teach method selection: what breaks in
@@ -69,10 +68,22 @@ but it can be computationally and interpretively heavy.
 
 ---
 
+## A backward arrow is still an inclusion
+
+$$K_0\longrightarrow K_1\longleftarrow K_2$$
+
+means $K_0\subseteq K_1$ and $K_2\subseteq K_1$.
+
+Example: path $a-b-c$ $\to$ triangular outline $\leftarrow$ path $a-b-c$.
+The $H_1$ class exists only at the middle index, producing one transient
+zigzag interval.
+
+---
+
 ## Case 3: there is more than one genuine parameter
 
-If scale and time, scale and density, or another pair of parameters are
-both genuine, then multiparameter persistence is the relevant framework.
+Week 7 built the scale-by-codensity example. If two parameters are jointly
+ordered, multiparameter persistence is the relevant framework.
 The warning is essential: the clean barcode decomposition of
 one-parameter persistence does not carry over in the same way.
 Multiparameter persistence may be the right mathematical object even
@@ -83,6 +94,10 @@ The presence of two named variables does not by itself decide the
 framework. The question is whether they form one partial order to be
 analysed jointly, or whether one parameter indexes a controlled family
 of ordinary persistence modules with additional transport data.
+
+Time is a valid second parameter for cumulative data $X_t\subseteq X_{t'}$.
+Independent snapshots do not become a bifiltration merely because they have
+timestamps.
 
 ---
 
@@ -181,15 +196,6 @@ as tools for asking what part of a feature belongs to, is contributed
 by, or is shared across different subobjects.
 
 ---
-
-## DP relevance
-
-For swarms or physical reservoirs, vineyards are attractive because they
-offer feature identity, continuous trajectories and potential online
-updates. But they are also high risk. A literal moving point-cloud Rips
-filtration may not satisfy the assumptions needed for vineyard tracking.
-
-Two more plausible strategies are:
 
 ## Before we leave
 

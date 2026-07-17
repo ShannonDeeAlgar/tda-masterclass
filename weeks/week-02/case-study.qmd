@@ -1,29 +1,70 @@
 ---
-title: "Week 2 application: Simplicial complexes and homology: building a computable hole-counter"
-subtitle: "A reusable real-data case-study shell"
+title: "Week 2 application: interactions are not automatically simplices"
+subtitle: "A small complex-systems example"
 toc: true
 ---
 
-## Problem
+## Scientific question
 
-State a concrete decision or scientific question before introducing topology.
+Suppose six oscillators are represented by a network whose edges record
+sufficiently strong pairwise coupling. Does a triangular group of pairwise
+couplings represent a genuine three-way interaction, or only three separate
+pairwise relationships?
 
-## Data object
+This matters because the two interpretations produce different simplicial
+complexes and may produce different homology.
 
-What is directly observed? What preprocessing or representation is constructed?
+## Observed and constructed objects
 
-## Topological construction
+The observed data might be simultaneous time series together with estimated
+pairwise coupling strengths. Those estimates produce a weighted graph. The
+graph is already a constructed representation: its edges depend on the
+coupling estimator and threshold.
 
-Name the complex, filtration, coefficient field and homology dimensions.
+There are then at least two possible topological objects:
 
-## Baseline
+1. the graph treated as a one-dimensional complex, containing vertices and
+   edges only; or
+2. its clique complex, which fills every mutually connected triple with a
+   2-simplex and continues similarly in higher dimensions.
 
-What simpler geometric, graph-theoretic or statistical quantity must topology outperform or complement?
+The clique complex makes the additional assertion that pairwise coherence is
+enough to infer a coherent multiway unit. That may be appropriate for a
+pairwise-generated interaction mechanism, but not for every complex system.
 
-## Result
+## Small inspectable example
 
-Show the result in a form legible to someone who has not taken the full MasterClass.
+Let oscillators $a,b,c$ have all three pairwise edges. As a graph, the chain
+$ab+bc+ca$ is a non-boundary cycle and contributes one $H_1$ class. In the
+clique complex, the 2-simplex $abc$ is added and
+
+$$
+\partial_2(abc)=ab+bc+ca
+$$
+
+over $\mathbb F_2$. The same edge cycle is now a boundary, so its homology
+class vanishes. Nothing about the observed edge set changed. The representation
+choice changed.
+
+## Baseline and sensitivity
+
+Before interpreting homology, report graph quantities such as connected
+components, degree distribution, clustering and graph cycle rank. Then vary
+the coupling threshold and the rule for filling cliques. The main comparison
+is not “topology versus no topology”; it is graph-only structure versus an
+explicit higher-order representation.
 
 ## Interpretation boundary
 
-What may be concluded, and what would overstate the evidence?
+A filled triangle means that the construction treats the three oscillators as
+one coherent multiway relation. It does not prove that the physical system has
+an irreducible three-body interaction. That claim requires a mechanistic or
+statistical argument beyond the simplicial calculation.
+
+::: {.callout-note title="Planned data extension"}
+This page deliberately uses six labelled oscillators so every simplex and
+boundary can be checked by hand. A later real-data extension should use a
+public coupled-oscillator or functional-connectivity dataset, state how edges
+are estimated, and compare graph and clique-complex conclusions under the same
+thresholds.
+:::

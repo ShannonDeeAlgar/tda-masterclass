@@ -1,58 +1,69 @@
 ---
-title: "Guiding texts and weekly reading map"
+title: "Sources and data provenance"
 toc: true
 ---
 
-The course draws on two guiding texts, but it does not force a textbook citation into every explanation. This page records where each text directly supports the teaching spine and where the MasterClass moves into computational workflows or dynamic extensions developed from other cited sources.
+The [course overview](index.qmd#guiding-texts-and-how-the-course-uses-them)
+explains the distinct roles of the two guiding books. Each weekly page begins
+with the specific chapters, papers or software documentation that genuinely
+support that week's work. All readings are optional.
 
-- **Edelsbrunner and Harer, *Computational Topology*** supplies the computational-complex and persistent-homology spine [@edelsbrunner2010computational].
-- **Postol, *Algebraic Topology*** supplies a more traditional route through the algebraic-topology foundations [@postol2024algebraic].
+## Data currently included
 
-## How to use the map
+### Datasaurus Dozen
 
-**Preparatory** means background that can be consulted before the week. **Core companion** means the chapter closely supports the week's main argument. **Supplementary** means it offers another route but is not required to follow the course.
+The Week 1 notebook uses the Datasaurus Dozen from Matejka and Fitzmaurice
+[@matejka2017samestats], distributed through the `datasauRus` package
+[@gillespie2025datasaurus]. The included CSV contains all thirteen datasets.
+Its provenance and reproduced MIT licence are stored beside the
+[course data](data/README.md).
 
-The research papers listed below are **optional**. They are routes into provenance, applications or advanced frameworks, not additional required weekly reading.
+No other externally sourced dataset is currently distributed with the course.
+The examples in later weeks are synthetic and are labelled as such.
 
-| Course material | Role of the guiding texts |
-|---|---|
-| [Topology survival guide](weeks/week-01/topology-survival-guide.qmd) | No single assigned passage. The guide supplies only the point-set topology needed to read Week 1. |
-| [Week 1: shape and topology](weeks/week-01/index.qmd) | Conceptual motivation assembled for the dynamical systems audience; neither guiding text is treated as a required opening chapter. |
-| [Algebra survival guide](weeks/week-02/algebra-survival-guide.qmd) | **Preparatory:** Postol, Chapter 3. Edelsbrunner and Harer, Chapter IV is the later destination for the matrix language, not the source of the first-year refresher. |
-| [Week 2: simplicial complexes and homology](weeks/week-02/index.qmd) | **Core companions:** Edelsbrunner and Harer, Chapters III.1 and IV; Postol, Section 4.1. |
-| [Week 3: filtrations](weeks/week-03/index.qmd) | **Core companion:** Edelsbrunner and Harer, Chapter III, especially III.2 for Čech and Rips. **Supplementary:** Postol, Chapter 5. |
-| [Week 4: persistent homology](weeks/week-04/index.qmd) | **Core companion:** Edelsbrunner and Harer, Chapters VII–VIII. **Supplementary:** Postol, Chapter 5. |
-| [Week 5: static workflows](weeks/week-05/index.qmd) | The guiding texts support the underlying complexes and persistence. The software workflows use the sources and documentation cited on the weekly page and in the notebooks. |
-| [Week 6: summaries and validation](weeks/week-06/index.qmd) | The persistence foundations remain relevant, but the comparison summaries, surrogate design and validation argument use the sources cited on the weekly page. |
-| [Week 7: repeated persistence through time](weeks/week-07/index.qmd) | This dynamic workflow extends beyond the main coverage of the two guiding texts. Follow the research references attached to the constructions and examples. |
-| [Week 8: advanced dynamic frameworks](weeks/week-08/index.qmd) | Zigzag, multiparameter, vineyard and vineyard-module material requires the research literature cited in Week 8; the two guiding texts remain background rather than direct companions. |
+## Candidate public datasets
 
-## Optional papers and data provenance
+These are development candidates, not bundled course data. Before adopting
+one, retain its licence and provenance, create a documented teaching subset,
+and state the preprocessing and interpretation limits.
 
-| Course connection | Optional source | Why it is here |
-|---|---|---|
-| Week 1 notebook data | Matejka and Fitzmaurice, “Same Stats, Different Graphs” [@matejka2017samestats], together with the `datasauRus` data-package record [@gillespie2025datasaurus] | Provenance for the included Datasaurus Dozen CSV and the construction that holds familiar summaries approximately fixed while changing visible organisation. This is the only externally sourced dataset currently shipped with the notebooks. |
-| Week 7, dynamic aggregation | Topaz, Ziegelmeier and Halverson, “Topological Data Analysis of Biological Aggregation Models” [@topaz2015aggregation] | A dynamical systems application using simulation frames, Betti numbers across time and scale, and comparisons with conventional order parameters. The Week 7 notebook uses its own small synthetic teaching example rather than reproducing these simulation data. |
-| Week 8, zigzag persistence | Carlsson and de Silva, “Zigzag Persistence” [@carlsson2010zigzag] | The foundational route for persistence when maps legitimately point in both directions because spaces or representations grow and shrink. |
-| Week 8, vineyards | Cohen-Steiner, Edelsbrunner and Morozov, “Vines and Vineyards by Updating Persistence in Linear Time” [@cohensteiner2006vineyards] | Introduces vineyards for a continuously changing family of persistence diagrams and includes a protein-folding application. |
-| Week 8, multiparameter persistence | Carlsson and Zomorodian, “The Theory of Multidimensional Persistence” [@carlsson2009multidimensional] | Explains why several genuine filtration parameters require a different algebraic framework and why an ordinary one-dimensional barcode is no longer a complete invariant. |
-| Week 8, vineyard modules | Turner, “Representing Vineyard Modules” [@turner2023vineyard] | The course’s direct source for the extra algebraic information retained by vineyard modules beyond visible vines. |
-| Week 4, persistence and stability | Edelsbrunner, Letscher and Zomorodian [@edelsbrunner2002persistence] and Zomorodian and Carlsson [@zomorodian2005computing] | The foundational filtration, algorithm and algebraic-classification route that predates the stability theorem. Cohen-Steiner, Edelsbrunner and Harer [@cohensteiner2007stability] then give the original bottleneck-stability theorem for tame functions on a common space. Chazal, de Silva and Oudot [@chazal2014geometric] provide the separate geometric-complex route relevant to Rips and Čech filtrations on metric data. |
+### Fish-school collective U-turn trajectories
 
-## Citation convention
+The [Dryad collection](https://doi.org/10.5061/dryad.9m6d2) is the strongest
+match to the dynamical and complex systems audience. One short trial could
+support point-cloud or interaction-graph constructions, repeated persistence
+and a later zigzag discussion. Compare any topology with speed, polarisation,
+nearest-neighbour distance and recorded U-turn times. The full collection is
+large, so a teaching version should use one small, documented trial.
 
-The main notes cite a chapter where a definition, theorem or computational convention is used directly. Broader source orientation remains on this page so that the teaching prose can focus on explanation. Notebooks cite a source only when it clarifies a convention or the provenance of an implemented construction.
+### MIT-BIH Arrhythmia Database
 
-## Candidate public datasets for Weeks 5–8
+The [PhysioNet collection](https://physionet.org/content/mitdb/1.0.0/) could
+support delay-coordinate clouds from short ECG windows and comparisons through
+annotated rhythm transitions. Compare with heart rate, spectral power and beat
+annotations, and vary delay, embedding dimension and window length. Use only
+short, non-diagnostic excerpts and make no clinical claim.
 
-These datasets are **not yet bundled with the course**. They are a research shortlist for later practicals. Any adopted dataset should be reduced to a documented teaching subset, with its licence and provenance retained beside the derived file.
+### NASA IMS bearing degradation data
 
-| Candidate | Natural course use | Baseline and modelling questions | Practical assessment |
-|---|---|---|---|
-| [Fish-school collective U-turn trajectories](https://doi.org/10.5061/dryad.9m6d2) | **Weeks 5, 7 and 8.** Construct position clouds or interaction graphs at each frame; compare repeated persistence through time; investigate growing and shrinking neighbourhood relations as a possible zigzag problem. | Compare topology with speed, polarisation, nearest-neighbour distance and the recorded U-turn times. Decide whether positions, headings or an interaction graph are the scientific object of analysis. | Best match to the dynamical and complex systems audience. Dryad provides group-size-specific downloads, but the full collection is about 740 MB. Begin with one short trial from a small group and document identity gaps and coordinate conventions. |
-| [MIT-BIH Arrhythmia Database](https://physionet.org/content/mitdb/1.0.0/) | **Weeks 5–7.** Build delay-coordinate clouds from short ECG windows; compare persistence summaries between rhythms or through annotated transitions. | Compare with heart rate, spectral power and established beat annotations. Vary delay, embedding dimension, window length and noise handling. | Strong, well-documented signal example: 48 two-channel half-hour records, beat annotations and an Open Data Commons Attribution licence. Use a few short, non-diagnostic excerpts and state that the exercise makes no clinical claim. |
-| [NASA IMS bearing degradation data](https://catalog.data.gov/dataset/ims-bearings) | **Weeks 6 and 7.** Follow vibration-window representations and persistence summaries over a run-to-failure experiment. | Compare with RMS vibration, kurtosis and spectral features. Test whether a topological summary changes before or merely alongside conventional condition indicators. | Strong industry route with public access and US-government reuse terms. The raw vibration archive requires windowing and careful control for operating condition, so provide a small pre-indexed subset rather than the full archive. |
-| [UCI Human Activity Recognition using Smartphones](https://archive.ics.uci.edu/dataset/240/human%2Bactivity%2Brecognition%2B) | **Weeks 5–7.** Compare point-cloud representations of accelerometer and gyroscope windows across six activities or follow topology across postural transitions. | Compare with classification, clustering, covariance and spectral baselines. Contrast raw inertial signals with the supplied 561-feature representation and avoid treating overlapping windows as independent observations. | Accessible and CC BY 4.0, with 30 participants and clearly labelled activities. The full download is about 58 MB. Subject-level splitting is essential to avoid leakage. |
-| [UCI Air Quality sensor data](https://archive.ics.uci.edu/dataset/360/air%2B) | **Weeks 5–8.** Study multivariate sensor-state clouds, drift through time, or two-parameter questions involving neighbourhood scale and time or environmental conditions. | Compare with PCA, regression residuals, seasonality and drift diagnostics. Missing values coded as $-200$ must be removed before any distance calculation. | Technically convenient at under 2 MB, with 9,358 hourly observations. The repository page displays CC BY 4.0 metadata but also older research-only wording, so resolve the usage terms before redistributing a derived course file. |
+The [bearing dataset](https://catalog.data.gov/dataset/ims-bearings) offers an
+industry route through vibration windows over a run-to-failure experiment.
+Compare persistence summaries with RMS vibration, kurtosis and spectral
+features. A course version should provide a small pre-indexed subset rather
+than the full raw archive.
 
-**Recommended development order.** Prototype one short fish-school trial first because it extends the existing synthetic swarm narrative into real collective-motion data. Add either MIT-BIH or NASA IMS as a contrasting signal-based route. Keep the UCI datasets as lower-friction alternatives for data-analysis cohorts.
+### UCI Human Activity Recognition
+
+The [smartphone activity dataset](https://archive.ics.uci.edu/dataset/240/human%2Bactivity%2Brecognition%2B)
+could compare accelerometer and gyroscope windows across activities or through
+postural transitions. Compare with covariance, spectral and classification
+baselines. Subject-level splitting is essential because overlapping windows
+must not be treated as independent observations.
+
+### UCI Air Quality
+
+The [air-quality sensor dataset](https://archive.ics.uci.edu/dataset/360/air%2B)
+could support multivariate state clouds, sensor drift and later two-parameter
+questions. Compare with PCA, regression residuals and seasonality. Missing
+values encoded as $-200$ must be removed before computing distances, and the
+reuse terms should be resolved before redistributing a derived course file.

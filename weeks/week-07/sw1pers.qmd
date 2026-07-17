@@ -1,0 +1,56 @@
+---
+title: "Week 7 subtopic: SW1PerS and periodicity"
+subtitle: "Optional extension for scalar signals"
+toc: true
+---
+
+::: {.callout-important title="Expert-level optional subtopic"}
+This page is not required for the main repeated-persistence argument. Retain
+the high-level idea, then skip the detailed construction unless periodicity in
+scalar signals is relevant to your work.
+:::
+
+## The high-level idea
+
+A periodic scalar signal repeatedly returns to the same phase. Sliding-window
+coordinates turn consecutive signal values into a point cloud. After suitable
+centring and normalisation, a clean periodic signal tends to trace a loop in
+that cloud. Persistent $H_1$ measures how strongly that loop is supported.
+
+This provides a topological route to a familiar dynamical question:
+
+> Does the signal repeatedly traverse one coherent cycle, rather than merely
+> oscillating irregularly or changing frequency?
+
+## Construction
+
+For a sampled signal $x(t)$, define
+
+$$
+\operatorname{SW}_{m,\tau}x(t)
+=(x(t),x(t+\tau),\ldots,x(t+m\tau)).
+$$
+
+The window dimension $m$, lag $\tau$, sampling rate, centring and normalisation
+are representation choices. Rips persistence is then computed on the window
+vectors. SW1PerS develops this idea into a periodicity score
+[@perea2015sw1pers].
+
+:::: {.worked-example}
+### Periodic signal versus chirp
+
+A sinusoid repeatedly traces the same phase cycle. A chirp continues to
+oscillate, but its changing frequency prevents one fixed sliding-window loop
+from being revisited in the same way. The optional final section of the
+[Week 7 participant notebook](lab.ipynb) compares their maximum $H_1$
+persistence.
+::::
+
+## Interpretation boundary
+
+A persistent loop supports periodic organisation in the chosen sliding-window
+representation. It is not a generic detector of every form of oscillation and
+does not identify a governing mechanism. Lag, dimension and sampling must be
+varied before the score is interpreted.
+
+[Return to the Week 7 core](index.qmd).

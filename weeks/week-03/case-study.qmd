@@ -1,29 +1,59 @@
 ---
-title: "Week 3 application: Filtrations: setting the complex in motion"
-subtitle: "A reusable real-data case-study shell"
+title: "Week 3 application: resolving a sampled attractor"
+subtitle: "From state-space observations to a filtration"
 toc: true
 ---
 
-## Problem
+## Scientific question
 
-State a concrete decision or scientific question before introducing topology.
+At what resolutions does a sampled state-space trajectory support connected,
+loop-like or more complicated organisation? A single neighbourhood threshold
+cannot answer this robustly because it selects one resolution in advance.
 
-## Data object
+## Observed and constructed objects
 
-What is directly observed? What preprocessing or representation is constructed?
+The scientific object is a dynamical system. The observed object is a finite
+trajectory. The point cloud is formed either from measured state vectors or
+from delay coordinates. These are three different objects:
 
-## Topological construction
+$$
+\text{system}\longrightarrow\text{sampled trajectory}
+\longrightarrow\text{state-space point cloud}.
+$$
 
-Name the complex, filtration, coefficient field and homology dimensions.
+The second arrow includes choices of coordinates, standardisation, lag,
+embedding dimension and sampling. Week 3 then constructs a Rips filtration
+$\{K_\varepsilon\}$ from the chosen metric on the point cloud.
 
-## Baseline
+## What the filtration contributes
 
-What simpler geometric, graph-theoretic or statistical quantity must topology outperform or complement?
+At very small $\varepsilon$, most sampled states are isolated. As
+$\varepsilon$ increases, nearby states connect, cycles may form, and later
+simplices may fill them. The filtration retains all these resolutions and the
+inclusions between them instead of selecting one threshold.
 
-## Result
+For a Lorenz-type trajectory, it is tempting to read the two visible lobes as
+two components or two holes. That reading is not automatic. Sampling along a
+trajectory, metric scaling and transitions between lobes determine which
+complexes actually appear.
 
-Show the result in a form legible to someone who has not taken the full MasterClass.
+## Baseline and sensitivity
+
+Compare the filtration with a phase portrait, recurrence plot, nearest-neighbour
+spacing and a clustering summary. Repeat after changing sampling density,
+coordinate scaling, metric and, when delay coordinates are used, lag and
+embedding dimension.
 
 ## Interpretation boundary
 
-What may be concluded, and what would overstate the evidence?
+The filtration describes how one representation connects across resolution.
+It does not yet say which features persist, and it does not prove that the
+sampled cloud has recovered the topology of an invariant set. Week 4 adds the
+homology maps needed to follow classes through the filtration.
+
+::: {.callout-note title="Planned data extension"}
+The present example is a conceptual Lorenz route, not a reported empirical
+result. A later notebook should compare a deterministic Lorenz trajectory with
+a carefully chosen surrogate while holding sample size and preprocessing
+fixed.
+:::

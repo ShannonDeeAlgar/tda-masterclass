@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 390" role="img" aria-labelledby="title desc">
+  <title id="title">A height sublevel filtration</title>
+  <desc id="desc">Three top-down contour maps of the same two-valley landscape. At a low height the included regions are separate, at a middle height they join across a saddle, and at a high level one larger region is included.</desc>
+  <defs>
+    <style>.panel{fill:#fff;stroke:#d8d8d8;stroke-width:1.5}.contour{fill:none;stroke:#777;stroke-width:1.5}.sub{fill:#8ebbd5;stroke:#245b8a;stroke-width:2;fill-opacity:.72}.label{font:20px Georgia,serif;fill:#222}.small{font:16px Georgia,serif;fill:#444}.mark{font:italic 17px Georgia,serif;fill:#a23f4b}</style>
+  </defs>
+  <rect width="1080" height="390" fill="#fff"/>
+  <text class="label" x="540" y="28" text-anchor="middle">Sublevel set: include every location whose height is at most a</text>
+
+  <g transform="translate(18,45)">
+    <rect class="panel" width="330" height="320" rx="8"/>
+    <ellipse class="contour" cx="110" cy="145" rx="74" ry="93"/><ellipse class="contour" cx="220" cy="145" rx="74" ry="93"/>
+    <ellipse class="contour" cx="110" cy="145" rx="50" ry="66"/><ellipse class="contour" cx="220" cy="145" rx="50" ry="66"/>
+    <ellipse class="sub" cx="110" cy="145" rx="27" ry="38"/><ellipse class="sub" cx="220" cy="145" rx="27" ry="38"/>
+    <text class="mark" x="165" y="38" text-anchor="middle">a₁</text>
+    <text class="label" x="165" y="280" text-anchor="middle">low threshold</text><text class="small" x="165" y="301" text-anchor="middle">two valley components</text>
+  </g>
+
+  <g transform="translate(378,45)">
+    <rect class="panel" width="330" height="320" rx="8"/>
+    <ellipse class="contour" cx="110" cy="145" rx="74" ry="93"/><ellipse class="contour" cx="220" cy="145" rx="74" ry="93"/>
+    <ellipse class="contour" cx="110" cy="145" rx="50" ry="66"/><ellipse class="contour" cx="220" cy="145" rx="50" ry="66"/>
+    <path class="sub" d="M53 145 C53 91 77 65 111 65 C140 65 151 104 165 112 C179 104 190 65 219 65 C253 65 277 91 277 145 C277 199 253 225 219 225 C190 225 179 186 165 178 C151 186 140 225 111 225 C77 225 53 199 53 145 Z"/>
+    <text class="mark" x="165" y="38" text-anchor="middle">a₂</text>
+    <text class="label" x="165" y="280" text-anchor="middle">middle threshold</text><text class="small" x="165" y="301" text-anchor="middle">components join at the saddle</text>
+  </g>
+
+  <g transform="translate(738,45)">
+    <rect class="panel" width="330" height="320" rx="8"/>
+    <ellipse class="sub" cx="165" cy="145" rx="137" ry="112"/>
+    <ellipse class="contour" cx="110" cy="145" rx="74" ry="93"/><ellipse class="contour" cx="220" cy="145" rx="74" ry="93"/>
+    <ellipse class="contour" cx="110" cy="145" rx="50" ry="66"/><ellipse class="contour" cx="220" cy="145" rx="50" ry="66"/>
+    <text class="mark" x="165" y="25" text-anchor="middle">a₃</text>
+    <text class="label" x="165" y="280" text-anchor="middle">high threshold</text><text class="small" x="165" y="301" text-anchor="middle">one larger included region</text>
+  </g>
+</svg>

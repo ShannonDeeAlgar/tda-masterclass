@@ -1,5 +1,5 @@
 ---
-title: "Week 8: Beyond ordinary persistence: which advanced tool solves which problem?"
+title: "Week 8: Topology for genuinely changing systems"
 toc: true
 ---
 
@@ -9,284 +9,203 @@ toc: true
 
 <a class="btn btn-primary" href="../../downloads/week-08-participant.ipynb" download="week-08-participant.ipynb">Download participant notebook</a>
 
+::: {.callout-note title="Optional reading for this topic"}
+Carlsson and de Silva develop zigzag persistence [@carlsson2010zigzag]. Xian
+and collaborators compare several routes for time-varying topology
+[@xian2022dynamics]. Multiparameter and vineyard papers are linked from their
+expert subtopics; they are not prerequisites for the core method-selection
+argument.
+:::
+
+::: {.foundation-definition}
+**Where this week sits.** Week 7 recomputed ordinary persistence at each time
+or window. That is sufficient when the question is how a summary changes.
+Week 8 asks what additional mathematical relationships are required when the
+scientific question concerns continuity, correspondence, insertion, deletion
+or transport through physical time.
+:::
+
 ## Learning goals
 
-By the end of this week, you should be able to:
+By the end of this topic, you should be able to:
 
-1. diagnose what ordinary or repeated persistence fails to retain in a dynamic or multiparameter problem;
-2. explain, in applied language, the extra structure supplied by zigzag persistence, multiparameter persistence, vineyards and vineyard modules;
-3. recognise which framework a technical paper is using by identifying its indexing set, objects and maps;
-4. justify an advanced framework only when its extra structure matters to the scientific question; and
-5. follow the two parameter directions in the Turner example and interpret, at a conceptual level, what an off-diagonal transport term over $\mathbb F_2$ records.
+1. explain what repeated persistence fails to retain;
+2. distinguish tracking observations from tracking topological classes;
+3. choose among correspondence-based tracking, zigzag persistence,
+   multiparameter persistence and vineyards by naming the required objects and
+   maps;
+4. explain the assumptions and interpretation cost added by each choice; and
+5. recognise vineyard modules as an expert extension rather than a default
+   method for dynamic data.
 
-::: {.callout-important title="Core versus research extension"}
-**Core Week 8:** diagnose whether the problem needs ordinary persistence,
-repeated persistence, zigzag persistence, multiparameter persistence or a
-vineyard. Be able to name the extra structure and cost of each escalation.
+## Start with the missing relationship
 
-**Research extension:** analyse the Turner example, transport matrices,
-vineyard modules and indecomposability. This material supports the Discovery
-Project direction but is not required for every participant.
-:::
+Suppose Week 7 produces diagrams
 
-## Escalation map
+$$D_0,D_1,\ldots,D_T.$$
 
-::: {.callout-tip title="Diagnose before escalating"}
-The [participant practical](lab.ipynb) presents short scenarios in which you decide what ordinary or repeated persistence fails to retain. The [lecture walkthrough](solutions.ipynb) connects those decisions to the advanced frameworks below and then works through the Turner transport example.
-:::
+This sequence tells us how the distribution of births and deaths changes. It
+does not say that a point in $D_t$ and a nearby point in $D_{t+1}$ are the same
+feature. It also does not provide maps between the underlying complexes or
+homology spaces.
 
-| Failure of the simpler method | Candidate framework | Extra structure retained |
+Before choosing another method, ask what relationship the scientific question
+requires:
+
+| Required relationship | Possible route | Additional assumption |
 |---|---|---|
-| Complex only grows | Ordinary persistence | Maps along one filtration |
-| Complexes appear and disappear | Zigzag persistence | Maps through insertions and deletions |
-| Two parameters form one partial order | Multiparameter persistence | Jointly indexed module |
-| Fixed complex, smoothly changing filtration | Vineyard | Trajectories of diagram points |
-| Transport maps between time-indexed modules matter | Vineyard module | Coherent inter-module maps |
+| Only change in summary | repeated persistence | frames or windows are comparable |
+| Corresponding observations or agents | track identities first, then compare local topology | reliable observation-level correspondence |
+| Complexes gain and lose simplices | zigzag persistence | scientifically meaningful forward and backward inclusions |
+| Two construction parameters are jointly ordered | multiparameter persistence | compatible maps in both parameter directions |
+| One fixed complex has a smoothly changing filtration | vineyard | fixed scaffold and controlled filtration changes |
+| Linear transport between persistence modules matters | vineyard module | coherent module-level transport data |
 
-The final row is the strongest claim and the highest data burden. It
-should not be selected merely because the observations vary through time.
+The bottom rows are not automatically better. They answer stronger questions
+and require stronger structure.
 
-![Choose an advanced persistence framework according to how the construction changes and which additional structure is scientifically required.](../../assets/week08-escalation-map.svg){fig-alt="A decision tree maps only-growing complexes to ordinary persistence, growing and shrinking complexes to zigzag persistence, several parameters to multiparameter persistence, and smoothly varying filtrations to vineyards, with a further question about labels and types."}
+## Route 1: track the observations before tracking topology
 
-## Story
+In particle, cell or agent data, persistent labels may already tell us which
+observation at time $t$ corresponds to which observation at time $t+1$. That
+does not by itself identify homology classes, but it can support a changing
+graph, a fixed ambient mesh or another scaffold on which maps are defensible.
 
-Week 8 should be organised by problem type rather than by a list of
-advanced methods. The aim is to teach method selection: what breaks in
-ordinary persistence, and which tool responds to that break?
+When labels are unreliable, nearest-neighbour matching can confuse crossing
+trajectories or births and deaths of agents. A topological tracking claim is
+then no stronger than the correspondence model beneath it.
 
-## Case 1: complexes only grow
+::: {.applied-translation}
+**Dynamical systems translation.** A coherent structure may move through
+state space while retaining its role, split into two structures, merge, or
+disappear. A sequence of similar Betti numbers distinguishes none of these
+events. Additional maps or correspondence rules are what give “the same
+feature” mathematical content.
+:::
 
-If complexes only grow, ordinary one-parameter persistence is the
-natural tool. This is the clean barcode setting. The inclusion maps all
-point in the same direction:
-$$K_0\subseteq K_1\subseteq\cdots\subseteq K_n.$$
+## Route 2: zigzag persistence for additions and deletions
 
-## Case 2: complexes grow and shrink
+Ordinary persistence assumes one growing sequence,
 
-If complexes grow and shrink, zigzag persistence is the natural
-extension. Instead of all maps pointing in one direction, the diagram
-can zigzag: $$K_0\to K_1 \leftarrow K_2 \to K_3 \leftarrow \cdots.$$
-Zigzag persistence is designed for insertions and deletions of
-simplices. It is mathematically appropriate for non-monotone sequences,
-but it can be computationally and interpretively heavy.
+$$K_0\longrightarrow K_1\longrightarrow\cdots\longrightarrow K_n.$$
 
-> *Standard persistence tracks features that survive as a space grows.
-> Zigzag persistence tracks features that survive as a space changes.*
+If the representation gains and loses simplices, a zigzag permits arrows in
+both directions:
 
-## Case 3: there is more than one genuine parameter
+$$K_0\longrightarrow K_1\longleftarrow K_2
+\longrightarrow K_3\longleftarrow\cdots.$$
 
-If scale and time, scale and density, or another pair of parameters are
-both genuine, then multiparameter persistence is the relevant framework.
-The warning is essential: the clean barcode decomposition of
-one-parameter persistence does not carry over in the same way.
-Multiparameter persistence may be the right mathematical object even
-when a practical analysis later uses lower-dimensional summaries.
+A backward arrow is not an inverse operation. In
+$K_i\leftarrow K_{i+1}$ it records an inclusion
+$K_{i+1}\subseteq K_i$, with homology following the displayed direction.
+Finite zigzag modules still admit interval decompositions and zigzag barcodes
+[@carlsson2010zigzag].
 
-**† Qualification.**
-The presence of two named variables does not by itself decide the
-framework. The question is whether they form one partial order to be
-analysed jointly, or whether one parameter indexes a controlled family
-of ordinary persistence modules with additional transport data.
+:::: {.worked-example}
+### A transient loop
 
-## Case 4: a fixed complex has a smoothly changing filtration
+Let $K_0$ be the path $a-b-c$. Let $K_1$ add $c-a$, producing a triangular
+outline, and let $K_2$ again be the path. Both paths include into the outline:
 
-Vineyards apply when there is a fixed simplicial complex $K$ and a
-time-dependent filtration function $$f_t:K\to\mathbb{R}.$$ There are now
-two distinct parameters:
-$$\underbrace{t}_{\text{external or physical time}},
-\qquad
-\underbrace{a}_{\text{filtration height or scale}}.$$ At each fixed time
-$t$, the sublevel filtration of $f_t$ produces an ordinary persistence
-module $$V_t(a)=H_p(K_{t,a};\mathbb F)$$ and a persistence diagram
-$D_t$. A vineyard tracks how the birth–death points of $D_t$ move as $t$
-varies. Each tracked curve is a vine.
+$$K_0\longrightarrow K_1\longleftarrow K_2.$$
 
-The useful teaching picture is a landscape whose height function changes
-over time. Ordinary persistence studies flooding one fixed landscape. A
-vineyard studies what happens when the landscape itself slowly morphs.
+Then $H_1(K_0)=0$, $H_1(K_1)\cong\mathbb F_2$ and $H_1(K_2)=0$. The zigzag
+barcode contains a class supported only at the middle index. Unlike three
+unrelated calculations, the arrows state how the objects are connected.
+::::
 
-Vineyards assume controlled change. The set of simplices is fixed,
-filtration values vary continuously, and changes in the filtration order
-occur through adjacent swaps. Between swaps, persistence pairings remain
-fixed and vines move linearly or smoothly. At a swap, the reduced
-boundary matrix is updated locally rather than recomputed from scratch.
+Snapshots may not include directly into one another. A union zigzag is one
+possible bridge:
 
-**† Qualification.** A
-vineyard is a geometric record of moving birth–death points. It does not
-automatically retain the full linear maps connecting the persistence
-modules at different times.
+$$
+K_0\to K_0\cup K_1\leftarrow K_1
+\to K_1\cup K_2\leftarrow K_2.
+$$
 
-> *A vineyard is not a stack of unrelated diagrams. It is a
-> one-parameter family of persistence diagrams realised as curves in
-> birth–death–time space.*
+The union is a modelling decision. It asserts that both snapshots embed into
+one meaningful common representation. That assertion must be justified for
+the application.
 
-## Vineyard modules: what the vineyard omits
+## Route 3: two ordered construction parameters
 
-A vineyard module retains more than the visible trajectories. It
-consists of the persistence module $V_t$ at each external time together
-with coherent interleaving maps between the modules at different times.
-Schematically, the horizontal direction is ordinary persistence through
-filtration height, while the vertical direction transports information
-through physical time: $$\begin{array}{ccccc}
-V_s(a)&\longrightarrow&V_s(b)&\longrightarrow&V_s(c)\\
-\downarrow&&\downarrow&&\downarrow\\
-V_t(a+\varepsilon)&\longrightarrow&
-V_t(b+\varepsilon)&\longrightarrow&
-V_t(c+\varepsilon).
-\end{array}$$
+Multiparameter persistence is appropriate when both axes supply compatible
+inclusions. The [Week 7 expert subtopic](../week-07/multiparameter.qmd) develops
+a scale-by-codensity example.
 
-**▶ Likely sticking point.** For a single well-behaved one-parameter module,
-its barcode classifies the module up to isomorphism. But the source and
-target barcodes do not classify a particular map between two modules.
-Dynamic questions may depend on those maps.
+Physical time can be a second ordered parameter for cumulative data, such as
+all observations acquired up to $t$. Independent frames generally do not form
+a bifiltration merely because their timestamps are ordered.
 
-A direct sum of vine modules would mean that each visible vine can be
-treated as one independent algebraic feature for all time:
-$$I[\gamma_1]\oplus\cdots\oplus I[\gamma_m].$$ Turner’s central point is
-that a vineyard may visibly contain several vines while its vineyard
-module is nevertheless indecomposable. The homology generators can mix
-under transport through time.
+::: {.callout-note title="Expert-level detail: safe to skip"}
+General multiparameter modules lack the complete interval-barcode
+classification available in one parameter. Understanding the two families of
+compatible maps is sufficient here; representation theory and specialised
+invariants are optional.
+:::
 
-## Concrete reading of Turner Figure 1
+## Route 4: vineyards on a fixed changing scaffold
 
-Use Figure 1 of Turner, [*Representing Vineyard
-Modules*](https://arxiv.org/abs/2307.06020), as the concrete example.
+Suppose one fixed complex $K$ carries a filtration function
+$f_t:K\to\mathbb R$ that changes continuously with external time $t$. At each
+time, the sublevel filtration produces a diagram $D_t$. A **vineyard** follows
+the birth-death points as curves, called vines, through birth-death-time space
+[@cohensteiner2006vineyards].
 
-The domain is a disc divided into four pieces:
+The high-level picture is a landscape whose height function changes. Ordinary
+persistence floods one fixed landscape. A vineyard follows persistence while
+the landscape itself deforms.
 
-- $A$: the open inner disc;
+The assumptions matter. The simplices remain fixed and only their filtration
+values vary in a controlled way. A moving point-cloud Rips filtration may
+violate this picture because many distance orderings and simplices can change
+globally.
 
-- $B$: the inner boundary circle;
+> A vineyard is more than a stack of unrelated diagrams, but it is not
+> automatically a complete account of linear transport between modules.
 
-- $C$: the open surrounding annulus;
+For the detailed critical-value construction, transport matrix and
+indecomposability argument, continue to the [expert vineyard
+submodule](vineyards-extension.qmd).
 
-- $D$: the outer boundary circle.
+## Choosing a fixed scaffold
 
-The time-dependent function assigns
-$$f_t(A)=21-t,\qquad f_t(B)=14-t,\qquad
-f_t(C)=15+t,\qquad f_t(D)=t.$$
+For dynamic applications, two plausible scaffolds are:
 
-**◇ Object check.**
-The horizontal axis in the figure is external time $t$. The vertical
-axis is filtration height $a$. The four black sloping lines are the
-values of $f_t$ on $A,B,C,D$. At a fixed $t$, move vertically upward to
-watch the sublevel set acquire these four pieces.
+1. a fixed interaction graph or clique complex whose weights change through
+   time; or
+2. a fixed ambient grid or mesh carrying a changing density, activity or
+   potential field.
 
-The critical ordering changes when lines cross:
-$$f_3(A)=f_3(C),\qquad f_7(B)=f_7(D).$$ Hence the dashed vertical lines
-at $t=3$ and $t=7$ divide three regimes. At every fixed time there are
-two $H_1$ bars: $$[14-t,21-t)
-\qquad\text{and}\qquad
-[t,15+t).$$ The coloured vertical segments drawn at selected times are
-these bars. Following each colour through time produces a vine.
+These choices change the object being interpreted. The resulting topology
+belongs to the interaction scaffold or ambient field, not directly to the raw
+moving points.
 
-The first bar is born when $B$ enters and dies when $A$ fills its inner
-loop. The second is born when $D$ enters and dies when $C$ fills the
-annular class.
+## What can be skipped
 
-**▶ Likely sticking point.** The coloured curves make the example look like
-two independent features, but the visible vines do not determine how
-their homology generators are transported through time. That missing
-information is exactly what the vineyard module retains.
+For the general MasterClass audience, retain the method-selection logic and
+the transient zigzag example. The following are expert-level developments:
 
-## Why the Figure 1 module is indecomposable
+- multiparameter classification and algorithms;
+- vineyard update algorithms;
+- coherent inter-module transport maps;
+- vineyard modules and indecomposability; and
+- paper-specific matrix decompositions.
 
-Before the first critical event, a natural basis is $$[B],\qquad[D+B],$$
-whereas after the second critical event the forced basis is
-$$[B],\qquad[D].$$ Over $\mathbb F_2$, $$[D]=[D+B]+[B].$$ Thus the
-change of basis mixes the two visible vines. After coherent
-simplification, an off-diagonal term remains in a transport matrix of
-the form $$\begin{pmatrix}
-1&1\\
-0&1
-\end{pmatrix}.$$
+Skipping those details does not interrupt the main course argument.
 
-The off-diagonal $1$ means that transporting the second generator
-through time necessarily picks up part of the first. There is no
-globally coherent choice of bases that turns the family into two
-independent $1\times 1$ problems.
+## Planned data example
 
-> *Two visible vines do not necessarily mean two independent evolving
-> homology classes.*
+::: {.callout-note title="A real dynamic dataset is still needed"}
+This topic currently uses transparent mathematical and synthetic examples. A
+later data module should compare repeated persistence with one justified
+non-snapshot method on a public time-varying dataset. It must state the
+correspondence or scaffold assumptions, use an ordinary dynamic baseline, and
+show when the added structure changes the conclusion.
+:::
 
-This is the conceptual reason to care about persistence modules rather
-than only diagrams: the diagram records where classes are born and die;
-the module-level maps record how classes are related and transported.
+## Interpretation boundary
 
-## Why vineyards are delicate
-
-Smooth motion of points does not necessarily imply smooth behaviour of
-the filtration order. In a moving point cloud, many distances can change
-relative order at once. Edges, triangles and higher-dimensional
-simplices can undergo large global reorderings. This makes it hard to
-identify the same topological feature across time. The persistence
-diagram may be stable in bottleneck distance, while feature identity is
-still unstable.
-
-This is the distinction to emphasise:
-$$\text{diagram stability} \neq \text{reliable feature tracking}.$$
-
-## Case 5: labels, colours or types matter
-
-If points, regions or agents carry labels, colours or types, ordinary
-persistence may ignore the structure of interest. Chromatic or
-relative-style methods ask how different classes spatially mingle,
-separate or interact. Relative homology, image persistence, kernel
-persistence and cokernel persistence can be introduced conceptually here
-as tools for asking what part of a feature belongs to, is contributed
-by, or is shared across different subobjects.
-
-## DP relevance
-
-For swarms or physical reservoirs, vineyards are attractive because they
-offer feature identity, continuous trajectories and potential online
-updates. But they are also high risk. A literal moving point-cloud Rips
-filtration may not satisfy the assumptions needed for vineyard tracking.
-
-Two more plausible strategies are:
-
-1.  fix an interaction-graph or clique-complex scaffold and let edge or
-    simplex weights vary smoothly through time;
-
-2.  fix an ambient mesh and define a smooth density or activity field
-    from the swarm or reservoir state.
-
-Both strategies disconnect the fixed simplicial object from the raw
-moving agent geometry. The topology then belongs to an interaction
-structure or ambient field rather than directly to the moving point
-cloud.
-
-## Software scope: Python first, Julia as a research extension
-
-The implemented course should retain Python as its primary environment.
-GUDHI supplies simplex-tree, Rips and cubical representations together
-with persistent-cohomology tools, while Ripser.py provides a focused
-interface for Rips persistence on point clouds and distance matrices.
-This covers the static, validation and repeated-persistence workflows
-used in Weeks 4–7.
-
-Julia becomes attractive when the surrounding dynamical simulation or
-numerical workflow is already written in Julia, or when a benchmark of
-the pure-Julia Ripserer implementation is scientifically useful.
-Ripserer supports ordinary persistence computations and representative
-cocycle workflows. It should not be introduced merely to reproduce the
-same classroom barcode in a second language.
-
-Interoperability is feasible through PythonCall/JuliaCall, including
-controlled conversion and non-copying array exchange. For a research
-prototype, prefer a narrow boundary: exchange point arrays, distance
-matrices or persistence intervals, rather than passing live complex
-objects between runtimes.
-
-**Current recommendation.** Keep the reproducible teaching pipeline in
-Python. Add a Julia benchmark only when the DP simulation is Julia-native
-or when profiling identifies persistence computation as a real
-bottleneck. Treat zigzag, multiparameter and vineyard-module computation
-as separate research evaluations; ordinary Ripser interoperability does
-not supply those methods automatically.
-
-Official capability references: [GUDHI Python
-documentation](https://gudhi.inria.fr/python/latest/), [Ripser.py
-documentation](https://ripser.scikit-tda.org/en/latest/reference/stubs/ripser.ripser.html),
-[Ripserer.jl documentation](https://mtsch.github.io/Ripserer.jl/v0.14/),
-and [PythonCall/JuliaCall](https://juliapy.github.io/PythonCall.jl/stable/).
+No advanced method creates physical feature identity from timestamps alone.
+Zigzags, multiparameter modules and vineyards formalise different kinds of
+relationships. The scientific conclusion is only as defensible as the maps,
+correspondences and scaffolds used to construct them.

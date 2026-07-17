@@ -1,5 +1,5 @@
 ---
-title: "Week 4: Persistent homology: homology with memory"
+title: "Week 4: Persistent homology"
 toc: true
 ---
 
@@ -8,6 +8,15 @@ toc: true
 :::
 
 <a class="btn btn-primary" href="../../downloads/week-04-participant.ipynb" download="week-04-participant.ipynb">Download participant notebook</a>
+
+::: {.callout-note title="Optional reading for this week"}
+Edelsbrunner and Harer, Chapters VII.1–VII.2, develop persistent homology and
+matrix reduction. Postol, Sections 5.1–5.3, gives a compact route through
+persistence modules and barcodes. For the historical development, see
+Edelsbrunner, Letscher and Zomorodian [@edelsbrunner2002persistence],
+and Zomorodian and Carlsson [@zomorodian2005computing]. Diagram distances and
+stability now belong to Week 6.
+:::
 
 ::: {.foundation-definition}
 **[Guiding definition for Weeks 1–4](../../index.qmd#the-guiding-construction-for-weeks-14).** For a filtration $K_a\subseteq K_b$ when $a\leq b$, persistent homology is the module
@@ -32,7 +41,10 @@ $K_a\subseteq K_b$ across scale.
 ::: {.foundation-step .is-active}
 **4 · Memory**
 
-Induced maps, module and barcode.
+Induced maps, module and barcode. Weeks 2 and 3 supplied the homology spaces
+$H_p(K_a;\mathbb F)$ and nested complexes $K_a\subseteq K_b$. This week adds
+the induced maps between those spaces: homology with memory, recording what
+earlier classes become later, when they merge and when they become boundaries.
 :::
 :::
 :::
@@ -45,17 +57,20 @@ By the end of this week, you should be able to:
 2. explain the birth and death of a feature in terms of cycles, images and newly available boundaries;
 3. distinguish the persistence module from its interval decomposition, barcode and persistence diagram when reading a technical account;
 4. read a hand-worked or library-generated barcode using the stated scale convention and connect each interval to the underlying filtration; and
-5. explain why persistence, mathematical stability and scientific importance are different claims.
+5. explain why persistence across a filtration is not automatically scientific importance.
 
-## Story
+## Why maps across scale are needed
 
-Week 4 completes the [guiding construction introduced on the course
-overview](../../index.qmd#the-guiding-construction-for-weeks-14).
-Weeks 2 and 3 supplied the homology spaces $H_p(K_a;\mathbb F)$ and the
-nested complexes $K_a\subseteq K_b$. This week adds the induced maps
-between those homology spaces. Persistent homology is not just “holes at
-many scales”. It is homology with memory: it records which classes are
-born, what they map to later and when they merge or become boundaries.
+[Week 3 used the A, B and C resolution example](../week-03/index.qmd#second-example-filter-by-resolution)
+to motivate a nested family of complexes. We now ask a question that the
+individual complexes cannot answer by themselves: which fine-scale class
+became which intermediate or global class?
+
+Betti numbers at separate scales report only the counts. They do not say which
+fine components became which intermediate components, or whether a later loop
+is the continuation of an earlier one. Inclusions provide that missing
+relationship. Persistent homology applies homology to the inclusions and keeps
+the resulting maps.
 
 ## Mathematics to introduce
 
@@ -286,10 +301,13 @@ the birth simplex $e_{12}$ at $\varepsilon=2$ with the death simplex
 $t_{012}$ at $\varepsilon=3$. The resulting intervals are
 
 $$
-H_0:\quad [0,\infty)\ \sqcup\ [0,1)\ \sqcup\ [0,1),
+\mathcal B_0=\bigl\{[0,\infty),[0,1),[0,1)\bigr\},
 \qquad
-H_1:\quad [2,3).
+\mathcal B_1=\bigl\{[2,3)\bigr\}.
 $$
+
+Here $\mathcal B_p$ denotes the barcode as a multiset of intervals. Repeated
+intervals are retained because they represent distinct homology classes.
 
 Because the three vertices and the two tree edges enter in ties, the
 particular component representative that survives depends on the
@@ -297,139 +315,161 @@ face-compatible order chosen inside each tie. The multiset of displayed
 intervals does not.
 :::
 
+### Return to the house: persistent homology through a richer filtration
+
+::: {.callout-note title="Worked example: the house filtration"}
+Return to the [Week 2 house calculation](../week-02/index.qmd#cycles-boundaries-and-homology-in-the-house),
+using the same vertices, edges, face and coefficients in $\mathbb F_2$. Define
+
+$$
+K_0=\{A,B,C,D,E\},
+$$
+
+then add all five outer edges at $\varepsilon=1$, the roof-base edge $w=EB$
+at $\varepsilon=2$, and the filled roof $t=[A,B,E]$ at $\varepsilon=3$:
+
+$$
+K_0\subset K_1\subset K_2\subset K_3.
+$$
+
+![The house filtration progresses from vertices, to the outer house loop, to two loops after adding the roof-base edge, and finally to one surviving room loop after filling the roof.](../../assets/week04-house-filtration.svg){fig-alt="Four stages show house vertices, the outer house outline, the outline with a roof-base diagonal, and the final complex with its triangular roof filled."}
+
+The homology events are:
+
+| $\varepsilon$ | New simplices | $\beta_0$ | $\beta_1$ | Interpretation |
+|---:|---|---:|---:|---|
+| 0 | five vertices | 5 | 0 | Five component classes are born. |
+| 1 | $x,y,z,u,v$ | 1 | 1 | The graph becomes connected and the outer house cycle is born. |
+| 2 | $w$ | 1 | 2 | The diagonal splits the visible cycle space into roof and room directions. |
+| 3 | $t$ | 1 | 1 | The roof direction becomes a boundary; the room direction remains. |
+
+The dimensions in the table come from the same boundary algebra used in Week
+2. At $K_1$, use the edge basis $(x,y,z,u,v)$. The boundary matrix is
+
+$$
+[\partial_1^{K_1}]=
+\begin{array}{c|ccccc}
+ &x&y&z&u&v\\\hline
+A&1&0&0&0&1\\
+B&1&1&0&0&0\\
+C&0&1&1&0&0\\
+D&0&0&1&1&0\\
+E&0&0&0&1&1
+\end{array}.
+$$
+
+It has rank 4 and
+
+$$
+\ker\partial_1^{K_1}
+=\operatorname{span}\{c\},
+\qquad c=x+y+z+u+v.
+$$
+
+At $K_2$, the new column for $w=EB$ gives the complete matrix
+
+$$
+[\partial_1^{K_2}]=
+\begin{array}{c|cccccc}
+ &x&y&z&u&v&w\\\hline
+A&1&0&0&0&1&0\\
+B&1&1&0&0&0&1\\
+C&0&1&1&0&0&0\\
+D&0&0&1&1&0&0\\
+E&0&0&0&1&1&1
+\end{array}.
+$$
+
+Its rank is still 4, so rank-nullity gives
+$\dim\ker\partial_1^{K_2}=6-4=2$. A basis is
+
+$$
+r=x+v+w,\qquad q=y+z+u+w.
+$$
+
+At $K_3$, the edge matrix is unchanged and the face introduces
+
+$$
+[\partial_2^{K_3}]_{(x,y,z,u,v,w)}
+=
+\begin{pmatrix}1\\0\\0\\0\\1\\1\end{pmatrix},
+$$
+
+whose image is $\operatorname{span}\{r\}$. Therefore
+
+$$
+H_1(K_1)=\operatorname{span}\{[c]\},
+$$
+
+$$
+H_1(K_2)=\operatorname{span}\{[r],[q]\},
+$$
+
+and
+
+$$
+H_1(K_3)
+=\frac{\operatorname{span}\{r,q\}}
+{\operatorname{span}\{r\}}
+=\operatorname{span}\{[q]\}.
+$$
+
+Over $\mathbb F_2$,
+
+$$
+c=r+q.
+$$
+
+Therefore the inclusion-induced map does not merely compare dimensions. It
+records
+
+$$
+(\iota_{1,2})_*([c])=[r+q].
+$$
+
+When the face enters, $\partial_2(t)=r$, so $[r]=0$ in $H_1(K_3)$. Hence
+
+$$
+(\iota_{2,3})_*([r])=0,\qquad
+(\iota_{2,3})_*([q])=[q],
+$$
+
+and, by composition,
+
+$$
+(\iota_{1,3})_*([c])
+=(\iota_{2,3})_*([r+q])=[q].
+$$
+
+The class born as the outer house loop survives, but its convenient geometric
+representative changes to the square room after the roof is filled. A second
+class born when $w$ enters dies when $t$ enters. One compatible interval
+description is therefore
+
+$$
+\mathcal B_1=\bigl\{[1,\infty),[2,3)\bigr\}.
+$$
+
+This example shows why persistent homology needs maps rather than a sequence of
+Betti numbers. The dimensions $1,2,1$ do not by themselves reveal that the
+original class survives from $K_1$ to $K_3$.
+:::
+
 > *A persistence diagram is not just a picture of holes. It is a
 > compressed record of how homology classes survive through a
 > filtration.*
 
-## Stability
+## What happens after the barcode?
 
-### Bottleneck distance
+Week 4 stops once the persistence module and its interval or diagram summary
+are understood. Comparing two diagrams, defining bottleneck and Wasserstein
+distances, and asking whether diagrams are stable under perturbation begin a
+different argument. They are developed together in [Week 6: summaries,
+comparisons and validation](../week-06/index.qmd#direct-diagram-distances).
 
-The theorem compares persistence diagrams using **bottleneck distance**.
-Regard each diagram as a multiset of birth-death points and allow points
-on the diagonal with unlimited multiplicity. A matching may pair an
-off-diagonal point with a point in the other diagram or with the
-diagonal. Its cost is the largest $L^\infty$ distance among all matched
-pairs. The bottleneck distance is the smallest possible such worst cost:
-
-$$
-d_B(D,E)=\inf_{\gamma:D\to E}
-\sup_{x\in D}\lVert x-\gamma(x)\rVert_\infty.
-$$
-
-Matching $(b,d)$ to the diagonal costs $(d-b)/2$, half the persistence
-of its interval. Bottleneck distance therefore asks: after the best
-global matching, how large is the single worst discrepancy between the
-two diagrams? [Week 6](../week-06/index.qmd) compares this worst-case
-summary with Wasserstein distances that accumulate many discrepancies.
-
-### The theorem being used
-
-Fix a homological dimension $p$ and coefficient field $\mathbb F$. Let
-$X$ be a triangulable space, and let $f,g:X\to\mathbb R$ be tame
-functions. Here **tame** is the classical finiteness condition ensuring
-that only finitely many homological changes occur and that the relevant
-homology vector spaces are finite-dimensional. Filter the same space by
-sublevel sets,
-
-$$
-X_a^f=\{x\in X:f(x)\leq a\},
-\qquad
-X_a^g=\{x\in X:g(x)\leq a\}.
-$$
-
-Write $D_p(f)$ and $D_p(g)$ for the resulting persistence diagrams. The
-bottleneck stability theorem states
-
-$$
-d_B\!\left(D_p(f),D_p(g)\right)
-\leq
-\lVert f-g\rVert_\infty,
-\qquad
-\lVert f-g\rVert_\infty
-=\sup_{x\in X}|f(x)-g(x)|.
-$$
-
-Thus the hypotheses identify exactly what is being compared: two
-real-valued functions on the **same domain**, the same sublevel-set
-construction, the same homological dimension and the same coefficient
-field. The original theorem is due to Cohen-Steiner, Edelsbrunner and
-Harer [@cohensteiner2007stability; @edelsbrunner2010computational,
-Chapters VII–VIII].
-
-### How to read the inequality
-
-Suppose $|f(x)-g(x)|\leq0.1$ for every $x\in X$. The theorem guarantees a
-matching in which no birth or death coordinate moves by more than $0.1$.
-A point with persistence greater than $0.2$ lies more than $0.1$ from
-the diagonal, so it cannot simply disappear by being matched to the
-diagonal under this perturbation. It must be matched to an off-diagonal
-point in the other diagram. This does not give a canonical feature
-identity, but it prevents small uniform changes in the function from
-causing an arbitrarily large change in the diagram.
-
-This is important because measured functions contain noise and numerical
-approximations. A useful summary should not change without bound when the
-input changes by a controlled small amount. Stability provides that
-continuity guarantee and underlies convergence arguments in topological
-inference.
-
-### Why this result mattered historically
-
-::: {.historical-note}
-**◷ Historical context: persistence came before stability.**
-
-1. **2002, persistence and an algorithm.** Edelsbrunner, Letscher and
-   Zomorodian formalised persistence for a growing filtered complex and
-   gave algorithms for computing it [@edelsbrunner2002persistence].
-2. **2005, the algebraic framework.** Zomorodian and Carlsson developed
-   the field-coefficient computation and classification through graded
-   modules that underpins the interval and barcode viewpoint
-   [@zomorodian2005computing].
-3. **2007, bottleneck stability.** Cohen-Steiner, Edelsbrunner and Harer
-   proved that a controlled sup-norm perturbation of a tame function
-   produces a controlled bottleneck perturbation of its persistence
-   diagram [@cohensteiner2007stability].
-
-The stability theorem did not single-handedly begin persistent homology.
-Its decisive contribution was to show that persistence diagrams are not
-arbitrarily sensitive summaries. That robustness guarantee is a central
-reason persistent homology became credible for noisy data rather than
-remaining only a multiscale topological construction.
-:::
-
-::: {.object-check}
-**◇ Object check.** The input distance here is the sup norm between
-functions on one space. The output distance is the bottleneck distance
-between their $p$-dimensional persistence diagrams. They are different
-metrics on different objects.
-:::
-
-### What this theorem does not cover automatically
-
-Two sampled point clouds do not generally share a point-for-point domain,
-so the displayed function theorem cannot simply be invoked for them.
-Stability results for Vietoris–Rips, Čech and related geometric
-filtrations instead compare metric spaces using quantities such as
-Gromov–Hausdorff distance, with constants and assumptions determined by
-the construction and scale convention [@chazal2014geometric]. Likewise,
-changing the metric, preprocessing, filtration rule or coefficient field
-is not bounded by $\lVert f-g\rVert_\infty$ unless an additional argument
-connects that change to the theorem.
-
-Stability is not the same as interpretability. A stable feature can
-still result from an unsuitable metric, representation or filtration.
-Nor does a long interval establish statistical significance or improved
-prediction against a baseline.
-
-::: {.data-translation}
-**Data-analysis translation.** Stability answers a sensitivity question:
-if the permitted input perturbation is at most $\delta$, how far can the
-diagram move? It does not answer whether the chosen input representation
-is valid, whether a feature is surprising under a null model, or whether
-it improves prediction. Those require sensitivity analysis, validation
-and comparison with simpler summaries.
-:::
+For now, retain one boundary: a barcode represents the lifetimes encoded by a
+one-parameter persistence module. It does not yet say whether two outputs are
+close, statistically unusual or scientifically important.
 
 ## From hand calculation to software
 
@@ -527,7 +567,7 @@ the topological summary remains informative in a later example where a
 simpler geometric statistic does not already settle the comparison.
 :::
 
-## DP relevance
+## Applied relevance
 
 The DP use is initially diagnostic. Rather than asking whether a
 topological feature exists at one threshold, ask whether it persists

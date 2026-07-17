@@ -1,6 +1,5 @@
 ---
-title: "Week 2: Simplicial complexes and homology: building a computable hole-counter"
-subtitle: "TDA for Static and Dynamic Data"
+title: "Week 2: Simplicial complexes and homology"
 format:
   revealjs:
     theme: [simple, ../../assets/slides.scss]
@@ -13,39 +12,87 @@ execute:
   enabled: false
 ---
 
-## The decision for today
+## Where Week 2 sits
 
-What object are we constructing, what information does it retain, and what scientific claim could it support?
+This week turns a chosen finite representation $K$ into chain vector spaces,
+boundary maps and homology. The purpose of the construction is understanding:
+we want to see exactly how a visible loop becomes an algebraic class, and why
+filling that loop changes the answer.
 
 
 [Lecture walkthrough](solutions.ipynb)
 
 ---
 
-## Story
+## Simplices are filled building blocks
 
-Week 2 moves from qualitative shape to a combinatorial object on which
-topology can be computed. The central message is that a simplicial
-complex is the finite bookkeeping device that lets topology become
-linear algebra. The complex is treated as already chosen. The aim is to
-understand what homology computes once $K$ has been chosen.
+| $p$ | $p$-simplex | vertices |
+|---:|---|---:|
+| 0 | vertex | 1 |
+| 1 | edge | 2 |
+| 2 | filled triangle | 3 |
+| 3 | filled tetrahedron | 4 |
+
+An outline triangle is three edges. It is not a 2-simplex until its face is
+included.
 
 ---
 
-## Mathematics to introduce
+## Read the house as a complex
 
-Geometric simplex: convex hull of $p+1$ affinely independent points.
+![](../../assets/week02-house-complex.svg){fig-alt="A labelled house complex with five vertices, six edges and one filled roof face." height="290"}
 
-Abstract simplex: a set of $p+1$ vertices.
+- $K_0$: vertices $A,B,C,D,E$;
+- $K_1$: edges $x,y,z,u,v,w$;
+- $K_2$: filled roof $t=[A,B,E]$.
 
-$$\sigma\in K,\ \tau\subseteq\sigma\Longrightarrow\tau\in K.$$
+The room interior is absent. The roof interior is present.
 
-The notebooks use abstract complexes: incidence matters; coordinates do not.
+---
 
-**◇ Object check.**
-At this stage, $K$ is the topological/combinatorial object. The vector
-spaces come next: one vector space $C_p(K;\mathbb F)$ for the
-$p$-simplices in each dimension.
+## Downward closure
+
+$$\sigma\in K,\ \varnothing\ne\tau\subseteq\sigma
+\Longrightarrow\tau\in K.$$
+
+If the roof $[A,B,E]$ is present, its three edges and three vertices must also
+be present.
+
+**Counterexample.** A hypergraph may record a four-player football team
+$\{A,B,C,D\}$ without asserting every pairwise relationship. That is a valid
+hyperedge, but it is not a 3-simplex in a simplicial complex.
+
+---
+
+## Chains in the house
+
+$$C_1=\operatorname{span}\{x,y,z,u,v,w\}.$$
+
+A chain is any algebraic selection of edges:
+
+$$y+u \quad\text{is valid even though it is disconnected.}$$
+
+Two useful chains are
+
+$$r=x+v+w\quad\text{(roof)},\qquad
+q=y+z+u+w\quad\text{(room)}.$$
+
+---
+
+## Boundaries in the house
+
+$$\partial_1y=B+C,\qquad \partial_2t=x+v+w=r.$$
+
+For the room outline,
+
+$$
+\partial_1q=(B+C)+(C+D)+(D+E)+(E+B)=0.
+$$
+
+Every vertex occurs twice and cancels over $\mathbb F_2$.
+
+The roof outline also has zero boundary, but it is itself the boundary of the
+filled roof.
 
 ---
 
@@ -130,12 +177,42 @@ rows and columns only make sense after the chain-space bases are named.
 
 ---
 
+## A richer worked example: the house
+
+![](../../assets/week02-house-complex.svg){fig-alt="A labelled house complex with one filled triangular roof and one unfilled square room." height="245"}
+
+The filled roof cycle is a boundary. The square room cycle is not.
+
+$$
+H_0\cong\mathbb F_2,\qquad
+H_1\cong\mathbb F_2,\qquad
+H_2=0.
+$$
+
+The [Week 2 notes](index.qmd#cycles-boundaries-and-homology-in-the-house)
+derive this from the complete boundary matrices.
+
+---
+
 ## Examples to compute
 
 Use a square loop as the simplest visible $H_1$ class and a hollow
 tetrahedron as a first $H_2$ example. Ask explicitly which chains are
 cycles, which cycles are boundaries, and which distinctions survive in
 the quotient.
+
+---
+
+## A graph is not its clique complex
+
+Same vertices. Same edges. Different complex.
+
+Graph alone: the triangle is an $H_1$ cycle.
+
+Clique complex: the triangular 2-simplex fills that cycle.
+
+Clique filling asserts that mutual pairwise interaction represents a coherent
+higher-order unit. That is a modelling choice.
 
 ---
 
@@ -150,16 +227,6 @@ $$\chi(K)=\sum_p(-1)^p\dim C_p
 Euler characteristic is a check, not a replacement for homology.
 
 ---
-
-## DP relevance
-
-Graphs enter as the simplest data-derived complexes. An interaction
-graph can be treated as a one-dimensional simplicial complex, with
-vertices and edges only. This supports component and graph-cycle
-homology. To study higher-dimensional topology, the graph must be
-promoted to another object, such as a clique complex. That promotion is
-a modelling assumption: pairwise mutual interaction is being treated as
-evidence of a higher-order collective unit.
 
 ## Before we leave
 

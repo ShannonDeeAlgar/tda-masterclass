@@ -1,0 +1,65 @@
+---
+title: "Week 7 subtopic: multiparameter persistence"
+subtitle: "Optional extension beyond one ordered scale"
+toc: true
+---
+
+::: {.callout-important title="Expert-level optional subtopic"}
+The main course requires only the high-level distinction: two axes on a plot
+do not automatically define a multiparameter persistence module. The formal
+classification and specialised algorithms can be skipped.
+:::
+
+## The high-level idea
+
+Ordinary persistence follows one ordered parameter. Some constructions have
+two choices that both create inclusions, such as neighbourhood scale and a
+density threshold. Multiparameter persistence retains both directions rather
+than collapsing one in advance.
+
+## A genuine bifiltration
+
+Give each point $x$ a codensity score $q(x)$, such as distance to its $k$th
+nearest neighbour. Retain
+
+$$X_\delta=\{x:q(x)\leq\delta\},$$
+
+then build
+
+$$K_{\delta,\varepsilon}=\operatorname{VR}_\varepsilon(X_\delta).$$
+
+Increasing $\delta$ admits more points and increasing $\varepsilon$ admits
+more simplices. Therefore
+
+$$
+(\delta,\varepsilon)\leq(\delta',\varepsilon')
+\Longrightarrow
+K_{\delta,\varepsilon}\subseteq K_{\delta',\varepsilon'}.
+$$
+
+The inclusions supply horizontal and vertical homology maps on the parameter
+grid. The optional Week 7 notebook extension computes
+$\beta_1(\delta,\varepsilon)$ as a visible summary.
+
+## Why time needs care
+
+Independent frames $X_t$ do not generally satisfy
+$X_t\subseteq X_{t+1}$. A heat map with time and scale therefore need not be a
+two-parameter module. Time can serve as a second ordered parameter when the
+construction genuinely gives inclusions, for example when $X_t$ contains all
+observations accumulated up to time $t$.
+
+## What becomes difficult
+
+One-parameter modules decompose into intervals under suitable conditions.
+General multiparameter modules do not have an equally complete barcode
+classification. Dimension functions, rank invariants, slices and other
+summaries reveal selected aspects without completely determining the module.
+
+::: {.callout-note title="Specific development can be skipped"}
+Understanding why the parameter grid has two families of compatible maps is
+enough for this MasterClass. Representation theory and multiparameter
+decomposition results are specialist material.
+:::
+
+[Return to the Week 7 core](index.qmd).

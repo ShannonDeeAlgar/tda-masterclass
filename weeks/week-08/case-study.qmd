@@ -26,3 +26,7 @@ Compare every escalation with repeated persistence and ordinary dynamic statisti
 ## Interpretation boundary
 
 This page is a method-selection template. It does not claim that vineyards or multiparameter persistence improve swarm analysis. The advanced object is justified only when its extra maps answer the operational question.
+
+The general decision logic is developed in [Week 8](index.qmd). Detailed
+vineyard-module transport belongs to the [expert submodule](vineyards-extension.qmd)
+and can be skipped for an applied first pass.

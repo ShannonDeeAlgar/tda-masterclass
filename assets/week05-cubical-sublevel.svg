@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 430" role="img" aria-labelledby="title desc">
+  <title id="title">A cubical sublevel filtration on a five by five scalar grid</title>
+  <desc id="desc">The same five by five array is shown at thresholds one, four and five. At threshold one, eight low-valued square cells form a ring. At threshold four, all cells except the central cell are included and the hole remains. At threshold five, the central cell enters and fills the hole.</desc>
+  <defs>
+    <style>.panel{fill:#fff;stroke:#d5d5d5;stroke-width:1.5}.cell{fill:#fafafa;stroke:#777;stroke-width:1}.in{fill:#8ebbd5;stroke:#245b8a;stroke-width:1.6}.last{fill:#d9b4c5;stroke:#8b3f64;stroke-width:1.6}.head{font:21px Georgia,serif;fill:#222}.note{font:16px Georgia,serif;fill:#444}.num{font:15px system-ui,sans-serif;fill:#222;text-anchor:middle;dominant-baseline:middle}.arrow{stroke:#245b8a;stroke-width:2.2;fill:none;marker-end:url(#a)}</style>
+    <marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#245b8a"/></marker>
+    <g id="grid"><path d="M0 0H250V250H0Z M50 0V250 M100 0V250 M150 0V250 M200 0V250 M0 50H250 M0 100H250 M0 150H250 M0 200H250" fill="none" stroke="#777"/></g>
+  </defs>
+  <rect width="1080" height="430" fill="#fff"/>
+  <text class="head" x="540" y="28" text-anchor="middle">Each pixel is a square 2-cell carrying one scalar value</text>
+
+  <g transform="translate(40,60)"><rect class="panel" x="-18" y="-18" width="286" height="342" rx="8"/>
+    <text class="head" x="125" y="-2" text-anchor="middle">threshold a = 1</text>
+    <g transform="translate(0,20)">
+      <rect class="in" x="50" y="50" width="50" height="50"/><rect class="in" x="100" y="50" width="50" height="50"/><rect class="in" x="150" y="50" width="50" height="50"/>
+      <rect class="in" x="50" y="100" width="50" height="50"/><rect class="in" x="150" y="100" width="50" height="50"/>
+      <rect class="in" x="50" y="150" width="50" height="50"/><rect class="in" x="100" y="150" width="50" height="50"/><rect class="in" x="150" y="150" width="50" height="50"/>
+      <use href="#grid"/>
+    </g><text class="note" x="125" y="298" text-anchor="middle">value-1 cells enter and form a ring</text>
+  </g>
+
+  <path class="arrow" d="M330 195H390"/>
+
+  <g transform="translate(415,60)"><rect class="panel" x="-18" y="-18" width="286" height="342" rx="8"/>
+    <text class="head" x="125" y="-2" text-anchor="middle">threshold a = 4</text>
+    <g transform="translate(0,20)"><rect class="in" width="250" height="250"/><rect class="cell" x="100" y="100" width="50" height="50"/><use href="#grid"/></g>
+    <text class="note" x="125" y="298" text-anchor="middle">all cells except the value-5 centre</text>
+  </g>
+
+  <path class="arrow" d="M705 195H765"/>
+
+  <g transform="translate(790,60)"><rect class="panel" x="-18" y="-18" width="286" height="342" rx="8"/>
+    <text class="head" x="125" y="-2" text-anchor="middle">threshold a = 5</text>
+    <g transform="translate(0,20)"><rect class="in" width="250" height="250"/><rect class="last" x="100" y="100" width="50" height="50"/><use href="#grid"/></g>
+    <text class="note" x="125" y="292" text-anchor="middle">the centre enters</text><text class="note" x="125" y="312" text-anchor="middle">and fills the hole</text>
+  </g>
+
+  <text class="note" x="540" y="414" text-anchor="middle">Whenever a square enters, its boundary edges and corner vertices are included automatically.</text>
+</svg>

@@ -11,6 +11,13 @@ toc: true
 
 [Download the Datasaurus Dozen CSV](../../downloads/datasaurus_dozen.csv){.btn .btn-secondary download="datasaurus_dozen.csv"}
 
+::: {.callout-note title="Optional reading for this week"}
+Postol, Chapter 2, supplies the point set topology vocabulary used in the
+survival guide. Edelsbrunner and Harer, Chapter I.1, develops connectedness by
+moving between graphs and topological spaces. The Datasaurus example comes
+from Matejka and Fitzmaurice [@matejka2017samestats].
+:::
+
 ::: {.foundation-definition}
 **[Guiding definition for Weeks 1–4](../../index.qmd#the-guiding-construction-for-weeks-14).** For a filtration $K_a\subseteq K_b$ when $a\leq b$, persistent homology is the module
 $$a\mapsto H_p(K_a;\mathbb F),\qquad (a\leq b)\mapsto(\iota_{a,b})_*.$$
@@ -19,7 +26,9 @@ $$a\mapsto H_p(K_a;\mathbb F),\qquad (a\leq b)\mapsto(\iota_{a,b})_*.$$
 ::: {.foundation-step .is-active}
 **1 · Representation**
 
-Scientific object, observations and the topological question.
+Scientific object, observations and the topological question. This week asks
+why shape is scientifically relevant, what a topological lens retains, and why
+a finite representation must be constructed before topology can be computed.
 :::
 ::: {.foundation-step}
 **2 · Homology**
@@ -127,7 +136,7 @@ A circle and an ellipse have different geometry but the same topology. A circle 
 
 Ordinary homology is coarser again. It can count components and holes in specified dimensions, but it does not preserve every topological distinction. Two spaces can have the same Betti numbers without being homeomorphic.
 
-In the [participant practical](lab.ipynb), students predict connectedness and loop-like organisation, then inspect what happens after a neighbourhood rule is imposed. This threshold-graph experiment illustrates sensitivity to a construction choice; its graph cycle rank is not yet simplicial homology. [Week 3](../week-03/index.qmd#graph-versus-clique-complex) explains the distinction when graphs and filled clique complexes have been defined.
+In the [participant practical](lab.ipynb), students predict connectedness and loop-like organisation, then inspect what happens after a neighbourhood rule is imposed. This threshold-graph experiment illustrates sensitivity to a construction choice; its graph cycle rank is not yet simplicial homology. [Week 2](../week-02/index.qmd#graph-versus-clique-complex) explains the distinction between a graph and the filled complex generated from its cliques.
 
 ### Why topology is relevant to data
 

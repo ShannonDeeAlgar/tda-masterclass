@@ -1,6 +1,5 @@
 ---
-title: "Week 5: Static data in practice: choosing and computing filtered complexes"
-subtitle: "TDA for Static and Dynamic Data"
+title: "Week 5: Static data in practice"
 format:
   revealjs:
     theme: [simple, ../../assets/slides.scss]
@@ -22,19 +21,44 @@ What object are we constructing, what information does it retain, and what scien
 
 ---
 
-## Story
+## Where Week 5 sits
 
-Week 5 is the first practical week. The aim is not just to compute
-persistence, but to choose a construction appropriate to the data
-object. The data object comes first; the complex follows.
+Weeks 2–4: inspect the construction by hand.
+
+Week 5: carry out and audit an end-to-end computation.
+
+$$
+\text{stored data}\to\text{filtered object}\to
+\text{software output}\to\text{checked interpretation}.
+$$
+
+The data object comes first; the complex follows.
+
+---
+
+## The practical audit loop
+
+1. Inspect the stored object and units.
+2. Predict visible topology and its plausible scale.
+3. Construct and count the filtered object.
+4. Compute with explicit conventions.
+5. Check one small result by hand.
+6. Change one decision at a time.
+7. Report a qualified interpretation.
 
 ---
 
 ## Method map
 
-- Point cloud with coordinates: alpha or Rips complexes.
+| Starting object | Core construction | Parameter |
+|---|---|---|
+| Point cloud or distances | Rips | pairwise threshold |
+| Weighted graph | graph or clique complex | edge weight |
+| Scalar grid | cubical complex | cell value |
+| Values on complex vertices | lower star | vertex-derived value |
 
-- Pairwise distances only: Vietoris–Rips complexes.
+The Interlude contains the broader menu. This week practises three routes deeply
+enough to audit their implementation.
 
 ---
 
@@ -49,19 +73,37 @@ technical.
 
 ---
 
-## Examples
+## The cost of asking for higher homology
 
-Use a noisy circle versus noisy disk as a sanity check. Use an annulus
-with uneven sampling to show that persistence is not immune to sampling
-effects. Use a greyscale image to introduce lower-star or cubical
-persistence. Use a small weighted graph to ask whether pairwise cycles
-or clique-complex holes are the object of interest.
+| Request | Must construct through | Worst-case count |
+|---|---|---:|
+| $H_0$ | edges | $\binom N2$ |
+| $H_1$ | triangles | $\binom N3$ |
+| $H_2$ | tetrahedra | $\binom N4$ |
+| $H_p$ | $(p+1)$-simplices | $\binom N{p+2}$ |
+
+$$C_{p+1}\xrightarrow{\partial_{p+1}}C_p
+\xrightarrow{\partial_p}C_{p-1}.$$
+
+To know whether a $p$-cycle is filled, the computation needs the next
+dimension.
 
 ---
 
-## One stack, three objects
+## A dangerous truncation
 
-![](../../assets/week05-data-constructions.svg){fig-alt="Point cloud, weighted graph and scalar grid mapped to three different filtered constructions." height="210"}
+Requesting `max_dimension=1` may display graph cycles but omit the triangles
+that should kill them.
+
+For correct $H_1$, construct through dimension 2.
+
+For correct $H_2$, construct through dimension 3.
+
+Dimensions above $p+1$ cannot change $H_p$ and consume unnecessary memory.
+
+---
+
+## One stack, three implementation clinics
 
 | Input | Construction | Filtration value |
 |---|---|---|
@@ -70,6 +112,16 @@ or clique-complex holes are the object of interest.
 | Scalar grid | Cubical complex | Cell value |
 
 The common software does not make these the same mathematical object.
+
+---
+
+## Cubical means filled grid cells
+
+![](../../assets/week05-cubical-sublevel.svg){fig-alt="A scalar grid enters as filled square cells. Low-valued cells form a ring and the central high-valued cell later fills its hole." height="280"}
+
+Each pixel is a square 2-cell. Its edges and vertices enter with it.
+
+Birth and death coordinates are field values, not distances.
 
 ---
 
@@ -99,21 +151,43 @@ Negate a scalar field: switch from low-valued to high-valued structure.
 
 ---
 
-## Computational reporting
+## Weighted graph walkthrough
 
-State observation and simplex counts, maximum dimension and threshold,
-coefficient field, sparsification, runtime and memory failures.
+Graph only:
+
+$$[0.45,\infty),\qquad[0.85,\infty).$$
+
+Clique expansion adds filled triangles at 0.45 and 0.85, so both cycles are
+born and filled at the same parameter value. No positive-length $H_1$ bars
+remain.
+
+Same weighted edges; different higher-order representation.
 
 ---
 
-## DP relevance
+## Scalar-image walkthrough
 
-Static persistence is not claiming that a dynamical system is static. It
-freezes one representation: a time window, a state cloud, a snapshot, an
-interaction graph or a scalar field. This is the lowest-risk baseline.
-If a single topological snapshot cannot distinguish regimes or
-performance-relevant states, then more sophisticated dynamic topology
-needs stronger justification.
+$$f(x,y)=(x^2+y^2-1)^2.$$
+
+Low-valued pixels form an annular band.
+
+Computed main interval:
+
+$$[0.0055,1.0000).$$
+
+Birth reflects grid discretisation near the unit circle. Death occurs when the
+high-valued centre enters and fills the opening.
+
+---
+
+## Computational reporting
+
+State data dimensions and units, preprocessing, metric or cell convention,
+complex, parameter meaning, coefficient field, maximum dimension and
+threshold, simplex or cell counts, software version, runtime and memory
+failures.
+
+---
 
 ## Before we leave
 

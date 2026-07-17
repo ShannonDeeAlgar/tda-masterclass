@@ -1,6 +1,5 @@
 ---
 title: "Week 6: Summaries, comparisons and validation"
-subtitle: "TDA for Static and Dynamic Data"
 format:
   revealjs:
     theme: [simple, ../../assets/slides.scss]
@@ -22,7 +21,7 @@ What object are we constructing, what information does it retain, and what scien
 
 ---
 
-## Story
+## Where Week 6 sits
 
 Once diagrams exist, the next modelling choice is how to use them. A
 diagram can be compared directly, summarised by a scalar, converted into
@@ -32,25 +31,46 @@ information.
 
 ---
 
-## Objects to introduce
+## Why not feed the diagram directly to ordinary ML?
 
-- Bottleneck distance: worst matched feature.
+- diagrams contain different numbers of points;
+- their points have no meaningful order;
+- some deaths may be infinite; and
+- ordinary vector-based methods expect one fixed-length vector per case.
 
-- Wasserstein distance: accumulated matching cost.
-
----
-
-## Examples
-
-Use two diagrams with the same longest bar but different clouds of
-shorter bars to show why single statistics can be misleading. Use a
-real-versus-shuffled comparison to show that the question is not “is
-there a barcode?” but “does this barcode differ from what this
-construction would produce anyway?”
+Direct diagram methods exist. Otherwise we must choose what to preserve while
+constructing fixed features.
 
 ---
 
-## Direct comparison or vectorisation?
+## Bottleneck distance
+
+$$
+d_B(D,E)=\inf_{\gamma}
+\sup_{x\in D}\lVert x-\gamma(x)\rVert_\infty.
+$$
+
+For each matching: find the worst cost.
+
+Across matchings: choose the smallest possible worst cost.
+
+---
+
+## Wasserstein distance
+
+$$
+W_q(D,E)=
+\left(\inf_{\gamma}\sum_{x\in D}
+\lVert x-\gamma(x)\rVert_\infty^q\right)^{1/q}.
+$$
+
+Same matching problem; accumulated cost rather than one worst cost.
+
+State $q$, the ground metric and the treatment of essential points.
+
+---
+
+## Direct comparison or representation?
 
 Bottleneck: worst optimally matched discrepancy.
 
@@ -78,6 +98,76 @@ Bottleneck sees the worst cost. Wasserstein accumulates costs.
 
 ---
 
+## Scalar summaries
+
+For finite lengths $\ell_i=d_i-b_i$:
+
+$$\max_i\ell_i,\qquad \sum_i\ell_i^q,
+\qquad \#\{i:\ell_i>\tau\}.$$
+
+Easy to interpret and validate, but each collapses the diagram to one number.
+
+---
+
+## Persistence entropy
+
+$$
+p_i=\frac{\ell_i}{\sum_j\ell_j},
+\qquad H_{\mathrm{pers}}=-\sum_i p_i\log p_i.
+$$
+
+Low: persistence concentrated in a few bars.
+
+High: persistence distributed more evenly.
+
+It forgets overall scale: multiplying every length by the same factor leaves
+entropy unchanged.
+
+---
+
+## Betti curve
+
+$$
+\beta_p(a)=\sum_i\mathbf 1_{[b_i,d_i)}(a).
+$$
+
+It records how many classes are alive at every scale.
+
+It forgets birth-death pairing:
+
+$$\{[0,2),[1,3)\}\quad\text{and}\quad
+\{[0,3),[1,2)\}$$
+
+have the same Betti curve.
+
+---
+
+## Persistence landscape
+
+$$
+\lambda_i(t)=\max\{0,\min(t-b_i,d_i-t)\}.
+$$
+
+$\lambda_k(t)$ is the $k$th-largest tent value.
+
+Sample common levels on a common grid to obtain fixed features for functional
+statistics or machine learning.
+
+---
+
+## Persistence image
+
+$$z_i=(b_i,d_i-b_i),$$
+
+$$\rho(z)=\sum_iw(p_i)\phi_\sigma(z-z_i),
+\qquad \mathrm{PI}_j=\int_{P_j}\rho(z)\,dz.$$
+
+The fixed pixel array can be flattened for vector-based learning.
+
+Bounds, weighting, bandwidth and resolution are choices.
+
+---
+
 ## A null is a scientific model
 
 State what the surrogate preserves and destroys.
@@ -92,6 +182,22 @@ Compare with a simpler baseline.
 
 ---
 
+## When points have labels
+
+Ordinary persistence forgets labels such as species, cell type or agent role.
+
+For a labelled cloud $(X,c)$,
+
+$$c:X\longrightarrow\{1,\ldots,m\},$$
+
+chromatic persistence asks how differently labelled structures contribute,
+surround or mingle.
+
+Two identically located clouds can have identical ordinary persistence and
+different chromatic organisation.
+
+---
+
 ## Same longest bar, different diagram
 
 Maximum persistence sees one interval. It ignores multiplicity, shorter
@@ -99,15 +205,14 @@ structure and location in the birth-death plane.
 
 ---
 
-## DP relevance
+## Practical sequence
 
-This week asks whether topology adds explanatory or predictive value
-beyond simpler baselines. Reasonable first summaries include maximum
-persistence, total persistence, Betti curves, persistence entropy,
-diagram distances to a baseline and vectorised persistence images or
-landscapes. Vineyards are only justified if the identity or trajectory
-of features matters, not merely their distribution at each time or
-parameter value.
+1. Compare base, perturbed and shuffled diagrams directly.
+2. Compute scalar summaries, Betti curves and a persistence image.
+3. Preselect maximum persistence.
+4. Generate the surrogate distribution through the complete pipeline.
+5. Compare with a simpler geometric baseline.
+6. Repeat under one upstream choice.
 
 ## Before we leave
 

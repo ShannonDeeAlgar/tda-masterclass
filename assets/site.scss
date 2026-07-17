@@ -141,6 +141,23 @@ main { max-width: 980px; }
   background: color-mix(in srgb, #a66a18 8%, transparent);
 }
 
+.worked-example {
+  margin: 1rem 0 1.4rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid color-mix(in srgb, var(--bs-primary) 35%, transparent);
+  border-left: 0.34rem solid var(--bs-primary);
+  border-radius: 0.3rem 0.55rem 0.55rem 0.3rem;
+  background: color-mix(in srgb, var(--bs-primary) 5%, var(--bs-body-bg));
+}
+
+.worked-example > :first-child {
+  margin-top: 0;
+}
+
+.worked-example > :last-child {
+  margin-bottom: 0;
+}
+
 .historical-note ol,
 .historical-note ul {
   margin-bottom: 0.25rem;
