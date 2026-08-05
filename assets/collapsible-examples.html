@@ -1,0 +1,34 @@
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".worked-example").forEach((example) => {
+    if (example.closest("details.reader-example")) return;
+
+    const heading = Array.from(example.children).find((child) =>
+      /^H[2-5]$/.test(child.tagName)
+    );
+    const title = heading
+      ? heading.textContent.trim().replace(/^Worked example:\s*/i, "")
+      : "Expand the example";
+
+    const details = document.createElement("details");
+    details.className = "reader-example";
+
+    const summary = document.createElement("summary");
+    const label = document.createElement("span");
+    label.className = "reader-example-label";
+    label.textContent = "Example";
+    const description = document.createElement("span");
+    description.className = "reader-example-title";
+    description.textContent = title;
+    summary.append(label, description);
+    details.appendChild(summary);
+
+    if (heading) heading.remove();
+    const body = document.createElement("div");
+    body.className = "reader-example-body";
+    while (example.firstChild) body.appendChild(example.firstChild);
+    details.appendChild(body);
+    example.replaceWith(details);
+  });
+});
+</script>

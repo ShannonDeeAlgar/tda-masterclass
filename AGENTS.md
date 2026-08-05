@@ -2,7 +2,11 @@
 
 ## Project purpose
 
-Build an eight-week MasterClass on topological data analysis for dynamical-systems researchers, incoming Honours students and selected industry audiences. The course must develop mathematical judgement rather than present TDA as a black-box feature generator.
+Build a six-topic MasterClass, with a modelling pause after the foundations,
+on topological data analysis for dynamical systems researchers, incoming
+Honours students and selected industry audiences. The course must develop
+mathematical judgement rather than present TDA as a black-box feature
+generator.
 
 ## Voice and presentation
 
@@ -11,19 +15,16 @@ Build an eight-week MasterClass on topological data analysis for dynamical-syste
 - Avoid em dashes.
 - Avoid inflated claims that topology is automatically superior.
 - Preserve the distinction between the observed scientific object and every constructed mathematical representation.
-- Keep slides visually sparse. Put fuller explanations in notes and notebooks.
+- Keep explanations brief in the reader and use margin notes only when they
+  materially aid interpretation.
 
-## Required structure for each week
+## Required structure for each topic
 
-Each `weeks/week-XX/` directory contains:
-
-- `index.qmd`: durable reference notes
-- `slides.qmd`: the live conceptual argument
-- `lab.ipynb`: participant notebook
-- `solutions.ipynb`: worked notebook
-- `case-study.qmd`: an application route
-
-Do not duplicate all prose across these files. Slides orient; notes explain; notebooks expose consequences through computation.
+Each topic directory contains durable reader material and one participant
+notebook. The reader develops the argument; the notebook applies it through
+observe, predict, implement, compare and interpret. Do not create parallel
+slides, lecture walkthroughs or application pages unless the project is later
+given a distinct teaching-delivery brief.
 
 ## Teaching pattern for notebooks
 
@@ -41,9 +42,17 @@ Whenever possible, keep the data fixed and change one modelling decision at a ti
 
 - `▶ Likely sticking point`: a subtle conceptual transition.
 - `† Qualification`: a condition or distinction that must remain visible.
-- `◇ Object check`: explicitly name the current spaces, vector spaces, maps, modules or summaries.
+Use the CSS classes `.sticking-point` and `.qualification` in web notes.
 
-Use the CSS classes `.sticking-point`, `.qualification` and `.object-check` in web notes. Use `.sticking`, `.qualification` and `.object-check` in slides.
+## Figure titles
+
+- Use sentence case for titles inside multi-panel figures.
+- Centre each title over its own panel.
+- Use the reader typeface (`system-ui, sans-serif`), semibold weight and the
+  dark teal text colour used elsewhere in the course.
+- Keep titles to one short line. Put interpretation in the caption or margin,
+  not in a second competing title.
+- Use a smaller muted line only when a panel needs a factual subtitle.
 
 ## Mathematical standards
 

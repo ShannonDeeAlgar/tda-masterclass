@@ -1,0 +1,53 @@
+<!--
+  Teaching view of the CROCKER convention used in
+  /Users/sam/Desktop/RESEARCH/DP/TDA/my_TDA.jl:
+  betti_curve counts birth <= epsilon < death and crocker stacks those
+  curves as epsilon-by-time columns. The displayed intervals are a small
+  deterministic teaching family rather than invented empirical output.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="610" viewBox="0 0 1180 610" role="img" aria-labelledby="title desc">
+  <title id="title">How to read a CROCKER plot</title>
+  <desc id="desc">A heat map of the first Betti number over physical time and filtration scale. A highlighted vertical slice gives the Betti curve at one frame. A highlighted horizontal slice gives a time trace at one scale.</desc>
+  <style>
+    :root{--fg:#25282b;--muted:#687078;--grid:#c8cdd2;--zero:#eef2f4;--one:#8cb7d3;--two:#2c678f;--frame:#a2671d;--scale:#a14d70}
+    @media(prefers-color-scheme:dark){:root{--fg:#f1f3f4;--muted:#bbc1c6;--grid:#596067;--zero:#30363a;--one:#5f91ae;--two:#9accec;--frame:#e3ad65;--scale:#e288aa}}
+    .axis{stroke:var(--fg);stroke-width:2}.grid{stroke:var(--grid);stroke-width:1}.label{font:17px system-ui,sans-serif;fill:var(--fg)}.small{font:14px system-ui,sans-serif;fill:var(--muted)}.heading{font:600 22px system-ui,sans-serif;fill:var(--fg)}
+    .z{fill:var(--zero)}.o{fill:var(--one)}.t{fill:var(--two)}.frame{stroke:var(--frame);stroke-width:4;fill:none}.scale{stroke:var(--scale);stroke-width:4;fill:none}.curve{fill:none;stroke:var(--frame);stroke-width:4}.trace{fill:none;stroke:var(--scale);stroke-width:4}
+  </style>
+  <text class="heading" x="78" y="34">CROCKER matrix: colour is β₁(ε,t)</text>
+  <text class="small" x="78" y="58">Each column comes from one persistence diagram; the display does not track feature identity.</text>
+
+  <line class="axis" x1="80" y1="470" x2="710" y2="470"/><line class="axis" x1="80" y1="470" x2="80" y2="90"/>
+  <text class="label" x="520" y="510">physical time t</text><text class="label" x="18" y="105">scale ε</text>
+
+  <g transform="translate(80 90)">
+    <rect class="z" x="0" y="0" width="630" height="380"/>
+    <path class="o" d="M0 295 C70 270 95 220 150 205 C220 185 245 245 315 230 C390 215 430 135 500 150 C555 162 585 205 630 178 L630 332 C575 350 535 310 485 302 C420 292 390 348 315 335 C245 323 205 280 145 300 C90 318 45 335 0 330Z"/>
+    <path class="t" d="M145 254 C205 225 248 280 315 270 C382 259 414 205 477 210 C520 214 548 244 575 245 L575 292 C532 296 502 265 460 264 C405 263 375 310 315 306 C250 300 210 265 145 287Z"/>
+    <g class="grid">
+      <line x1="105" y1="0" x2="105" y2="380"/><line x1="210" y1="0" x2="210" y2="380"/><line x1="315" y1="0" x2="315" y2="380"/><line x1="420" y1="0" x2="420" y2="380"/><line x1="525" y1="0" x2="525" y2="380"/>
+      <line x1="0" y1="76" x2="630" y2="76"/><line x1="0" y1="152" x2="630" y2="152"/><line x1="0" y1="228" x2="630" y2="228"/><line x1="0" y1="304" x2="630" y2="304"/>
+    </g>
+    <line class="frame" x1="315" y1="0" x2="315" y2="380"/>
+    <line class="scale" x1="0" y1="266" x2="630" y2="266"/>
+  </g>
+
+  <text class="small" x="68" y="475" text-anchor="end">0</text><text class="small" x="68" y="399" text-anchor="end">0.5</text><text class="small" x="68" y="323" text-anchor="end">1.0</text><text class="small" x="68" y="247" text-anchor="end">1.5</text><text class="small" x="68" y="171" text-anchor="end">2.0</text><text class="small" x="68" y="95" text-anchor="end">2.5</text>
+  <text class="small" x="80" y="490" text-anchor="middle">0</text><text class="small" x="395" y="490" text-anchor="middle">one selected frame t*</text><text class="small" x="710" y="490" text-anchor="middle">T</text>
+
+  <text class="heading" x="785" y="105">Vertical slice</text>
+  <text class="small" x="785" y="130">β₁(ε,t*) across scale</text>
+  <line class="axis" x1="820" y1="290" x2="1095" y2="290"/><line class="axis" x1="820" y1="290" x2="820" y2="155"/>
+  <path class="curve" d="M820 290 L875 290 L875 225 L995 225 L995 160 L1040 160 L1040 225 L1075 225 L1075 290 L1095 290"/>
+  <text class="small" x="1080" y="315">ε</text><text class="small" x="790" y="165">β₁</text>
+
+  <text class="heading" x="785" y="380">Horizontal slice</text>
+  <text class="small" x="785" y="405">β₁(ε*,t) through time</text>
+  <line class="axis" x1="820" y1="550" x2="1095" y2="550"/><line class="axis" x1="820" y1="550" x2="820" y2="430"/>
+  <path class="trace" d="M820 510 L860 510 L860 470 L920 470 L920 510 L960 510 L960 470 L1025 470 L1025 510 L1095 510"/>
+  <text class="small" x="1080" y="575">t</text><text class="small" x="790" y="440">β₁</text>
+
+  <rect class="z" x="80" y="548" width="22" height="22"/><text class="small" x="110" y="565">0 loops</text>
+  <rect class="o" x="190" y="548" width="22" height="22"/><text class="small" x="220" y="565">1 loop</text>
+  <rect class="t" x="300" y="548" width="22" height="22"/><text class="small" x="330" y="565">2 loops</text>
+</svg>

@@ -1,0 +1,48 @@
+---
+title: "Foundation 4A: Why track features across scale"
+toc: true
+---
+
+**Practical notebook.** Follow homology classes through a controlled
+filtration. <a href="../../downloads/topic-04-participant.ipynb" download="topic-04-participant.ipynb">Download the notebook</a>.
+
+Persistent homology treats the complexes in a filtration as related, not as
+unconnected pictures. Move the scale control slowly: individual marks,
+intermediate groups and large organisation become visible over different
+ranges rather than at one privileged resolution.
+
+Here a **topological feature** means a homology class followed through the
+filtration: a component class in $H_0$, a loop class in $H_1$ or a cavity
+class in $H_2$.
+
+<iframe class="abc-scale-explorer"
+src="../../assets/topic04-abc-scale-explorer.html"
+title="Explore the A, B and C pattern across a continuous scale"
+loading="lazy"></iframe>
+
+::: {.column-margin .study-note .qualification}
+**Analogy, not a persistence calculation.** Blurring makes the multiscale idea
+visible, but persistent homology does not recognise letters. It applies
+homology to nested complexes and follows components, loops or cavities as the
+scale changes.
+:::
+
+At each scale $a$, homology records the features in $K_a$. Persistent homology
+also records what those features become when the scale increases from $a$ to
+$b$:
+
+$$
+H_p(K_a;\mathbb F)\longrightarrow H_p(K_b;\mathbb F),
+\qquad a\leq b.
+$$
+
+Here $p$ is the homology dimension: $p=0$ for components, $p=1$ for loops and
+$p=2$ for cavities. The detailed treatment makes the arrow precise.
+
+::: {.checkpoint-route}
+
+The checkpoint is to explain why homology computed independently at several
+scales is not yet persistent homology: the relationships across scale are also
+part of the object.
+
+:::

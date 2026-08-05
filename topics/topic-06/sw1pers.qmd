@@ -1,0 +1,45 @@
+---
+title: "Optional research direction: SW1PerS and periodicity"
+subtitle: "Optional extension for scalar signals"
+toc: true
+---
+
+A periodic scalar signal repeatedly returns to the same phase. Sliding-window
+coordinates turn consecutive signal values into a point cloud. After suitable
+centring and normalisation, a clean periodic signal tends to trace a loop in
+that cloud. Persistent $H_1$ measures how strongly that loop is supported.
+
+The resulting loop gives a topological measure of periodicity:
+
+> Does the signal repeatedly traverse one coherent cycle, rather than merely
+> oscillating irregularly or changing frequency?
+
+## Construction
+
+For a sampled signal $x(t)$, define
+
+$$
+\operatorname{SW}_{m,\tau}x(t)
+=(x(t),x(t+\tau),\ldots,x(t+m\tau)).
+$$
+
+The window dimension $m$, lag $\tau$, sampling rate, centring and normalisation
+are representation choices. Rips persistence is then computed on the window
+vectors. SW1PerS develops this idea into a periodicity score
+[@perea2015sw1pers].
+
+:::: {.worked-example}
+### Periodic signal versus chirp
+
+A sinusoid repeatedly traces the same phase cycle. A chirp continues to
+oscillate, but its changing frequency prevents one fixed sliding-window loop
+from being revisited in the same way. Their maximum $H_1$ persistence therefore
+answers a more specific question than whether either signal oscillates.
+::::
+
+::: {.column-margin .study-note .qualification}
+**What the loop supports.** A persistent loop supports periodic organisation
+in the chosen sliding-window representation. It is not a generic detector of
+oscillation or its mechanism. Lag, dimension and sampling must be varied
+before the score is interpreted.
+:::

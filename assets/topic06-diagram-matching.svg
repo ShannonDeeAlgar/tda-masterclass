@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="390" viewBox="0 0 980 390" role="img" aria-labelledby="title desc">
+ <title id="title">Persistence-diagram matching including the diagonal</title>
+ <desc id="desc">Two long-lived points are matched between diagrams by thin dashed curves. A short-lived point above the diagonal in the first diagram is matched to its nearest diagonal point.</desc>
+ <style>
+  :root{--fg:#25282b;--muted:#687078;--grid:#92989d;--p:#286492;--q:#a04444;--match:#6b4ca5}
+  @media(prefers-color-scheme:dark){:root{--fg:#f1f3f4;--muted:#bbc1c6;--grid:#777e84;--p:#77b9e3;--q:#e28b8b;--match:#b19ae0}}
+  .axis{stroke:var(--fg);stroke-width:2}.diag{stroke:var(--grid);stroke-width:2;stroke-dasharray:7 6}.p{fill:var(--p)}.q{fill:var(--q)}
+  .match{fill:none;stroke:var(--match);stroke-width:2.2;stroke-dasharray:7 5}.head{font:600 22px system-ui,sans-serif;fill:var(--fg)}.note{font:15px system-ui,sans-serif;fill:var(--muted)}
+ </style>
+ <g transform="translate(55 50)">
+  <text class="head" x="100" y="-15">diagram D</text><path class="axis" d="M20 280 V25 M20 280 H315"/><path class="diag" d="M20 280 L280 20"/>
+  <circle class="p" cx="95" cy="145" r="8"/><circle class="p" cx="175" cy="75" r="8"/><circle class="p" cx="215" cy="72" r="8"/>
+  <text class="note" x="138" y="310">birth</text><text class="note" x="-12" y="20">death</text>
+  <line class="match" x1="215" y1="72" x2="232" y2="68"/><text class="note" x="182" y="48">short feature</text><text class="note" x="170" y="335">matched to its nearest diagonal point</text>
+ </g>
+ <g transform="translate(600 50)">
+  <text class="head" x="100" y="-15">diagram E</text><path class="axis" d="M20 280 V25 M20 280 H315"/><path class="diag" d="M20 280 L280 20"/>
+  <circle class="q" cx="105" cy="153" r="8"/><circle class="q" cx="188" cy="88" r="8"/>
+  <text class="note" x="138" y="310">birth</text><text class="note" x="-12" y="20">death</text>
+ </g>
+ <path class="match" d="M150 195 C335 175 470 180 705 203"/><path class="match" d="M230 125 C380 80 565 86 788 138"/>
+ <text class="note" x="382" y="165">cross-diagram matches</text>
+</svg>

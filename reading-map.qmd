@@ -3,23 +3,136 @@ title: "Sources and data provenance"
 toc: true
 ---
 
+::: {.callout-warning title="Preliminary development section"}
+This page is provisional. The textbook map is usable, but the public-dataset
+list records candidates rather than a final course data programme. Dataset
+selection, licensing, teaching subsets and application notebooks still require
+development before the candidates become course resources.
+:::
+
 The [course overview](index.qmd#guiding-texts-and-how-the-course-uses-them)
-explains the distinct roles of the two guiding books. Each weekly page begins
+explains the distinct roles of the two guiding books. Each topic page begins
 with the specific chapters, papers or software documentation that genuinely
-support that week's work. All readings are optional.
+support that topic's work. All readings are optional.
 
 ## Data currently included
 
 ### Datasaurus Dozen
 
-The Week 1 notebook uses the Datasaurus Dozen from Matejka and Fitzmaurice
+The Topic 1 notebook uses the Datasaurus Dozen from Matejka and Fitzmaurice
 [@matejka2017samestats], distributed through the `datasauRus` package
 [@gillespie2025datasaurus]. The included CSV contains all thirteen datasets.
 Its provenance and reproduced MIT licence are stored beside the
 [course data](data/README.md).
 
 No other externally sourced dataset is currently distributed with the course.
-The examples in later weeks are synthetic and are labelled as such.
+The examples in later topics are synthetic and are labelled as such.
+
+## Empirical practicals and development datasets
+
+The following sources support empirical practicals. Their scientific and
+provenance details live here so that the Reader can remain mathematically
+focused.
+
+### Static-data practical: the grid-cell torus
+
+Gardner and collaborators recorded simultaneous activity from modules of grid
+cells while rats explored different environments and slept
+[@gardner2022torus]. Their [CC0 data archive and reproduction
+materials](https://doi.org/10.6084/m9.figshare.16764508.v6) are public.
+
+The analysis treats selected time bins as an unordered cloud of neural
+population states. It therefore provides a static point-cloud investigation
+with a clear dynamical origin:
+
+1. **Scientific question:** what low-dimensional space appears to organise
+   the collective activity of one grid-cell module?
+2. **Observed evidence:** spike trains recorded from many neurons, together
+   with the animal's behaviour and recording condition.
+3. **Stored and processed data:** smoothed firing-rate vectors, activity
+   selection, standardisation, principal-component reduction and
+   density-aware subsampling.
+4. **Construction:** a neighbourhood-based dissimilarity and persistent
+   cohomology of the resulting neural-state cloud.
+5. **Topological prediction:** a torus has one dominant \(H_0\) class, two
+   dominant \(H_1\) classes and one dominant \(H_2\) class.
+6. **Simple baselines:** PCA variance, low-dimensional visualisation and
+   single-neuron spatial firing maps.
+7. **Null comparison:** independently shift each neuron's spike train in time
+   and repeat the complete pipeline, disrupting population coordination while
+   retaining single-cell spike structure.
+8. **Sensitivity:** time-bin and smoothing width, cell selection,
+   standardisation, activity selection, number of principal components,
+   subsampling, distance and neighbourhood parameters.
+9. **Interpretation boundary:** the result supports toroidal organisation of
+   the processed population-state cloud. The stronger continuous-attractor
+   interpretation also depends on replication across modules, environments
+   and sleep states and does not identify a unique neural mechanism.
+
+The complete archive is approximately 320 MB and should not be copied into
+the course repository. The teaching subset must retain the source recording
+identifier, selected time indices, included neuron indices, all preprocessing
+parameters, original DOI, CC0 status and a script that regenerates it from the
+Figshare archive.
+
+### Static-to-dynamic bridge: motion on the grid-cell torus
+
+The grid-cell recordings begin as time-indexed evidence even though the static
+analysis temporarily treats population states as an unordered cloud. The
+course subset therefore also retains one contiguous 20-second passage.
+
+1. **Static question:** what space is occupied by the population states?
+2. **Restored dynamic object:** the ordered path
+   \(t\mapsto x_t\) through neural activity space.
+3. **Decoded route:** use the two persistent \(H^1\) cohomology classes to obtain two
+   circular coordinates, then analyse motion on the inferred torus.
+4. **Snapshot route:** turn moving windows of recent population states into
+   clouds \(W_t\) and compare their persistence summaries.
+5. **New choices:** window length and overlap, temporal smoothing,
+   coordinate alignment and whether within-window stationarity is plausible.
+6. **Interpretation boundary:** evidence that the global state space is
+   toroidal does not determine the dynamics on it. Smoothly changing window
+   summaries also do not establish feature identity across time.
+
+This optional extension demonstrates that discovering a state-space topology
+and analysing trajectories on that space are related but distinct tasks.
+
+### Dynamic-data practical: collective-state change in a school of 300 fish
+
+The public [Fish Schooling Data
+Subset](https://doi.org/10.7267/zk51vq07c) contains 5,000 frames of
+two-dimensional positions, velocities and temporary track identifiers from
+300 golden shiners. The associated work identifies swarm, polarised and
+milling regimes using polarisation and collective rotation. A related study
+used the same data for unsupervised manifold-learning classification.
+
+The course retains every fifth frame from a continuous 26.5-second passage
+that moves from a disordered regime through a transition and into sustained
+milling. It supports one scientific story across Topics 7 and 8:
+
+1. **Scientific question:** does spatial persistence register the emergence
+   of milling organisation beyond polarisation, collective rotation, spread
+   and detection count?
+2. **Stored data:** detected two-dimensional centres and velocities, source
+   frame numbers and temporary track identifiers.
+3. **Constructed representation:** position clouds first; a
+   position–velocity metric only after its relative scaling is stated.
+4. **Snapshot construction:** Rips filtrations at selected frames, with
+   physical time kept distinct from filtration scale.
+5. **Dynamic summary:** framewise diagrams, Betti curves and a CROCKER
+   display compared with the published order parameters.
+6. **Sensitivity:** spatial centring and normalisation, incomplete detection,
+   point subsampling, filtration range and temporal sampling.
+7. **Correspondence boundary:** identifiers can be retired and replaced after
+   a lost detection. They therefore support some local trajectory questions
+   but do not provide a fixed labelled vertex set or identify homology classes
+   through time.
+8. **Interpretation boundary:** a persistent annular feature may accompany a
+   mill without establishing the behavioural mechanism that produced it.
+
+The source JSON is 83 MB and remains in the public repository. The smaller
+course CSV files, exact source interval, SHA-256 digest and regeneration
+script are documented in the [data notes](data/README.md#golden-shiner-transition-teaching-subset).
 
 ## Candidate public datasets
 
@@ -27,14 +140,14 @@ These are development candidates, not bundled course data. Before adopting
 one, retain its licence and provenance, create a documented teaching subset,
 and state the preprocessing and interpretation limits.
 
-### Fish-school collective U-turn trajectories
+### Sandstone micro-CT
 
-The [Dryad collection](https://doi.org/10.5061/dryad.9m6d2) is the strongest
-match to the dynamical and complex systems audience. One short trial could
-support point-cloud or interaction-graph constructions, repeated persistence
-and a later zigzag discussion. Compare any topology with speed, polarisation,
-nearest-neighbour distance and recorded U-turn times. The full collection is
-large, so a teaching version should use one small, documented trial.
+The [open sandstone micro-CT collection](https://doi.org/10.17612/f4h1-w124)
+remains a specialist image and volume route. Persistent homology has a clear
+porous-media precedent, but the scientific payoff requires more domain
+background than the core course. A future teaching crop should compare
+connectivity across intensity or segmentation threshold with porosity and
+ordinary image-morphology baselines.
 
 ### MIT-BIH Arrhythmia Database
 

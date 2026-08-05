@@ -1,0 +1,162 @@
+---
+title: "Algebra refresher"
+subtitle: "First-year linear algebra used in homology"
+toc: true
+---
+
+This page is a reference for the algebra used in the homology calculation. It
+contains only five ideas: coefficient fields, bases, matrices, kernels and
+images, and quotients. Consult the linked section when one of those ideas is
+unfamiliar; the main argument does not require reading this page from start to
+finish.
+
+## Scalars and fields {#coefficient-fields}
+
+A **field** is an arithmetic system in which addition, subtraction and
+multiplication are available, and every nonzero element can be divided by.
+The rational, real and complex numbers are familiar fields. The integers are
+not: for example, the integer 2 has no multiplicative inverse among the
+integers.
+
+A vector space is defined over a field because the field specifies which
+scalars may be used in linear combinations. Homology can be computed with
+several coefficient systems; using a field makes chain spaces and homology
+vector spaces, so rank and dimension are available.
+
+### The coefficient field $\mathbb F_2$
+
+The first calculations use
+
+$$
+\mathbb F_2=\{0,1\},
+\qquad 1+1=0.
+$$
+
+This is arithmetic modulo 2: only parity is retained. If 1 means “included”,
+adding the same item twice returns to 0 because it has appeared an even number
+of times. For chains, a simplex is therefore either present or absent, and
+orientation signs disappear.
+
+$\mathbb F_2$ is popular in TDA because binary arithmetic is exact and
+efficient, and many first questions concern the presence of components, loops
+or cavities rather than orientation. It is a modelling choice, not a neutral
+default. Other fields can reveal different algebraic information. Integer
+coefficients can also record torsion, but produce abelian groups rather than
+vector spaces.
+
+::: {.callout-note collapse="true" title="Other common coefficient choices"}
+- $\mathbb F_p$ for prime $p$ uses arithmetic modulo $p$ and can expose
+  prime-dependent behaviour.
+- $\mathbb Q$ and $\mathbb R$ retain ordinary signs; for finite simplicial
+  complexes they give the same Betti numbers.
+- $\mathbb Z$ retains integral information, including torsion, but is not a
+  field.
+:::
+
+## Vectors, span and bases {#vectors-and-bases}
+
+The **span** of $v_1,\ldots,v_k$ contains every linear combination
+
+$$
+a_1v_1+\cdots+a_kv_k.
+$$
+
+A **basis** is an independent collection whose span is the whole vector
+space. Every vector then has a unique coordinate column relative to that
+basis. The dimension is the number of basis vectors.
+
+The vector and its coordinate column are not the same object. In
+$\mathbb R^2$, the vector $v=3e_1+e_2$ has coordinate column
+$(3,1)^T$ in the standard Cartesian basis. A different basis gives different
+coordinates for the same vector.
+
+Order matters only when a basis is used for coordinates or matrix rows and
+columns. Reordering a basis changes the coordinate bookkeeping, not the
+underlying vector space.
+
+**Why this appears in homology.** The $p$-simplices form a natural basis for
+the chain space $C_p$. A chain is a vector in that space; its coordinate
+column records the coefficient of each simplex.
+
+## Linear maps and matrices {#linear-maps}
+
+A **linear map** $T:V\to W$ preserves addition and scalar multiplication. Once
+bases have been selected and ordered, a matrix $A$ represents that map:
+
+$$
+[T(v)]_C=A[v]_B.
+$$
+
+Each matrix column records the output of one input basis vector. For
+
+$$
+A=\begin{pmatrix}1&1\\2&2\end{pmatrix},
+$$
+
+both standard basis vectors are sent to $(1,2)^T$. The map $T$ is the
+coordinate-independent object; $A$ is its description in the chosen bases.
+
+**Why this appears in homology.** A boundary map is a linear map between chain
+spaces. Its matrix columns record the boundaries of the basis simplices.
+
+## Kernel, image, rank and nullity {#kernel-image}
+
+For $T:V\to W$, the **kernel** and **image** are
+
+$$
+\ker T=\{v\in V:T(v)=0\},
+\qquad
+\operatorname{im}T=\{T(v):v\in V\}.
+$$
+
+The kernel contains input directions erased by the map. The image contains
+the output directions the map can produce. Their dimensions are the nullity
+and rank. For finite-dimensional $V$, rank-nullity states
+
+$$
+\dim V=\operatorname{rank}T+\operatorname{nullity}T.
+$$
+
+**Why this appears in homology.** For the boundary map $\partial_p$, the
+kernel is the space of $p$-cycles. The image of $\partial_{p+1}$ is the space
+of $p$-boundaries. Their dimensions determine the Betti number.
+
+## Quotients {#quotients}
+
+A **quotient** treats a specified kind of difference as irrelevant. This is
+not ordinary division. Angles provide a familiar example: $0$, $2\pi$ and
+$-2\pi$ are different real numbers but the same direction. Working modulo a
+full turn groups them into one equivalence class.
+
+**Why this appears in homology.** Two cycles represent the same homology class
+when their difference is a boundary. The quotient
+
+$$
+H_p=Z_p/B_p
+$$
+
+retains cycles while deliberately forgetting differences supplied by
+available fillings.
+
+## Reading diagrams of maps {#reading-map-diagrams}
+
+A diagram uses nodes for mathematical objects and arrows for maps. Read an
+arrow from its source to its target. A square **commutes** when following
+either directed route from one corner to the opposite corner produces the
+same result.
+
+This matters later when maps across filtration scale must be compatible. It
+does not mean that the arrows are identical or invertible; it states that the
+two compositions agree.
+
+::: {.checkpoint-route}
+
+The relevant reminders are:
+
+1. a vector space has a stated coefficient field;
+2. a basis gives coordinates but is not the underlying vector space;
+3. a matrix represents a linear map in selected bases;
+4. kernels contain erased inputs and images contain attainable outputs; and
+5. a quotient identifies objects whose specified difference is being ignored.
+
+:::

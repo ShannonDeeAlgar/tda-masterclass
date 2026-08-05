@@ -1,0 +1,139 @@
+---
+title: "Zigzags, vineyards and transport in detail"
+toc: true
+---
+
+## Zigzag inclusions
+
+In
+
+$$
+K_0\longrightarrow K_1\longleftarrow K_2,
+$$
+
+the left arrow means $K_0\subseteq K_1$ and the right-hand displayed arrow
+means $K_2\subseteq K_1$. A backward arrow is not an inverse; it is an
+inclusion whose direction is drawn towards the larger complex.
+
+:::: {.worked-example}
+### A transient loop
+
+Let $K_0$ be the path $v_0-v_1-v_2$. Let $K_1$ add edge
+$[v_2,v_0]$, producing a triangular outline, and let $K_2$ again be the path.
+Both paths include into the outline:
+
+$$
+K_0\longrightarrow K_1\longleftarrow K_2.
+$$
+
+The first homology is zero, one-dimensional, then zero. The zigzag interval is
+supported only at the middle index, and the arrows state how that event is
+connected.
+::::
+
+When snapshots do not include directly, a union zigzag is one possible bridge:
+
+$$
+K_0\to K_0\cup K_1\leftarrow K_1
+\to K_1\cup K_2\leftarrow K_2.
+$$
+
+The union is not neutral. It claims that both snapshots embed into a meaningful
+common representation.
+
+## Vineyard updates on a fixed complex
+
+Let $f_t:K\to\mathbb R$ vary continuously on one fixed complex. At each time,
+the sublevel filtration is
+
+$$
+K_{t,a}=\{\sigma\in K:f_t(\sigma)\leq a\}.
+$$
+
+Most small time steps preserve the ordering of simplices. A critical event
+occurs when neighbouring simplices exchange filtration order. Vineyard
+algorithms update the reduced boundary matrix through each adjacent
+transposition and join the resulting birth-death positions into vine
+segments. This differs from bottleneck matching, which compares completed
+diagrams without using a path between their filtrations.
+
+The Dionysus vineyard implementation exposes these updates for controlled
+filtration homotopies; its official
+[vineyard tutorial](https://mrzv.org/software/dionysus2/tutorial/vineyards.html)
+shows the software-level calculation. The algorithm produces vines and
+updated pairings, not every possible linear transport map between persistence
+modules.
+
+## Vineyard versus vineyard module
+
+A vineyard records trajectories of persistence points. A vineyard module
+additionally retains compatible maps between the persistence modules at
+different external times. Schematically,
+
+$$
+\begin{array}{ccccc}
+V_s(a)&\longrightarrow&V_s(b)&\longrightarrow&V_s(c)\\
+\downarrow&&\downarrow&&\downarrow\\
+V_t(a+\eta)&\longrightarrow&V_t(b+\eta)&\longrightarrow&V_t(c+\eta).
+\end{array}
+$$
+
+Horizontal arrows change filtration scale. Vertical arrows transport or
+compare homology through external time. Each square should commute: changing
+scale and then transporting must agree with transporting and then changing
+scale. The [diagram-reading algebra refresher](../topic-02/algebra-survival-guide.qmd#reading-map-diagrams)
+explains this notation.
+
+![A vineyard follows diagram points, while a vineyard module additionally records linear maps between homology spaces.](../../assets/topic08-vineyard-versus-module.svg){fig-alt="The upper lane joins persistence points through time; the lower lane links vector spaces by linear maps."}
+
+Source and target barcodes do not determine a particular map between their
+modules. That missing linear information can matter for dynamic questions.
+
+:::: {.worked-example}
+### Why two visible vines need not separate algebraically
+
+Turner's teaching example assigns four changing filtration values
+[@turner2023vineyard]:
+
+$$
+f_t(A)=21-t,\quad f_t(B)=14-t,\quad
+f_t(C)=15+t,\quad f_t(D)=t.
+$$
+
+At each time there are two visible intervals,
+
+$$
+[14-t,21-t),\qquad[t,15+t).
+$$
+
+Their endpoints trace two vines. Yet a coherent basis change can mix their
+homology generators. Over $\mathbb F_2$, the relation
+
+$$
+[D]=[D+B]+[B]
+$$
+
+produces an off-diagonal transport term. The visible vineyard therefore does
+not contain all of the module-level information. The example is important for
+this distinction; its full representation-theoretic development is not
+required for using snapshot persistence or ordinary vineyards.
+::::
+
+## Delicate cases
+
+Smooth motion of points need not yield a gently changing Rips ordering. Many
+edge lengths can cross together, changing triangles and higher-dimensional
+simplices. Diagram stability bounds diagram displacement, but does not supply
+reliable class identity:
+
+$$
+\text{diagram stability}\ne\text{feature tracking}.
+$$
+
+::: {.checkpoint-route}
+
+You are ready to finish when you can read a backward zigzag arrow, distinguish
+vineyard updates from diagram matching and explain what transport information
+a vineyard module adds to visible vines.
+
+:::

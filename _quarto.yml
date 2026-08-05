@@ -1,13 +1,23 @@
 project:
   type: website
   output-dir: _site
+  render:
+    - "**/*.qmd"
+    - "topics/**/*.ipynb"
+    - "pause-and-take-stock/*.ipynb"
+    - "!downloads/**"
+    - "!archive/**"
   resources:
     - environment.yml
     - downloads/*.ipynb
     - downloads/*.csv
     - data/*.csv
+    - data/*.npz
     - data/README.md
     - data/DATASAURUS-LICENSE.md
+    - assets/*.html
+    - scripts/*.jl
+    - scripts/*.py
 
 website:
   title: "TDA for Static and Dynamic Data"
@@ -31,51 +41,84 @@ website:
             text: Course overview
           - href: reading-map.qmd
             text: Sources and data provenance
-      - section: "Foundations"
+      - section: "Prelude: Why topology?"
         contents:
-          - href: weeks/week-01/topology-familiar-shapes.qmd
-            text: "Topology refresher A: familiar shapes"
-          - href: weeks/week-01/topology-survival-guide.qmd
-            text: "Topology refresher B: formal specifics"
-          - weeks/week-01/index.qmd
-          - href: weeks/week-02/algebra-survival-guide.qmd
-            text: "Before Week 2: Algebra survival guide"
-          - weeks/week-02/index.qmd
-          - weeks/week-03/index.qmd
-          - weeks/week-04/index.qmd
-      - section: "From definitions to decisions"
+          - href: topics/topic-01/index.qmd
+            text: "A · Shape and controlled forgetting"
+          - href: topics/topic-01/topology-survival-guide.qmd
+            text: "B · Topology in detail"
+      - section: "Foundations: homology and filtered complexes"
         contents:
-          - href: design-decisions/index.qmd
-            text: "Every barcode has a modelling history"
+          - section: "1: Build K"
+            contents:
+              - href: topics/topic-02/index.qmd
+                text: "1A · Why build a complex?"
+              - href: topics/topic-02/detail.qmd
+                text: "1B · Simplicial complexes"
+          - section: "2: Homology of K"
+            contents:
+              - href: topics/topic-02/homology.qmd
+                text: "2A · What homology records"
+              - href: topics/topic-02/homology-detail.qmd
+                text: "2B · Chains and boundary maps"
+              - href: topics/topic-02/algebra-survival-guide.qmd
+                text: "Optional algebra refresher"
+          - section: "3: Filtration from (K, f)"
+            contents:
+              - href: topics/topic-03/index.qmd
+                text: "3A · Why filtrations"
+              - href: topics/topic-03/detail.qmd
+                text: "3B · Constructing filtrations"
+      - href: pause-and-take-stock/index.qmd
+        text: "Pause and take stock"
+      - section: "Foundations: persistent homology"
+        contents:
+          - section: "4: Persistent homology module"
+            contents:
+              - href: topics/topic-04/index.qmd
+                text: "4A · Link homology across scale"
+              - href: topics/topic-04/detail.qmd
+                text: "4B · Modules in detail"
+          - section: "5: Encode the module"
+            contents:
+              - href: topics/topic-04/summaries.qmd
+                text: "5A · Barcodes and diagrams"
+              - href: topics/topic-04/summaries-detail.qmd
+                text: "5B · Decomposition and reduction"
       - section: "Practice and validation"
         contents:
-          - section: "Static data"
+          - section: "Working with outputs"
             contents:
-              - weeks/week-05/index.qmd
-              - weeks/week-06/index.qmd
+              - href: topics/topic-05/index.qmd
+                text: "Transform and compare"
           - section: "Dynamic data"
             contents:
-              - weeks/week-07/index.qmd
-              - href: weeks/week-07/sw1pers.qmd
-                text: "Expert subtopic: SW1PerS"
-              - href: weeks/week-07/multiparameter.qmd
-                text: "Expert subtopic: multiparameter persistence"
-              - weeks/week-08/index.qmd
-              - href: weeks/week-08/vineyards-extension.qmd
-                text: "Expert submodule: vineyards"
-      - section: "Application routes"
-        contents:
-          - href: applications/index.qmd
-            text: "Overview"
-          - applications/dynamical-systems.qmd
-          - applications/industry-template.qmd
-
+              - href: topics/topic-06/index.qmd
+                text: "Introduction · Relationships through change"
+              - href: topics/topic-06/detail.qmd
+                text: "Snapshot summaries"
+              - href: topics/topic-06/correspondence-detail.qmd
+                text: "Zigzags, vineyards and transport"
+              - href: topics/topic-06/sw1pers.qmd
+                text: "Optional · SW1PerS"
+              - href: topics/topic-06/multiparameter.qmd
+                text: "Optional · Multiparameter persistence"
 format:
   html:
+    css: assets/layout-fixes.css
+    include-after-body:
+      - assets/collapsible-examples.html
+      - assets/course-spine.html
     theme:
       light: [cosmo, assets/site.scss]
       dark: [darkly, assets/site.scss]
     toc: true
+    toc-location: left
+    grid:
+      sidebar-width: 240px
+      body-width: 920px
+      margin-width: 300px
+      gutter-width: 1.5rem
     code-fold: true
     code-tools: true
     code-copy: true
@@ -83,6 +126,7 @@ format:
     smooth-scroll: true
 
 execute:
+  enabled: false
   freeze: auto
   echo: true
   warning: false

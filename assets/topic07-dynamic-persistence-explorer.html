@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dynamic point cloud and persistence-diagram stack</title>
+<style>
+:root{--fg:#294446;--muted:#64797b;--grid:#c9dcdb;--point:#17696d;--ball:#73b5b1;--edge:#397f81;--feature:#0f6065;--past:#91b8b6;--plane:#f5f9f9}
+:root[data-theme=dark]{--fg:#edf5f4;--muted:#b7c9c8;--grid:#536f70;--point:#b3e3df;--ball:#6fb7b3;--edge:#8dcbc7;--feature:#83d0cc;--past:#608b89;--plane:#293b3c}
+*{box-sizing:border-box}html,body{margin:0;background:transparent!important;color:var(--fg);font:15px system-ui,sans-serif;overflow:hidden}
+.wrap{border:1px solid var(--grid);border-radius:10px;padding:12px}.controls{display:grid;grid-template-columns:auto 1fr auto auto 1fr auto;gap:10px;align-items:center}
+button{border:1px solid var(--grid);border-radius:6px;padding:.35rem .7rem;background:transparent;color:var(--fg)}input{width:100%;accent-color:var(--feature)}
+svg{display:block;width:100%;height:auto}.panel{fill:none;stroke:var(--grid);stroke-width:1.4}.axis,.diag{stroke:var(--grid);stroke-width:1.8}.diag{stroke-dasharray:5 5}
+.ball{fill:var(--ball);fill-opacity:.13;stroke:var(--ball);stroke-width:1}.edge{stroke:var(--edge);stroke-opacity:.45;stroke-width:1.1}.cloud{fill:var(--point)}.pd{fill:var(--feature)}
+.guide{stroke:var(--feature);stroke-width:1.5;stroke-dasharray:4 4}.stack-plane{fill:var(--plane);stroke:var(--grid);stroke-width:1}.stack-diag{stroke:var(--grid);stroke-width:1}.stack-point{fill:var(--past)}.stack-current{fill:var(--feature)}
+.head{font-weight:650;font-size:18px;fill:var(--fg)}.small{font-size:12px;fill:var(--muted)}.formula{font:italic 15px Georgia,serif;fill:var(--fg)}
+@media(max-width:720px){.controls{grid-template-columns:auto 1fr auto}.epsilon-label{grid-column:1}}
+</style>
+</head>
+<body>
+<div class="wrap">
+ <div class="controls">
+  <button id="play" type="button">Play</button><input id="time" type="range" min="0" max="6.283" step="0.02" value="0"><output id="time-readout">t = 0.00</output>
+  <label class="epsilon-label" for="epsilon">selected ε</label><input id="epsilon" type="range" min="0" max="2.4" step="0.02" value="0.8"><output id="epsilon-readout">ε = 0.80</output>
+ </div>
+ <svg viewBox="0 0 1400 505" role="img" aria-labelledby="title desc">
+  <title id="title">A changing point cloud, its persistence diagram and an accumulating diagram stack</title>
+  <desc id="desc">A regular polygon changes radius through physical time. Balls of radius epsilon over two and Rips edges show the selected filtration scale. The current persistence point appears in a birth-death diagram and each completed diagram remains fixed in the stack.</desc>
+  <defs><clipPath id="cloud-panel"><rect x="11" y="43" width="423" height="408" rx="8"/></clipPath></defs>
+  <rect class="panel" x="10" y="42" width="425" height="410" rx="9"/><rect class="panel" x="450" y="42" width="390" height="410" rx="9"/><rect class="panel" x="855" y="42" width="535" height="410" rx="9"/>
+  <text class="head" x="24" y="28">Point cloud and Rips scale</text><text class="head" x="464" y="28">Current persistence diagram Dₜ</text><text class="head" x="869" y="28">Diagrams accumulated through time</text>
+  <g clip-path="url(#cloud-panel)"><g id="balls"></g><g id="edges"></g><g id="cloud"></g></g>
+  <text id="radius-label" class="formula" x="32" y="425"></text><text id="alive-label" class="small" x="220" y="425"></text>
+  <line class="axis" x1="500" y1="410" x2="795" y2="410"/><line class="axis" x1="500" y1="410" x2="500" y2="92"/><line class="diag" x1="500" y1="410" x2="785" y2="105"/>
+  <line id="birth-guide" class="guide"/><line id="death-guide" class="guide"/><circle id="pd-point" class="pd" r="8"/>
+  <text class="small" x="785" y="435">birth b</text><text class="small" x="464" y="96">death d</text><text id="interval-label" class="formula" x="515" y="75"></text>
+  <g id="stack"></g><text class="small" x="875" y="430">Past planes and points stay fixed; the newest diagram extends the stack.</text>
+ </svg>
+</div>
+<script>
+const $=s=>document.querySelector(s),ns="http://www.w3.org/2000/svg",n=24,maxD=2.4,scale=105,cx=222,cy=235;
+function syncTheme(){let dark=matchMedia("(prefers-color-scheme:dark)").matches;try{dark=parent.document.body.classList.contains("quarto-dark")}catch(_){}document.documentElement.dataset.theme=dark?"dark":"light"}
+syncTheme();try{new MutationObserver(syncTheme).observe(parent.document.body,{attributes:true,attributeFilter:["class"]})}catch(_){}
+const make=(tag,a,p)=>{const e=document.createElementNS(ns,tag);for(const[k,v]of Object.entries(a))e.setAttribute(k,v);p.appendChild(e);return e};
+const R=t=>.9+.34*Math.cos(t),bd=t=>{const r=R(t);return[2*r*Math.sin(Math.PI/n),Math.sqrt(3)*r]};
+const px=b=>500+285*b/maxD,py=d=>410-305*d/maxD;
+function cloudAt(t){const r=R(t),out=[];for(let i=0;i<n;i++){const a=2*Math.PI*i/n+.08*Math.sin(t);out.push({x:cx+scale*r*Math.cos(a),y:cy-scale*r*Math.sin(a),u:r*Math.cos(a),v:r*Math.sin(a)})}return out}
+function redraw(){const t=+$("#time").value,e=+$("#epsilon").value,pts=cloudAt(t),r=R(t);$("#time-readout").value=`t = ${t.toFixed(2)}`;$("#epsilon-readout").value=`ε = ${e.toFixed(2)}`;
+ const balls=$("#balls"),edges=$("#edges"),cloud=$("#cloud");balls.replaceChildren();edges.replaceChildren();cloud.replaceChildren();
+ for(const q of pts)make("circle",{class:"ball",cx:q.x,cy:q.y,r:e*scale/2},balls);
+ for(let i=0;i<n;i++)for(let j=i+1;j<n;j++)if(Math.hypot(pts[i].u-pts[j].u,pts[i].v-pts[j].v)<=e)make("line",{class:"edge",x1:pts[i].x,y1:pts[i].y,x2:pts[j].x,y2:pts[j].y},edges);
+ for(const q of pts)make("circle",{class:"cloud",cx:q.x,cy:q.y,r:4.5},cloud);
+ const[b,d]=bd(t),x=px(b),y=py(d),alive=b<=e&&e<d;$("#pd-point").setAttribute("cx",x);$("#pd-point").setAttribute("cy",y);$("#birth-guide").setAttribute("x1",x);$("#birth-guide").setAttribute("x2",x);$("#birth-guide").setAttribute("y1",y);$("#birth-guide").setAttribute("y2",410);$("#death-guide").setAttribute("x1",500);$("#death-guide").setAttribute("x2",x);$("#death-guide").setAttribute("y1",y);$("#death-guide").setAttribute("y2",y);
+ $("#radius-label").textContent=`point-cloud radius R(t) = ${r.toFixed(2)}`;$("#alive-label").textContent=alive?"H₁ class alive at selected ε":"H₁ class not alive at selected ε";$("#interval-label").textContent=`interval [${b.toFixed(2)}, ${d.toFixed(2)})`;
+ const stack=$("#stack");stack.replaceChildren();const total=13,last=Math.min(total-1,Math.floor(t/(2*Math.PI)*(total-1)+1e-9));for(let j=0;j<=last;j++){const tj=2*Math.PI*j/(total-1),[bb,dd]=bd(tj),ox=895+j*20,oy=382-j*18,w=210,h=145;make("rect",{class:"stack-plane",x:ox,y:oy-h,width:w,height:h,rx:3,opacity:(.42+.45*j/(total-1)).toFixed(2)},stack);make("line",{class:"stack-diag",x1:ox,y1:oy,x2:ox+w,y2:oy-h},stack);make("circle",{class:j===last?"stack-current":"stack-point",cx:ox+w*bb/maxD,cy:oy-h*dd/maxD,r:j===last?6:4},stack)}
+}
+let timer=null;$("#time").addEventListener("input",redraw);$("#epsilon").addEventListener("input",redraw);$("#play").addEventListener("click",()=>{if(timer){clearInterval(timer);timer=null;$("#play").textContent="Play";return}$("#play").textContent="Pause";timer=setInterval(()=>{let t=+$("#time").value+.03;if(t>2*Math.PI)t=0;$("#time").value=t;redraw()},55)});redraw();
+</script>
+</body>
+</html>

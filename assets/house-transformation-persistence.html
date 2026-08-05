@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>House transformations and persistence</title>
+<style>
+:root{color-scheme:light;--bg:#fff;--fg:#263746;--muted:#607284;--line:#245a7a;--accent:#9b4774;--border:#b8c4cf}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#212529;--fg:#edf2f7;--muted:#b8c4cf;--line:#82b7d7;--accent:#e18ab7;--border:#657381}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg)!important;color:var(--fg);font:16px system-ui,sans-serif}
+.wrap{border:1px solid var(--border);border-radius:14px;padding:14px;background:var(--bg)}
+.controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
+button{padding:.45rem .7rem;border:1px solid var(--border);border-radius:7px;background:var(--bg);color:var(--fg)}
+button[aria-pressed=true]{background:var(--line);color:var(--bg)}
+label{display:flex;gap:6px;align-items:center}canvas{display:block;width:100%;height:auto}
+.caption{color:var(--muted);font-size:.92rem;margin:.45rem .2rem 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="controls">
+    <button data-kind="original" aria-pressed="true">Original</button>
+    <button data-kind="rigid" aria-pressed="false">Rotate + translate</button>
+    <button data-kind="skew" aria-pressed="false">Skew</button>
+    <button data-kind="scale" aria-pressed="false">Scale ×2</button>
+    <label><input id="normalise" type="checkbox"> Normalise RMS pairwise distance</label>
+  </div>
+  <canvas id="plot" width="1120" height="470"></canvas>
+  <p class="caption">The same five labelled vertices are transformed. A rigid motion preserves every pairwise distance; a skew changes them; uniform scaling multiplies every Rips birth and death value by the same factor.</p>
+</div>
+<script>
+const root=document.querySelector(".wrap"),canvas=document.getElementById("plot"),ctx=canvas.getContext("2d"),normalise=document.getElementById("normalise");
+function syncTheme(){
+ let dark=matchMedia("(prefers-color-scheme: dark)").matches,bg="";
+ try{const pr=parent.document.documentElement,pb=parent.document.body;dark=pr.getAttribute("data-bs-theme")==="dark"||pr.classList.contains("quarto-dark")||pb.classList.contains("quarto-dark");bg=getComputedStyle(pb).backgroundColor;if(bg==="rgba(0, 0, 0, 0)")bg=getComputedStyle(pr).backgroundColor}catch(_){}
+ document.documentElement.dataset.theme=dark?"dark":"light";
+ if(bg&&bg!=="rgba(0, 0, 0, 0)")document.documentElement.style.setProperty("--bg",bg);
+}
+const base=[[270,70],[390,205],[405,397],[125,397],[145,205]].map(p=>p.map(x=>x/130));
+const edges=[[0,1],[1,2],[2,3],[3,4],[4,0],[4,1]],names=["v₀","v₁","v₂","v₃","v₄"];
+const records={
+ original:{label:"original",points:base,raw:[2.153846,2.486222],norm:[1.026589,1.185010],rms:2.098061},
+ rigid:{label:"rigid rotation + translation",points:base.map(([x,y])=>[-y+4,x+1]),raw:[2.153846,2.486222],norm:[1.026589,1.185010],rms:2.098061},
+ skew:{label:"horizontal skew",points:base.map(([x,y])=>[x+.2*y,y]),raw:[2.153846,2.284649],norm:[1.017356,1.079139],rms:2.117102},
+ scale:{label:"uniform scale ×2",points:base.map(([x,y])=>[2*x,2*y]),raw:[4.307692,4.972445],norm:[1.026589,1.185010],rms:4.196121}
+};let selected="original";
+function css(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim()}
+function draw(){
+ const rec=records[selected],useNorm=normalise.checked,P=rec.points,interval=useNorm?rec.norm:rec.raw,baseInterval=useNorm?records.original.norm:records.original.raw;
+ ctx.clearRect(0,0,canvas.width,canvas.height);ctx.fillStyle=css("--bg");ctx.fillRect(0,0,canvas.width,canvas.height);
+ ctx.fillStyle=css("--fg");ctx.font="700 21px system-ui";ctx.fillText(`House data: ${rec.label}`,45,36);ctx.fillText("H₁ persistence diagram",650,36);
+ const xs=P.map(p=>p[0]),ys=P.map(p=>p[1]),minX=Math.min(...xs),maxX=Math.max(...xs),minY=Math.min(...ys),maxY=Math.max(...ys),span=Math.max(maxX-minX,maxY-minY),map=p=>[285+(p[0]-(minX+maxX)/2)/span*300,250+(p[1]-(minY+maxY)/2)/span*300];
+ ctx.strokeStyle=css("--line");ctx.lineWidth=4;for(const [i,j] of edges){const a=map(P[i]),b=map(P[j]);ctx.beginPath();ctx.moveTo(...a);ctx.lineTo(...b);ctx.stroke()}
+ P.forEach((p,i)=>{const q=map(p);ctx.beginPath();ctx.arc(...q,9,0,2*Math.PI);ctx.fillStyle=css("--bg");ctx.fill();ctx.strokeStyle=css("--line");ctx.lineWidth=3;ctx.stroke();ctx.fillStyle=css("--fg");ctx.font="14px system-ui";ctx.fillText(names[i],q[0]+12,q[1]-10)});
+ const maxD=useNorm?1.35:5.35,pd=(b,d)=>[680+b/maxD*355,420-d/maxD*340];let a=pd(0,0),b=pd(maxD,maxD);ctx.strokeStyle=css("--muted");ctx.setLineDash([6,5]);ctx.beginPath();ctx.moveTo(...a);ctx.lineTo(...b);ctx.stroke();ctx.setLineDash([]);ctx.strokeStyle=css("--fg");ctx.beginPath();ctx.moveTo(680,420);ctx.lineTo(1035,420);ctx.moveTo(680,420);ctx.lineTo(680,80);ctx.stroke();
+ let q0=pd(...baseInterval);ctx.beginPath();ctx.arc(...q0,7,0,2*Math.PI);ctx.fillStyle=css("--muted");ctx.fill();let q=pd(...interval);ctx.beginPath();ctx.arc(...q,9,0,2*Math.PI);ctx.fillStyle=css("--accent");ctx.fill();
+ ctx.fillStyle=css("--fg");ctx.font="15px system-ui";ctx.fillText("birth ε",980,450);ctx.save();ctx.translate(646,150);ctx.rotate(-Math.PI/2);ctx.fillText("death ε",0,0);ctx.restore();ctx.fillText(`current [${interval[0].toFixed(3)}, ${interval[1].toFixed(3)})`,715,75);ctx.fillText(`lifespan d − b = ${(interval[1]-interval[0]).toFixed(3)}`,715,99);ctx.fillStyle=css("--muted");ctx.fillText("grey: original   accent: current",715,123);ctx.fillText(`RMS pairwise distance = ${rec.rms.toFixed(3)}`,45,438);
+}
+document.querySelectorAll("button[data-kind]").forEach(b=>b.addEventListener("click",()=>{selected=b.dataset.kind;document.querySelectorAll("button[data-kind]").forEach(c=>c.setAttribute("aria-pressed",String(c===b)));draw()}));normalise.addEventListener("change",draw);matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>{syncTheme();draw()});syncTheme();draw();
+</script>
+</body>
+</html>

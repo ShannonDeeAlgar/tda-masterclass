@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+:root{--fg:#294446;--muted:#64797b;--grid:#c9dcdb;--zero:#f4f8f8;--one:#9bcfcb;--two:#247f82;--frame:#145f63;--scale:#4ca5a2;--point:#17696d;--ball:#73b5b1;--edge:#397f81}
+:root[data-theme=dark]{--fg:#edf5f4;--muted:#b7c9c8;--grid:#536f70;--zero:#253637;--one:#5d9f9c;--two:#91d3cf;--frame:#9edbd7;--scale:#63b8b4;--point:#b3e3df;--ball:#6fb7b3;--edge:#8dcbc7}
+*{box-sizing:border-box}html,body{margin:0;background:transparent!important;color:var(--fg);font:15px system-ui,sans-serif;overflow:hidden}
+.wrap{border:1px solid var(--grid);border-radius:10px;padding:12px}.controls{display:grid;grid-template-columns:auto 1fr auto auto 1fr auto;gap:10px;align-items:center}
+button{border:1px solid var(--grid);border-radius:6px;padding:.35rem .7rem;background:transparent;color:var(--fg)}input{width:100%;accent-color:var(--frame)}
+canvas{display:block;width:100%;height:auto}.caption{margin:.4rem .25rem 0;color:var(--muted);font-size:.92rem}
+@media(max-width:700px){.controls{grid-template-columns:auto 1fr auto}.epsilon-label{grid-column:1}.epsilon-slider{grid-column:2}.epsilon-readout{grid-column:3}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="controls">
+    <button id="play" type="button">Play</button>
+    <input id="time" type="range" min="0" max="6.283" step="0.02" value="0" aria-label="Physical time">
+    <output id="time-readout">t = 0.00</output>
+    <label class="epsilon-label" for="epsilon">selected ε</label>
+    <input class="epsilon-slider" id="epsilon" type="range" min="0" max="2.1" step="0.02" value="0.8">
+    <output class="epsilon-readout" id="epsilon-readout">ε = 0.80</output>
+  </div>
+  <canvas id="plot" width="1400" height="610" role="img" aria-label="Two smoothly changing rings of points, their CROCKER matrix, a vertical Betti-curve slice and a horizontal time trace"></canvas>
+  <p class="caption">Controlled synthetic data: two labelled groups follow prescribed circular trajectories with smoothly varying radii. The selected ε is shown as balls of radius ε/2 and the corresponding Rips edges.</p>
+</div>
+<script>
+const $=s=>document.querySelector(s),canvas=$("#plot"),ctx=canvas.getContext("2d"),T=2*Math.PI,n=20,nt=61,ne=64,maxE=2.1;
+function syncTheme(){let dark=matchMedia("(prefers-color-scheme:dark)").matches;try{dark=parent.document.body.classList.contains("quarto-dark")}catch(_){}document.documentElement.dataset.theme=dark?"dark":"light";draw()}
+try{new MutationObserver(syncTheme).observe(parent.document.body,{attributes:true,attributeFilter:["class"]})}catch(_){}
+function css(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim()}
+function radii(t){return[.82+.30*Math.sin(t),.70+.38*Math.cos(t+.7)]}
+function intervals(t){return radii(t).map(r=>[2*r*Math.sin(Math.PI/n),2*r*Math.sin(Math.PI*Math.ceil(n/3)/n)])}
+function beta(t,e){return intervals(t).filter(z=>z[0]<=e&&e<z[1]).length}
+const times=Array.from({length:nt},(_,j)=>T*j/(nt-1)),eps=Array.from({length:ne},(_,i)=>maxE*i/(ne-1));
+function line(x1,y1,x2,y2,color,w=1){ctx.strokeStyle=color;ctx.lineWidth=w;ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke()}
+function text(s,x,y,size=16,color=css("--fg"),align="left",weight=400){ctx.fillStyle=color;ctx.font=`${weight} ${size}px system-ui`;ctx.textAlign=align;ctx.fillText(s,x,y)}
+function axes(x,y,w,h,xlab,ylab){line(x,y+h,x+w,y+h,css("--fg"),2);line(x,y,x,y+h,css("--fg"),2);text(xlab,x+w,y+h+28,14,css("--muted"),"right");text(ylab,x-8,y+12,14,css("--muted"),"right")}
+function draw(){
+ const t=+$("#time").value,eSel=+$("#epsilon").value;$("#time-readout").value=`t = ${t.toFixed(2)}`;$("#epsilon-readout").value=`ε = ${eSel.toFixed(2)}`;
+ ctx.clearRect(0,0,canvas.width,canvas.height);
+ const fg=css("--fg"),muted=css("--muted"),grid=css("--grid"),cols=[css("--zero"),css("--one"),css("--two")],frame=css("--frame"),scale=css("--scale"),point=css("--point"),ball=css("--ball"),edge=css("--edge");
+ text("Current dynamic point cloud",55,38,20,fg,"left",500);text("CROCKER matrix  C₁(t, ε)",405,38,20,fg,"left",500);text("Vertical slice",1025,38,20,fg,"left",500);
+ text("one frame: β₁ across ε",1025,61,14,muted);text("Horizontal slice",1025,335,20,fg,"left",500);text("one scale: β₁ through t",1025,358,14,muted);
+ const px=50,py=80,pw=300,ph=410;ctx.strokeStyle=grid;ctx.strokeRect(px,py,pw,ph);
+ const rs=radii(t),centres=[[-2.5,0],[2.5,0]],cloud=[],cloudScale=32;
+ for(let g=0;g<2;g++)for(let i=0;i<n;i++){const a=2*Math.PI*i/n+.12*Math.sin(t+g),xx=centres[g][0]+rs[g]*Math.cos(a),yy=rs[g]*Math.sin(a);cloud.push({x:px+pw/2+xx*cloudScale,y:py+ph/2-yy*cloudScale,xx,yy})}
+ ctx.save();ctx.beginPath();ctx.rect(px,py,pw,ph);ctx.clip();ctx.save();ctx.globalAlpha=.14;ctx.fillStyle=ball;ctx.strokeStyle=ball;ctx.lineWidth=1.2;for(const q of cloud){ctx.beginPath();ctx.arc(q.x,q.y,eSel*cloudScale/2,0,T);ctx.fill();ctx.stroke()}ctx.restore();
+ ctx.strokeStyle=edge;ctx.lineWidth=1.2;ctx.globalAlpha=.45;for(let i=0;i<cloud.length;i++)for(let j=i+1;j<cloud.length;j++){const dx=cloud[i].xx-cloud[j].xx,dy=cloud[i].yy-cloud[j].yy;if(Math.hypot(dx,dy)<=eSel)line(cloud[i].x,cloud[i].y,cloud[j].x,cloud[j].y,edge,1.2)}ctx.globalAlpha=1;
+ for(const q of cloud){ctx.fillStyle=point;ctx.beginPath();ctx.arc(q.x,q.y,4.2,0,T);ctx.fill()}ctx.restore();
+ text(`balls: radius ε/2 = ${(eSel/2).toFixed(2)}`,70,430,13,muted);
+ text(`r₁(t) = ${rs[0].toFixed(2)}`,70,455,14,muted);text(`r₂(t) = ${rs[1].toFixed(2)}`,215,455,14,muted);
+ const hx=405,hy=80,hw=555,hh=410,cw=hw/nt,ch=hh/ne;
+ for(let j=0;j<nt;j++)for(let i=0;i<ne;i++){ctx.fillStyle=cols[beta(times[j],eps[ne-1-i])];ctx.fillRect(hx+j*cw,hy+i*ch,cw+.5,ch+.5)}
+ ctx.strokeStyle=grid;ctx.strokeRect(hx,hy,hw,hh);const tx=hx+t/T*hw,ey=hy+hh-eSel/maxE*hh;line(tx,hy,tx,hy+hh,frame,3);line(hx,ey,hx+hw,ey,scale,3);
+ text("physical time t",hx+hw,hy+hh+28,14,muted,"right");text("ε",hx-10,hy+12,16,muted,"right");text("0",hx,hy+hh+20,13,muted,"center");text("T",hx+hw,hy+hh+20,13,muted,"center");text(maxE.toFixed(1),hx-8,hy+5,13,muted,"right");
+ const vx=1035,vy=92,vw=290,vh=180;axes(vx,vy,vw,vh,"ε","β₁");ctx.strokeStyle=frame;ctx.lineWidth=4;ctx.beginPath();for(let i=0;i<ne;i++){const xx=vx+eps[i]/maxE*vw,yy=vy+vh-beta(t,eps[i])/2*vh;if(i===0)ctx.moveTo(xx,yy);else ctx.lineTo(xx,yy)}ctx.stroke();line(vx+eSel/maxE*vw,vy,vx+eSel/maxE*vw,vy+vh,scale,2);text("0",vx-8,vy+vh+5,13,muted,"right");text("1",vx-8,vy+vh/2+5,13,muted,"right");text("2",vx-8,vy+5,13,muted,"right");
+ const qx=1035,qy=390,qw=290,qh=160;axes(qx,qy,qw,qh,"t","β₁");ctx.strokeStyle=scale;ctx.lineWidth=4;ctx.beginPath();for(let j=0;j<nt;j++){const xx=qx+times[j]/T*qw,yy=qy+qh-beta(times[j],eSel)/2*qh;if(j===0)ctx.moveTo(xx,yy);else ctx.lineTo(xx,yy)}ctx.stroke();line(qx+t/T*qw,qy,qx+t/T*qw,qy+qh,frame,2);text("0",qx-8,qy+qh+5,13,muted,"right");text("1",qx-8,qy+qh/2+5,13,muted,"right");text("2",qx-8,qy+5,13,muted,"right");
+ for(let k=0;k<3;k++){ctx.fillStyle=cols[k];ctx.fillRect(420+k*115,548,20,20);text(`${k} loops`,447+k*115,564,14,muted)}
+}
+let timer=null;$("#time").addEventListener("input",draw);$("#epsilon").addEventListener("input",draw);$("#play").addEventListener("click",()=>{if(timer){clearInterval(timer);timer=null;$("#play").textContent="Play";return}$("#play").textContent="Pause";timer=setInterval(()=>{let t=+$("#time").value+.035;if(t>T)t=0;$("#time").value=t;draw()},55)});syncTheme();
+</script>
+</body>
+</html>

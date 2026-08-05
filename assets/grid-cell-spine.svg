@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">From grid-cell recordings to a toroidal neural state space</title>
+  <desc id="desc">Four panels show a rat trajectory with neural spikes, population firing-rate vectors, a high-dimensional point cloud represented by a torus, and the characteristic persistence barcode with one component, two loops and one cavity.</desc>
+  <defs>
+    <style>
+      .panel{fill:#fbfcfe;stroke:#cad4df;stroke-width:2}
+      .ink{fill:none;stroke:#243746;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+      .soft{fill:none;stroke:#7893a8;stroke-width:2}
+      .accent{fill:none;stroke:#a54a67;stroke-width:5;stroke-linecap:round}
+      .accent2{fill:none;stroke:#287a64;stroke-width:5;stroke-linecap:round}
+      .dot{fill:#2d6b91}
+      .hot{fill:#cf6b72}
+      .label{font:600 20px system-ui,sans-serif;fill:#243746}
+      .small{font:16px system-ui,sans-serif;fill:#536777}
+      .math{font:italic 18px Georgia,serif;fill:#243746}
+      .arrow{fill:none;stroke:#7893a8;stroke-width:3;marker-end:url(#head)}
+    </style>
+    <marker id="head" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#7893a8"/>
+    </marker>
+  </defs>
+
+  <rect class="panel" x="20" y="48" width="245" height="265" rx="22"/>
+  <text class="label" x="42" y="82">Observed activity</text>
+  <path class="soft" d="M53 247 C75 120 190 108 224 207 C242 259 172 288 118 247 C74 214 91 147 159 144"/>
+  <circle class="hot" cx="80" cy="199" r="5"/><circle class="hot" cx="106" cy="153" r="5"/>
+  <circle class="hot" cx="145" cy="136" r="5"/><circle class="hot" cx="197" cy="163" r="5"/>
+  <circle class="hot" cx="222" cy="211" r="5"/><circle class="hot" cx="183" cy="266" r="5"/>
+  <circle class="hot" cx="129" cy="254" r="5"/>
+  <path class="ink" d="M135 219 l15 -7 11 12 -14 13 z"/>
+  <text class="small" x="53" y="292">spikes while the animal moves</text>
+
+  <path class="arrow" d="M276 180 H316"/>
+  <rect class="panel" x="327" y="48" width="245" height="265" rx="22"/>
+  <text class="label" x="349" y="82">Data object</text>
+  <text class="math" x="350" y="117">x(t) = (r₁(t), …, rₙ(t))</text>
+  <g transform="translate(360 142)">
+    <rect x="0" y="0" width="178" height="118" rx="8" fill="#eef3f7" stroke="#cad4df"/>
+    <g stroke="#cad4df"><path d="M0 24H178M0 48H178M0 72H178M0 96H178"/>
+      <path d="M30 0V118M60 0V118M90 0V118M120 0V118M150 0V118"/></g>
+    <g fill="#2d6b91">
+      <rect x="2" y="51" width="26" height="19" rx="3"/><rect x="32" y="27" width="26" height="19" rx="3"/>
+      <rect x="62" y="75" width="26" height="19" rx="3"/><rect x="92" y="3" width="26" height="19" rx="3"/>
+      <rect x="122" y="51" width="26" height="19" rx="3"/><rect x="152" y="99" width="24" height="17" rx="3"/>
+    </g>
+  </g>
+  <text class="small" x="349" y="292">one vector per selected time bin</text>
+
+  <path class="arrow" d="M583 180 H623"/>
+  <rect class="panel" x="634" y="48" width="245" height="265" rx="22"/>
+  <text class="label" x="656" y="82">Constructed shape</text>
+  <ellipse cx="756" cy="192" rx="84" ry="65" fill="#dce9f1" stroke="#2d6b91" stroke-width="3"/>
+  <ellipse cx="756" cy="192" rx="38" ry="28" fill="#fbfcfe" stroke="#2d6b91" stroke-width="3"/>
+  <path class="soft" d="M674 181 C708 158 803 158 837 181M674 203 C708 226 803 226 837 203"/>
+  <path class="soft" d="M720 136 C739 159 739 225 720 248M792 136 C773 159 773 225 792 248"/>
+  <g class="dot">
+    <circle cx="691" cy="174" r="4"/><circle cx="713" cy="146" r="4"/><circle cx="753" cy="128" r="4"/>
+    <circle cx="803" cy="146" r="4"/><circle cx="833" cy="183" r="4"/><circle cx="815" cy="225" r="4"/>
+    <circle cx="775" cy="250" r="4"/><circle cx="718" cy="235" r="4"/><circle cx="739" cy="177" r="4"/>
+    <circle cx="780" cy="197" r="4"/><circle cx="759" cy="216" r="4"/>
+  </g>
+  <text class="small" x="656" y="292">a cloud in neural activity space</text>
+
+  <path class="arrow" d="M890 180 H930"/>
+  <rect class="panel" x="941" y="48" width="239" height="265" rx="22"/>
+  <text class="label" x="963" y="82">Topological evidence</text>
+  <text class="small" x="964" y="119">H₀</text><path class="ink" d="M1000 113 H1144"/>
+  <text class="small" x="964" y="164">H₁</text><path class="accent" d="M1010 151 H1130"/><path class="accent" d="M1024 171 H1121"/>
+  <text class="small" x="964" y="216">H₂</text><path class="accent2" d="M1032 210 H1111"/>
+  <path class="soft" d="M999 245 H1148"/>
+  <text class="math" x="987" y="282">(β₀, β₁, β₂) = (1, 2, 1)</text>
+</svg>

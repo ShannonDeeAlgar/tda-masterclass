@@ -17,13 +17,13 @@ try:
 except Exception as exc:
     errors.append(f'Invalid _quarto.yml: {exc}')
 
-for n in range(1, 9):
-    d = ROOT / f'weeks/week-{n:02d}'
-    for name in ['index.qmd', 'slides.qmd', 'lab.ipynb', 'solutions.ipynb', 'case-study.qmd']:
+for n in range(1, 7):
+    d = ROOT / f'topics/topic-{n:02d}'
+    for name in ['index.qmd', 'lab.ipynb']:
         p = d / name
         if not p.exists():
             errors.append(f'Missing {p.relative_to(ROOT)}')
-    for name in ['lab.ipynb', 'solutions.ipynb']:
+    for name in ['lab.ipynb']:
         p = d / name
         if p.exists():
             try:
@@ -31,14 +31,14 @@ for n in range(1, 9):
             except Exception as exc:
                 errors.append(f'Invalid notebook JSON {p.relative_to(ROOT)}: {exc}')
     index_text = (d / 'index.qmd').read_text()
-    expected_href = f'href="../../downloads/week-{n:02d}-participant.ipynb"'
+    expected_href = f'href="../../downloads/topic-{n:02d}-participant.ipynb"'
     if expected_href not in index_text:
         errors.append(
-            f'Missing participant notebook download link in weeks/week-{n:02d}/index.qmd: '
+            f'Missing participant notebook download link in topics/topic-{n:02d}/index.qmd: '
             f'{expected_href}'
         )
-    for role in ['participant', 'lecture-walkthrough']:
-        download = ROOT / f'downloads/week-{n:02d}-{role}.ipynb'
+    for role in ['participant']:
+        download = ROOT / f'downloads/topic-{n:02d}-{role}.ipynb'
         if not download.exists():
             errors.append(f'Missing {download.relative_to(ROOT)}; run scripts/sync_notebook_downloads.py')
         else:
@@ -46,20 +46,31 @@ for n in range(1, 9):
                 json.loads(download.read_text())
             except Exception as exc:
                 errors.append(f'Invalid notebook JSON {download.relative_to(ROOT)}: {exc}')
-            source_name = 'lab.ipynb' if role == 'participant' else 'solutions.ipynb'
-            source = d / source_name
+            source = d / 'lab.ipynb'
             if source.exists() and download.read_bytes() != source.read_bytes():
                 errors.append(
                     f'Stale {download.relative_to(ROOT)}; run scripts/sync_notebook_downloads.py'
                 )
 
-algebra_guide = ROOT / 'weeks/week-02/algebra-survival-guide.qmd'
+algebra_guide = ROOT / 'topics/topic-02/algebra-survival-guide.qmd'
 if not algebra_guide.exists():
-    errors.append('Missing weeks/week-02/algebra-survival-guide.qmd')
+    errors.append('Missing topics/topic-02/algebra-survival-guide.qmd')
 
-topology_guide = ROOT / 'weeks/week-01/topology-survival-guide.qmd'
+topology_guide = ROOT / 'topics/topic-01/topology-survival-guide.qmd'
 if not topology_guide.exists():
-    errors.append('Missing weeks/week-01/topology-survival-guide.qmd')
+    errors.append('Missing topics/topic-01/topology-survival-guide.qmd')
+
+pause_lab = ROOT / 'pause-and-take-stock/lab.ipynb'
+pause_download = ROOT / 'downloads/pause-and-take-stock-practical.ipynb'
+if not pause_lab.exists():
+    errors.append('Missing pause-and-take-stock/lab.ipynb')
+elif not pause_download.exists():
+    errors.append('Missing downloads/pause-and-take-stock-practical.ipynb')
+elif pause_lab.read_bytes() != pause_download.read_bytes():
+    errors.append(
+        'Stale downloads/pause-and-take-stock-practical.ipynb; '
+        'run scripts/sync_notebook_downloads.py'
+    )
 
 datasaurus_source = ROOT / 'data/datasaurus_dozen.csv'
 datasaurus_download = ROOT / 'downloads/datasaurus_dozen.csv'

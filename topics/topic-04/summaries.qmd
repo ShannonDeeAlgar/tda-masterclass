@@ -1,0 +1,62 @@
+---
+title: "Foundation 5A: Barcodes and persistence diagrams"
+toc: true
+---
+
+Persistent homology records when each homology class first appears and how
+long it remains distinguishable as the filtration grows. Its **birth** is the
+first scale at which it appears. Its **death** is the scale at which it merges
+into an older component or becomes trivial in homology. The usual outputs are
+two views of those values.
+
+[]{#two-views-of-the-same-intervals}
+
+A **barcode** draws one horizontal interval for each class, from its birth
+scale to its death scale. It makes lifespans and the number of classes alive
+at a chosen scale easy to read. A **persistence diagram** represents the same
+class by the point $(\text{birth},\text{death})$. It is more compact and is the
+usual starting point for comparing or statistically analysing several
+persistence outputs. Neither display contains more interval information than
+the other.
+
+::: {.column-margin .study-note .insight}
+**Two views, one record.** A barcode reads like a timetable. A persistence
+diagram collects the same start and finish values as coordinates; distance
+above the diagonal shows lifespan.
+:::
+
+<iframe class="abc-persistence-explorer"
+src="../../assets/abc-persistence-explorer.html"
+title="Explore the A/B/C Rips filtration with degree-zero and degree-one barcodes and persistence diagrams"
+scrolling="no"
+loading="lazy"></iframe>
+
+Move $\varepsilon$ from left to right. The Rips complex grows in the left
+panel. In $H_0$, component bars end as components merge. In $H_1$, a bar begins
+when a new loop class appears and ends when that class is filled. Its diagram
+point remains at the corresponding birth and death coordinates.
+
+::: {.column-margin .study-note .qualification}
+**Parameter convention.** Here $\varepsilon$ is the pairwise-distance
+threshold used by the software. The faint balls have radius
+$\varepsilon/2$, and an edge enters when its endpoints are at most
+$\varepsilon$ apart.
+:::
+
+The colours connect the same feature families across the complex, barcode and
+diagram panels.
+The local loops appear at the scale of the B-shaped groups. The darker point
+and bar record the later, larger A-scale loop. Shorter grey intervals record
+other loops created by this particular point sample and Rips construction.
+
+Neither display shows where a representative cycle lies in the data. A long
+lifespan records survival across filtration scale, not automatic scientific
+importance. Its meaning still depends on the data and construction choices.
+
+::: {.checkpoint-route}
+
+You are ready to continue when you can follow one feature from the growing
+complex to its bar and diagram point, and explain what those two displays
+retain and omit.
+
+:::

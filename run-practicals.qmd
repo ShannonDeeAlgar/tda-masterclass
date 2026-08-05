@@ -1,7 +1,28 @@
 ---
-title: "Run the practical notebooks"
+title: "Practical notebooks and software scope"
 toc: true
 ---
+
+This page describes both how to run the notebooks and what the current
+software route does and does not support.
+
+## Current software scope
+
+Python is the course's primary environment because it provides a coherent
+route through numerical work, plotting, point-cloud persistence, simplex-tree
+representations and cubical complexes. The notebooks expose small constructions
+directly before using Ripser.py, Persim or GUDHI.
+
+Julia is a planned research extension, particularly when a surrounding
+dynamical simulation is Julia-native or a Ripserer.jl benchmark becomes
+scientifically useful. A mixed-language workflow should exchange simple
+objects such as point arrays, distance matrices or persistence intervals
+rather than live complex objects.
+
+The supported teaching workflow covers ordinary persistence, diagram
+comparison, vectorisation and snapshot persistence. Zigzag, multiparameter and
+vineyard-module computation require separate specialist evaluation; ordinary
+Ripser interoperability does not supply those methods automatically.
 
 ## What the website code boxes do
 
@@ -13,7 +34,7 @@ You do not need to copy cells into a new notebook. Download the participant note
 
 1. [Download the course environment file](environment.yml){.btn .btn-secondary download="environment.yml"}.
 2. Create the environment once.
-3. Download the participant notebook from the relevant weekly page.
+3. Download the participant notebook from the relevant topic page.
 4. Open the downloaded `.ipynb` file in JupyterLab, Jupyter Notebook or VS Code.
 5. Select the `tda-masterclass` Python kernel.
 6. Run the setup cell, then work from Observe through Interpret.
@@ -21,7 +42,9 @@ You do not need to copy cells into a new notebook. Download the participant note
 
 ## Create the course environment
 
-The environment file specifies Python 3.11 and the packages used across the course, including NumPy, Matplotlib, GUDHI, Ripser and Persim.
+The environment file specifies Python 3.11 and the packages used across the
+course, including NumPy, Matplotlib, GUDHI, Ripser, Persim and Dionysus.
+Dionysus is used only in the optional vineyard extension within Topic 6.
 
 ### Why the course currently uses Python
 
@@ -64,9 +87,8 @@ Run the first setup cell. A successful setup normally prints a readiness message
 | File | Intended use |
 |---|---|
 | Participant practical | Your editable investigation. Predictions, short calculations and interpretation remain for you. |
-| Lecture walkthrough | The completed example used during teaching. Use it to revisit the lecture argument after attempting the practical. |
 | Static website page | Convenient reading and searching. Its code controls do not execute Python. |
 
 ## Browser-only environments
 
-The course does not currently make Colab the default. Several weeks use compiled TDA packages, and installation behaviour can change between hosted sessions. A tested Conda environment gives participants and instructors the most consistent results. A Colab route can be added later as a separately tested convenience, not as the primary workflow.
+The course does not currently make Colab the default. Several topics use compiled TDA packages, and installation behaviour can change between hosted sessions. A tested Conda environment gives participants and instructors the most consistent results. A Colab route can be added later as a separately tested convenience, not as the primary workflow.

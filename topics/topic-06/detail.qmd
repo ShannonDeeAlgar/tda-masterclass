@@ -1,0 +1,148 @@
+---
+title: "Snapshot summaries"
+toc: true
+---
+
+The simplest dynamic analysis is often to calculate ordinary persistence
+separately at selected times or windows. At each physical time $t$,
+
+$$
+X_t\longrightarrow K_{\varepsilon,t}
+\longrightarrow H_p(K_{\varepsilon,t})
+\longrightarrow D_t.
+$$
+
+The filtration scale $\varepsilon$ varies within one snapshot. Physical time
+$t$ changes the snapshot. Keeping those axes separate prevents a sequence of
+static calculations from being mistaken for persistence through time.
+
+::: {.column-margin .study-note .insight}
+**What snapshots can claim.** A sequence $D_t$ records change in summaries.
+It does not identify a class in one diagram with a class in the next.
+:::
+
+## Choose the snapshot object
+
+A moving system may supply positions, states, interactions, images or a
+scalar signal. These lead respectively to point clouds, graphs, cubical
+complexes or filtered functions. The representation decides what a component
+or hole means before any dynamic summary is calculated.
+
+::: {.column-margin .study-note .audience-dynamics}
+**A scalar signal offers several questions.** A direct sublevel filtration
+studies connected low-valued runs. A delay-coordinate embedding can instead
+turn successive signal values into a state-space point cloud and expose
+recurrence. Lag, embedding dimension and window length then become additional
+modelling choices [@perea2015sw1pers].
+:::
+
+## Dynamic point clouds
+
+A dynamic point cloud is a family
+
+$$
+\{X_t\}_{t\in T},
+\qquad X_t=\{x_1(t),\ldots,x_{n_t}(t)\}.
+$$
+
+Writing $x_i(t)$ is appropriate only when observation $i$ is genuinely
+tracked. For unlabelled snapshots, write $X_t$ without persistent point
+indices. Timestamp order does not imply $X_t\subseteq X_{t+1}$, because the
+points normally move or are replaced.
+
+At each fixed $t$, a Rips construction produces $K_{\varepsilon,t}$ across
+filtration scale. Ordinary persistence then produces $D_t$. This is a family
+of static calculations indexed by time, not a persistence module in the time
+direction.
+
+Three snapshot summaries answer increasingly multiscale questions:
+
+- the diagrams $D_t$, or distances between them, retain the birth-death
+  configuration at each time;
+- fixing $\varepsilon$ gives the Betti series
+  $t\mapsto\beta_p(K_{\varepsilon,t})$;
+- retaining both axes gives the Betti surface
+  $C_p(t,\varepsilon)=\beta_p(K_{\varepsilon,t})$.
+
+Diagram distances quantify change in complete diagrams but do not say which
+class moved. A fixed-scale series is easy to compare with energy,
+polarisation or rotation but depends on one defensible scale. A Betti surface
+shows counts across time and scale without choosing one $\varepsilon$.
+
+## Betti surfaces and CROCKER displays
+
+For intervals $[b,d)$ in the degree-$p$ snapshot barcode at time $t$,
+
+$$
+C_p(t,\varepsilon)
+=\#\{[b,d):b\leq\varepsilon<d\}.
+$$
+
+The symbol $\#$ means the number of intervals in the set. Thus
+$C_p(t,\varepsilon)$ is exactly the snapshot Betti number at that scale.
+
+One vertical slice is the Betti curve of one snapshot. One horizontal slice
+shows how the count at a selected scale changes through physical time. Topaz,
+Ziegelmeier and Halverson introduced CROCKER plots for biological aggregation
+models [@topaz2015aggregation]. Xian and collaborators developed related
+time-varying summaries and CROCKER stacks [@xian2022dynamics].
+
+:::: {.worked-example}
+### Read a CROCKER display from its slices
+
+<iframe class="crocker-swarm-explorer"
+src="../../assets/topic07-crocker-swarm.html"
+title="A controlled dynamic point cloud beside its CROCKER matrix and selected slices"
+loading="lazy"></iframe>
+
+The balls have radius $\varepsilon/2$. Their overlaps show the selected Rips
+edge threshold in the point cloud. Fix time and read vertically for one Betti
+curve; fix scale and read horizontally for the count through time. The points
+follow prescribed paths, so this is a checkable teaching example rather than
+a biological model.
+::::
+
+CROCKER stacks add a persistence threshold as another display coordinate,
+allowing short intervals to be suppressed [@xian2022dynamics]. That threshold
+has the same interpretation burden as any other lifetime cutoff.
+
+## Diagram stacks
+
+Stacking diagrams in birth-death-time space can make possible trajectories
+visible. Once a past diagram is computed, its plane and points should remain
+fixed; new diagrams extend the stack.
+
+:::: {.worked-example}
+### A changing point cloud and diagram stack
+
+<iframe class="dynamic-persistence-explorer"
+src="../../assets/topic07-dynamic-persistence-explorer.html"
+title="A changing point cloud, its current persistence diagram and a growing stack"
+loading="lazy"></iframe>
+
+The same changing point cloud is shown at the selected $\varepsilon$ beside
+its current diagram. Each completed diagram remains fixed when a new layer is
+added to the stack.
+::::
+
+::: {.column-margin .study-note .qualification}
+**A stack is not tracking.** Joining nearby points on adjacent layers is a
+visual or optimisation rule. A vineyard instead follows persistence pairings
+along a specified path of changing filtrations.
+:::
+
+Windows are part of the observation model. Short windows may not contain
+enough observations to support the expected structure; long windows may mix
+regimes. Overlapping windows share data, so a smooth summary curve is not
+independent evidence of slowly changing dynamics. Report the window rule,
+representation, metric, filtration, coefficient field, homology degree and
+dynamic summary.
+
+::: {.checkpoint-route}
+
+You are ready to continue when you can write the two-parameter object
+$K_{\varepsilon,t}$ without confusing its axes, construct a CROCKER entry from
+a barcode, identify the extra choices introduced by windows and distinguish a
+stacked diagram from a vineyard.
+
+:::

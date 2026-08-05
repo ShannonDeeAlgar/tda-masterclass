@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="430" viewBox="0 0 1200 430" role="img" aria-labelledby="title desc">
+ <title id="title">From a signal to a delay cloud and an annotated CROCKER-style summary</title>
+ <desc id="desc">A scalar signal maps to a delay-coordinate cloud. Repeated persistence produces a heat map whose colour at physical time t and filtration scale epsilon is the number of one-dimensional classes alive. One vertical slice is identified as a Betti curve.</desc>
+ <style>
+  :root{--fg:#25282b;--muted:#687078;--grid:#c8cdd2;--blue:#286492;--light:#dbe8f3;--mid:#8fb8d8;--dark:#3e7fac;--accent:#a2671d}
+  @media(prefers-color-scheme:dark){:root{--fg:#f1f3f4;--muted:#bbc1c6;--grid:#596067;--blue:#76b6df;--light:#344958;--mid:#477da2;--dark:#6ba9d2;--accent:#e3ad65}}
+  .axis{stroke:var(--fg);stroke-width:2}.signal{stroke:var(--fg);stroke-width:3;fill:none}.pt{fill:var(--blue)}.guide{stroke:var(--grid);stroke-width:1.5}.slice{stroke:var(--accent);stroke-width:3;stroke-dasharray:7 5}
+  .head{font:600 21px system-ui,sans-serif;fill:var(--fg)}.label{font:16px system-ui,sans-serif;fill:var(--fg)}.small{font:14px system-ui,sans-serif;fill:var(--muted)}.arrow{stroke:var(--blue);stroke-width:2.5;fill:none}
+ </style>
+ <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8Z" fill="var(--blue)"/></marker></defs>
+ <g transform="translate(25 62)">
+  <text class="head" x="55" y="-25">1 · scalar signal x(t)</text><path class="axis" d="M15 260 H300 M15 260 V25"/><path class="signal" d="M15 150 C55 35 90 35 125 150 S195 265 230 150 S275 55 300 120"/>
+ </g>
+ <path class="arrow" d="M345 200 H415" marker-end="url(#arrow)"/><text class="small" x="350" y="184">delay map</text>
+ <g transform="translate(425 62)">
+  <text class="head" x="32" y="-25">2 · one delay cloud</text><path class="axis" d="M15 260 H275 M15 260 V25"/><ellipse class="guide" cx="145" cy="145" rx="100" ry="72" fill="none"/>
+  <g class="pt"><circle cx="45" cy="145" r="6"/><circle cx="65" cy="96" r="6"/><circle cx="105" cy="77" r="6"/><circle cx="155" cy="74" r="6"/><circle cx="205" cy="94" r="6"/><circle cx="245" cy="140" r="6"/><circle cx="220" cy="194" r="6"/><circle cx="165" cy="216" r="6"/><circle cx="105" cy="207" r="6"/><circle cx="62" cy="180" r="6"/></g>
+ </g>
+ <path class="arrow" d="M725 200 H785" marker-end="url(#arrow)"/><text class="small" x="718" y="175">repeat in windows</text>
+ <g transform="translate(800 62)">
+  <text class="head" x="5" y="-25">3 · CROCKER-style count C₁(t, ε)</text>
+  <rect x="20" y="25" width="315" height="235" fill="none" stroke="var(--fg)" stroke-width="2"/>
+  <path d="M20 25 H335 V82 H20Z" fill="var(--light)"/><path d="M20 82 H335 V145 H20Z" fill="var(--mid)"/><path d="M20 145 H115 V210 H20Z M230 145 H335 V210 H230Z" fill="var(--dark)"/>
+  <path d="M115 145 H230 V210 H115Z" fill="var(--light)"/><path d="M20 210 H335 V260 H20Z" fill="none"/>
+  <line class="slice" x1="176" y1="25" x2="176" y2="260"/><text class="label" x="184" y="48">one fixed time t*</text>
+  <text class="label" x="125" y="290">physical time t</text><text class="label" x="-8" y="20">ε</text>
+  <rect x="20" y="315" width="18" height="18" fill="var(--light)"/><text class="small" x="44" y="329">C₁ = 0</text>
+  <rect x="120" y="315" width="18" height="18" fill="var(--mid)"/><text class="small" x="144" y="329">C₁ = 1</text>
+  <rect x="220" y="315" width="18" height="18" fill="var(--dark)"/><text class="small" x="244" y="329">C₁ = 2</text>
+ </g>
+ <text class="small" x="800" y="420">Colour = number of H₁ intervals alive at (t, ε); it does not identify which interval is which.</text>
+</svg>

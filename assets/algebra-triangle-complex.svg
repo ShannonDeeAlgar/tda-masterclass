@@ -4,7 +4,7 @@
 <rect width="760" height="390" fill="#fff"/>
 <path class="edge" d="M150 300 L380 70 L610 300 Z"/>
 <circle class="node" cx="150" cy="300" r="7"/><circle class="node" cx="380" cy="70" r="7"/><circle class="node" cx="610" cy="300" r="7"/>
-<text class="lab" x="119" y="332">v₀</text><text class="lab" x="370" y="45">v₁</text><text class="lab" x="621" y="332">v₂</text>
+<text class="lab" x="119" y="332">v<tspan baseline-shift="sub" font-size="70%">0</tspan></text><text class="lab" x="370" y="45">v<tspan baseline-shift="sub" font-size="70%">1</tspan></text><text class="lab" x="621" y="332">v<tspan baseline-shift="sub" font-size="70%">2</tspan></text>
 <text class="lab" x="235" y="170">e₀₁</text><text class="lab" x="505" y="170">e₁₂</text><text class="lab" x="366" y="329">e₀₂</text>
 <text class="lab accent" x="371" y="212" font-size="36">K</text>
 <path d="M82 83 H248" stroke="#245b8a" stroke-width="1.5"/><text class="note" x="82" y="70">C₀ basis: vertices</text>

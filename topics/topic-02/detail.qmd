@@ -1,0 +1,157 @@
+---
+title: "Foundation 1B: Simplicial complexes in detail"
+toc: true
+---
+
+## Simplices and complexes
+
+These building blocks have a common name. A vertex is a **0-simplex**, an edge
+is a **1-simplex**, and a filled triangle is a **2-simplex**. More generally,
+an abstract $p$-simplex is a set of $p+1$ vertices,
+
+$$
+\sigma=[v_0,\ldots,v_p].
+$$
+
+Its dimension is $\dim\sigma=p$. A **face** is any simplex obtained from a
+subset of these vertices. A **codimension-one face** removes exactly one
+vertex.
+
+::: {.column-margin .study-note .insight}
+**Why “codimension”?** The codimension of a face inside a simplex is the
+difference between their dimensions. Removing one vertex lowers the dimension
+by one, so the resulting face has codimension one.
+:::
+
+A **finite abstract simplicial complex** on a vertex set $V$ is a collection
+$K$ of non-empty finite subsets of $V$ such that
+
+$$
+\sigma\in K,\quad \varnothing\ne\tau\subseteq\sigma
+\quad\Longrightarrow\quad \tau\in K.
+$$
+
+::: {.column-margin .study-note .qualification}
+**What is required of $K$?** For the abstract complexes used here, downward
+closure is the defining compatibility condition. Finiteness is a separate
+assumption that keeps the course calculations and software finite. A
+geometrically embedded simplicial complex must also satisfy geometric
+intersection conditions, but its abstract incidence structure is still
+downward closed.
+:::
+
+The dimension of $K$ is the largest dimension of any simplex in $K$. The
+condition above is **downward closure**: whenever a simplex belongs to $K$,
+all of its faces must belong to $K$ as well. A filled triangle therefore
+brings its three edges and three vertices with it.
+
+::: {.column-margin .study-note .insight}
+**Why downward closure?** Homology will take the boundary of each simplex. Its
+faces must already be simplices of $K$, otherwise the boundary map would leave
+the vector spaces built from $K$. Filtrations later require every stage to be
+a valid complex, but tracking birth and death is not the reason for imposing
+this rule.
+:::
+
+For example,
+
+$$
+\{[v_0],[v_1],[v_2],[v_0,v_1],[v_1,v_2],[v_0,v_2],[v_0,v_1,v_2]\}
+$$
+
+is a simplicial complex. The collection
+
+$$
+\{[v_0],[v_1],[v_2],[v_0,v_1,v_2]\}
+$$
+
+is not, because it contains a triangle while omitting its edges.
+
+::: {.column-margin .study-note .audience-dynamics}
+**Graph, hypergraph or simplicial complex?** A graph records pairwise
+relations. A hypergraph may record a five-person interaction without asserting
+that every pair interacted. A simplicial complex includes every lower-order
+face, so turning that hyperedge into a simplex adds all subgroup relations.
+That is a modelling decision, not merely a change of notation.
+:::
+
+<span id="subcomplexes-inclusions-and-skeletons"></span>
+
+A **subcomplex** $L\subseteq K$ is a collection of simplices from $K$ that is
+itself downward closed. The **inclusion**
+
+$$
+\iota:L\hookrightarrow K
+$$
+
+sends each simplex of $L$ to that same simplex in $K$.
+
+::: {.column-margin .study-note .insight}
+**Reading $L\hookrightarrow K$.** The hooked arrow signals inclusion. Here
+$K$ is larger only as a collection of simplices: it contains everything in
+$L$, and possibly more. A subcomplex really is a subset, but a special one;
+an arbitrary subset of the simplices of $K$ may fail downward closure.
+:::
+
+The **$p$-skeleton** $K^{(p)}$ contains every simplex of dimension at most
+$p$. In particular, $K^{(1)}$ is the graph formed by the vertices and edges.
+It omits filled triangles and every higher-dimensional simplex.
+
+<span id="clique-complexes"></span>
+
+For a graph $G$, the **clique complex** $\mathrm{Cl}(G)$, also called its flag
+complex, contains one simplex for every complete subgraph. Three mutually
+adjacent vertices produce a 2-simplex; four produce a 3-simplex together with
+all of its faces. Thus a graph and its clique complex have the same vertices
+and edges but need not have the same first homology.
+
+::: {.column-margin .study-note .insight}
+**Flag or clique?** The terms are interchangeable. *Flag complex* is common
+in topology and algebra, while *clique complex* is common in combinatorics and
+network science.
+:::
+
+<span id="geometric-realisation-and-triangulation"></span>
+
+Assigning locations to vertices and drawing their convex hulls gives a
+**geometric realisation**. The abstract incidence information, not the
+coordinates of one drawing, defines the complex. The notation $|K|$ denotes
+the space obtained by gluing geometric simplices according to those
+incidences. When $|K|$ represents a continuous space, $K$ is a
+**triangulation** of that space.
+
+<details class="reader-example">
+<summary><span class="reader-example-label">Example</span><span class="reader-example-title">The house complex</span></summary>
+<div class="reader-example-body" markdown="1">
+
+The labelled house combines two edge cycles with one filled triangular face.
+
+![The labelled house simplicial complex.](../../assets/topic02-house-complex.svg){fig-alt="Five labelled vertices form a house. Six labelled edges form the outside and the roof-base, and the triangular roof is filled as a two-simplex."}
+
+Its vertices are $v_0,\ldots,v_4$. Its six edges are
+
+$$
+x=[v_0,v_1],\quad y=[v_1,v_2],\quad z=[v_2,v_3],
+$$
+
+$$
+u=[v_3,v_4],\quad v=[v_4,v_0],\quad w=[v_4,v_1],
+$$
+
+and its only 2-simplex is the filled roof
+$t=[v_0,v_1,v_4]$. Downward closure supplies the edges and vertices of $t$.
+
+The 1-skeleton contains two visible edge cycles, the roof and the room. The
+full complex also contains $t$, so the roof cycle is filled while the room
+cycle is not. This distinction is what the homology calculation must detect.
+
+</div>
+</details>
+
+::: {.checkpoint-route}
+
+You are ready to continue when you can read the formal downward-closure rule,
+form a subcomplex, identify a skeleton and explain what clique filling adds to
+a graph.
+
+:::

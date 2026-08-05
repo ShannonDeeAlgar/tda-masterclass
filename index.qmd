@@ -1,197 +1,135 @@
 ---
-title: "Topological Data Analysis for Static and Dynamic Data"
-subtitle: "A conceptual route from data to persistent homology"
-toc: true
+title: "Topological Data Analysis for the Complex Systems Scientist"
+subtitle: "A conceptual route from data to persistent homology to meaning"
+toc: false
 ---
 
-This MasterClass develops the judgement needed to **read, compute, question and adapt** persistent homology pipelines for static and dynamic data.
+This MasterClass is a documented route into topological data analysis for a
+complex systems scientist, applied mathematician or data analyst who may not
+have an algebraic topology background but wants more than a surface-level
+introduction. It may also be useful to students meeting these ideas for the
+first time.
 
-The central outcome is conceptual fluency. By the end of the course, you should be able to follow the mathematical argument in a technical TDA paper, identify the objects and maps being used, and judge what its conclusions do and do not say about the underlying system. We construct examples and run computations because doing so makes the ideas inspectable, not because implementing every method from scratch is the final goal.
+The goal is conceptual fluency: to understand what a persistent homology
+pipeline constructs, follow the argument in a technical paper, and recognise
+where scientific judgement enters. Running a TDA package is relatively easy.
+The harder part is knowing what was constructed, which choices produced it
+and what the result means. The computations here make those steps visible.
 
-It is not organised as a software tutorial. The recurring question is:
+The question running through the material is:
 
-> What mathematical construction answers the scientific question, and what interpretation becomes possible or impossible because of that choice?
+::: {.course-question}
+What mathematical construction addresses the scientific question, and what
+does that construction allow us to interpret?
+:::
 
-## The guiding construction for Weeks 1–4
+No prior algebraic topology is assumed. The [formal topology refresher](topics/topic-01/topology-survival-guide.qmd)
+and [algebra refresher](topics/topic-02/algebra-survival-guide.qmd) are
+references to consult when a definition or calculation needs unpacking.
 
-The expression below is likely to look like another language at first. It is
-included now because it is the destination of the first four weeks, not because
-you are expected to understand it already. Each week makes a different part of
-it readable.
+**Accompanying notebooks.** Each stage has a downloadable Python notebook.
+The supplied example rebuilds the main object or figure from the reader, while
+short exercises expose the choices inside the calculation. The data input is
+kept separate so that the same calculation can be tested on another data set.
 
-Given a filtration of simplicial complexes
+## The persistent homology construction
+
+By the end of the foundation material, every object and map in this
+construction should be clear. It is the guiding framework for everything that
+follows. The numbered margin notes link each part to its intuitive and formal
+development.
+
+::: {.guiding-definition}
+Let $K$ be a finite simplicial complex.
+
+::: {.column-margin .study-note .insight}
+1 · Build $K$. Turn the data and modelling choices into a finite
+representation. [Why a representation is needed](topics/topic-02/index.qmd)
+and [simplicial complexes in detail](topics/topic-02/detail.qmd).
+:::
+
+For a coefficient field $\mathbb F$, $H_p(K;\mathbb F)$ records its
+$p$-dimensional homology.
+
+::: {.column-margin .study-note .insight}
+2 · Homology of $K$. Calculate the homology of that representation.
+[What homology records](topics/topic-02/homology.qmd) and
+[chains and boundary maps](topics/topic-02/homology-detail.qmd).
+:::
+
+Let
 
 $$
-K_a\subseteq K_b\qquad\text{whenever }a\leq b,
+f:K\to\mathbb R
 $$
 
-its **$p$-dimensional persistent homology over a field $\mathbb F$** is the persistence module
+be monotone on faces, meaning $f(\sigma)\leq f(\tau)$ whenever $\sigma$ is a
+face of $\tau$. The sublevel complexes
 
 $$
-a\longmapsto H_p(K_a;\mathbb F),
+K_a=\{\sigma\in K:f(\sigma)\leq a\}
+$$
+
+form a filtration: $K_a\subseteq K_b$ whenever $a\leq b$. Write
+$\iota_{a,b}:K_a\hookrightarrow K_b$ for this inclusion, and use
+$\mathcal K_f$ as shorthand for the entire indexed filtration and its
+inclusions.
+
+::: {.column-margin .study-note .insight}
+3 · Filter $K$. Repeat the construction through a nested family.
+[Why filtrations are needed](topics/topic-03/index.qmd) and
+[filtrations in detail](topics/topic-03/detail.qmd).
+:::
+
+Applying homology gives vector spaces and induced maps
+
+$$
+V_a=H_p(K_a;\mathbb F),
 \qquad
-(a\leq b)\longmapsto
-(\iota_{a,b})_*:H_p(K_a;\mathbb F)\to H_p(K_b;\mathbb F).
+\phi_{a,b}=H_p(\iota_{a,b}):V_a\to V_b.
 $$
 
-This says more than “compute holes at several scales”. It retains the homology vector space at every scale **and the maps recording what each earlier class becomes later**. Under suitable one-parameter finiteness or tameness conditions, the module decomposes into interval modules and can be summarised by a barcode or persistence diagram. The barcode is therefore a representation of the persistence module, not the starting definition.
+They satisfy
 
-### How to read the formula aloud
+$$
+\phi_{a,a}=\operatorname{id}_{V_a},
+\qquad
+\phi_{b,c}\circ\phi_{a,b}=\phi_{a,c}.
+$$
 
-> At every parameter value $a$, build a representation $K_a$ of the data and
-> compute its $p$-dimensional homology. Whenever $a\leq b$, the smaller
-> representation sits inside the larger one, and this inclusion tells us what
-> every homology class at $a$ becomes at $b$. Persistent homology is the whole
-> linked family of homology spaces and maps.
+The functor $V=H_p\circ\mathcal K_f$, equivalently the family
+$\{V_a,\phi_{a,b}\}_{a\leq b}$, is the degree-$p$ persistence module.
+For a particular pair $a\leq b$, the
+persistent homology group from $a$ to $b$ is
 
-The **data** are not explicitly visible in the displayed definition. They enter
-earlier, when observations are turned into the family of representations
-$K_a$. That step contains modelling choices: what is observed, how it is
-preprocessed, what distance or relation is used, what construction produces
-$K_a$, and what parameter $a$ controls. The formula begins after those choices
-have been made. Further choices remain visible in the homological dimension
-$p$ and coefficient field $\mathbb F$.
+$$
+H_p^{a,b}=\operatorname{im}\phi_{a,b}.
+$$
 
-Here is how the four weeks make the expression readable:
+It contains the classes present by scale $a$ that remain alive at scale $b$.
 
-1. **[Week 1](weeks/week-01/index.qmd): scientific object, observations and representation.** Why might connectedness, recurrence or enclosure be worth preserving, and what information is deliberately forgotten by a topological lens?
-2. **[Week 2](weeks/week-02/index.qmd): $K_a$ and $H_p(K_a;\mathbb F)$.** What is a simplicial complex, how do boundary maps define homology, and what does the coefficient field change?
-3. **[Week 3](weeks/week-03/index.qmd): the nested family $K_a\subseteq K_b$.** How does a metric, relation or filtration function produce complexes that grow with a parameter?
-4. **[Week 4](weeks/week-04/index.qmd): the maps $(\iota_{a,b})_*$ and their interval summary.** How do homology classes persist, merge or become boundaries, and when may the resulting module be represented by a barcode?
-
-::: {.callout-important title="Running the code"}
-Website code boxes are static previews. Download the participant `.ipynb` file from each weekly page and run it directly in JupyterLab, Jupyter Notebook or VS Code. You do not need to copy individual cells.
-
-[Set up the environment and run a practical](run-practicals.qmd){.btn .btn-primary}
+::: {.column-margin .study-note .insight}
+4 · Persistent homology. Retain the maps that say what survives across
+the family. [Follow classes across scale](topics/topic-04/index.qmd) and
+[persistence modules in detail](topics/topic-04/detail.qmd).
 :::
 
-::: {.callout-note title="What is available to whom?"}
-The participant practical is the student-facing notebook used during independent work. The lecture walkthrough is an instructor resource used to control prediction and reveal during the lecture. It can be released to students after the session as a worked record, but it is not intended to remove the decisions from the practical in advance.
+For a finite one-parameter filtration over a field, the persistence module
+admits an interval decomposition. The same intervals are displayed as a
+barcode or persistence diagram:
+
+$$
+V\cong\bigoplus_{\ell}I_{[b_\ell,d_\ell)}
+\qquad
+\operatorname{Bar}_p(V),\ \operatorname{Dgm}_p(V).
+$$
+
+::: {.column-margin .study-note .insight}
+5 · Encode the module. Record the resulting lifespans as bars or
+birth-death points. [Barcodes and diagrams](topics/topic-04/summaries.qmd) and
+[decomposition and reduction](topics/topic-04/summaries-detail.qmd).
 :::
 
-## Who this course is for
-
-::: {.audience-grid}
-::: {.audience-card}
-### Dynamical systems researchers
-
-Use topology alongside geometric, temporal and statistical descriptions of trajectories, attractors and collective dynamics.
+The data, preprocessing, metric or relation, and the choices of $K$ and $f$
+all precede the algebra and remain part of the scientific model.
 :::
-
-::: {.audience-card}
-### Honours and graduate students
-
-Build the algebraic topology foundations needed to understand what TDA software constructs and computes.
-:::
-
-::: {.audience-card}
-### Applied and industry participants
-
-Evaluate whether connectedness, loops or multiscale organisation answer an operational question beyond existing baselines.
-:::
-:::
-
-No prior algebraic topology is assumed. [Topology refresher A](weeks/week-01/topology-familiar-shapes.qmd) begins with the familiar coffee-cup and doughnut intuition; [Topology refresher B](weeks/week-01/topology-survival-guide.qmd) keeps formal open-set and continuity details available without making them prerequisites. Familiarity with basic linear algebra is helpful; the [pre-Week 2 algebra survival guide](weeks/week-02/algebra-survival-guide.qmd) supplies a concise refresher at the point where it is needed. The practical notebooks introduce the required Python code as it is used.
-
-## Software scope
-
-Python is the course's primary computing environment because it gives
-participants a coherent route through point-cloud, simplicial, cubical and
-persistence workflows. The notebooks use focused, inspectable code before
-calling specialist packages such as Ripser.py or GUDHI. The [notebook setup
-page](run-practicals.qmd) explains how to run them.
-
-Julia is a planned research extension, especially when the surrounding
-dynamical simulation is already Julia-native or a Ripserer.jl benchmark is
-scientifically useful. It is not introduced merely to reproduce the same
-classroom barcode in a second language. A mixed-language project should pass
-simple objects—point arrays, distance matrices or persistence intervals—across
-the Python/Julia boundary rather than live complex objects. Zigzag,
-multiparameter and vineyard-module computation require separate method and
-software evaluation; ordinary persistence software does not provide them
-automatically.
-
-## Guiding texts and how the course uses them
-
-Two books support the first half of the course, but they play different
-roles.
-
-**Edelsbrunner and Harer, *Computational Topology*** provides the main
-mathematical and computational spine [@edelsbrunner2010computational]. We draw
-on its movement between geometry, topology and algorithms: connectedness in
-Chapter I.1; simplicial complexes, nerves, Delaunay complexes and alpha
-complexes in Chapter III; homology and matrix reduction in Chapter IV;
-one-parameter persistence and its reduction algorithm in Chapter VII; and
-vineyards, diagram distances and stability in Chapter VIII. It is especially
-useful when the course asks how a topological construction becomes something
-that can be represented and computed.
-
-**Postol, *Algebraic Topology for Data Scientists*** provides the more gradual
-preparatory and data-facing route [@postol2024algebraic]. We use Chapter 2 for
-sets, metrics, topological spaces, continuity and connectedness; Chapter 3 for
-fields, vector spaces and the algebraic vocabulary behind homology; Chapter
-4.1 for simplicial homology and induced maps; and selected parts of Chapter 5
-for Rips complexes, persistence modules, barcodes, diagram distances, sublevel
-sets, graphs, time series, persistence images and zigzag persistence. The
-course does not rely on the book's later specialised chapters on cohomology,
-homotopy, obstruction theory or cohomology operations.
-
-Neither book determines the applications or software workflow. Weeks 5–8 use
-research papers and software documentation attached directly to the relevant
-week. All readings are optional routes for checking a definition, seeing a
-second explanation or following an idea into the literature.
-
-## Course structure
-
-::: {.course-map}
-::: {.course-block}
-### Foundations
-
-1. [Shape, topology and computable invariants](weeks/week-01/index.qmd)
-2. [Simplicial complexes and homology](weeks/week-02/index.qmd)
-3. [Filtrations](weeks/week-03/index.qmd)
-4. [Persistent homology and persistence modules](weeks/week-04/index.qmd)
-:::
-
-::: {.course-block}
-### From definitions to decisions
-
-[Every barcode has a modelling history](design-decisions/index.qmd)
-
-Pause between mathematical foundations and software workflows to expose the decisions already embedded in a persistence pipeline.
-:::
-
-::: {.course-block}
-### Practice and validation
-
-#### Static data
-
-5. [Static data in practice](weeks/week-05/index.qmd)
-6. [Summaries, comparisons and validation](weeks/week-06/index.qmd)
-
-#### Dynamic data
-
-7. [Repeated persistence through time](weeks/week-07/index.qmd), with optional subtopics on [SW1PerS](weeks/week-07/sw1pers.qmd) and [multiparameter persistence](weeks/week-07/multiparameter.qmd)
-8. [Topology for genuinely changing systems](weeks/week-08/index.qmd), with an [expert vineyard submodule](weeks/week-08/vineyards-extension.qmd)
-:::
-
-::: {.course-block}
-### Application routes
-
-Enter through a [dynamical systems or industry question](applications/index.qmd), then follow the relevant mathematics, notebook and sensitivity checks.
-:::
-:::
-
-## Reading symbols
-
-<div class="sticking-point">**▶ Likely sticking point.** A transition that looks small but commonly breaks the thread.</div>
-
-<div class="qualification">**† Qualification.** A condition or distinction that must not be hidden for convenience.</div>
-
-<div class="tda-connection">**◆ TDA connection.** Why the current idea is needed later in the TDA pipeline.</div>
-
-<div class="applied-translation">**Applied translation.** The same idea restated as a modelling, computational or bookkeeping action.</div>
-
-<div class="data-translation">**Data-analysis translation.** What the idea changes in a data object, workflow, diagnostic or interpretation.</div>
-
-<div class="historical-note">**◷ Historical context.** A short chronology explaining which result came first and what a later result added.</div>

@@ -1,0 +1,142 @@
+---
+title: "Topic 5A: From stored data to a filtered object"
+toc: true
+---
+
+**Practical notebook.** Apply point-cloud, graph and scalar-grid constructions
+while keeping the scientific question visible. <a href="../../downloads/topic-05-participant.ipynb" download="topic-05-participant.ipynb">Download the notebook</a>.
+
+::: {.column-margin .study-note .insight}
+**Relation to the spine.** This topic revisits stages 1 and 3. The teaching
+examples used one convenient route; real stored data require a justified
+representation, constructor and filtration.
+:::
+
+A valid persistence calculation begins before software is called. The stored
+data must become a filtered object without discarding relationships that were
+already meaningful. Coordinates, networks, images and meshes therefore need
+different starting constructions. Converting all of them into point clouds
+would introduce assumptions that the data did not require.
+
+The first practical question is:
+
+> What is actually stored, and which relationships are already meaningful?
+
+| Stored data | Natural representation | Filtration value means |
+|---|---|---|
+| coordinates or distances | Rips, Čech or alpha complex | spatial or state-space proximity |
+| weighted graph | filtered graph or clique complex | edge strength, cost or dissimilarity |
+| image, volume or scalar grid | cubical complex | intensity, density, energy or another field value |
+| supplied mesh or complex | filter the existing cells | a measured value attached to vertices or cells |
+
+![Four stored data types lead to different filtered objects.](../../assets/topic05-data-routes.svg){fig-alt="Four teal panels show a point cloud becoming a proximity complex, a weighted graph being thresholded, a scalar image becoming a cubical complex and a supplied mesh retaining its incidences."}
+
+The table is a method map, not an automatic selector. The metric, filtration
+direction and treatment of higher-order relations still come from the
+scientific question.
+
+::: {.column-margin .study-note .insight}
+**Static is a computational description.** The input may be one window from a
+changing system, one state-space cloud or one network at a selected time. The
+calculation is static because it receives one object, not because the
+scientific system is stationary.
+:::
+
+### Coordinates and distances
+
+A metric point cloud supports a proximity construction. Rips complexes need
+only pairwise distances. Čech complexes retain a direct connection to unions
+of balls, while alpha complexes use Euclidean geometry to reduce the number
+of simplices. Alpha shapes were introduced precisely as a scale-dependent
+description of the shape of a finite Euclidean point set
+[@edelsbrunner1994alpha]. Witness complexes instead select landmarks and use
+the remaining observations as witnesses, reducing the vertex set
+[@desilva2004witness]. These routes encode related but not identical
+assumptions.
+
+Coordinates do not make Euclidean distance compulsory. Units, periodic
+coordinates, feature scaling and mixed variable types can all change which
+observations count as neighbours.
+
+### Weighted graphs
+
+A weighted graph already states which pairwise relations are admissible. It
+can remain one-dimensional, in which case graph cycles cannot be filled, or
+complete subgraphs can be filled to form a clique complex. The latter asserts
+that pairwise compatibility is sufficient evidence for a higher-order
+relation.
+
+Petri and collaborators provide a concrete weighted-network example. They
+filter functional brain correlation networks, retain representative
+one-dimensional cycles and assemble them into homological scaffolds; their
+Figure 6 contrasts the resulting placebo and psilocybin scaffolds
+[@petri2014scaffolds]. The interpretation depends on both the edge weights and
+the clique-based higher-order completion.
+
+::: {.column-margin .study-note .audience-dynamics}
+**Graph versus clique complex.** A triangular graph records three pairwise
+relations. Its clique complex additionally treats the triple as one filled
+relation. That choice can determine whether the visible cycle contributes to
+homology.
+:::
+
+### Images, volumes and scalar grids
+
+A cubical complex retains the rectangular adjacency already present in an
+array. Pixels become filled squares and voxels become filled cubes. A sublevel
+filtration reveals low values first; a superlevel filtration reveals high
+values first. Robins, Wood and Sheppard model two- and three-dimensional
+greyscale images as cubical complexes; Section 5 shows persistent homology
+calculations on digital-image examples [@robins2011images].
+
+![A scalar image and its cubical sublevel filtration.](../../assets/topic05-cubical-data-filtration.svg){fig-alt="The raw five-by-five image assigns value one to a ring, value five to its central pixel and value four outside. At threshold one the ring pixels enter but the value-five centre does not; at threshold five the centre enters and fills the hole."}
+
+The missing centre is not drawn by hand. It is the pixel whose recorded value
+is $5$. At threshold $a=1$, the eight value-$1$ pixels have entered while the
+centre has not, so the included squares surround an absent square. At $a=5$,
+that data value is admitted and the opening is filled. The feature is a
+statement about the scalar values and sublevel direction, not merely the
+rectangular grid.
+
+The filtration coordinate now has the units of the scalar field. Reversing
+the direction changes the question, for example from low-energy basins to
+high-density regions.
+
+### Existing meshes and complexes
+
+If the data already include a mesh, cell complex or scientifically defined
+interaction complex, retain it when possible. A value on vertices can be
+extended to simplices by a lower-star rule, so each simplex enters no earlier
+than its faces. The terrain example in the original persistence and
+simplification paper demonstrates this route for a scalar function on an
+existing triangulated domain [@edelsbrunner2002persistence]. Rebuilding the
+object as an unrelated point cloud may erase the incidence structure supplied
+by the data.
+
+::: {.column-margin .study-note .qualification}
+**Labels may also be structure.** Cell type, agent role or species can be part
+of the observation rather than decoration. Chromatic persistence is one
+specialist family of constructions that retains such labels instead of
+discarding them before topology is computed [@cultrera2024chromatic].
+:::
+
+## Construction choice versus parameter choice
+
+Replacing a graph by its clique complex, negating a scalar field or replacing
+Euclidean distance by correlation changes the represented question. Changing
+a numerical threshold within one documented construction explores scale
+inside that question.
+
+This distinction explains why applications use different routes. Grid-cell
+population activity can be represented as a high-dimensional point cloud
+[@gardner2022torus], amorphous structures as geometric point configurations
+[@hiraoka2016hierarchical], and aggregation models as point clouds in
+position-velocity space [@topaz2015aggregation]. Their shared algebra does not
+make the represented objects interchangeable.
+
+## Checkpoints
+
+You are ready to continue when you can identify the stored data object,
+select a representation without unnecessarily discarding structure, state
+what the filtration value means, and distinguish a construction choice from a
+parameter change within that construction.

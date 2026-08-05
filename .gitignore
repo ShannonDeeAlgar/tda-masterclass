@@ -4,6 +4,7 @@ _site/
 __pycache__/
 .DS_Store
 .env
+.mplconfig/
 
 **/*.quarto_ipynb
 

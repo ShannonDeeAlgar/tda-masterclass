@@ -1,30 +1,63 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 320" role="img" aria-labelledby="title desc">
-  <title id="title">Coffee cup and torus schematic</title>
-  <desc id="desc">A line drawing of a coffee cup with one handle, a reversible deformation arrow, and a torus.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="460" viewBox="0 0 1100 460" role="img" aria-labelledby="title desc">
+  <title id="title">A one-handled coffee cup and a torus</title>
+  <desc id="desc">A polished schematic places a rounded one-handled coffee cup beside a torus, joined by a reversible deformation path. A caption emphasises that their geometry differs while their continuous organisation agrees.</desc>
   <defs>
-    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
-      <path d="M0,0 L0,6 L9,3 z" fill="#7057a8"/>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fbfaf7"/><stop offset="1" stop-color="#edf3f5"/>
+    </linearGradient>
+    <linearGradient id="ceramic" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#9ed4dc"/><stop offset=".48" stop-color="#4f9eae"/><stop offset="1" stop-color="#267481"/>
+    </linearGradient>
+    <radialGradient id="torus" cx="38%" cy="28%" r="78%">
+      <stop offset="0" stop-color="#b6e0e5"/><stop offset=".42" stop-color="#5eabb7"/><stop offset="1" stop-color="#277481"/>
+    </radialGradient>
+    <linearGradient id="morph" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#bd557b"/><stop offset=".5" stop-color="#7858a7"/><stop offset="1" stop-color="#2d8490"/>
+    </linearGradient>
+    <filter id="shadow" x="-25%" y="-25%" width="150%" height="160%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#253946" flood-opacity=".17"/>
+    </filter>
+    <marker id="arrow-right" markerWidth="12" markerHeight="12" refX="9" refY="4" orient="auto">
+      <path d="M0 0 L0 8 L10 4 Z" fill="#7858a7"/>
+    </marker>
+    <marker id="arrow-left" markerWidth="12" markerHeight="12" refX="1" refY="4" orient="auto">
+      <path d="M10 0 L10 8 L0 4 Z" fill="#7858a7"/>
     </marker>
     <style>
-      .line{fill:none;stroke:#263238;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
-      .soft{fill:#edf3f4;stroke:#263238;stroke-width:5}
-      .accent{fill:none;stroke:#7057a8;stroke-width:4;stroke-linecap:round}
-      .label{font: 22px sans-serif;fill:#263238;text-anchor:middle}
-      .small{font: 17px sans-serif;fill:#5f6b70;text-anchor:middle}
+      .heading{font:700 27px Inter,Arial,sans-serif;fill:#263746}.label{font:700 21px Inter,Arial,sans-serif;fill:#263746;text-anchor:middle}.small{font:16px Inter,Arial,sans-serif;fill:#667785;text-anchor:middle}.outline{stroke:#245e69;stroke-width:4;stroke-linejoin:round}.highlight{fill:none;stroke:#d9f2f4;stroke-width:5;stroke-linecap:round;opacity:.8}.morph{fill:none;stroke:url(#morph);stroke-width:5;stroke-linecap:round}
     </style>
   </defs>
-  <ellipse class="soft" cx="220" cy="92" rx="112" ry="25"/>
-  <path class="soft" d="M108 92 L126 246 Q220 282 314 246 L332 92 Q220 128 108 92 Z"/>
-  <ellipse class="line" cx="220" cy="92" rx="112" ry="25"/>
-  <path class="line" d="M320 126 C405 105 415 220 330 222"/>
-  <path class="line" d="M326 151 C372 139 374 192 334 195"/>
-  <path class="accent" d="M420 157 C470 118 525 118 575 157" marker-end="url(#arrow)"/>
-  <path class="accent" d="M575 185 C525 224 470 224 420 185" marker-end="url(#arrow)"/>
-  <ellipse class="soft" cx="705" cy="160" rx="132" ry="86"/>
-  <ellipse fill="#ffffff" stroke="#263238" stroke-width="5" cx="705" cy="160" rx="52" ry="31"/>
-  <path class="line" d="M581 132 C620 166 648 176 653 160" opacity=".45"/>
-  <path class="line" d="M757 160 C764 177 792 166 829 132" opacity=".45"/>
-  <text class="label" x="220" y="302">one-handled cup</text>
-  <text class="label" x="705" y="302">torus</text>
-  <text class="small" x="497" y="94">continuous reversible deformation</text>
+
+  <rect x="16" y="16" width="1068" height="428" rx="30" fill="url(#paper)" stroke="#d4dde2"/>
+  <text class="heading" x="550" y="59" text-anchor="middle">Different geometry, the same continuous organisation</text>
+
+  <g transform="translate(120 88)" filter="url(#shadow)">
+    <ellipse cx="190" cy="45" rx="122" ry="31" fill="#d9eef1" class="outline"/>
+    <ellipse cx="190" cy="47" rx="92" ry="18" fill="#385f67" opacity=".72"/>
+    <path d="M69 46 L87 222 Q190 268 293 222 L311 46 Q190 84 69 46 Z" fill="url(#ceramic)" class="outline"/>
+    <path d="M82 58 Q190 91 298 58" class="highlight" opacity=".55"/>
+    <path d="M300 83 C395 51 424 190 320 209 C296 213 283 202 286 184 C291 164 306 157 326 157 C370 154 370 105 325 112 C312 114 305 110 300 101 Z" fill="url(#ceramic)" class="outline"/>
+    <path d="M313 105 C365 85 385 156 328 174" class="highlight" opacity=".62"/>
+    <path d="M105 219 Q190 251 275 219" class="highlight" opacity=".38"/>
+  </g>
+
+  <g transform="translate(727 110)" filter="url(#shadow)">
+    <path fill="url(#torus)" fill-rule="evenodd" class="outline"
+      d="M152 6 C250 6 326 68 326 145 C326 222 250 284 152 284 C54 284 -22 222 -22 145 C-22 68 54 6 152 6 Z
+         M152 92 C105 92 72 115 72 145 C72 175 105 198 152 198 C199 198 232 175 232 145 C232 115 199 92 152 92 Z"/>
+    <path d="M9 105 C55 43 157 26 239 56" class="highlight"/>
+    <path d="M72 145 C93 113 124 101 153 101" class="highlight" opacity=".58"/>
+    <path d="M-7 177 C56 257 214 271 294 190" fill="none" stroke="#1f6470" stroke-width="3" opacity=".38"/>
+  </g>
+
+  <path class="morph" d="M493 187 C535 151 578 151 620 187" marker-end="url(#arrow-right)"/>
+  <path class="morph" d="M620 222 C578 258 535 258 493 222" marker-end="url(#arrow-left)"/>
+  <circle cx="556" cy="205" r="8" fill="#7858a7"/>
+
+  <text class="label" x="310" y="386">one-handled coffee cup</text>
+  <text class="label" x="879" y="386">torus</text>
+  <text class="small" x="556" y="302">bend and reshape</text>
+  <text class="small" x="556" y="324">without cutting or gluing</text>
+  <rect x="302" y="410" width="496" height="2" rx="1" fill="url(#morph)" opacity=".55"/>
+  <text class="small" x="550" y="434">A reversible deformation preserves topology, not lengths, angles or curvature.</text>
 </svg>

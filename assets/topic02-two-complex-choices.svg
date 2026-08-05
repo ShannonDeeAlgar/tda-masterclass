@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 390" role="img" aria-labelledby="title desc">
+  <title id="title">Two simplicial complexes on the same observations</title>
+  <desc id="desc">Four observations form an unfilled boundary complex on the left and a triangulated filled patch on the right.</desc>
+  <defs>
+    <style>
+      .panel{fill:none;stroke:#c7d1d2;stroke-width:1.5}
+      .edge{fill:none;stroke:#293638;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+      .face{fill:#267b7f;fill-opacity:.17;stroke:#267b7f;stroke-width:2}
+      .node{fill:#fff;stroke:#267b7f;stroke-width:4}
+      .title{font:600 24px system-ui,sans-serif;fill:#263638}
+      .copy{font:17px system-ui,sans-serif;fill:#536366}
+      .label{font:italic 18px Georgia,serif;fill:#263638}
+      .arrow{stroke:#7b898b;stroke-width:2;fill:none}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#7b898b"/></marker>
+  </defs>
+  <rect width="980" height="390" fill="#fff"/>
+  <rect class="panel" x="35" y="25" width="400" height="335" rx="18"/>
+  <rect class="panel" x="545" y="25" width="400" height="335" rx="18"/>
+  <text class="title" x="235" y="65" text-anchor="middle">sampled boundary</text>
+  <text class="copy" x="235" y="92" text-anchor="middle">connections, but no filling</text>
+  <path class="edge" d="M125 275 L145 125 L345 125 L365 275 Z"/>
+  <circle class="node" cx="125" cy="275" r="9"/><circle class="node" cx="145" cy="125" r="9"/><circle class="node" cx="345" cy="125" r="9"/><circle class="node" cx="365" cy="275" r="9"/>
+  <text class="label" x="92" y="306">v<tspan baseline-shift="sub" font-size="70%">0</tspan></text><text class="label" x="112" y="112">v<tspan baseline-shift="sub" font-size="70%">1</tspan></text><text class="label" x="350" y="112">v<tspan baseline-shift="sub" font-size="70%">2</tspan></text><text class="label" x="374" y="306">v<tspan baseline-shift="sub" font-size="70%">3</tspan></text>
+  <path class="face" d="M635 275 L655 125 L855 125 Z"/><path class="face" d="M635 275 L855 125 L875 275 Z"/>
+  <path class="edge" d="M635 275 L655 125 L855 125 L875 275 Z M635 275 L855 125"/>
+  <circle class="node" cx="635" cy="275" r="9"/><circle class="node" cx="655" cy="125" r="9"/><circle class="node" cx="855" cy="125" r="9"/><circle class="node" cx="875" cy="275" r="9"/>
+  <text class="label" x="602" y="306">v<tspan baseline-shift="sub" font-size="70%">0</tspan></text><text class="label" x="622" y="112">v<tspan baseline-shift="sub" font-size="70%">1</tspan></text><text class="label" x="860" y="112">v<tspan baseline-shift="sub" font-size="70%">2</tspan></text><text class="label" x="884" y="306">v<tspan baseline-shift="sub" font-size="70%">3</tspan></text>
+  <text class="title" x="745" y="65" text-anchor="middle">sampled filled region</text>
+  <text class="copy" x="745" y="92" text-anchor="middle">a triangulated filling</text>
+  <path class="arrow" d="M455 193 H525" marker-end="url(#arrow)"/>
+  <text class="copy" x="490" y="178" text-anchor="middle">change the model</text>
+  <text class="copy" x="490" y="346" text-anchor="middle">same four observations</text>
+</svg>

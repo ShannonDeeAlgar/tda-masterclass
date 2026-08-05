@@ -1,4 +1,4 @@
-"""Create student downloads and optional instructor-release copies."""
+"""Create student notebook and data downloads."""
 
 from pathlib import Path
 import shutil
@@ -7,19 +7,23 @@ ROOT = Path(__file__).resolve().parents[1]
 DOWNLOADS = ROOT / "downloads"
 DOWNLOADS.mkdir(exist_ok=True)
 
-for week in range(1, 9):
-    source = ROOT / f"weeks/week-{week:02d}"
-    pairs = {
-        source / "lab.ipynb": DOWNLOADS / f"week-{week:02d}-participant.ipynb",
-        source / "solutions.ipynb": DOWNLOADS / f"week-{week:02d}-lecture-walkthrough.ipynb",
-    }
-    for original, downloadable in pairs.items():
-        shutil.copyfile(original, downloadable)
+for topic in range(1, 7):
+    source = ROOT / f"topics/topic-{topic:02d}"
+    shutil.copyfile(
+        source / "lab.ipynb",
+        DOWNLOADS / f"topic-{topic:02d}-participant.ipynb",
+    )
+
+shutil.copyfile(
+    ROOT / "pause-and-take-stock/lab.ipynb",
+    DOWNLOADS / "pause-and-take-stock-practical.ipynb",
+)
 
 shutil.copyfile(ROOT / "data/datasaurus_dozen.csv",
                 DOWNLOADS / "datasaurus_dozen.csv")
 
 print(
-    "Synchronised eight participant notebooks, eight optional instructor-release "
-    f"walkthroughs and the Datasaurus CSV in {DOWNLOADS.relative_to(ROOT)}/"
+    "Synchronised six participant notebooks, the take-stock practical and "
+    "the Datasaurus CSV in "
+    f"{DOWNLOADS.relative_to(ROOT)}/"
 )

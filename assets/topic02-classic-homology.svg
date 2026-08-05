@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 440" role="img" aria-labelledby="title desc">
+  <title id="title">Classical spaces and their Betti numbers</title>
+  <desc id="desc">Two separated components, a circle, a sphere surface and a torus surface illustrate holes in dimensions zero, one and two. Two coloured cycles show the independent loop directions on the torus.</desc>
+  <defs>
+    <style>
+      .panel{fill:#f8fbfb;stroke:#d5e3e2;stroke-width:2}
+      .shape{fill:none;stroke:#1f7f83;stroke-width:6}
+      .surface{fill:#d7ecea;stroke:#1f7f83;stroke-width:4}
+      .hidden{fill:none;stroke:#79aeb0;stroke-width:2.5;stroke-dasharray:7 7}
+      .loop-a{fill:none;stroke:#155f63;stroke-width:5;stroke-dasharray:7 5;stroke-linecap:round}
+      .loop-b{fill:none;stroke:#a66b24;stroke-width:5;stroke-dasharray:7 5;stroke-linecap:round}
+      .label{font:650 20px system-ui,sans-serif;fill:#294446;text-anchor:middle}
+      .betti{font:18px system-ui,sans-serif;fill:#52656d;text-anchor:middle}
+      .accent{font:500 16px system-ui,sans-serif;fill:#176d71;text-anchor:middle}
+      .legend{font:500 14px system-ui,sans-serif;fill:#31464d}
+    </style>
+  </defs>
+
+  <rect class="panel" x="20" y="20" width="250" height="400" rx="24"/>
+  <circle class="surface" cx="88" cy="170" r="37"/>
+  <circle class="surface" cx="202" cy="170" r="37"/>
+  <text class="label" x="145" y="282">two components</text>
+  <text class="accent" x="145" y="318">two separate pieces</text>
+  <text class="betti" x="145" y="365">(β₀, β₁, β₂) = (2, 0, 0)</text>
+
+  <rect class="panel" x="295" y="20" width="250" height="400" rx="24"/>
+  <circle class="shape" cx="420" cy="170" r="73"/>
+  <text class="label" x="420" y="282">circle</text>
+  <text class="accent" x="420" y="318">one loop</text>
+  <text class="betti" x="420" y="365">(β₀, β₁, β₂) = (1, 1, 0)</text>
+
+  <rect class="panel" x="570" y="20" width="250" height="400" rx="24"/>
+  <circle class="surface" cx="695" cy="170" r="78"/>
+  <ellipse class="hidden" cx="695" cy="170" rx="78" ry="25"/>
+  <path class="hidden" d="M695 92 C665 120 665 220 695 248 M695 92 C725 120 725 220 695 248"/>
+  <text class="label" x="695" y="282">sphere surface</text>
+  <text class="accent" x="695" y="318">one closed-surface enclosure</text>
+  <text class="betti" x="695" y="365">(β₀, β₁, β₂) = (1, 0, 1)</text>
+
+  <rect class="panel" x="845" y="20" width="250" height="400" rx="24"/>
+  <path class="surface" fill-rule="evenodd" d="M970 91 C1043 91 1080 126 1080 169 C1080 215 1038 249 970 249 C902 249 860 215 860 169 C860 126 897 91 970 91Z M970 132 C932 132 910 147 910 169 C910 193 934 207 970 207 C1006 207 1030 193 1030 169 C1030 147 1008 132 970 132Z"/>
+  <ellipse class="hidden" cx="970" cy="169" rx="110" ry="34"/>
+  <ellipse class="loop-a" cx="970" cy="151" rx="79" ry="28"/>
+  <path class="loop-b" d="M902 128 C882 142 881 190 902 207 C923 193 924 143 902 128Z"/>
+  <line x1="872" y1="278" x2="898" y2="278" class="loop-a"/>
+  <text class="legend" x="906" y="283">around tunnel</text>
+  <line x1="872" y1="307" x2="898" y2="307" class="loop-b"/>
+  <text class="legend" x="906" y="312">around tube</text>
+  <text class="label" x="970" y="346">torus surface</text>
+  <text class="betti" x="970" y="386">(β₀, β₁, β₂) = (1, 2, 1)</text>
+</svg>

@@ -1,0 +1,118 @@
+---
+title: "Dynamic data: relationships through change"
+toc: true
+---
+
+**Practical notebook.** Compute snapshot persistence for a changing point
+cloud and inspect Betti summaries across time and scale. <a href="../../downloads/topic-06-participant.ipynb" download="topic-06-participant.ipynb">Download the notebook</a>.
+
+Dynamic data add a second question to the persistent homology pipeline. We
+must decide not only what structure to calculate within each observation, but
+also what relationship, if any, connects observations through change.
+
+A sequence of snapshot diagrams can show that topological summaries change.
+It does not say that a point in $D_t$ and a nearby point in $D_{t+1}$ are the
+same feature.
+
+Going beyond snapshots requires additional structure. Different methods encode
+different kinds of relationship:
+
+| Scientific need | Mathematical route | Structure that must be justified |
+|---|---|---|
+| compare changing summaries | snapshot persistence | comparable frames or windows |
+| follow known agents or cells | track observations first | reliable identities or correspondence |
+| represent additions and removals | zigzag persistence | inclusions that can point forwards or backwards |
+| retain two ordered construction choices | multiparameter persistence | compatible maps in both parameter directions |
+| follow persistence pairings along controlled change | vineyard | a specified path of filtrations |
+
+These methods are not ranked from basic to superior. Each makes a stronger
+claim because it assumes a stronger relationship.
+
+::: {.column-margin .study-note .insight}
+**Identity needs evidence.** Timestamps order observations but do not create
+feature identity. Any claim that a component, loop or cavity is the same one
+later must come from tracking, inclusions or another stated correspondence.
+:::
+
+::: {.column-margin .study-note .qualification}
+**Two axes are not enough.** A heat map over physical time and filtration
+scale is a useful Betti surface. It becomes a two-parameter persistence module
+only when both directions carry compatible maps.
+:::
+
+## Observation identity comes first when it is available
+
+Tracked particles, cells or agents can support a changing graph or a fixed
+ambient scaffold. Their labels do not automatically identify homology
+classes, but they provide information absent from unlabelled snapshots.
+
+When trajectories cross, observations enter or leave, or detections are
+missing, nearest-neighbour matching can invent continuity. Any later claim
+about a persistent topological feature is then conditional on that tracking
+model.
+
+## Zigzag persistence: allow structure to enter and leave
+
+Ordinary persistence follows nested growth. A zigzag permits inclusions in
+both displayed directions:
+
+$$
+K_0\longrightarrow K_1\longleftarrow K_2
+\longrightarrow K_3\longleftarrow\cdots.
+$$
+
+This is useful when complexes gain and lose simplices but can still be related
+through meaningful inclusions. Finite zigzag modules retain an interval
+decomposition, so their lifetimes can still be represented by a barcode
+[@carlsson2010zigzag].
+
+For example, a path may gain one closing edge and later lose it. The loop
+exists only in the middle complex. The arrows distinguish this connected
+event from three unrelated Betti-number calculations.
+
+## Multiparameter persistence: retain two ordered choices
+
+Scale and density, distance and interaction order, or threshold and spatial
+resolution may both define inclusions. A multiparameter module retains those
+directions rather than imposing an artificial total ordering. General
+multiparameter modules do not admit the complete interval-barcode
+classification available in one parameter [@carlsson2009multidimensional].
+Rank invariants, slices and dimension functions therefore summarise selected
+aspects rather than completely classifying the object.
+
+Independent time snapshots do not generally form this structure. Time can be
+an ordered parameter when observations accumulate or another construction
+supplies genuine inclusions.
+
+## Vineyards: follow pairings along a path of filtrations
+
+Suppose a fixed complex $K$ carries a filtration function $f_t$ that changes
+with external time $t$. Each $f_t$ produces one persistence diagram. A
+vineyard follows its persistence points along the specified path of
+filtrations, producing curves called vines [@cohensteiner2006vineyards].
+
+![Persistence points move through external time and trace vines.](../../assets/vineyard-animation.svg){fig-alt="A time cursor changes filtration values while two points move through a persistence diagram and trace two vines."}
+
+External time selects the current filtration. Birth and death coordinates
+remain values of the filtration parameter, not timestamps.
+
+::: {.column-margin .study-note .insight}
+**Why a vineyard is more than a stack.** The path of changing filtration
+values determines a sequence of ordering events in the filtered complex. The
+algorithm updates persistence pairings through those events rather than
+joining whichever plotted points happen to be nearest.
+:::
+
+A fixed mesh carrying a changing field or a fixed interaction complex with
+changing weights is a natural vineyard setting. A Rips complex of freely
+moving points is more delicate because many distances and simplices can
+exchange order.
+
+::: {.checkpoint-route}
+
+You are ready to continue when you can select a route from the relationship
+required by the scientific question, explain why diagram proximity is not
+feature identity, distinguish a Betti surface from a multiparameter module and
+state what fixed structure makes a vineyard plausible.
+
+:::

@@ -30,8 +30,8 @@
 \setlist[enumerate]{leftmargin=*, topsep=0.2em, itemsep=0.15em}
 
 \newcommand{\weekheading}[2]{%
-\section*{Week #1: #2}
-\addcontentsline{toc}{section}{Week #1: #2}
+\section*{Topic #1: #2}
+\addcontentsline{toc}{section}{Topic #1: #2}
 }
 
 \newcommand{\planningbox}[2]{%
@@ -79,9 +79,9 @@
 \section*{Purpose and shape of the document}
 \addcontentsline{toc}{section}{Purpose and shape of the document}
 
-This document turns the week-by-week planning table into a more narrative
+This document turns the topic-by-topic planning table into a more narrative
 planning document. It is not yet a lecture script. Its purpose is to record the
-story each week needs to tell, the mathematical objects that must be introduced,
+story each topic needs to tell, the mathematical objects that must be introduced,
 the examples that should carry the intuition, and the phrases or explanatory
 moves that are worth preserving.
 
@@ -135,7 +135,7 @@ These questions should recur throughout the masterclass.
 \weekheading{1}{Shape, topology and the need for a computable invariant}
 
 \planningbox{Story}{
-The first week should make the case for topology as a lens without pretending
+The first topic should make the case for topology as a lens without pretending
 that topology is always the right lens. Begin with the distinction between a
 directly given object and a constructed representation. A mug, donut, circle or
 torus can be discussed as an object. A point cloud, scalar field, image, delay
@@ -196,7 +196,7 @@ organisation. At this stage, the DP is only a reason to care about the lens.
 \weekheading{2}{Simplicial complexes and homology}
 
 \planningbox{Story}{
-Week 2 moves from qualitative shape to a combinatorial object on which topology
+Topic 2 moves from qualitative shape to a combinatorial object on which topology
 can be computed. The central message is that a simplicial complex is the finite
 bookkeeping device that lets topology become linear algebra. The complex is
 treated as already chosen. The aim is to understand what homology computes once
@@ -297,7 +297,7 @@ interaction is being treated as evidence of a higher-order collective unit.
 \weekheading{3}{Filtrations}
 
 \planningbox{Story}{
-Week 3 introduces the filtration. The key move is that one complex is not
+Topic 3 introduces the filtration. The key move is that one complex is not
 enough for data analysis because a single threshold is usually arbitrary. A
 filtration records how a complex grows as a meaningful parameter changes. The
 parameter may be distance, density, intensity, similarity, interaction
@@ -398,7 +398,7 @@ behaviour rather than position.
 \weekheading{4}{Persistent homology}
 
 \planningbox{Story}{
-Week 4 closes the first-half definition. Homology is now read across the
+Topic 4 closes the first-half definition. Homology is now read across the
 filtration using maps induced by inclusion. Persistent homology is not just
 ``holes at many scales''. It is homology with memory: it records which classes
 are born, how long they survive, and when they die.
@@ -509,7 +509,7 @@ choice.
 }
 
 \planningbox{Examples}{
-Build the week around two small calculations before showing a noisy point
+Build the topic around two small calculations before showing a noisy point
 cloud.
 
 First, use \(H_0\) for two components merging. Write the source and target vector
@@ -537,12 +537,13 @@ this point, the right question is still modest: does static persistence add
 information beyond simpler metrics?
 }
 
-\section*{Interlude: every barcode has a modelling history}
-\addcontentsline{toc}{section}{Interlude: every barcode has a modelling history}
+\section*{Pause and take stock}
+\addcontentsline{toc}{section}{Pause and take stock}
 
 \planningbox{Story}{
-The interlude should pause the mathematical build and make the complete modelling
-pipeline explicit:
+Topics 1--4 assemble persistent homology one construction at a time. Before
+moving into larger applications, pause and make the complete modelling pipeline
+explicit:
 \[
 \text{scientific system}
 \to \text{observed data}
@@ -554,17 +555,19 @@ pipeline explicit:
 \to \text{barcode or diagram}
 \to \text{summary, comparison or claim}.
 \]
+\objectcheck{At the end of the pipeline, ask which object is actually being
+interpreted: a feature of the scientific system, a feature of the observed
+data, a class in $H_p(K_\varepsilon)$, an interval in a persistence module, a
+point in a diagram, or a scalar summary of many diagram points. Claims become
+weaker as more of the pipeline is forgotten.}
+
 By this point, participants have already encountered most of these choices, but
-many will have appeared as though they were simply part of the definition.
-The purpose of the interlude is to expose them as modelling decisions. Persistent
-homology is not one method applied after the data have been prepared. It is a
+some may have appeared to be inevitable parts of the mathematics. This pause
+exposes them as modelling decisions and asks what each one permits the eventual
+result to mean. Persistent homology is not one method applied after the data
+have been prepared. It is a
 family of pipelines in which each decision determines what can later be called
 a component, loop, cavity, birth, death or persistent feature.
-
-\stickingpoint{The persistence module is the evolving homology calculation.
-The barcode or persistence diagram is the interval-decomposition summary of
-that module in the ordinary one-parameter setting. The diagram does not erase
-the modelling history that produced the module.}
 }
 
 \planningbox{Core message}{
@@ -575,9 +578,6 @@ field with a sublevel rather than superlevel filtration may produce different
 diagrams. These are not necessarily competing estimates of one hidden truth.
 They may be answers to different scientific questions.
 }
-
-\phrase{Before interpreting a bar, reconstruct the sequence of choices that
-made that bar possible.}
 
 \planningbox{Design decisions already in play}{
 The table should be used actively. For each row, ask participants first to name
@@ -747,11 +747,6 @@ functions; the coefficient field and homological degree affect the algebra; and
 the scientific question should constrain all of them. The table is a map of
 dependencies, not a menu from which choices should be mixed arbitrarily.}
 
-\objectcheck{At the end of the pipeline, ask which object is actually being
-interpreted: a feature of the scientific system, a feature of the observed data,
-a class in $H_p(K_a)$, an interval in a persistence module, a point in a diagram,
-or a scalar summary of many diagram points. Claims become weaker as more of the
-pipeline is forgotten.}
 }
 
 \planningbox{Implementation provocations}{
@@ -802,7 +797,7 @@ question does each pipeline now answer?''}
 }
 
 \planningbox{Examples to revisit}{
-Return to examples already used in Weeks 1--4 and deliberately alter one choice
+Return to examples already used in Topics 1--4 and deliberately alter one choice
 at a time:
 \begin{itemize}
     \item noisy circle versus noisy disk: change sampling density, metric or
@@ -824,7 +819,7 @@ asking a different question.
 \weekheading{5}{Static data in practice}
 
 \planningbox{Story}{
-Week 5 is the first practical week. The aim is not just to compute persistence,
+Topic 5 is the first practical topic. The aim is not just to compute persistence,
 but to choose a construction appropriate to the data object. The data object
 comes first; the complex follows.
 }
@@ -899,7 +894,7 @@ comparison to show that the question is not ``is there a barcode?'' but
 }
 
 \planningbox{DP relevance}{
-This week asks whether topology adds explanatory or predictive value beyond
+This topic asks whether topology adds explanatory or predictive value beyond
 simpler baselines. Reasonable first summaries include maximum persistence,
 total persistence, Betti curves, persistence entropy, diagram distances to a
 baseline and vectorised persistence images or landscapes. Vineyards are only
@@ -910,7 +905,7 @@ distribution at each time or parameter value.
 \weekheading{7}{Time-indexed static topology}
 
 \planningbox{Story}{
-Week 7 introduces the honest dynamic baseline. Given a sequence of time-indexed
+Topic 7 introduces the honest dynamic baseline. Given a sequence of time-indexed
 objects \(X_t\), \(G_t\), \(I_t\), \(W_t\) or \(K_{\bullet,t}\), compute ordinary
 persistence independently at each time point or time window. The resulting
 diagrams or summaries are then treated as a time series.
@@ -959,7 +954,7 @@ specialised machinery.
 \weekheading{8}{Beyond ordinary persistence}
 
 \planningbox{Story}{
-Week 8 should be organised by problem type rather than by a list of advanced
+Topic 8 should be organised by problem type rather than by a list of advanced
 methods. The aim is to teach method selection: what breaks in ordinary
 persistence, and which tool responds to that break?
 }

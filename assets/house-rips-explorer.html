@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+:root{--page-bg:#fff;--fg:#25282b;--muted:#697077;--grid:#c8cdd2;--ball:#4d83b3;--edge:#31363b;--face:#7d95b6;--loop:#a04b69;--accent:#9a541d;--node:#fff}
+:root[data-theme="dark"]{--page-bg:#212529;--fg:#f1f3f4;--muted:#b7bdc3;--grid:#555b61;--ball:#78a9d1;--edge:#e4e7e9;--face:#7898c4;--loop:#e080a2;--accent:#e0a35e;--node:#222}
+*{box-sizing:border-box}html,body{margin:0;background:var(--page-bg)!important;color:var(--fg);font:16px system-ui,sans-serif;overflow:hidden}
+.wrap{border:1px solid var(--grid);border-radius:10px;padding:14px;background:var(--page-bg)}.controls{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;margin-bottom:8px}
+input{width:100%;accent-color:var(--accent)}button{border:1px solid var(--grid);border-radius:6px;padding:.35rem .7rem;background:transparent;color:var(--fg)}
+svg{display:block;width:100%;height:auto}.ball{fill:var(--ball);fill-opacity:.1;stroke:var(--ball);stroke-opacity:.45;stroke-width:2}.edge{stroke:var(--edge);stroke-width:5;stroke-linecap:round}.face{fill:var(--face);fill-opacity:.3}.room{fill:var(--loop);fill-opacity:.2}.vertex{fill:var(--node);stroke:var(--fg);stroke-width:3}.axis{stroke:var(--grid);stroke-width:2}.cursor{stroke:var(--accent);stroke-width:3}.bar0{stroke:var(--ball);stroke-width:6;stroke-linecap:round}.bar1{stroke:var(--loop);stroke-width:8;stroke-linecap:round}.heading{font-weight:650;font-size:22px;fill:var(--fg)}.label{font-size:17px;fill:var(--fg)}.small{font-size:14px;fill:var(--muted)}.status{font-weight:600;font-size:18px;fill:var(--fg)}
+</style>
+</head>
+<body>
+<div class="wrap">
+ <div class="controls"><button id="play" type="button">Play</button><input id="eps" type="range" min="0" max="1.245" step="0.005" value="0"><output id="value">ε = 0.000</output></div>
+ <svg viewBox="0 0 1160 535" role="img" aria-labelledby="title desc">
+  <title id="title">Explore a Rips filtration on five house-shaped points</title>
+  <desc id="desc">Move the epsilon slider to grow metric balls, add Rips edges and faces, and follow the corresponding barcode.</desc>
+  <text class="heading" x="20" y="28">Metric construction</text><text class="heading" x="570" y="28">Features tracked through ε</text>
+  <g id="balls"></g><g id="faces"></g><g id="edges"></g><g id="vertices"></g>
+  <text class="small" x="20" y="512">Balls have radius ε. They meet, and a Rips edge enters, when d(x,y) ≤ 2ε.</text>
+  <line class="axis" x1="625" y1="455" x2="1105" y2="455"/><text class="label" x="580" y="125">H₀</text><text class="label" x="580" y="335">H₁</text>
+  <g id="bars"></g><line id="cursor" class="cursor" x1="625" y1="55" x2="625" y2="470"/>
+  <text id="status" class="status" x="625" y="420"></text>
+  <text class="small" x="625" y="490">0</text><text id="birth-label" class="small" x="995" y="490">1.077</text><text id="death-label" class="small" x="1075" y="490">1.243</text>
+ </svg>
+</div>
+<script>
+function syncTheme(){
+  let dark=matchMedia("(prefers-color-scheme: dark)").matches;
+  try{const root=parent.document.documentElement,body=parent.document.body;dark=root.getAttribute("data-bs-theme")==="dark"||root.classList.contains("quarto-dark")||body.classList.contains("quarto-dark");let bg=getComputedStyle(body).backgroundColor;if(bg==="rgba(0, 0, 0, 0)")bg=getComputedStyle(root).backgroundColor;document.documentElement.style.setProperty("--page-bg",bg)}catch(_){}
+  document.documentElement.dataset.theme=dark?"dark":"light";
+}
+syncTheme();
+try{new MutationObserver(syncTheme).observe(parent.document.documentElement,{attributes:true,subtree:true,attributeFilter:["class","data-bs-theme"]})}catch(_){}
+const pts={A:[270,70],B:[390,205],C:[405,397],D:[125,397],E:[145,205]}, scale=130;
+const edgePairs=[["A","B"],["A","E"],["B","C"],["E","D"],["E","B"],["D","C"],["E","C"],["B","D"]];
+const ns="http://www.w3.org/2000/svg", $=s=>document.querySelector(s);
+const make=(tag,attrs,parent)=>{const n=document.createElementNS(ns,tag);for(const [k,v] of Object.entries(attrs))n.setAttribute(k,v);parent.appendChild(n);return n};
+const vertexLabels={A:"v₀",B:"v₁",C:"v₂",D:"v₃",E:"v₄"};
+for(const [name,[x,y]] of Object.entries(pts)){make("circle",{class:"ball",cx:x,cy:y,r:0,"data-ball":name},$("#balls"));make("circle",{class:"vertex",cx:x,cy:y,r:10},$("#vertices"));const t=make("text",{class:"label",x:x-6,y:y-18},$("#vertices"));t.textContent=vertexLabels[name]}
+const dist=(u,v)=>Math.hypot(pts[u][0]-pts[v][0],pts[u][1]-pts[v][1])/scale;
+for(const [u,v] of edgePairs){const n=make("line",{class:"edge",x1:pts[u][0],y1:pts[u][1],x2:pts[v][0],y2:pts[v][1],"data-at":(dist(u,v)/2).toFixed(4)},$("#edges"));n.style.display="none"}
+const polygons=[["A,B,E","270,70 390,205 145,205",Math.max(dist("A","B"),dist("A","E"),dist("B","E"))/2,"face"],["E,B,C","145,205 390,205 405,397",Math.max(dist("E","B"),dist("E","C"),dist("B","C"))/2,"face"],["E,C,D","145,205 405,397 125,397",Math.max(dist("E","C"),dist("E","D"),dist("C","D"))/2,"face"]];
+for(const [id,p,at,cl] of polygons){const n=make("polygon",{class:cl,points:p,"data-at":at.toFixed(4)},$("#faces"));n.style.display="none"}
+const merges=[dist("A","E")/2,dist("A","B")/2,dist("E","D")/2,dist("B","C")/2].sort((a,b)=>a-b);
+const birth=dist("D","C")/2, death=dist("E","C")/2, maxE=1.245;
+const x=e=>625+(e/maxE)*480;
+for(const [y,end] of [[85,merges[0]],[108,merges[1]],[131,merges[2]],[154,merges[3]],[177,maxE]])make("line",{class:"bar0",x1:x(0),y1:y,x2:x(end),y2:y},$("#bars"));
+make("line",{class:"bar1",x1:x(birth),y1:335,x2:x(death),y2:335},$("#bars"));
+$("#birth-label").textContent=birth.toFixed(3);$("#birth-label").setAttribute("x",x(birth)-18);
+$("#death-label").textContent=death.toFixed(3);$("#death-label").setAttribute("x",x(death)-18);
+let timer=null;
+function update(e){$("#value").value=`ε = ${e.toFixed(3)}`;document.querySelectorAll("[data-ball]").forEach(n=>n.setAttribute("r",e*scale));document.querySelectorAll("[data-at]").forEach(n=>n.style.display=e+1e-9>=+n.dataset.at?"":"none");const cx=x(e);$("#cursor").setAttribute("x1",cx);$("#cursor").setAttribute("x2",cx);const components=1+merges.filter(v=>e<v).length;$("#status").textContent=e<birth?`${components} component${components===1?"":"s"}; no loop`:e<death?"the room loop is alive":"the room loop has been filled"}
+$("#eps").addEventListener("input",e=>update(+e.target.value));
+$("#play").addEventListener("click",()=>{if(timer){clearInterval(timer);timer=null;$("#play").textContent="Play";return}$("#play").textContent="Pause";timer=setInterval(()=>{let v=+$("#eps").value+.005;if(v>maxE)v=0;$("#eps").value=v;update(v)},55)});
+update(0);
+</script>
+</body>
+</html>

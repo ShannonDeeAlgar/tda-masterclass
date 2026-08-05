@@ -1,0 +1,131 @@
+---
+title: "Topic 5B: From filtered object to trustworthy computation"
+toc: true
+---
+
+A persistence diagram is trustworthy only if the software built the intended
+filtered object and retained enough dimensions to compute the requested
+homology. This page makes that implementation contract explicit: inspect a
+small construction, interpret package parameters and report what was actually
+computed.
+
+::: {.column-margin .study-note .insight}
+**Relation to the spine.** Topic 5A reopens the modelling choices in stages 1
+and 3. Here the complete strip becomes a software contract: verify that the
+constructed cells, algebra and reported diagram match those choices.
+:::
+
+## Dimension determines cost
+
+For an $N$-point Rips complex, there can be
+
+$$
+\binom{N}{k+1}
+$$
+
+$k$-simplices. Edges can therefore grow as $O(N^2)$, triangles as
+$O(N^3)$ and tetrahedra as $O(N^4)$ in the worst case.
+
+Homology in dimension $p$ depends on
+
+$$
+C_{p+1}\xrightarrow{\partial_{p+1}}C_p
+\xrightarrow{\partial_p}C_{p-1}.
+$$
+
+To decide whether a $p$-cycle is filled, the computation needs
+$(p+1)$-simplices. Correct $H_1$ therefore needs triangles; correct $H_2$
+needs tetrahedra. Moving to a higher homology dimension can increase memory
+and runtime long before it adds many intervals to the output.
+
+::: {.column-margin .study-note .insight}
+**Reading big $O$.** $O(N^3)$ describes worst-case growth, not a runtime in
+seconds. Thresholds, sparsity and implementation matter, but doubling $N$ can
+still make a cubic-size collection roughly eight times larger.
+:::
+
+The ambient coordinate dimension is different. A cloud in $\mathbb R^{20}$
+can be analysed only in $H_0$ and $H_1$; the number of recorded coordinates
+does not determine the homology degree worth computing.
+
+## Software parameters do not share one convention
+
+In GUDHI, `create_simplex_tree(max_dimension=1)` constructs only the Rips
+graph and is not enough for correct $H_1$. In Ripser.py, `maxdim=1` names the
+largest homology degree returned, and the algorithm handles the required
+higher-dimensional information internally. Report what a parameter means in
+the package actually used, rather than transferring a familiar name between
+libraries.
+
+The official [GUDHI Rips documentation](https://gudhi.inria.fr/python/latest/rips_complex_ref.html),
+[Ripser.py API](https://ripser.scikit-tda.org/en/latest/reference/stubs/ripser.ripser.html)
+and [Ripserer.jl API](https://mtsch.github.io/Ripserer.jl/v0.6/api/ripserer/)
+document these different conventions.
+
+## Inspect the construction before the barcode
+
+A **simplex tree** is a software data structure for storing simplices, their
+faces and filtration values. It makes a filtered complex efficient to query;
+it is not a different kind of mathematical complex.
+
+For a small subset, check:
+
+- simplex or cell counts by dimension;
+- several entry values by hand;
+- whether clique expansion or downward closure added the expected cells;
+- whether the filtration direction agrees with the scientific question; and
+- whether infinite intervals were retained, censored or discarded.
+
+:::: {.worked-example}
+### Graph-only versus clique-complex persistence
+
+Suppose edges $01$, $12$ and $02$ enter by $\varepsilon=0.45$. In a
+one-dimensional graph they create a loop that cannot be filled. In the clique
+complex, the triangle $[0,1,2]$ enters when its final edge appears and makes
+that edge cycle a boundary immediately. The data and edge weights are
+unchanged; only the higher-order assertion differs.
+::::
+
+:::: {.worked-example}
+### Read a cubical sublevel filtration
+
+In the scalar-grid figure on Topic 5A, low-valued cells first form a ring. The
+central cell has value 5, so the one-dimensional class remains alive below
+that value and dies when the centre enters. Its birth and death have
+scalar-field units, not Euclidean-distance units.
+::::
+
+## Alternatives when Rips is too large
+
+Alpha complexes use Delaunay geometry in Euclidean space. Witness complexes
+retain selected landmarks while other observations support their relations.
+Sparse Rips methods and threshold truncation provide other compromises. Each
+changes the computational object or the range over which it is observed, so
+the approximation and its parameters belong in the report. The original alpha
+shape [@edelsbrunner1994alpha] and witness-complex
+[@desilva2004witness] papers show what these constructions preserve and
+discard. Geometric stability and approximation results provide the formal
+background [@chazal2014geometric].
+
+## Minimum computational report
+
+Record:
+
+- the starting object, shape, units and preprocessing;
+- the metric, edge weight or scalar-field convention;
+- the complex and filtration definition;
+- the coefficient field and requested homology dimensions;
+- maximum scale, truncation and sparsification;
+- observation, simplex or cell counts;
+- software and version; and
+- runtime, memory failures and treatment of essential intervals.
+
+The participant notebook applies the full pipeline audit protocol. The reader
+needs only this contract: the barcode is interpretable after the constructed
+object and the computation have both been checked.
+
+## Checkpoints
+
+You are ready to continue when you can explain why $H_p$ needs
+$(p+1)$-simplices, translate a package's dimension option correctly, inspect a
+small construction and produce a reproducible computational report.

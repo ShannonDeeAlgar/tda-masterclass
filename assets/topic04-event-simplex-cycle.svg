@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 330" role="img" aria-labelledby="title desc">
+  <title id="title">A persistence pair is not itself the homology class</title>
+  <desc id="desc">The final edge marks birth, the full boundary cycle represents the class, and the triangular face marks death by filling that cycle.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <path d="M0,0 L9,4.5 L0,9 Z" fill="#718096"/>
+    </marker>
+    <style>
+      .panel{fill:#fbfcfd;stroke:#aeb8c2;stroke-width:2}
+      .edge{fill:none;stroke:#354554;stroke-width:7;stroke-linecap:round}
+      .quiet{stroke:#aeb8c2}
+      .birth{stroke:#2878b8}
+      .cycle{stroke:#2878b8}
+      .face{fill:#c9d9ea;stroke:#9b4774;stroke-width:7;stroke-linejoin:round}
+      .vertex{fill:#fff;stroke:#354554;stroke-width:4}
+      .heading{font:700 24px system-ui,sans-serif;fill:#253746}
+      .label{font:18px system-ui,sans-serif;fill:#425466}
+      .math{font:italic 20px Georgia,serif;fill:#253746}
+      .arrow{fill:none;stroke:#718096;stroke-width:2.5;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect class="panel" x="20" y="18" width="310" height="290" rx="14"/>
+  <rect class="panel" x="385" y="18" width="310" height="290" rx="14"/>
+  <rect class="panel" x="750" y="18" width="310" height="290" rx="14"/>
+  <text class="heading" x="175" y="55" text-anchor="middle">Birth event</text>
+  <text class="heading" x="540" y="55" text-anchor="middle">Class while alive</text>
+  <text class="heading" x="905" y="55" text-anchor="middle">Death event</text>
+
+  <path class="edge quiet" d="M95 235 L175 90 L255 235"/>
+  <path class="edge birth" d="M95 235 L255 235"/>
+  <circle class="vertex" cx="95" cy="235" r="9"/><circle class="vertex" cx="175" cy="90" r="9"/><circle class="vertex" cx="255" cy="235" r="9"/>
+  <text class="math" x="175" y="275" text-anchor="middle">e₁₂ closes the loop</text>
+
+  <path class="edge cycle" d="M460 235 L540 90 L620 235 Z"/>
+  <circle class="vertex" cx="460" cy="235" r="9"/><circle class="vertex" cx="540" cy="90" r="9"/><circle class="vertex" cx="620" cy="235" r="9"/>
+  <text class="math" x="540" y="275" text-anchor="middle">z = e₀₁ + e₀₂ + e₁₂</text>
+
+  <path class="face" d="M825 235 L905 90 L985 235 Z"/>
+  <circle class="vertex" cx="825" cy="235" r="9"/><circle class="vertex" cx="905" cy="90" r="9"/><circle class="vertex" cx="985" cy="235" r="9"/>
+  <text class="math" x="905" y="275" text-anchor="middle">∂t₀₁₂ = z</text>
+
+  <path class="arrow" d="M338 165 L375 165"/>
+  <path class="arrow" d="M703 165 L740 165"/>
+  <text class="label" x="356" y="145" text-anchor="middle">creates</text>
+  <text class="label" x="721" y="145" text-anchor="middle">fills</text>
+</svg>

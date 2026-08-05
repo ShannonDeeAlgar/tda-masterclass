@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 650" role="img" aria-labelledby="title desc">
+  <title id="title">Four data forms and their filtered representations</title>
+  <desc id="desc">Four teal cards show coordinates becoming a proximity complex, a weighted graph being thresholded, a scalar image becoming a cubical complex, and a supplied triangular mesh retaining its incidences.</desc>
+  <defs>
+    <style>
+      .card{fill:#fbfdfd;stroke:#b8d6d6;stroke-width:2}.head{font:650 20px system-ui,sans-serif;fill:#294446}.sub{font:15px system-ui,sans-serif;fill:#52666a}.label{font:700 16px system-ui,sans-serif;fill:#187f82}.accent{stroke:#187f82;stroke-width:3;fill:none}.faint{stroke:#a8bfc0;stroke-width:2;fill:none}.node{fill:#187f82}.node2{fill:#fff;stroke:#187f82;stroke-width:3}.face{fill:#d8eeee;stroke:#187f82;stroke-width:2}.pixel{stroke:#fff;stroke-width:2}.arrow{font:30px system-ui,sans-serif;fill:#187f82}
+    </style>
+  </defs>
+  <rect width="900" height="650" fill="#fff"/>
+
+  <g transform="translate(20 15)">
+    <rect class="card" width="420" height="300" rx="18"/>
+    <text class="head" x="210" y="38" text-anchor="middle">Coordinates or distances</text>
+    <text class="sub" x="210" y="64" text-anchor="middle">proximity supplies new relations</text>
+    <g transform="translate(35 95)">
+      <circle class="faint" cx="35" cy="45" r="25"/><circle class="faint" cx="83" cy="31" r="25"/><circle class="faint" cx="119" cy="72" r="25"/><circle class="faint" cx="65" cy="100" r="25"/>
+      <circle class="node" cx="35" cy="45" r="5"/><circle class="node" cx="83" cy="31" r="5"/><circle class="node" cx="119" cy="72" r="5"/><circle class="node" cx="65" cy="100" r="5"/>
+    </g>
+    <text class="arrow" x="205" y="170" text-anchor="middle">→</text>
+    <g transform="translate(255 105)">
+      <path class="face" d="M0 72 L55 4 L124 53 L32 119 Z"/><path class="accent" d="M0 72 L124 53 M55 4 L32 119"/>
+      <circle class="node2" cx="0" cy="72" r="6"/><circle class="node2" cx="55" cy="4" r="6"/><circle class="node2" cx="124" cy="53" r="6"/><circle class="node2" cx="32" cy="119" r="6"/>
+    </g>
+    <text class="label" x="210" y="272" text-anchor="middle">Rips, Čech or alpha complex</text>
+  </g>
+
+  <g transform="translate(460 15)">
+    <rect class="card" width="420" height="300" rx="18"/>
+    <text class="head" x="210" y="38" text-anchor="middle">Weighted graph</text>
+    <text class="sub" x="210" y="64" text-anchor="middle">weights order relations already present</text>
+    <g transform="translate(36 98)">
+      <path class="faint" d="M5 83 L59 12 L124 54 L108 122 L29 130 Z M5 83 L124 54 M59 12 L108 122"/>
+      <text class="sub" x="23" y="57">0.2</text><text class="sub" x="87" y="31">0.5</text><text class="sub" x="87" y="108">0.8</text>
+      <circle class="node2" cx="5" cy="83" r="6"/><circle class="node2" cx="59" cy="12" r="6"/><circle class="node2" cx="124" cy="54" r="6"/><circle class="node2" cx="108" cy="122" r="6"/><circle class="node2" cx="29" cy="130" r="6"/>
+    </g>
+    <text class="arrow" x="205" y="170" text-anchor="middle">→</text>
+    <g transform="translate(258 107)">
+      <path class="accent" d="M0 65 L52 3 L118 45 L24 113 Z M0 65 L118 45"/>
+      <circle class="node2" cx="0" cy="65" r="6"/><circle class="node2" cx="52" cy="3" r="6"/><circle class="node2" cx="118" cy="45" r="6"/><circle class="node2" cx="24" cy="113" r="6"/>
+    </g>
+    <text class="label" x="210" y="272" text-anchor="middle">filtered graph or clique complex</text>
+  </g>
+
+  <g transform="translate(20 335)">
+    <rect class="card" width="420" height="300" rx="18"/>
+    <text class="head" x="210" y="38" text-anchor="middle">Scalar image or volume</text>
+    <text class="sub" x="210" y="64" text-anchor="middle">cell values order pixels or voxels</text>
+    <g transform="translate(48 103)">
+      <rect class="pixel" fill="#e9f4f4" x="0" y="0" width="38" height="38"/><rect class="pixel" fill="#a9d1d1" x="38" y="0" width="38" height="38"/><rect class="pixel" fill="#4e9d9f" x="76" y="0" width="38" height="38"/>
+      <rect class="pixel" fill="#d5e9e9" x="0" y="38" width="38" height="38"/><rect class="pixel" fill="#eef6f6" x="38" y="38" width="38" height="38"/><rect class="pixel" fill="#75b5b6" x="76" y="38" width="38" height="38"/>
+      <rect class="pixel" fill="#26898b" x="0" y="76" width="38" height="38"/><rect class="pixel" fill="#bcdcdc" x="38" y="76" width="38" height="38"/><rect class="pixel" fill="#e2f0f0" x="76" y="76" width="38" height="38"/>
+    </g>
+    <text class="arrow" x="205" y="170" text-anchor="middle">→</text>
+    <g transform="translate(265 103)">
+      <rect class="face" x="0" y="0" width="38" height="38"/><rect class="face" x="38" y="0" width="38" height="38"/><rect class="face" x="76" y="0" width="38" height="38"/>
+      <rect class="face" x="0" y="38" width="38" height="38"/><rect fill="#fff" stroke="#9fb8ba" stroke-width="2" x="38" y="38" width="38" height="38"/><rect class="face" x="76" y="38" width="38" height="38"/>
+      <rect class="face" x="0" y="76" width="38" height="38"/><rect class="face" x="38" y="76" width="38" height="38"/><rect class="face" x="76" y="76" width="38" height="38"/>
+    </g>
+    <text class="label" x="210" y="272" text-anchor="middle">cubical complex</text>
+  </g>
+
+  <g transform="translate(460 335)">
+    <rect class="card" width="420" height="300" rx="18"/>
+    <text class="head" x="210" y="38" text-anchor="middle">Supplied mesh or complex</text>
+    <text class="sub" x="210" y="64" text-anchor="middle">incidences are already part of the data</text>
+    <g transform="translate(45 104)">
+      <path class="face" d="M5 103 L52 22 L105 67 Z M5 103 L105 67 L143 126 Z M52 22 L132 10 L105 67 Z M105 67 L132 10 L161 67 Z M105 67 L161 67 L143 126 Z"/>
+      <circle class="node2" cx="5" cy="103" r="5"/><circle class="node2" cx="52" cy="22" r="5"/><circle class="node2" cx="105" cy="67" r="5"/><circle class="node2" cx="143" cy="126" r="5"/><circle class="node2" cx="132" cy="10" r="5"/><circle class="node2" cx="161" cy="67" r="5"/>
+    </g>
+    <text class="arrow" x="240" y="170" text-anchor="middle">→</text>
+    <text class="label" x="326" y="150" text-anchor="middle">retain the mesh</text>
+    <text class="sub" x="326" y="178" text-anchor="middle">filter its existing cells</text>
+    <text class="label" x="210" y="272" text-anchor="middle">no reconstruction of incidence</text>
+  </g>
+</svg>
