@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="430" viewBox="0 0 1120 430" role="img" aria-labelledby="title desc">
+  <title id="title">A lower-star sublevel set on a sampled time series</title>
+  <desc id="desc">The upper panel colours samples at or below a threshold teal. The lower panel uses the same samples as time-ordered vertices and joins two consecutive vertices only when both are included.</desc>
+  <defs><style>
+    .panel{fill:#f8fbfb;stroke:#d3e4e3;stroke-width:2}.axis{stroke:#34474a;stroke-width:2}.signal{stroke:#64777a;stroke-width:2.7;fill:none}
+    .included-region{fill:#cfe8e6;fill-opacity:.5}.cut{stroke:#a56a28;stroke-width:2;stroke-dasharray:7 5}.edge-off{stroke:#ced9d9;stroke-width:5}.edge-on{stroke:#267f82;stroke-width:5}
+    .node-off{fill:#fff;stroke:#94a7a8;stroke-width:3}.node-on{fill:#267f82;stroke:#155f63;stroke-width:2}.head{font:650 20px system-ui,sans-serif;fill:#294446}.label{font:16px system-ui,sans-serif;fill:#53696c}.small{font:15px system-ui,sans-serif;fill:#687d7f}
+  </style></defs>
+  <rect class="panel" x="20" y="15" width="1080" height="400" rx="24"/>
+  <text class="head" x="48" y="47">Sampled signal and one sublevel threshold</text>
+  <rect class="included-region" x="65" y="190" width="990" height="92"/>
+  <line class="axis" x1="65" y1="282" x2="1055" y2="282"/><line class="axis" x1="65" y1="282" x2="65" y2="65"/>
+  <polyline class="signal" points="95,105 180,165 265,220 350,180 435,85 520,140 605,215 690,225 775,150 860,70 945,135 1030,205"/>
+  <line class="cut" x1="65" y1="190" x2="1055" y2="190"/><text class="label" x="1030" y="181">threshold a</text>
+  <g>
+    <circle class="node-off" cx="95" cy="105" r="6"/><circle class="node-off" cx="180" cy="165" r="6"/><circle class="node-on" cx="265" cy="220" r="6"/>
+    <circle class="node-off" cx="350" cy="180" r="6"/><circle class="node-off" cx="435" cy="85" r="6"/><circle class="node-off" cx="520" cy="140" r="6"/>
+    <circle class="node-on" cx="605" cy="215" r="6"/><circle class="node-on" cx="690" cy="225" r="6"/><circle class="node-off" cx="775" cy="150" r="6"/>
+    <circle class="node-off" cx="860" cy="70" r="6"/><circle class="node-off" cx="945" cy="135" r="6"/><circle class="node-on" cx="1030" cy="205" r="6"/>
+  </g>
+  <text class="small" x="75" y="307">same samples, now represented as vertices ordered by time</text>
+  <g transform="translate(0 55)">
+    <line class="edge-off" x1="95" y1="300" x2="180" y2="300"/><line class="edge-off" x1="180" y1="300" x2="265" y2="300"/><line class="edge-off" x1="265" y1="300" x2="350" y2="300"/>
+    <line class="edge-off" x1="350" y1="300" x2="435" y2="300"/><line class="edge-off" x1="435" y1="300" x2="520" y2="300"/><line class="edge-off" x1="520" y1="300" x2="605" y2="300"/>
+    <line class="edge-on" x1="605" y1="300" x2="690" y2="300"/><line class="edge-off" x1="690" y1="300" x2="775" y2="300"/><line class="edge-off" x1="775" y1="300" x2="860" y2="300"/>
+    <line class="edge-off" x1="860" y1="300" x2="945" y2="300"/><line class="edge-off" x1="945" y1="300" x2="1030" y2="300"/>
+    <circle class="node-off" cx="95" cy="300" r="7"/><circle class="node-off" cx="180" cy="300" r="7"/><circle class="node-on" cx="265" cy="300" r="7"/>
+    <circle class="node-off" cx="350" cy="300" r="7"/><circle class="node-off" cx="435" cy="300" r="7"/><circle class="node-off" cx="520" cy="300" r="7"/>
+    <circle class="node-on" cx="605" cy="300" r="7"/><circle class="node-on" cx="690" cy="300" r="7"/><circle class="node-off" cx="775" cy="300" r="7"/>
+    <circle class="node-off" cx="860" cy="300" r="7"/><circle class="node-off" cx="945" cy="300" r="7"/><circle class="node-on" cx="1030" cy="300" r="7"/>
+  </g>
+  <text class="small" x="560" y="402" text-anchor="middle">included vertices form three components; the middle two samples are joined because they are consecutive</text>
+</svg>

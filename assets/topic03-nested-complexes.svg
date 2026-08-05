@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 350" role="img" aria-labelledby="title desc">
+  <title id="title">Nested complexes from one thresholded relation</title>
+  <desc id="desc">The same five observations appear in three panels. A strict threshold leaves isolated vertices, an intermediate threshold adds a triangular edge loop and a separate edge, and a relaxed threshold retains them while filling the triangle and adding a bridge.</desc>
+  <defs>
+    <style>
+      .panel{fill:#f8fbfb;stroke:#d3e4e3;stroke-width:2}.edge{stroke:#267f82;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+      .face{fill:#b9deda;stroke:#267f82;stroke-width:4;stroke-linejoin:round}.vertex{fill:#fff;stroke:#155f63;stroke-width:3.5}
+      .label{font:650 20px system-ui,sans-serif;fill:#294446;text-anchor:middle}.small{font:16px system-ui,sans-serif;fill:#607477;text-anchor:middle}
+      .arrow{stroke:#789597;stroke-width:2.5;fill:none}.symbol{font:25px Georgia,serif;fill:#257f83;text-anchor:middle}
+    </style>
+    <marker id="arrowhead" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#789597"/></marker>
+    <g id="points">
+      <circle class="vertex" cx="65" cy="220" r="8"/><circle class="vertex" cx="125" cy="105" r="8"/>
+      <circle class="vertex" cx="185" cy="220" r="8"/><circle class="vertex" cx="265" cy="75" r="8"/>
+      <circle class="vertex" cx="310" cy="80" r="8"/>
+    </g>
+  </defs>
+  <g transform="translate(10 10)">
+    <rect class="panel" width="320" height="325" rx="24"/><text class="label" x="160" y="40">Strict threshold</text><text class="small" x="160" y="66">five components</text><use href="#points"/>
+  </g>
+  <path class="arrow" marker-end="url(#arrowhead)" d="M340 174 H374"/><text class="symbol" x="357" y="155">⊆</text>
+  <g transform="translate(380 10)">
+    <rect class="panel" width="320" height="325" rx="24"/><text class="label" x="160" y="40">Intermediate threshold</text><text class="small" x="160" y="66">local relations enter</text>
+    <path class="edge" fill="none" d="M65 220 125 105 185 220Z M265 75 310 80"/><use href="#points"/>
+  </g>
+  <path class="arrow" marker-end="url(#arrowhead)" d="M710 174 H744"/><text class="symbol" x="727" y="155">⊆</text>
+  <g transform="translate(750 10)">
+    <rect class="panel" width="320" height="325" rx="24"/><text class="label" x="160" y="40">Relaxed threshold</text><text class="small" x="160" y="66">earlier relations remain</text>
+    <polygon class="face" points="65,220 125,105 185,220"/><path class="edge" fill="none" d="M125 105 265 75 310 80"/><use href="#points"/>
+  </g>
+</svg>

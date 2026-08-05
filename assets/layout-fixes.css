@@ -1,0 +1,64 @@
+/* Layout rules kept outside the Sass theme so small structural fixes do not
+   depend on theme recompilation. */
+@media (min-width: 992px) {
+  body.has-course-spine #quarto-sidebar {
+    top: calc(var(--course-spine-top, 0px) + var(--course-spine-height, 0px) + 1rem) !important;
+    width: 240px !important;
+    min-width: 0;
+    max-width: 240px !important;
+    box-sizing: border-box;
+  }
+
+  body.has-course-spine #quarto-sidebar .sidebar-menu-container {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    padding-top: 0.75rem;
+  }
+
+  body.has-course-spine #quarto-sidebar .sidebar-link,
+  body.has-course-spine #quarto-sidebar .sidebar-item-text,
+  body.has-course-spine #quarto-sidebar #TOC a {
+    min-width: 0;
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+}
+/* A quiet, reusable alternative to a full callout for optional reading. */
+.reading-line {
+  margin: 0.65rem 0 1.45rem;
+  padding: 0.7rem 0.85rem;
+  border-top: 1px solid color-mix(in srgb, var(--bs-body-color) 18%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--bs-body-color) 18%, transparent);
+  color: var(--bs-secondary-color);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.reading-line p {
+  margin: 0;
+}
+
+.reading-line strong {
+  color: var(--bs-body-color);
+}
+
+/* Keep displayed mathematics close to the sentence that introduces it. */
+p:has(> .math.display),
+p:has(mjx-container[display="true"]) {
+  margin-block: 0.45rem 0.65rem;
+}
+
+mjx-container[jax="CHTML"][display="true"] {
+  margin-block: 0.25rem !important;
+}
+
+/* Margin notes inside expanded examples must not be clipped by the card. */
+details.reader-example {
+  overflow: visible !important;
+}
+
+details.reader-example > summary {
+  border-radius: 0.35rem 0.35rem 0 0;
+}

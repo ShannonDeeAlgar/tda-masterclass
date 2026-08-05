@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -74,14 +77,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-76da663e9bc12284c1cae1fcfa354fac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-f9dc6aa0dc1e83da225dc5b6849a1c34.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-76da663e9bc12284c1cae1fcfa354fac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-fcb2897261873cd85aafa09474a84f61.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-ba63c7b57d8560067f45098778020e77.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-fcb2897261873cd85aafa09474a84f61.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -112,6 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <style>html{ scroll-behavior: smooth; }</style>
 
 
+<link rel="stylesheet" href="assets/layout-fixes.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -355,7 +359,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
- <span class="menu-text">Foundations</span></a>
+ <span class="menu-text">Prelude: Why topology?</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -363,44 +367,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/week-01/topology-familiar-shapes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Topology refresher A: familiar shapes</span></a>
+  <a href="./topics/topic-01/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">A · Shape and controlled forgetting</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/week-01/topology-survival-guide.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Topology refresher B: formal specifics</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./weeks/week-01/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 1: Shape, topology and the need for a computable invariant</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./weeks/week-02/algebra-survival-guide.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Before Week 2: Algebra survival guide</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./weeks/week-02/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 2: Simplicial complexes and homology</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./weeks/week-03/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 3: Filtrations</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./weeks/week-04/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 4: Persistent homology</span></a>
+  <a href="./topics/topic-01/topology-survival-guide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">B · Topology in detail</span></a>
   </div>
 </li>
       </ul>
@@ -408,33 +382,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
- <span class="menu-text">From definitions to decisions</span></a>
+ <span class="menu-text">Foundations: homology and filtered complexes</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./design-decisions/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Every barcode has a modelling history</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
+          <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
- <span class="menu-text">Practice and validation</span></a>
+ <span class="menu-text">1: Build K</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./topics/topic-02/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1A · Why build a complex?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./topics/topic-02/detail.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1B · Simplicial complexes</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
- <span class="menu-text">Static data</span></a>
+ <span class="menu-text">2: Homology of K</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -442,14 +422,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/week-05/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 5: Static data in practice</span></a>
+  <a href="./topics/topic-02/homology.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2A · What homology records</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/week-06/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 6: Summaries, comparisons and validation</span></a>
+  <a href="./topics/topic-02/homology-detail.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2B · Chains and boundary maps</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./topics/topic-02/algebra-survival-guide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Optional algebra refresher</span></a>
   </div>
 </li>
       </ul>
@@ -457,7 +443,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
- <span class="menu-text">Dynamic data</span></a>
+ <span class="menu-text">3: Filtration from (K, f)</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -465,32 +451,77 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/week-07/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 7: Repeated persistence through time</span></a>
+  <a href="./topics/topic-03/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3A · Why filtrations</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/week-07/sw1pers.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Expert subtopic: SW1PerS</span></a>
+  <a href="./topics/topic-03/detail.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3B · Constructing filtrations</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pause-and-take-stock/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pause and take stock</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Foundations: persistent homology</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">4: Persistent homology module</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./topics/topic-04/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4A · Link homology across scale</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/week-07/multiparameter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Expert subtopic: multiparameter persistence</span></a>
+  <a href="./topics/topic-04/detail.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4B · Modules in detail</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false">
+ <span class="menu-text">5: Encode the module</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./topics/topic-04/summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5A · Barcodes and diagrams</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/week-08/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 8: Topology for genuinely changing systems</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./weeks/week-08/vineyards-extension.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Expert submodule: vineyards</span></a>
+  <a href="./topics/topic-04/summaries-detail.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5B · Decomposition and reduction</span></a>
   </div>
 </li>
       </ul>
@@ -499,40 +530,76 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
- <span class="menu-text">Application routes</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false">
+ <span class="menu-text">Practice and validation</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false">
+ <span class="menu-text">Working with outputs</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./applications/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Overview</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./applications/dynamical-systems.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Application route: dynamical systems</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./applications/industry-template.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Industry application route: planned</span></a>
+  <a href="./topics/topic-05/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Transform and compare</span></a>
   </div>
 </li>
       </ul>
   </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false">
+ <span class="menu-text">Dynamic data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./topics/topic-06/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction · Relationships through change</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./topics/topic-06/detail.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Snapshot summaries</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./topics/topic-06/correspondence-detail.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Zigzags, vineyards and transport</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./topics/topic-06/sw1pers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Optional · SW1PerS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./topics/topic-06/multiparameter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Optional · Multiparameter persistence</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
     </ul>
     </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+    <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
@@ -540,6 +607,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#deliberately-still-skeletal" id="toc-deliberately-still-skeletal" class="nav-link" data-scroll-target="#deliberately-still-skeletal">Deliberately still skeletal</a></li>
   </ul>
 </nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -570,18 +641,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Site navigation and visual language</li>
 <li>All eight reference-note pages imported from the planning document</li>
-<li>RevealJS deck shells for every week</li>
+<li>RevealJS deck shells for every topic</li>
 <li>Consistent lab and solution notebook structure</li>
-<li>Complete Week 4 first-principles notebook</li>
-<li>Expanded design-decisions interlude and lab</li>
+<li>Complete Topic 4 first-principles notebook</li>
+<li>Expanded take-stock pause and lab</li>
 <li>Application-route templates</li>
 <li>Codex instructions and bounded task roadmap</li>
 </ul>
 </section>
 <section id="deliberately-still-skeletal" class="level2">
 <h2 class="anchored" data-anchor-id="deliberately-still-skeletal">Deliberately still skeletal</h2>
-<p>Most weekly practicals require the examples, datasets and software stack to be selected and tested. The scaffold marks these cells clearly rather than presenting invented results.</p>
-<p>See <a href="./TASKS.html"><code>TASKS.md</code></a> for the development sequence.</p>
+<p>Most topic practicals require the examples, datasets and software stack to be selected and tested. The scaffold marks these cells clearly rather than presenting invented results.</p>
+<p>See <a href="TASKS.md"><code>TASKS.md</code></a> for the development sequence.</p>
 
 
 <!-- -->
@@ -589,6 +660,196 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 
 </main> <!-- /main -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".worked-example").forEach((example) => {
+    if (example.closest("details.reader-example")) return;
+
+    const heading = Array.from(example.children).find((child) =>
+      /^H[2-5]$/.test(child.tagName)
+    );
+    const title = heading
+      ? heading.textContent.trim().replace(/^Worked example:\s*/i, "")
+      : "Expand the example";
+
+    const details = document.createElement("details");
+    details.className = "reader-example";
+
+    const summary = document.createElement("summary");
+    const label = document.createElement("span");
+    label.className = "reader-example-label";
+    label.textContent = "Example";
+    const description = document.createElement("span");
+    description.className = "reader-example-title";
+    description.textContent = title;
+    summary.append(label, description);
+    details.appendChild(summary);
+
+    if (heading) heading.remove();
+    const body = document.createElement("div");
+    body.className = "reader-example-body";
+    while (example.firstChild) body.appendChild(example.firstChild);
+    details.appendChild(body);
+    example.replaceWith(details);
+  });
+});
+</script>
+<script>
+function initialiseCourseSpine() {
+  if (document.querySelector(".course-spine")) return;
+  const path = window.location.pathname;
+  if (/lab\.html$/.test(path)) return;
+
+  const match = path.match(/\/topics\/topic-(\d{2})\//);
+  const topic = match ? Number(match[1]) : null;
+  const isPause = path.includes("/pause-and-take-stock/");
+  const isDetail = /\/(detail|correspondence-detail|homology-detail|summaries-detail|topology-survival-guide|algebra-survival-guide)\.html$/.test(path);
+  const offset = document.querySelector('meta[name="quarto:offset"]')?.content || "";
+
+  const stages = [
+    { label: "Represent and build K", math: "data + constructor → K", short: "Build K", href: `${offset}topics/topic-02/index.html` },
+    { label: "Homology of K", math: "K → H<sub>p</sub>(K; 𝔽)", short: "Homology", href: `${offset}topics/topic-02/homology.html` },
+    { label: "Choose f and filter K", math: "f: K → ℝ; K<sub>a</sub> ⊆ K<sub>b</sub>", short: "Filtration", href: `${offset}topics/topic-03/index.html` },
+    { label: "Persistent homology", math: "φ<sub>a,b</sub> = H<sub>p</sub>(ι<sub>a,b</sub>): V<sub>a</sub> → V<sub>b</sub>", short: "Across scale", href: `${offset}topics/topic-04/index.html` },
+    { label: "Summarise the module", math: "V ≅ ⨁ I<sub>[bℓ,dℓ)</sub>; Bar<sub>p</sub>(V), Dgm<sub>p</sub>(V)", short: "Barcode/diagram", href: `${offset}topics/topic-04/summaries.html` }
+  ];
+
+  const purposes = {
+    1: "Decide what K must represent and which relationships the construction must retain.",
+    2: "Build the homology calculation that will be applied to every complex in the filtration.",
+    3: "Relax one stated rule to construct nested complexes across scale.",
+    4: "Follow what homology classes become as the scale increases.",
+    5: "Decompose the module into feature lifespans and display those intervals as a barcode or persistence diagram."
+  };
+
+  let active = 0;
+  let revisited = [];
+  if (path.includes("/topics/topic-02/homology")) active = 2;
+  else if (path.includes("/topics/topic-02/")) active = 1;
+  else if (path.includes("/topics/topic-03/")) active = 3;
+  else if (path.includes("/topics/topic-04/summaries")) active = 5;
+  else if (path.includes("/topics/topic-04/")) active = 4;
+  else if ((topic && topic >= 5) || isPause) active = 6;
+
+  if (isPause) revisited = [1, 3];
+  else if (topic === 5) revisited = [5];
+  else if (topic === 6 && path.includes("correspondence")) revisited = [3, 4];
+  else if (topic === 6) revisited = [1, 2, 3, 4, 5];
+
+  let purpose = active >= 1 && active <= 5
+    ? purposes[active]
+    : topic === 5
+      ? "Start from the barcode or diagram, then choose a deliberate comparison or transformation."
+      : topic === 6
+        ? path.includes("correspondence")
+          ? "Enrich the filtration and homology stages with justified relationships through external time."
+          : "Repeat the five-stage construction at each snapshot or time window, without assuming feature correspondence."
+        : isPause
+              ? "Audit the representation, constructor and filtration before treating their output as evidence."
+              : "The foundation stages build a filtered object, then persistent homology and its interval encoding.";
+
+  const wrapper = document.createElement("div");
+  wrapper.className = "course-spine";
+  wrapper.setAttribute("aria-label", "Persistent homology course spine");
+
+  const inner = document.createElement("div");
+  inner.className = "course-spine-inner";
+
+  const heading = document.createElement("div");
+  heading.className = "course-spine-heading";
+  heading.innerHTML = `<span>Course spine</span>${isDetail ? '<span class="course-spine-detail">detail</span>' : ""}`;
+
+  const nav = document.createElement("nav");
+  nav.className = "course-spine-stages";
+  nav.setAttribute("aria-label", "Stages in the persistent homology construction");
+
+  const stageLinks = stages.map((stage, index) => {
+    const number = index + 1;
+    const link = document.createElement("a");
+    link.href = stage.href;
+    link.className = "course-spine-stage";
+    link.dataset.stage = String(number);
+    link.innerHTML = `<span class="course-spine-number">${number}</span><span class="course-spine-copy"><span class="course-spine-label">${stage.label}</span><span class="course-spine-math">${stage.math}</span></span>`;
+    nav.appendChild(link);
+    return link;
+  });
+
+  const why = document.createElement("div");
+  why.className = "course-spine-why";
+
+  const mobile = document.createElement("details");
+  mobile.className = "course-spine-mobile";
+  const mobileSummary = document.createElement("summary");
+  const mobileBody = document.createElement("div");
+  mobileBody.className = "course-spine-mobile-body";
+  mobileBody.append(nav.cloneNode(true));
+  mobile.append(mobileSummary, mobileBody);
+
+  inner.append(heading, nav, why, mobile);
+  wrapper.appendChild(inner);
+
+  const content = document.querySelector("#quarto-content");
+  if (!content) return;
+  content.parentNode.insertBefore(wrapper, content);
+
+  const spacer = document.createElement("div");
+  spacer.className = "course-spine-spacer";
+  wrapper.parentNode.insertBefore(spacer, content);
+  document.body.classList.add("has-course-spine");
+
+  function positionSpine() {
+    const header = document.querySelector("#quarto-header");
+    const headerBottom = header ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
+    const stripHeight = wrapper.getBoundingClientRect().height;
+    document.documentElement.style.setProperty("--course-spine-top", `${headerBottom}px`);
+    document.documentElement.style.setProperty("--course-spine-height", `${stripHeight}px`);
+    spacer.style.height = `${stripHeight}px`;
+  }
+
+  positionSpine();
+  window.addEventListener("resize", positionSpine, { passive: true });
+  window.addEventListener("load", positionSpine, { once: true });
+  if (window.ResizeObserver) {
+    const observer = new ResizeObserver(positionSpine);
+    observer.observe(wrapper);
+    const header = document.querySelector("#quarto-header");
+    if (header) observer.observe(header);
+  }
+
+  function setActive(nextActive, nextPurpose = purpose) {
+    active = nextActive;
+    stageLinks.forEach((link, index) => {
+      const number = index + 1;
+      link.classList.toggle("is-active", number === active);
+      link.classList.toggle("is-complete", active > 5 || number < active);
+      link.classList.toggle("is-revisited", revisited.includes(number));
+      if (number === active) link.setAttribute("aria-current", "step");
+      else link.removeAttribute("aria-current");
+    });
+
+    const mobileLinks = mobileBody.querySelectorAll(".course-spine-stage");
+    mobileLinks.forEach((link, index) => {
+      const number = index + 1;
+      link.classList.toggle("is-active", number === active);
+      link.classList.toggle("is-complete", active > 5 || number < active);
+      link.classList.toggle("is-revisited", revisited.includes(number));
+    });
+
+    const activeLabel = active >= 1 && active <= 5 ? stages[active - 1].short : "Construction complete";
+    mobileSummary.textContent = `Course spine · ${activeLabel}${isDetail ? " · detail" : ""}`;
+    why.innerHTML = `<strong>Why this is here:</strong> ${nextPurpose}`;
+  }
+
+  setActive(active);
+
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initialiseCourseSpine, { once: true });
+} else {
+  initialiseCourseSpine();
+}
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -694,16 +955,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
     function toggleCodeHandler(show) {
       return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
+        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
+        for (let i=0; i<cellDetails.length; i++) {
+          const details = cellDetails[i];
           if (show) {
             details.open = true;
           } else {
             details.removeAttribute("open");
           }
         }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
         const fromCls = show ? "hidden" : "unhidden";
         const toCls = show ? "unhidden" : "hidden";
         for (let i=0; i<cellCodeDivs.length; i++) {
@@ -1063,16 +1324,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Site navigation and visual language</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>All eight reference-note pages imported from the planning document</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>RevealJS deck shells for every week</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>RevealJS deck shells for every topic</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Consistent lab and solution notebook structure</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Complete Week 4 first-principles notebook</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Expanded design-decisions interlude and lab</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Complete Topic 4 first-principles notebook</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Expanded take-stock pause and lab</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Application-route templates</span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Codex instructions and bounded task roadmap</span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">## Deliberately still skeletal</span></span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>Most weekly practicals require the examples, datasets and software stack to be selected and tested. The scaffold marks these cells clearly rather than presenting invented results.</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>Most topic practicals require the examples, datasets and software stack to be selected and tested. The scaffold marks these cells clearly rather than presenting invented results.</span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>See <span class="co">[</span><span class="ot">`TASKS.md`</span><span class="co">](TASKS.md)</span> for the development sequence.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>

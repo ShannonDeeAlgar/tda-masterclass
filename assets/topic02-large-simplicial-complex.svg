@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 570" role="img" aria-labelledby="title desc">
+  <title id="title">Several structures in one finite simplicial complex</title>
+  <desc id="desc">A teal simplicial complex contains filled triangular regions, an unfilled loop, a one-edge bridge, a tetrahedron and a disconnected component.</desc>
+  <defs>
+    <style>
+      .bg{fill:#f8fbfb}.face1{fill:#d7ecea}.face2{fill:#b9deda}.face3{fill:#e8f4f3}
+      .edge{fill:none;stroke:#277f82;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+      .back{fill:none;stroke:#5ca2a4;stroke-width:3;stroke-dasharray:8 7}
+      .vertex{fill:#fff;stroke:#155f63;stroke-width:3.5}.label{font:600 22px Arial,sans-serif;fill:#314a4c}
+      .leader{fill:none;stroke:#789597;stroke-width:2}.tetra{fill:#9ccfcd;fill-opacity:.4}
+    </style>
+  </defs>
+  <rect class="bg" width="1100" height="570" rx="28"/>
+
+  <!-- Main component: a filled patch surrounding one unfilled loop -->
+  <g>
+    <polygon class="face1" points="110,385 185,270 270,380"/>
+    <polygon class="face2" points="185,270 285,190 270,380"/>
+    <polygon class="face3" points="285,190 385,265 270,380"/>
+    <polygon class="face1" points="285,190 410,135 385,265"/>
+    <polygon class="face2" points="410,135 500,225 385,265"/>
+    <polygon class="face2" points="500,225 585,305 510,375"/>
+    <polygon class="face3" points="385,265 500,225 510,375"/>
+    <polygon class="face1" points="395,425 510,375 555,455"/>
+    <path class="edge" d="M110 385 185 270 285 190 410 135 500 225 585 305 510 375 555 455 395 425 270 380Z"/>
+    <path class="edge" d="M185 270 270 380 285 190 385 265 270 380M285 190 410 135M285 190 385 265M410 135 500 225M410 135 385 265M500 225 385 265 395 425M385 265 510 375M500 225 585 305M500 225 510 375M585 305 510 375M510 375 395 425"/>
+    <!-- deliberately unfilled quadrilateral loop -->
+    <path class="edge" d="M270 380 395 425 510 375 385 265Z"/>
+    <g>
+      <circle class="vertex" cx="110" cy="385" r="9"/><circle class="vertex" cx="185" cy="270" r="9"/>
+      <circle class="vertex" cx="285" cy="190" r="9"/><circle class="vertex" cx="410" cy="135" r="9"/>
+      <circle class="vertex" cx="500" cy="225" r="9"/><circle class="vertex" cx="585" cy="305" r="9"/>
+      <circle class="vertex" cx="510" cy="375" r="9"/><circle class="vertex" cx="555" cy="455" r="9"/>
+      <circle class="vertex" cx="395" cy="425" r="9"/><circle class="vertex" cx="270" cy="380" r="9"/>
+      <circle class="vertex" cx="385" cy="265" r="9"/>
+    </g>
+  </g>
+
+  <!-- bridge to a tetrahedron -->
+  <line class="edge" x1="585" y1="305" x2="705" y2="300"/>
+  <g>
+    <polygon class="tetra" points="705,300 805,205 850,350"/>
+    <polygon class="face2" points="705,300 850,350 800,430"/>
+    <polygon class="face3" points="705,300 805,205 800,430"/>
+    <polygon class="face1" points="805,205 850,350 800,430"/>
+    <path class="edge" d="M705 300 805 205 850 350 800 430 705 300M805 205 800 430M705 300 850 350"/>
+    <circle class="vertex" cx="705" cy="300" r="9"/><circle class="vertex" cx="805" cy="205" r="9"/>
+    <circle class="vertex" cx="850" cy="350" r="9"/><circle class="vertex" cx="800" cy="430" r="9"/>
+  </g>
+
+  <!-- disconnected filled triangle -->
+  <g>
+    <polygon class="face2" points="925,105 1010,150 945,225"/>
+    <path class="edge" d="M925 105 1010 150 945 225Z"/>
+    <circle class="vertex" cx="925" cy="105" r="9"/><circle class="vertex" cx="1010" cy="150" r="9"/><circle class="vertex" cx="945" cy="225" r="9"/>
+  </g>
+
+  <!-- restrained annotations -->
+  <path class="leader" d="M330 500 370 445"/><text class="label" x="160" y="526">unfilled loop</text>
+  <path class="leader" d="M646 250 646 298"/><text class="label" x="610" y="232">bridge</text>
+  <path class="leader" d="M835 480 815 432"/><text class="label" x="755" y="514">3-simplex</text>
+  <path class="leader" d="M954 66 950 104"/><text class="label" x="865" y="47">separate component</text>
+</svg>

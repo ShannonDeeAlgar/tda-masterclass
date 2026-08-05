@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="590" viewBox="0 0 1180 590" role="img" aria-labelledby="title desc">
+  <title id="title">A vineyard versus a vineyard module</title>
+  <desc id="desc">The upper row tracks persistence points through three diagrams. The lower row retains vector spaces and linear maps, including a basis change that the visible vines alone do not specify.</desc>
+  <style>
+    :root{--fg:#25282b;--muted:#687078;--grid:#c8cdd2;--blue:#2877a8;--rose:#a14d70;--gold:#a2671d;--green:#557b67;--soft:#eef2f4}
+    @media(prefers-color-scheme:dark){:root{--fg:#f1f3f4;--muted:#bbc1c6;--grid:#596067;--blue:#71b7e2;--rose:#e288aa;--gold:#e3ad65;--green:#80b393;--soft:#30363a}}
+    .heading{font:650 20px system-ui,sans-serif;fill:var(--fg)}.label{font:17px system-ui,sans-serif;fill:var(--fg)}.small{font:14px system-ui,sans-serif;fill:var(--muted)}.axis{stroke:var(--grid);stroke-width:1.5}.diag{stroke:var(--grid);stroke-width:1.5;stroke-dasharray:5 5}.vine1{stroke:var(--blue);stroke-width:5;fill:none}.vine2{stroke:var(--rose);stroke-width:5;fill:none}.p1{fill:var(--blue)}.p2{fill:var(--rose)}.space{fill:var(--soft);stroke:var(--grid);stroke-width:1.5}.map{stroke:var(--green);stroke-width:3;fill:none;marker-end:url(#arrow)}.event{stroke:var(--gold);stroke-width:2;stroke-dasharray:5 5}.brace{stroke:var(--gold);stroke-width:2;fill:none}
+  </style>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10Z" fill="context-stroke"/></marker></defs>
+  <text class="heading" x="35" y="35">Vineyard: visible trajectories of diagram points</text>
+  <text class="small" x="35" y="58">At each external time, an interval [b(t),d(t)) is drawn as one point (b(t),d(t)).</text>
+
+  <g transform="translate(35 82)">
+    <g transform="translate(0 0)"><line class="axis" x1="0" y1="190" x2="265" y2="190"/><line class="axis" x1="0" y1="190" x2="0" y2="0"/><line class="diag" x1="0" y1="190" x2="190" y2="0"/><circle class="p1" cx="72" cy="62" r="8"/><circle class="p2" cx="132" cy="92" r="8"/><text class="small" x="0" y="215">diagram D₀</text></g>
+    <g transform="translate(385 0)"><line class="axis" x1="0" y1="190" x2="265" y2="190"/><line class="axis" x1="0" y1="190" x2="0" y2="0"/><line class="diag" x1="0" y1="190" x2="190" y2="0"/><circle class="p1" cx="112" cy="80" r="8"/><circle class="p2" cx="98" cy="54" r="8"/><text class="small" x="0" y="215">diagram D₁</text></g>
+    <g transform="translate(770 0)"><line class="axis" x1="0" y1="190" x2="265" y2="190"/><line class="axis" x1="0" y1="190" x2="0" y2="0"/><line class="diag" x1="0" y1="190" x2="190" y2="0"/><circle class="p1" cx="150" cy="108" r="8"/><circle class="p2" cx="62" cy="36" r="8"/><text class="small" x="0" y="215">diagram D₂</text></g>
+    <path class="vine1" d="M72 62 C230 50 340 62 497 80 C650 98 765 102 920 108"/>
+    <path class="vine2" d="M132 92 C280 92 345 72 483 54 C625 35 704 30 832 36"/>
+    <line class="event" x1="565" y1="-5" x2="565" y2="195"/>
+    <text class="small" x="576" y="16">critical values exchange order</text>
+  </g>
+
+  <text class="heading" x="35" y="355">Vineyard module: spaces and compatible linear transport</text>
+  <text class="small" x="35" y="378">The extra data say how homology directions are carried through the event, not only where interval endpoints move.</text>
+  <g transform="translate(80 415)">
+    <rect class="space" x="0" y="0" width="220" height="105" rx="10"/><text class="label" x="110" y="40" text-anchor="middle">persistence module V₀</text><text class="small" x="110" y="72" text-anchor="middle">basis directions u₁, u₂</text>
+    <rect class="space" x="400" y="0" width="220" height="105" rx="10"/><text class="label" x="510" y="40" text-anchor="middle">persistence module V₁</text><text class="small" x="510" y="72" text-anchor="middle">basis directions v₁, v₂</text>
+    <rect class="space" x="800" y="0" width="220" height="105" rx="10"/><text class="label" x="910" y="40" text-anchor="middle">persistence module V₂</text><text class="small" x="910" y="72" text-anchor="middle">basis directions w₁, w₂</text>
+    <path class="map" d="M220 52 L390 52"/><path class="map" d="M620 52 L790 52"/>
+    <text class="small" x="305" y="40" text-anchor="middle">linear map Φ₀₁</text><text class="small" x="705" y="40" text-anchor="middle">linear map Φ₁₂</text>
+    <path class="brace" d="M366 -18 L366 -3 L654 -3 L654 -18"/><text class="small" x="510" y="-27" text-anchor="middle">basis transport must be specified here</text>
+  </g>
+</svg>

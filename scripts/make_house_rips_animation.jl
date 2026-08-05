@@ -1,0 +1,216 @@
+#!/usr/bin/env julia
+
+"""
+Generate the self-contained animated SVG used for the metric-house example.
+
+The animation uses five points
+
+    A=(0,1), B=(1,0), C=(1,-1.5), D=(-1,-1.5), E=(-1,0)
+
+and the Vietoris–Rips convention that an edge enters when two closed
+epsilon-balls meet, equivalently when d(x,y) <= 2epsilon. No external Julia
+packages are required because the motion is encoded directly with SVG SMIL.
+"""
+
+output = normpath(joinpath(@__DIR__, "..", "assets",
+                           "house-rips-animation.svg"))
+
+svg = raw"""
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="610"
+     viewBox="0 0 1200 610" role="img" aria-labelledby="title desc">
+  <title id="title">Growing balls, a Rips filtration and its barcode on five house-shaped points</title>
+  <desc id="desc">Five metric balls grow continuously. Edges appear when balls meet, clique faces are filled, components merge, a room loop is born and that loop later dies. A cursor moves across the matching H0 and H1 barcode.</desc>
+  <style>
+    :root { --bg:#ffffff; --fg:#25282b; --muted:#697077; --grid:#c8cdd2;
+      --ball:#4d83b3; --edge:#31363b; --face:#7d95b6; --loop:#a04b69;
+      --cursor:#9a541d; --panel:#f6f7f8; }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg:#222222; --fg:#f1f3f4; --muted:#b7bdc3; --grid:#555b61;
+        --ball:#78a9d1; --edge:#e4e7e9; --face:#7898c4; --loop:#e080a2;
+        --cursor:#e0a35e; --panel:#2b2e31; }
+    }
+    .bg{fill:none} .panel{fill:none;stroke:var(--grid);stroke-width:1.5}
+    .heading{font:600 24px system-ui,sans-serif;fill:var(--fg)}
+    .label{font:18px system-ui,sans-serif;fill:var(--fg)}
+    .small{font:15px system-ui,sans-serif;fill:var(--muted)}
+    .math{font:italic 18px Georgia,serif;fill:var(--fg)}
+    .ball{fill:var(--ball);fill-opacity:.10;stroke:var(--ball);stroke-opacity:.38;stroke-width:2}
+    .edge{stroke:var(--edge);stroke-width:5;stroke-linecap:round;opacity:0}
+    .face{fill:var(--face);fill-opacity:.30;opacity:0}
+    .room{fill:var(--loop);fill-opacity:.20;opacity:0}
+    .vertex{fill:var(--bg);stroke:var(--fg);stroke-width:3}
+    .bar0{stroke:var(--ball);stroke-width:6;stroke-linecap:round}
+    .bar1{stroke:var(--loop);stroke-width:8;stroke-linecap:round}
+    .axis{stroke:var(--grid);stroke-width:2}
+    .cursor{stroke:var(--cursor);stroke-width:3}
+    .tick{stroke:var(--grid);stroke-width:1.5}
+    .event{font:14px system-ui,sans-serif;fill:var(--muted)}
+    .status{font:600 19px system-ui,sans-serif;fill:var(--fg);opacity:0}
+  </style>
+
+  <rect class="bg" width="1200" height="610"/>
+  <rect class="panel" x="20" y="58" width="535" height="520" rx="10"/>
+  <rect class="panel" x="580" y="58" width="600" height="520" rx="10"/>
+  <text class="heading" x="38" y="36">Metric construction</text>
+  <text class="heading" x="598" y="36">Features tracked through ε</text>
+  <text class="small" x="38" y="555">Edges enter when d(x,y) ≤ 2ε; every clique is filled.</text>
+
+  <!-- Growing metric balls -->
+  <g>
+    <circle class="ball" cx="285" cy="115" r="0">
+      <animate id="epsAnim" attributeName="r" values="0;175.5"
+               dur="14s" repeatCount="indefinite"/>
+    </circle>
+    <circle class="ball" cx="415" cy="245" r="0">
+      <animate attributeName="r" values="0;175.5" dur="14s"
+               begin="epsAnim.begin" repeatCount="indefinite"/>
+    </circle>
+    <circle class="ball" cx="415" cy="440" r="0">
+      <animate attributeName="r" values="0;175.5" dur="14s"
+               begin="epsAnim.begin" repeatCount="indefinite"/>
+    </circle>
+    <circle class="ball" cx="155" cy="440" r="0">
+      <animate attributeName="r" values="0;175.5" dur="14s"
+               begin="epsAnim.begin" repeatCount="indefinite"/>
+    </circle>
+    <circle class="ball" cx="155" cy="245" r="0">
+      <animate attributeName="r" values="0;175.5" dur="14s"
+               begin="epsAnim.begin" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- Faces of the Rips complex -->
+  <polygon class="face" points="285,115 415,245 155,245">
+    <animate attributeName="opacity" values="0;0;1;1"
+             keyTimes="0;.7406;.7407;1" dur="14s"
+             begin="epsAnim.begin" repeatCount="indefinite"/>
+  </polygon>
+  <polygon class="room" points="155,245 415,245 415,440 155,440">
+    <animate attributeName="opacity" values="0;0;1;1;0;0"
+             keyTimes="0;.7406;.7407;.9258;.9259;1" dur="14s"
+             begin="epsAnim.begin" repeatCount="indefinite"/>
+  </polygon>
+  <g class="face">
+    <polygon points="155,245 415,245 415,440"/>
+    <polygon points="155,245 415,440 155,440"/>
+    <animate attributeName="opacity" values="0;0;1;1"
+             keyTimes="0;.9258;.9259;1" dur="14s"
+             begin="epsAnim.begin" repeatCount="indefinite"/>
+  </g>
+
+  <!-- Edges, grouped by their entry scale -->
+  <g class="edge">
+    <line x1="285" y1="115" x2="415" y2="245"/>
+    <line x1="285" y1="115" x2="155" y2="245"/>
+    <animate attributeName="opacity" values="0;0;1;1"
+             keyTimes="0;.5236;.5237;1" dur="14s"
+             begin="epsAnim.begin" repeatCount="indefinite"/>
+  </g>
+  <g class="edge">
+    <line x1="415" y1="245" x2="415" y2="440"/>
+    <line x1="155" y1="245" x2="155" y2="440"/>
+    <animate attributeName="opacity" values="0;0;1;1"
+             keyTimes="0;.5555;.5556;1" dur="14s"
+             begin="epsAnim.begin" repeatCount="indefinite"/>
+  </g>
+  <g class="edge">
+    <line x1="155" y1="245" x2="415" y2="245"/>
+    <line x1="155" y1="440" x2="415" y2="440"/>
+    <animate attributeName="opacity" values="0;0;1;1"
+             keyTimes="0;.7406;.7407;1" dur="14s"
+             begin="epsAnim.begin" repeatCount="indefinite"/>
+  </g>
+  <g class="edge">
+    <line x1="155" y1="245" x2="415" y2="440"/>
+    <line x1="415" y1="245" x2="155" y2="440"/>
+    <animate attributeName="opacity" values="0;0;1;1"
+             keyTimes="0;.9258;.9259;1" dur="14s"
+             begin="epsAnim.begin" repeatCount="indefinite"/>
+  </g>
+
+  <!-- Vertices and labels stay visible -->
+  <g>
+    <circle class="vertex" cx="285" cy="115" r="11"/>
+    <circle class="vertex" cx="415" cy="245" r="11"/>
+    <circle class="vertex" cx="415" cy="440" r="11"/>
+    <circle class="vertex" cx="155" cy="440" r="11"/>
+    <circle class="vertex" cx="155" cy="245" r="11"/>
+    <text class="math" x="276" y="88">v₀</text>
+    <text class="math" x="435" y="250">v₁</text>
+    <text class="math" x="435" y="448">v₂</text>
+    <text class="math" x="126" y="448">v₃</text>
+    <text class="math" x="126" y="250">v₄</text>
+  </g>
+
+  <!-- Barcode and event scale -->
+  <line class="axis" x1="650" y1="505" x2="1120" y2="505"/>
+  <text class="math" x="1112" y="538">ε</text>
+  <text class="label" x="605" y="158">H₀</text>
+  <text class="label" x="605" y="368">H₁</text>
+
+  <g>
+    <line class="bar0" x1="650" y1="105" x2="901" y2="105"/>
+    <line class="bar0" x1="650" y1="128" x2="901" y2="128"/>
+    <line class="bar0" x1="650" y1="151" x2="911" y2="151"/>
+    <line class="bar0" x1="650" y1="174" x2="911" y2="174"/>
+    <line class="bar0" x1="650" y1="197" x2="1142" y2="197"/>
+    <path d="M1130 190 L1142 197 L1130 204" fill="none"
+          stroke="var(--ball)" stroke-width="4"/>
+    <line class="bar1" x1="998" y1="368" x2="1085" y2="368"/>
+  </g>
+
+  <g>
+    <line class="tick" x1="901" y1="490" x2="901" y2="520"/>
+    <line class="tick" x1="911" y1="490" x2="911" y2="520"/>
+    <line class="tick" x1="998" y1="490" x2="998" y2="520"/>
+    <line class="tick" x1="1085" y1="490" x2="1085" y2="520"/>
+    <text class="event" x="901" y="548" text-anchor="middle">0.71</text>
+    <text class="event" x="911" y="570" text-anchor="middle">0.75</text>
+    <text class="event" x="998" y="548" text-anchor="middle">1.00</text>
+    <text class="event" x="1085" y="548" text-anchor="middle">1.25</text>
+  </g>
+
+  <line class="cursor" x1="650" y1="78" x2="650" y2="520">
+    <animate attributeName="x1" values="650;1120" dur="14s"
+             begin="epsAnim.begin" repeatCount="indefinite"/>
+    <animate attributeName="x2" values="650;1120" dur="14s"
+             begin="epsAnim.begin" repeatCount="indefinite"/>
+  </line>
+
+  <!-- One status sentence at each part of the filtration -->
+  <g>
+    <text class="status" x="650" y="465">five components; no loop
+      <animate attributeName="opacity" values="1;1;0;0"
+               keyTimes="0;.5236;.5237;1" dur="14s"
+               begin="epsAnim.begin" repeatCount="indefinite"/>
+    </text>
+    <text class="status" x="650" y="465">three components; no loop
+      <animate attributeName="opacity" values="0;0;1;1;0;0"
+               keyTimes="0;.5236;.5237;.5555;.5556;1" dur="14s"
+               begin="epsAnim.begin" repeatCount="indefinite"/>
+    </text>
+    <text class="status" x="650" y="465">one component; no loop
+      <animate attributeName="opacity" values="0;0;1;1;0;0"
+               keyTimes="0;.5555;.5556;.7406;.7407;1" dur="14s"
+               begin="epsAnim.begin" repeatCount="indefinite"/>
+    </text>
+    <text class="status" x="650" y="465">the room loop is alive
+      <animate attributeName="opacity" values="0;0;1;1;0;0"
+               keyTimes="0;.7406;.7407;.9258;.9259;1" dur="14s"
+               begin="epsAnim.begin" repeatCount="indefinite"/>
+    </text>
+    <text class="status" x="650" y="465">the room loop has been filled
+      <animate attributeName="opacity" values="0;0;1;1"
+               keyTimes="0;.9258;.9259;1" dur="14s"
+               begin="epsAnim.begin" repeatCount="indefinite"/>
+    </text>
+  </g>
+
+  <text class="small" x="650" y="88">moving cursor = current ε</text>
+  <text class="small" x="650" y="402">birth at ε = 1.00; death at ε = 1.25</text>
+</svg>
+"""
+
+mkpath(dirname(output))
+write(output, svg)
+println("Wrote ", output)

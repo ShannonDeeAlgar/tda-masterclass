@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A/B/C persistent homology explorer</title>
+<style>
+:root{--fg:#26383a;--muted:#687b7d;--border:#aabbbc;--grid:#ced9d9;--point:#176f73;--edge:#3f888b;--face:rgba(38,123,127,.075);--ball:rgba(38,123,127,.045);--local:#58aaa7;--global:#07566a;--other:#9caeaf;--h0:#437d82;--cursor:#b36f2d;--panel:rgba(38,123,127,.025)}
+:root[data-theme="dark"]{--fg:#edf4f4;--muted:#b7c7c8;--border:#667b7c;--grid:#4c6061;--point:#7bc3c3;--edge:#73b8b9;--face:rgba(123,195,195,.09);--ball:rgba(123,195,195,.04);--local:#8ad4ce;--global:#3d91b0;--other:#829596;--h0:#70b2b5;--cursor:#e3a65f;--panel:rgba(123,195,195,.025)}
+*{box-sizing:border-box}html,body{margin:0;overflow:hidden;background:transparent!important;color:var(--fg);font:16px system-ui,sans-serif}.explorer{padding:10px 4px 4px;background:transparent}.controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 12px 8px}.controls button{padding:.42rem .82rem;border:1px solid var(--border);border-radius:7px;background:transparent;color:var(--fg);font:inherit}.controls label{display:flex;align-items:center;gap:8px;flex:1;min-width:280px;font-weight:600}.controls input{flex:1;accent-color:var(--point)}.controls output{min-width:5.4rem;font-variant-numeric:tabular-nums;font-weight:600}.legend{display:flex;gap:18px;flex-wrap:wrap;margin:0 12px 5px;color:var(--muted);font-size:.88rem}.key{display:inline-flex;align-items:center;gap:6px}.swatch{width:18px;height:4px;border-radius:3px}.swatch.local{background:var(--local)}.swatch.global{background:var(--global)}.swatch.other{background:var(--other)}canvas{display:block;width:100%;height:auto;background:transparent!important}.status{min-height:1.4rem;margin:0 12px;color:var(--muted);font-size:.9rem;text-align:center}@media(max-width:620px){.controls label{min-width:100%}.legend{gap:10px}}
+</style></head><body>
+<div class="explorer">
+  <div class="controls">
+    <button id="play" type="button">Play</button>
+    <label>Rips distance threshold ε
+      <input id="epsilon" type="range" min="0" max="95" value="0" step="0.25" aria-label="Rips pairwise-distance threshold">
+    </label>
+    <output id="readout" for="epsilon">ε = 0.00</output>
+  </div>
+  <div class="legend" aria-label="Feature colours">
+    <span class="key"><span class="swatch local"></span>local B-scale loops</span>
+    <span class="key"><span class="swatch global"></span>global A-scale loop</span>
+    <span class="key"><span class="swatch other"></span>other short intervals</span>
+  </div>
+  <canvas id="view" width="1420" height="760" role="img" aria-label="A/B/C Rips complex with degree-zero and degree-one barcodes and persistence diagrams controlled by one filtration slider"></canvas>
+  <div id="status" class="status" aria-live="polite"></div>
+</div>
+<script>
+(() => {
+  const inner=[[0,0],[0,22],[0,44],[0,66],[0,88],[22,0],[42,5],[50,23],[22,44],[43,44],[50,65],[42,85],[22,88]];
+  const outer=[[350,35,.82],[292,105,.82],[408,105,.82],[235,183,.82],[465,183,.82],[182,263,.82],[518,263,.82],[300,225,.78],[400,225,.78],[125,340,.82],[575,340,.82]];
+  const points=outer.flatMap(([x,y,s])=>inner.map(([u,v])=>[x+s*u,y+s*v]));
+  const intervals=[[17.266,34.32],[17.266,34.32],[17.266,34.32],[17.266,34.32],[18.1515,36.08],[18.1515,36.08],[18.1515,36.08],[18.1515,36.08],[18.1515,36.08],[18.1515,36.08],[18.1515,36.08],[18.1515,36.08],[18.1515,36.08],[18.1515,36.08],[18.1515,36.08],[18.1515,36.08],[18.1515,36.08],[18.1515,36.08],[18.1515,36.08],[18.1515,36.08],[18.1515,36.08],[18.1515,36.08],[31.2688,32.3265],[48.5043,52.1746],[48.6572,48.709],[61.005,63.1609],[61.005,89.1132]];
+  const distance=(a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1]);
+  const edges=[];
+  for(let i=0;i<points.length;i++)for(let j=i+1;j<points.length;j++)edges.push([distance(points[i],points[j]),i,j]);
+  edges.sort((a,b)=>a[0]-b[0]);
+  const h0Deaths=[];
+  {
+    const parent=points.map((_,i)=>i),rank=points.map(()=>0);
+    const find=i=>parent[i]===i?i:(parent[i]=find(parent[i]));
+    for(const [d,a,b] of edges){let ra=find(a),rb=find(b);if(ra===rb)continue;if(rank[ra]<rank[rb])[ra,rb]=[rb,ra];parent[rb]=ra;if(rank[ra]===rank[rb])rank[ra]++;h0Deaths.push(d);if(h0Deaths.length===points.length-1)break}
+  }
+  const triangles=[];
+  for(let i=0;i<points.length;i++)for(let j=i+1;j<points.length;j++)for(let k=j+1;k<points.length;k++){
+    const entry=Math.max(distance(points[i],points[j]),distance(points[i],points[k]),distance(points[j],points[k]));
+    if(entry<=95)triangles.push([entry,i,j,k]);
+  }
+  triangles.sort((a,b)=>a[0]-b[0]);
+
+  const canvas=document.getElementById('view'),ctx=canvas.getContext('2d'),slider=document.getElementById('epsilon'),readout=document.getElementById('readout'),status=document.getElementById('status'),play=document.getElementById('play');
+  let timer=null;
+  function syncTheme(){let dark=false;try{const root=parent.document.documentElement,body=parent.document.body;dark=root.getAttribute('data-bs-theme')==='dark'||root.classList.contains('quarto-dark')||body.classList.contains('quarto-dark')}catch(e){dark=matchMedia('(prefers-color-scheme: dark)').matches}document.documentElement.dataset.theme=dark?'dark':'light'}
+  function css(name){return getComputedStyle(document.documentElement).getPropertyValue(name).trim()}
+  function category([b,d]){if(b>50&&d-b>20)return'global';if(b>17&&b<20&&d-b>15)return'local';return'other'}
+  const categoryOrder={local:0,global:1,other:2};
+  const ordered=intervals.map((z,i)=>({z,i,c:category(z)})).sort((a,b)=>categoryOrder[a.c]-categoryOrder[b.c]||a.z[0]-b.z[0]);
+  const colour=c=>css(c==='local'?'--local':c==='global'?'--global':'--other');
+  const active=(z,e)=>z[0]<=e&&e<z[1];
+  const upperIndex=(array,e)=>{let lo=0,hi=array.length;while(lo<hi){const mid=(lo+hi)>>1;if(array[mid][0]<=e)lo=mid+1;else hi=mid}return lo};
+  function components(e){const parent=points.map((_,i)=>i);const find=i=>parent[i]===i?i:(parent[i]=find(parent[i]));const join=(i,j)=>{i=find(i);j=find(j);if(i!==j)parent[j]=i};for(let q=0,n=upperIndex(edges,e);q<n;q++)join(edges[q][1],edges[q][2]);return new Set(parent.map((_,i)=>find(i))).size}
+  function stop(){if(timer)clearInterval(timer);timer=null;play.textContent='Play'}
+  function draw(){syncTheme();const e=+slider.value;readout.value=`ε = ${e.toFixed(2)}`;ctx.clearRect(0,0,canvas.width,canvas.height);const fg=css('--fg'),muted=css('--muted'),border=css('--border'),point=css('--point'),edge=css('--edge'),face=css('--face'),ball=css('--ball'),cursor=css('--cursor'),h0=css('--h0');
+    const left={x:28,y:176,w:500,h:400},h0bar={x:590,y:74,w:350,h:250},h0pd={x:1010,y:74,w:350,h:250},h1bar={x:590,y:420,w:350,h:250},h1pd={x:1010,y:420,w:350,h:250};
+    ctx.font='600 18px system-ui';ctx.fillStyle=fg;ctx.fillText('Rips complex at ε',left.x,left.y-22);ctx.fillText('H₀ barcode',h0bar.x,h0bar.y-22);ctx.fillText('H₀ persistence diagram',h0pd.x,h0pd.y-22);ctx.fillText('H₁ barcode',h1bar.x,h1bar.y-22);ctx.fillText('H₁ persistence diagram',h1pd.x,h1pd.y-22);
+    const minX=Math.min(...points.map(p=>p[0])),maxX=Math.max(...points.map(p=>p[0])),minY=Math.min(...points.map(p=>p[1])),maxY=Math.max(...points.map(p=>p[1]));
+    const s=Math.min((left.w-70)/(maxX-minX),(left.h-70)/(maxY-minY)),cx=(minX+maxX)/2,cy=(minY+maxY)/2,ox=left.x+left.w/2,oy=left.y+left.h/2;const project=p=>[ox+(p[0]-cx)*s,oy+(p[1]-cy)*s];
+    ctx.strokeStyle=border;ctx.lineWidth=1;ctx.strokeRect(left.x,left.y,left.w,left.h);
+    const radius=e*s/2;ctx.strokeStyle=ball;ctx.lineWidth=.8;for(const p of points){const q=project(p);ctx.beginPath();ctx.arc(q[0],q[1],radius,0,Math.PI*2);ctx.stroke()}
+    ctx.fillStyle=face;for(let q=0,n=upperIndex(triangles,e);q<n;q++){const t=triangles[q],a=project(points[t[1]]),b=project(points[t[2]]),c=project(points[t[3]]);ctx.beginPath();ctx.moveTo(...a);ctx.lineTo(...b);ctx.lineTo(...c);ctx.closePath();ctx.fill()}
+    ctx.strokeStyle=edge;ctx.lineWidth=.7;ctx.globalAlpha=.7;for(let q=0,n=upperIndex(edges,e);q<n;q++){const a=project(points[edges[q][1]]),b=project(points[edges[q][2]]);ctx.beginPath();ctx.moveTo(...a);ctx.lineTo(...b);ctx.stroke()}ctx.globalAlpha=1;
+    ctx.fillStyle=point;for(const p of points){const q=project(p);ctx.beginPath();ctx.arc(q[0],q[1],2.7,0,Math.PI*2);ctx.fill()}
+    const max=95;
+    function barcode(panel,items,essential=false){ctx.strokeStyle=border;ctx.strokeRect(panel.x,panel.y,panel.w,panel.h);const xs=v=>panel.x+16+(v/max)*(panel.w-32),rowH=(panel.h-28)/(items.length+(essential?1:0));items.forEach((item,row)=>{const z=item.z||item,c=item.c||'h0',y=panel.y+14+(row+.5)*rowH,isActive=active(z,e),past=e>=z[1];ctx.strokeStyle=c==='h0'?h0:colour(c);ctx.globalAlpha=isActive?1:past?.18:.38;ctx.lineWidth=isActive?Math.max(1.8,Math.min(4,rowH*.8)):Math.max(.65,Math.min(2.2,rowH*.55));ctx.beginPath();ctx.moveTo(xs(z[0]),y);ctx.lineTo(xs(Math.min(z[1],max)),y);ctx.stroke()});if(essential){const y=panel.y+14+(items.length+.5)*rowH;ctx.globalAlpha=1;ctx.strokeStyle=h0;ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(xs(0),y);ctx.lineTo(xs(max-3),y);ctx.stroke();ctx.beginPath();ctx.moveTo(xs(max-3),y-4);ctx.lineTo(xs(max),y);ctx.lineTo(xs(max-3),y+4);ctx.stroke()}ctx.globalAlpha=1;ctx.strokeStyle=cursor;ctx.lineWidth=1.25;ctx.beginPath();ctx.moveTo(xs(e),panel.y);ctx.lineTo(xs(e),panel.y+panel.h);ctx.stroke();ctx.fillStyle=muted;ctx.font='12px system-ui';ctx.textAlign='center';ctx.fillText('filtration scale ε',panel.x+panel.w/2,panel.y+panel.h+18);ctx.textAlign='start'}
+    function diagram(panel,items,isH0=false){const pad={l:35,r:12,t:10,b:28},px=v=>panel.x+pad.l+(v/max)*(panel.w-pad.l-pad.r),py=v=>panel.y+panel.h-pad.b-(v/max)*(panel.h-pad.t-pad.b);ctx.strokeStyle=fg;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(px(0),py(max));ctx.lineTo(px(0),py(0));ctx.lineTo(px(max),py(0));ctx.stroke();ctx.strokeStyle=css('--grid');ctx.setLineDash([5,4]);ctx.beginPath();ctx.moveTo(px(0),py(0));ctx.lineTo(px(max),py(max));ctx.stroke();ctx.setLineDash([]);items.forEach(item=>{const z=item.z||item,c=item.c||'h0',isActive=active(z,e),past=e>=z[1];ctx.beginPath();ctx.arc(px(z[0]),py(z[1]),isActive?5.4:3.5,0,Math.PI*2);ctx.fillStyle=c==='h0'?h0:colour(c);ctx.globalAlpha=isActive?1:past?.18:.38;ctx.fill()});ctx.globalAlpha=1;if(isH0){ctx.fillStyle=h0;ctx.beginPath();ctx.arc(px(0),py(max-2),5,0,Math.PI*2);ctx.fill();ctx.fillStyle=muted;ctx.font='12px system-ui';ctx.fillText('∞',px(0)+8,py(max-2)+4)}ctx.strokeStyle=cursor;ctx.setLineDash([4,4]);ctx.beginPath();ctx.moveTo(px(e),py(max));ctx.lineTo(px(e),py(0));ctx.moveTo(px(0),py(e));ctx.lineTo(px(max),py(e));ctx.stroke();ctx.setLineDash([]);ctx.fillStyle=muted;ctx.font='12px system-ui';ctx.fillText('birth ε',panel.x+panel.w-48,panel.y+panel.h-5);ctx.save();ctx.translate(panel.x+12,panel.y+45);ctx.rotate(-Math.PI/2);ctx.fillText('death ε',0,0);ctx.restore()}
+    const h0Items=h0Deaths.map(d=>[0,d]);barcode(h0bar,h0Items,true);diagram(h0pd,h0Items,true);barcode(h1bar,ordered);diagram(h1pd,intervals.map(z=>({z,c:category(z)})));
+    const liveLocal=intervals.filter(z=>category(z)==='local'&&active(z,e)).length,liveGlobal=intervals.filter(z=>category(z)==='global'&&active(z,e)).length,liveOther=intervals.filter(z=>category(z)==='other'&&active(z,e)).length,c0=components(e);status.textContent=`At ε = ${e.toFixed(2)}: β₀ = ${c0}; β₁ = ${liveLocal+liveGlobal+liveOther} (${liveLocal} B-scale, ${liveGlobal} A-scale, ${liveOther} other).`;
+  }
+  slider.addEventListener('input',draw);play.addEventListener('click',()=>{if(timer){stop();return}if(+slider.value>=95)slider.value=0;play.textContent='Pause';timer=setInterval(()=>{slider.value=Math.min(95,+slider.value+.5);draw();if(+slider.value>=95)stop()},55)});matchMedia('(prefers-color-scheme: dark)').addEventListener('change',draw);try{new MutationObserver(draw).observe(parent.document.documentElement,{attributes:true,attributeFilter:['class','data-bs-theme']})}catch(e){}draw();
+})();
+</script></body></html>

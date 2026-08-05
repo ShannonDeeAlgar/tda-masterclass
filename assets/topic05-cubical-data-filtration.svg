@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 430" role="img" aria-labelledby="title desc">
+  <title id="title">A scalar image and its cubical sublevel filtration</title>
+  <desc id="desc">The raw five by five image has value one on eight pixels surrounding a value-five centre and value four elsewhere. At threshold one only the ring enters. At threshold five the centre enters and fills the opening.</desc>
+  <defs>
+    <style>
+      .panel{fill:#fbfdfd;stroke:#b8d6d6;stroke-width:2}.head{font:650 20px system-ui,sans-serif;fill:#294446}.note{font:16px system-ui,sans-serif;fill:#52666a}.num{font:700 17px system-ui,sans-serif;fill:#17353a;text-anchor:middle;dominant-baseline:middle}.grid{stroke:#fff;stroke-width:2}.one{fill:#65abad}.four{fill:#dcecec}.five{fill:#f1f6f6}.included{fill:#65abad;stroke:#187f82;stroke-width:2}.absent{fill:#fff;stroke:#afc3c4;stroke-width:2}.late{fill:#187f82;stroke:#0e6567;stroke-width:2}.arrow{font:34px system-ui,sans-serif;fill:#187f82}
+    </style>
+    <g id="lines"><path d="M0 0H250V250H0Z M50 0V250 M100 0V250 M150 0V250 M200 0V250 M0 50H250 M0 100H250 M0 150H250 M0 200H250" fill="none" class="grid"/></g>
+  </defs>
+  <rect width="1200" height="430" fill="#fff"/>
+
+  <g transform="translate(28 42)">
+    <rect class="panel" x="0" y="0" width="330" height="350" rx="18"/>
+    <text class="head" x="165" y="36" text-anchor="middle">Recorded scalar image</text>
+    <g transform="translate(40 58)">
+      <rect class="four" width="250" height="250"/>
+      <rect class="one" x="50" y="50" width="150" height="150"/>
+      <rect class="five" x="100" y="100" width="50" height="50"/>
+      <use href="#lines"/>
+      <g class="num">
+        <text x="25" y="25">4</text><text x="75" y="25">4</text><text x="125" y="25">4</text><text x="175" y="25">4</text><text x="225" y="25">4</text>
+        <text x="25" y="75">4</text><text x="75" y="75">1</text><text x="125" y="75">1</text><text x="175" y="75">1</text><text x="225" y="75">4</text>
+        <text x="25" y="125">4</text><text x="75" y="125">1</text><text x="125" y="125">5</text><text x="175" y="125">1</text><text x="225" y="125">4</text>
+        <text x="25" y="175">4</text><text x="75" y="175">1</text><text x="125" y="175">1</text><text x="175" y="175">1</text><text x="225" y="175">4</text>
+        <text x="25" y="225">4</text><text x="75" y="225">4</text><text x="125" y="225">4</text><text x="175" y="225">4</text><text x="225" y="225">4</text>
+      </g>
+    </g>
+    <text class="note" x="165" y="330" text-anchor="middle">each pixel carries the displayed value</text>
+  </g>
+
+  <text class="arrow" x="387" y="220" text-anchor="middle">→</text>
+
+  <g transform="translate(420 42)">
+    <rect class="panel" x="0" y="0" width="350" height="350" rx="18"/>
+    <text class="head" x="175" y="36" text-anchor="middle">Sublevel threshold a = 1</text>
+    <g transform="translate(50 58)">
+      <rect class="included" x="50" y="50" width="50" height="50"/><rect class="included" x="100" y="50" width="50" height="50"/><rect class="included" x="150" y="50" width="50" height="50"/>
+      <rect class="included" x="50" y="100" width="50" height="50"/><rect class="absent" x="100" y="100" width="50" height="50"/><rect class="included" x="150" y="100" width="50" height="50"/>
+      <rect class="included" x="50" y="150" width="50" height="50"/><rect class="included" x="100" y="150" width="50" height="50"/><rect class="included" x="150" y="150" width="50" height="50"/>
+    </g>
+    <text class="note" x="175" y="326" text-anchor="middle">only value-1 pixels enter; the value-5 centre is absent</text>
+  </g>
+
+  <text class="arrow" x="800" y="220" text-anchor="middle">→</text>
+
+  <g transform="translate(830 42)">
+    <rect class="panel" x="0" y="0" width="342" height="350" rx="18"/>
+    <text class="head" x="171" y="36" text-anchor="middle">Sublevel threshold a = 5</text>
+    <g transform="translate(46 58)">
+      <rect class="included" width="250" height="250"/>
+      <rect class="late" x="100" y="100" width="50" height="50"/>
+      <use href="#lines"/>
+      <text x="125" y="125" class="num" fill="#fff">5</text>
+    </g>
+    <text class="note" x="171" y="326" text-anchor="middle">the centre enters and the opening is filled</text>
+  </g>
+</svg>

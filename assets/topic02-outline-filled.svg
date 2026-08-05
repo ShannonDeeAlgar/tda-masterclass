@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" role="img" aria-labelledby="title desc">
+  <title id="title">The same edge loop in an outline and a filled triangle</title>
+  <desc id="desc">Both complexes contain the edge cycle z. In the outline triangle its boundary is zero but there is no two-simplex whose boundary is z. In the filled triangle sigma is present and its boundary equals z.</desc>
+  <defs>
+    <style>
+      .panel{fill:#f8fbfb;stroke:#d5e3e2;stroke-width:2}
+      .edge{fill:none;stroke:#267f82;stroke-width:5;stroke-linejoin:round}
+      .face{fill:#d3eae8;stroke:#267f82;stroke-width:5;stroke-linejoin:round}
+      .vertex{fill:#fff;stroke:#205f63;stroke-width:3}
+      .head{font:650 20px system-ui,sans-serif;fill:#294446;text-anchor:middle}
+      .body{font:500 16px system-ui,sans-serif;fill:#31464d;text-anchor:middle}
+      .vlabel{font:500 15px system-ui,sans-serif;fill:#26363e}
+      .result{font:600 16px system-ui,sans-serif;fill:#176d71;text-anchor:middle}
+      .muted{font:15px system-ui,sans-serif;fill:#5f7177;text-anchor:middle}
+    </style>
+  </defs>
+
+  <rect class="panel" x="20" y="20" width="415" height="320" rx="22"/>
+  <text class="head" x="228" y="54">Outline triangle</text>
+  <path class="edge" d="M103 211 L228 90 L353 211 Z"/>
+  <circle class="vertex" cx="103" cy="211" r="7"/>
+  <circle class="vertex" cx="228" cy="90" r="7"/>
+  <circle class="vertex" cx="353" cy="211" r="7"/>
+  <text class="vlabel" x="78" y="233">v<tspan baseline-shift="sub" font-size="70%">0</tspan></text>
+  <text class="vlabel" x="221" y="78">v<tspan baseline-shift="sub" font-size="70%">1</tspan></text>
+  <text class="vlabel" x="360" y="233">v<tspan baseline-shift="sub" font-size="70%">2</tspan></text>
+  <text class="muted" x="228" y="270">the edge loop is closed but unfilled</text>
+  <text class="result" x="228" y="307">cycle, not a boundary: one hole</text>
+
+  <rect class="panel" x="465" y="20" width="415" height="320" rx="22"/>
+  <text class="head" x="673" y="54">Filled triangle</text>
+  <path class="face" d="M548 211 L673 90 L798 211 Z"/>
+  <circle class="vertex" cx="548" cy="211" r="7"/>
+  <circle class="vertex" cx="673" cy="90" r="7"/>
+  <circle class="vertex" cx="798" cy="211" r="7"/>
+  <text class="vlabel" x="523" y="233">v<tspan baseline-shift="sub" font-size="70%">0</tspan></text>
+  <text class="vlabel" x="666" y="78">v<tspan baseline-shift="sub" font-size="70%">1</tspan></text>
+  <text class="vlabel" x="805" y="233">v<tspan baseline-shift="sub" font-size="70%">2</tspan></text>
+  <text class="muted" x="673" y="270">the same edge loop bounds the filled face</text>
+  <text class="result" x="673" y="307">cycle and boundary: no hole</text>
+</svg>

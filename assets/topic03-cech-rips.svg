@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 455" role="img" aria-labelledby="title desc">
+  <title id="title">Čech and Rips on the same three balls</title>
+  <desc id="desc">Both panels show three teal balls with pairwise overlaps and all three edges. There is no common triple intersection. Čech leaves the triangular edge loop unfilled, whereas Rips fills the clique.</desc>
+  <defs><style>
+    .panel{fill:#f8fbfb;stroke:#d3e4e3;stroke-width:2}.ball{fill:#65aaa8;fill-opacity:.2;stroke:#5b9a99;stroke-width:1.7}
+    .edge{fill:none;stroke:#267f82;stroke-width:4;stroke-linejoin:round}.face{fill:#80bfbc;fill-opacity:.5;stroke:#267f82;stroke-width:4;stroke-linejoin:round}
+    .node{fill:#fff;stroke:#155f63;stroke-width:3}.head{font:650 20px system-ui,sans-serif;fill:#294446;text-anchor:middle}.note{font:16px system-ui,sans-serif;fill:#607477;text-anchor:middle}
+  </style></defs>
+  <g transform="translate(10 10)"><rect class="panel" width="460" height="430" rx="24"/><text class="head" x="230" y="38">Čech: joint intersection required</text><g transform="translate(0 55)">
+    <circle class="ball" cx="145" cy="235" r="88"/><circle class="ball" cx="315" cy="235" r="88"/><circle class="ball" cx="230" cy="92" r="88"/>
+    <path class="edge" d="M145 235 230 92 315 235Z"/><circle class="node" cx="145" cy="235" r="7"/><circle class="node" cx="315" cy="235" r="7"/><circle class="node" cx="230" cy="92" r="7"/></g>
+    <text class="note" x="230" y="385">pairwise overlaps, but no common point</text><text class="note" x="230" y="409">three edges; no 2-simplex</text>
+  </g>
+  <g transform="translate(510 10)"><rect class="panel" width="460" height="430" rx="24"/><text class="head" x="230" y="38">Rips: pairwise distances suffice</text><g transform="translate(0 55)">
+    <circle class="ball" cx="145" cy="235" r="88"/><circle class="ball" cx="315" cy="235" r="88"/><circle class="ball" cx="230" cy="92" r="88"/>
+    <path class="face" d="M145 235 230 92 315 235Z"/><circle class="node" cx="145" cy="235" r="7"/><circle class="node" cx="315" cy="235" r="7"/><circle class="node" cx="230" cy="92" r="7"/></g>
+    <text class="note" x="230" y="385">the same three pairwise edges form a clique</text><text class="note" x="230" y="409">Rips adds the filled 2-simplex</text>
+  </g>
+</svg>

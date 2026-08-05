@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">A vineyard made by two moving persistence points</title>
+  <desc id="desc">One fixed complex carries four filtration values that change with external time. At each time they produce two intervals. The corresponding birth-death points move through the persistence diagram and trace two vines.</desc>
+  <style>
+    :root{--fg:#25282b;--muted:#687078;--grid:#c8cdd2;--blue:#2877a8;--rose:#a14d70;--gold:#a2671d;--shade:#557b67}
+    @media(prefers-color-scheme:dark){:root{--fg:#f1f3f4;--muted:#bbc1c6;--grid:#596067;--blue:#71b7e2;--rose:#e288aa;--gold:#e3ad65;--shade:#80b393}}
+    .panel{fill:none;stroke:var(--grid);stroke-width:1.5}.axis,.grid{stroke:var(--grid)}.axis{stroke-width:2}.grid{stroke-width:1;stroke-dasharray:4 6}
+    .heading{font:650 20px system-ui,sans-serif;fill:var(--fg)}.label{font:17px system-ui,sans-serif;fill:var(--fg)}.small{font:14px system-ui,sans-serif;fill:var(--muted)}.math{font:italic 18px Georgia,serif;fill:var(--fg)}
+    .a{stroke:var(--blue)}.b{stroke:var(--rose)}.c{stroke:var(--shade)}.d{stroke:var(--gold)}.critical{fill:none;stroke-width:4}
+    .event{stroke:var(--gold);stroke-width:1.5;stroke-dasharray:6 5}.cursor{stroke:var(--gold);stroke-width:3}
+    .diag{stroke:var(--grid);stroke-width:2}.vine{fill:none;stroke-width:5;stroke-linecap:round;opacity:.45}
+    .point{stroke-width:3}.point.a{fill:var(--blue)}.point.b{fill:var(--rose)}
+  </style>
+  <rect class="panel" x="20" y="56" width="555" height="500" rx="10"/>
+  <rect class="panel" x="600" y="56" width="580" height="500" rx="10"/>
+  <text class="heading" x="38" y="35">1 · One fixed complex, changing filtration values</text>
+  <text class="heading" x="618" y="35">2 · Current intervals become moving diagram points</text>
+
+  <line class="axis" x1="90" y1="500" x2="530" y2="500"/><line class="axis" x1="90" y1="500" x2="90" y2="95"/>
+  <text class="math" x="472" y="532">external time t</text><text class="label" x="34" y="90">filtration value a</text>
+  <line class="event" x1="222" y1="95" x2="222" y2="500"/><line class="event" x1="398" y1="95" x2="398" y2="500"/>
+  <text class="small" x="222" y="522" text-anchor="middle">t = 3</text><text class="small" x="398" y="522" text-anchor="middle">t = 7</text>
+  <path class="critical a" d="M90 122 L530 300"/><path class="critical b" d="M90 246 L530 424"/>
+  <path class="critical c" d="M90 229 L530 51"/><path class="critical d" d="M90 500 L530 322"/>
+  <text class="small" x="472" y="285">A = 21 − t</text><text class="small" x="440" y="417">B = 14 − t</text>
+  <text class="small" x="435" y="82">C = 15 + t</text><text class="small" x="445" y="348">D = t</text>
+  <line class="cursor" x1="90" y1="90" x2="90" y2="500">
+    <animate attributeName="x1" values="90;530" dur="12s" repeatCount="indefinite"/><animate attributeName="x2" values="90;530" dur="12s" repeatCount="indefinite"/>
+  </line>
+
+  <line class="axis" x1="675" y1="500" x2="1125" y2="500"/><line class="axis" x1="675" y1="500" x2="675" y2="85"/>
+  <text class="label" x="1060" y="535">birth b(t)</text><text class="label" x="612" y="92">death d(t)</text>
+  <line class="diag" x1="675" y1="500" x2="1085" y2="122"/>
+  <text class="small" x="1000" y="180" transform="rotate(-42 1000 180)">death = birth</text>
+  <path class="vine a" d="M927 122 L747 300"/><path class="vine b" d="M675 229 L855 51"/>
+  <circle class="point a" cx="927" cy="122" r="9">
+    <animate attributeName="cx" values="927;747" dur="12s" repeatCount="indefinite"/><animate attributeName="cy" values="122;300" dur="12s" repeatCount="indefinite"/>
+  </circle>
+  <circle class="point b" cx="675" cy="229" r="9">
+    <animate attributeName="cx" values="675;855" dur="12s" repeatCount="indefinite"/><animate attributeName="cy" values="229;51" dur="12s" repeatCount="indefinite"/>
+  </circle>
+  <text class="small" x="705" y="470">[14 − t, 21 − t)</text><text class="small" x="900" y="92">[t, 15 + t)</text>
+  <text class="small" x="38" y="580">At each fixed t: sort A, B, C, D → build the filtration in a → obtain two intervals.</text>
+  <text class="small" x="618" y="580">A vine tracks one pair (b(t),d(t)); it is not the spatial path of a physical hole.</text>
+</svg>

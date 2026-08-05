@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -74,14 +77,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-76da663e9bc12284c1cae1fcfa354fac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-f9dc6aa0dc1e83da225dc5b6849a1c34.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-76da663e9bc12284c1cae1fcfa354fac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-fcb2897261873cd85aafa09474a84f61.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-ba63c7b57d8560067f45098778020e77.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-fcb2897261873cd85aafa09474a84f61.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -112,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <style>html{ scroll-behavior: smooth; }</style>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -141,6 +144,7 @@ window.Quarto = {
 };
 </script>
 
+<link rel="stylesheet" href="assets/layout-fixes.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -384,7 +388,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
- <span class="menu-text">Foundations</span></a>
+ <span class="menu-text">Prelude: Why topology?</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -392,44 +396,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/week-01/topology-familiar-shapes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Topology refresher A: familiar shapes</span></a>
+  <a href="./topics/topic-01/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">A · Shape and controlled forgetting</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/week-01/topology-survival-guide.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Topology refresher B: formal specifics</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./weeks/week-01/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 1: Shape, topology and the need for a computable invariant</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./weeks/week-02/algebra-survival-guide.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Before Week 2: Algebra survival guide</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./weeks/week-02/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 2: Simplicial complexes and homology</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./weeks/week-03/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 3: Filtrations</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./weeks/week-04/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 4: Persistent homology</span></a>
+  <a href="./topics/topic-01/topology-survival-guide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">B · Topology in detail</span></a>
   </div>
 </li>
       </ul>
@@ -437,33 +411,39 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
- <span class="menu-text">From definitions to decisions</span></a>
+ <span class="menu-text">Foundations: homology and filtered complexes</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./design-decisions/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Every barcode has a modelling history</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
+          <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
- <span class="menu-text">Practice and validation</span></a>
+ <span class="menu-text">1: Build K</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./topics/topic-02/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1A · Why build a complex?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./topics/topic-02/detail.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1B · Simplicial complexes</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
- <span class="menu-text">Static data</span></a>
+ <span class="menu-text">2: Homology of K</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -471,14 +451,20 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/week-05/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 5: Static data in practice</span></a>
+  <a href="./topics/topic-02/homology.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2A · What homology records</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/week-06/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 6: Summaries, comparisons and validation</span></a>
+  <a href="./topics/topic-02/homology-detail.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2B · Chains and boundary maps</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./topics/topic-02/algebra-survival-guide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Optional algebra refresher</span></a>
   </div>
 </li>
       </ul>
@@ -486,7 +472,7 @@ window.Quarto = {
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
- <span class="menu-text">Dynamic data</span></a>
+ <span class="menu-text">3: Filtration from (K, f)</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -494,32 +480,77 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/week-07/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 7: Repeated persistence through time</span></a>
+  <a href="./topics/topic-03/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3A · Why filtrations</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/week-07/sw1pers.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Expert subtopic: SW1PerS</span></a>
+  <a href="./topics/topic-03/detail.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3B · Constructing filtrations</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pause-and-take-stock/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pause and take stock</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Foundations: persistent homology</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">4: Persistent homology module</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./topics/topic-04/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4A · Link homology across scale</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/week-07/multiparameter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Expert subtopic: multiparameter persistence</span></a>
+  <a href="./topics/topic-04/detail.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4B · Modules in detail</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false">
+ <span class="menu-text">5: Encode the module</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./topics/topic-04/summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5A · Barcodes and diagrams</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/week-08/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 8: Topology for genuinely changing systems</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./weeks/week-08/vineyards-extension.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Expert submodule: vineyards</span></a>
+  <a href="./topics/topic-04/summaries-detail.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5B · Decomposition and reduction</span></a>
   </div>
 </li>
       </ul>
@@ -528,51 +559,90 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
- <span class="menu-text">Application routes</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false">
+ <span class="menu-text">Practice and validation</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false">
+ <span class="menu-text">Working with outputs</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./applications/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Overview</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./applications/dynamical-systems.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Application route: dynamical systems</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./applications/industry-template.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Industry application route: planned</span></a>
+  <a href="./topics/topic-05/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Transform and compare</span></a>
   </div>
 </li>
       </ul>
   </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false">
+ <span class="menu-text">Dynamic data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./topics/topic-06/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction · Relationships through change</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./topics/topic-06/detail.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Snapshot summaries</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./topics/topic-06/correspondence-detail.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Zigzags, vineyards and transport</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./topics/topic-06/sw1pers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Optional · SW1PerS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./topics/topic-06/multiparameter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Optional · Multiparameter persistence</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
     </ul>
     </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+    <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#how-to-use-this-glossary" id="toc-how-to-use-this-glossary" class="nav-link active" data-scroll-target="#how-to-use-this-glossary">How to use this glossary</a></li>
-  <li><a href="#objects-and-representations" id="toc-objects-and-representations" class="nav-link" data-scroll-target="#objects-and-representations">Objects and representations</a></li>
+  <li><a href="#objects-and-representations" id="toc-objects-and-representations" class="nav-link active" data-scroll-target="#objects-and-representations">Objects and representations</a></li>
   <li><a href="#homology-as-linear-algebra" id="toc-homology-as-linear-algebra" class="nav-link" data-scroll-target="#homology-as-linear-algebra">Homology as linear algebra</a></li>
   <li><a href="#filtrations-and-persistence" id="toc-filtrations-and-persistence" class="nav-link" data-scroll-target="#filtrations-and-persistence">Filtrations and persistence</a></li>
   <li><a href="#dynamic-data" id="toc-dynamic-data" class="nav-link" data-scroll-target="#dynamic-data">Dynamic data</a></li>
   <li><a href="#maintenance-rule" id="toc-maintenance-rule" class="nav-link" data-scroll-target="#maintenance-rule">Maintenance rule</a></li>
   </ul>
 </nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -598,19 +668,9 @@ window.Quarto = {
 </header>
 
 
-<section id="how-to-use-this-glossary" class="level2">
-<h2 class="anchored" data-anchor-id="how-to-use-this-glossary">How to use this glossary</h2>
-<p>The middle column gives an applied intuition, not a replacement definition. The final column records the boundary of that intuition. When a term is used in a scientific claim, return to the precise meaning and name the constructed object.</p>
-</section>
 <section id="objects-and-representations" class="level2">
 <h2 class="anchored" data-anchor-id="objects-and-representations">Objects and representations</h2>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Mathematical term</th>
@@ -621,103 +681,211 @@ window.Quarto = {
 </thead>
 <tbody>
 <tr class="odd">
-<td>Topological space</td>
+<td><a href="./topics/topic-01/topology-survival-guide.html#sets-and-spaces">Set</a></td>
+<td>A collection of elements.</td>
+<td>The collection of items currently being treated as one mathematical object.</td>
+<td>A set alone carries no distance, neighbourhood or continuity structure.</td>
+</tr>
+<tr class="even">
+<td><a href="./topics/topic-01/topology-survival-guide.html#sets-and-spaces">Point</a></td>
+<td>An element of a set when that set is being treated as a space.</td>
+<td>One possible location, state or observation in the represented space.</td>
+<td>“Point” describes its role in the space, not necessarily a literal spatial dot.</td>
+</tr>
+<tr class="odd">
+<td><a href="./topics/topic-01/topology-survival-guide.html#open-sets-and-topology">Open set</a></td>
+<td>A member of the topology; in a metric space, every included point has a sufficiently small ball contained in the set.</td>
+<td>A region that leaves local room around each of its points.</td>
+<td>Openness belongs to the chosen topology, not to a subset in isolation.</td>
+</tr>
+<tr class="even">
+<td><a href="./topics/topic-01/topology-survival-guide.html#open-sets-and-topology">Topology</a></td>
+<td>A collection of subsets containing the empty set and whole space and closed under arbitrary unions and finite intersections.</td>
+<td>The declared neighbourhood structure that makes continuity meaningful.</td>
+<td>It is not a generic synonym for shape.</td>
+</tr>
+<tr class="odd">
+<td><a href="./topics/topic-01/topology-survival-guide.html#open-sets-and-topology">Topological space</a></td>
 <td>A set equipped with open sets satisfying the topology axioms.</td>
 <td>A specification of which points count as locally near one another, without requiring numerical distance.</td>
 <td>“Topology” is not a generic synonym for shape or network layout.</td>
 </tr>
 <tr class="even">
-<td>Homeomorphism</td>
-<td>A bijection whose forward and inverse maps are continuous.</td>
-<td>A reversible deformation that preserves topological structure.</td>
-<td>The rubber-sheet metaphor is only an intuition, and finite samples are not automatically homeomorphic to latent continuous spaces.</td>
+<td><a href="./topics/topic-01/topology-survival-guide.html#continuity">Continuous map</a></td>
+<td>A map whose preimage of every open set is open.</td>
+<td>A transformation that does not introduce abrupt topological breaks.</td>
+<td>Continuity depends on the topologies on both domain and codomain.</td>
 </tr>
 <tr class="odd">
-<td>Homotopy equivalence</td>
+<td><a href="./topics/topic-01/topology-survival-guide.html#connectedness-and-paths">Connected space</a></td>
+<td>A space that cannot be separated into two disjoint non-empty open subsets.</td>
+<td>One piece at the level of continuous organisation.</td>
+<td>Connected does not always mean path-connected.</td>
+</tr>
+<tr class="even">
+<td><a href="./topics/topic-01/topology-survival-guide.html#homeomorphism-the-same-topology">Homeomorphism</a></td>
+<td>A bijection whose forward and inverse maps are continuous.</td>
+<td>A reversible deformation that preserves topological structure.</td>
+<td>The rubber sheet metaphor concerns continuous spaces. A bare finite sample is discrete, so a data analysis first needs a stated finite representation.</td>
+</tr>
+<tr class="odd">
+<td><a href="./topics/topic-01/topology-survival-guide.html#homotopy-and-deformation-retracts">Homotopy equivalence</a></td>
 <td>Maps in both directions whose composites are homotopic to the corresponding identity maps.</td>
 <td>Two spaces retain the same broad continuous shape after contractible detail is ignored.</td>
 <td>It is weaker than homeomorphism and does not preserve metric geometry.</td>
 </tr>
 <tr class="even">
-<td>Topological invariant</td>
+<td><a href="./topics/topic-01/topology-survival-guide.html#homotopy-and-deformation-retracts">Homotopy</a></td>
+<td>A continuous deformation from one map to another.</td>
+<td>A continuously varying family of transformations.</td>
+<td>Homotopy relates maps; homotopy equivalence of spaces requires maps in both directions with suitable composites.</td>
+</tr>
+<tr class="odd">
+<td><a href="./topics/topic-01/topology-survival-guide.html#homotopy-and-deformation-retracts">Contractible space</a></td>
+<td>A space homotopy equivalent to a point.</td>
+<td>A space whose topological structure can be continuously collapsed away.</td>
+<td>Contractible does not mean geometrically small.</td>
+</tr>
+<tr class="even">
+<td><a href="./topics/topic-01/topology-survival-guide.html#homotopy-and-deformation-retracts">Deformation retract</a></td>
+<td>A continuous deformation of a space onto a subspace that keeps every point of the subspace fixed.</td>
+<td>Collapse dispensable material while leaving a chosen structural core unmoved.</td>
+<td>The retract must remain inside the original space throughout the deformation.</td>
+</tr>
+<tr class="odd">
+<td><a href="./topics/topic-01/topology-survival-guide.html#connectedness-and-paths">Path-connected</a></td>
+<td>Every pair of points can be joined by a continuous path lying in the space.</td>
+<td>Any location can be reached continuously from any other without leaving the object.</td>
+<td>Path-connectedness implies connectedness, but the converse can fail for unusual spaces.</td>
+</tr>
+<tr class="even">
+<td><a href="./topics/topic-01/index.html#a-topological-response">Topological invariant</a></td>
 <td>A quantity or algebraic object unchanged under homeomorphism.</td>
 <td>A shape descriptor designed to ignore coordinates and reversible deformation.</td>
 <td>In data analysis it is computed on a constructed representation, not directly on an unknown physical system.</td>
 </tr>
 <tr class="odd">
-<td>Constructed representation</td>
+<td><a href="./topics/topic-01/index.html#from-continuous-shape-to-finite-data">Constructed representation</a></td>
 <td>A mathematical object built from observations and modelling choices.</td>
 <td>The point cloud, graph, image complex or embedding through which the system is analysed.</td>
 <td>It can amplify, erase or invent apparent organisation relative to the scientific object.</td>
 </tr>
 <tr class="even">
-<td>Metric</td>
+<td><a href="./topics/topic-01/topology-survival-guide.html#metrics-and-open-balls">Metric</a></td>
 <td>A distance function satisfying non-negativity, identity, symmetry and the triangle inequality.</td>
 <td>The rule that decides which observations are similar enough to interact first.</td>
 <td>A convenient metric may be scientifically inappropriate.</td>
 </tr>
 <tr class="odd">
-<td>Point cloud</td>
+<td><a href="./topics/topic-01/index.html#from-continuous-shape-to-finite-data">Point cloud</a></td>
 <td>A finite subset of a metric space.</td>
 <td>A collection of sampled states or observations represented as points.</td>
 <td>It is a representation of the system, not automatically the system or attractor itself.</td>
 </tr>
 <tr class="even">
-<td>Geometric descriptor</td>
+<td><a href="./topics/topic-01/index.html#a-geometric-response">Geometric descriptor</a></td>
 <td>A quantity or representation measuring a specified metric or coordinate property of a geometric object.</td>
 <td>One deliberately chosen answer to “what makes these shapes look different?”, such as spacing, area, direction or curvature.</td>
 <td>No short list of descriptors is a complete definition of shape; inspect what each retains and discards.</td>
 </tr>
 <tr class="odd">
-<td>Convex hull</td>
+<td><a href="./topics/topic-01/index.html#a-geometric-response">Convex hull</a></td>
 <td>The smallest convex set containing a specified set of points.</td>
 <td>A tight elastic band placed around the outermost observations.</td>
 <td>It records the outer envelope but cannot detect internal gaps, density or concavity.</td>
 </tr>
 <tr class="even">
-<td>Anisotropy</td>
+<td><a href="./topics/topic-01/index.html#a-geometric-response">Anisotropy</a></td>
 <td>Dependence of measured properties on direction.</td>
 <td>Evidence that a cloud stretches or organises more strongly along some directions than others.</td>
 <td>A single anisotropy ratio can miss curvature, multiple branches and local changes in direction.</td>
 </tr>
 <tr class="odd">
-<td>Geometric simplex</td>
+<td><a href="./topics/topic-02/detail.html#geometric-realisation-and-triangulation">Geometric simplex</a></td>
 <td>The convex hull of affinely independent vertices.</td>
 <td>A filled-in building block: point, segment, triangle, tetrahedron.</td>
 <td>A drawn triangle and three edges do not specify whether the face is filled.</td>
 </tr>
 <tr class="even">
-<td>Abstract simplex</td>
+<td><a href="./topics/topic-02/detail.html#simplices-and-complexes">Abstract simplex</a></td>
 <td>A finite set of vertices.</td>
 <td>A recorded multiway relation among the listed vertices.</td>
 <td>It need not have physical extent or a unique embedding.</td>
 </tr>
 <tr class="odd">
-<td>Simplicial complex</td>
+<td><a href="./topics/topic-02/index.html#building-k-vocabulary">Vertex</a></td>
+<td>A 0-simplex and basic element from which higher simplices are formed.</td>
+<td>One observation, state, agent or other basic item in the representation.</td>
+<td>A plotted location is a geometric placement of the vertex, not the abstract vertex itself.</td>
+</tr>
+<tr class="even">
+<td><a href="./topics/topic-02/index.html#building-k-vocabulary">Edge</a></td>
+<td>A 1-simplex containing two vertices.</td>
+<td>A declaration that two represented items count as related.</td>
+<td>The scientific meaning of the relation comes from the construction.</td>
+</tr>
+<tr class="odd">
+<td><a href="./topics/topic-02/index.html#building-k-vocabulary">Filled triangle</a></td>
+<td>A 2-simplex containing three vertices and all of its faces.</td>
+<td>A coherent three-way relation or filled patch rather than an empty three-edge loop.</td>
+<td>Three pairwise edges do not by themselves force a filled triangle unless the construction says so.</td>
+</tr>
+<tr class="even">
+<td><a href="./topics/topic-02/detail.html#simplices-and-complexes">Simplex dimension</a></td>
+<td>A <span class="math inline">\(p\)</span>-simplex has <span class="math inline">\(p+1\)</span> vertices; vertices, edges and filled triangles are 0-, 1- and 2-simplices.</td>
+<td>The dimension names the order of the filled building block.</td>
+<td>A 2-simplex is filled; a triangular outline contains only 0- and 1-simplices.</td>
+</tr>
+<tr class="odd">
+<td><a href="./topics/topic-02/index.html#building-k-vocabulary">Simplicial complex</a></td>
 <td>A collection of simplices closed under taking faces.</td>
 <td>A consistent catalogue of relations at every included order.</td>
 <td>Its 1-skeleton does not determine its higher-dimensional simplices.</td>
 </tr>
 <tr class="even">
-<td>Geometric realisation <span class="math inline">\(|K|\)</span></td>
+<td><a href="./topics/topic-02/detail.html#simplices-and-complexes">Downward closure</a></td>
+<td>Every non-empty face of an included simplex must also belong to the complex.</td>
+<td>A group relation brings all of its required lower-order pieces with it.</td>
+<td>This condition distinguishes a simplicial complex from a general hypergraph.</td>
+</tr>
+<tr class="odd">
+<td><a href="./topics/topic-02/detail.html#geometric-realisation-and-triangulation">Geometric realisation <span class="math inline">\(|K|\)</span></a></td>
 <td>A topological space obtained by realising and gluing the simplices of <span class="math inline">\(K\)</span>.</td>
 <td>A spatial version of the abstract incidence data.</td>
 <td>The realisation is not necessarily the observed physical object.</td>
 </tr>
-<tr class="odd">
-<td>1-skeleton</td>
+<tr class="even">
+<td><a href="./topics/topic-02/detail.html#subcomplexes-inclusions-and-skeletons">1-skeleton</a></td>
 <td>All vertices and edges of a complex.</td>
 <td>The network visible after discarding filled triangles and higher relations.</td>
 <td>Homology of the graph may differ from homology of the full complex.</td>
 </tr>
+<tr class="odd">
+<td><a href="./topics/topic-02/detail.html#subcomplexes-inclusions-and-skeletons">Subcomplex</a></td>
+<td>A downward-closed subset of the simplices of a complex.</td>
+<td>A smaller valid complex contained within a larger one.</td>
+<td>An arbitrary selection of simplices need not be a subcomplex.</td>
+</tr>
 <tr class="even">
-<td>Clique complex</td>
+<td><a href="./topics/topic-02/detail.html#clique-complexes">Clique complex</a></td>
 <td>The complex containing a simplex for every clique of a graph.</td>
 <td>Treat every mutually pairwise-connected group as one higher-order unit.</td>
 <td>Clique filling is a modelling assumption about higher-order coherence.</td>
 </tr>
 <tr class="odd">
-<td>Graph cycle rank</td>
+<td><a href="./pause-and-take-stock/index.html#let-the-stored-data-constrain-the-route">Cubical complex</a></td>
+<td>A complex built from vertices, edges, pixels, voxels and higher-dimensional cubes.</td>
+<td>A topology-ready representation of gridded images, fields or volumes.</td>
+<td>Cell-value conventions and filtration direction determine what birth means.</td>
+</tr>
+<tr class="even">
+<td><a href="./topics/topic-02/detail.html#geometric-realisation-and-triangulation">Triangulation</a></td>
+<td>A simplicial complex whose geometric realisation represents a given topological space.</td>
+<td>A finite assembly of simplices used to model the continuous object.</td>
+<td>Different triangulations can represent the same space.</td>
+</tr>
+<tr class="odd">
+<td><a href="./topics/topic-02/detail.html#clique-complexes">Graph cycle rank</a></td>
 <td>For a finite undirected graph, <span class="math inline">\(E-V+C\)</span>, the dimension of its cycle space over a field.</td>
 <td>The number of independent network loops before any higher-dimensional filling is added.</td>
 <td>It is not generally <span class="math inline">\(H_1\)</span> of the clique complex because triangles and higher simplices can fill graph cycles.</td>
@@ -728,12 +896,6 @@ window.Quarto = {
 <section id="homology-as-linear-algebra" class="level2">
 <h2 class="anchored" data-anchor-id="homology-as-linear-algebra">Homology as linear algebra</h2>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Mathematical term</th>
@@ -744,97 +906,115 @@ window.Quarto = {
 </thead>
 <tbody>
 <tr class="odd">
-<td>Basis</td>
+<td><a href="./topics/topic-02/algebra-survival-guide.html#vectors-bases-and-coordinate-columns">Basis</a></td>
 <td>A linearly independent spanning set giving every vector unique coordinates.</td>
 <td>The agreed list of elementary pieces used to record a combination.</td>
 <td>Coordinates depend on the selected basis even when the vector does not.</td>
 </tr>
 <tr class="even">
-<td>Span</td>
+<td><a href="./topics/topic-02/algebra-survival-guide.html#vectors-bases-and-coordinate-columns">Span</a></td>
 <td>All linear combinations of a specified set of vectors.</td>
 <td>Everything that can be assembled from the available building blocks.</td>
 <td>A long generating list may contain redundant vectors.</td>
 </tr>
 <tr class="odd">
-<td>Kernel</td>
+<td><a href="./topics/topic-02/algebra-survival-guide.html#kernel-image-rank-and-nullity">Kernel</a></td>
 <td>For <span class="math inline">\(T:V\to W\)</span>, the subspace <span class="math inline">\(\{v:T(v)=0\}\)</span>.</td>
 <td>Input combinations whose effects cancel completely under the map.</td>
 <td>Being in a kernel is relative to a particular map.</td>
 </tr>
 <tr class="even">
-<td>Image</td>
+<td><a href="./topics/topic-02/algebra-survival-guide.html#kernel-image-rank-and-nullity">Image</a></td>
 <td>For <span class="math inline">\(T:V\to W\)</span>, the subspace <span class="math inline">\(\{T(v):v\in V\}\)</span>.</td>
 <td>Output patterns that the available inputs can actually produce.</td>
 <td>The image need not equal the full codomain.</td>
 </tr>
 <tr class="odd">
-<td>Rank</td>
+<td><a href="./topics/topic-02/algebra-survival-guide.html#kernel-image-rank-and-nullity">Rank</a></td>
 <td>The dimension of the image of a linear map.</td>
 <td>The number of independent output directions produced by the map.</td>
 <td>Matrix rank is basis-independent, though the matrix entries are not.</td>
 </tr>
 <tr class="even">
-<td>Nullity</td>
+<td><a href="./topics/topic-02/algebra-survival-guide.html#kernel-image-rank-and-nullity">Nullity</a></td>
 <td>The dimension of the kernel of a linear map.</td>
 <td>The number of independent input directions erased by the map.</td>
 <td>A large nullity has meaning only after the domain and map are named.</td>
 </tr>
 <tr class="odd">
-<td>Quotient vector space <span class="math inline">\(V/W\)</span></td>
+<td><a href="./topics/topic-02/algebra-survival-guide.html#kernel-image-rank-and-nullity">Rank-nullity theorem</a></td>
+<td>For finite-dimensional <span class="math inline">\(V\)</span>, <span class="math inline">\(\dim V=\operatorname{rank}T+\operatorname{nullity}T\)</span>.</td>
+<td>Every independent input direction is either retained in the image or lost to the kernel.</td>
+<td>The split is relative to the stated linear map.</td>
+</tr>
+<tr class="even">
+<td><a href="./topics/topic-02/algebra-survival-guide.html#quotients-one-idea-that-may-be-less-familiar">Quotient vector space <span class="math inline">\(V/W\)</span></a></td>
 <td>Equivalence classes under <span class="math inline">\(v\sim v'\)</span> when <span class="math inline">\(v-v'\in W\)</span>.</td>
 <td>Treat differences lying in <span class="math inline">\(W\)</span> as irrelevant or already accounted for.</td>
 <td>The slash is not numerical division, and a class has many representatives.</td>
 </tr>
-<tr class="even">
-<td>Equivalence class <span class="math inline">\([v]\)</span></td>
+<tr class="odd">
+<td><a href="./topics/topic-02/algebra-survival-guide.html#quotients-one-idea-that-may-be-less-familiar">Equivalence class <span class="math inline">\([v]\)</span></a></td>
 <td>All elements equivalent to <span class="math inline">\(v\)</span> under a specified relation.</td>
 <td>Every representation treated as the same after the agreed differences are ignored.</td>
 <td>A displayed representative is not canonical unless additional structure selects it.</td>
 </tr>
-<tr class="odd">
-<td>Coefficient field</td>
+<tr class="even">
+<td><a href="./topics/topic-02/algebra-survival-guide.html#coefficient-fields">Coefficient field</a></td>
 <td>The field used for chain coefficients, here usually <span class="math inline">\(\mathbb F_2\)</span>.</td>
 <td>The arithmetic system used to combine and cancel building blocks.</td>
 <td>Features can depend on coefficients, especially in the presence of torsion.</td>
 </tr>
-<tr class="even">
-<td>Chain space <span class="math inline">\(C_p\)</span></td>
+<tr class="odd">
+<td><a href="./topics/topic-02/homology-detail.html#coefficients-and-chain-spaces">Chain space <span class="math inline">\(C_p\)</span></a></td>
 <td>The vector space freely generated by the <span class="math inline">\(p\)</span>-simplices.</td>
 <td>All formal selections or combinations of <span class="math inline">\(p\)</span>-dimensional pieces.</td>
 <td>A chain is algebraic bookkeeping, not necessarily one connected geometric object.</td>
 </tr>
+<tr class="even">
+<td><a href="./topics/topic-02/homology-detail.html#chain-complex">Chain complex</a></td>
+<td>Vector spaces <span class="math inline">\(C_p\)</span> linked by boundary maps with <span class="math inline">\(\partial_{p-1}\partial_p=0\)</span>.</td>
+<td>The simplicial complex recorded dimension by dimension, together with how each layer meets the one below.</td>
+<td>A chain complex is algebraic data derived from <span class="math inline">\(K\)</span>; it is not another geometric complex.</td>
+</tr>
 <tr class="odd">
-<td>Boundary map <span class="math inline">\(\partial_p\)</span></td>
+<td><a href="./topics/topic-02/homology-detail.html#boundary-maps-cycles-and-boundaries">Boundary map <span class="math inline">\(\partial_p\)</span></a></td>
 <td>The linear map sending each <span class="math inline">\(p\)</span>-simplex to the signed sum of its faces.</td>
 <td>A rule extracting the exposed lower-dimensional boundary of a collection of pieces.</td>
 <td>Over <span class="math inline">\(\mathbb F_2\)</span> signs vanish; over other coefficients orientation matters.</td>
 </tr>
 <tr class="even">
-<td>Cycle <span class="math inline">\(Z_p\)</span></td>
+<td><a href="./topics/topic-02/homology-detail.html#boundary-maps-cycles-and-boundaries">Cycle <span class="math inline">\(Z_p\)</span></a></td>
 <td>A chain in <span class="math inline">\(\ker\partial_p\)</span>.</td>
 <td>A closed algebraic pattern with no remaining boundary.</td>
 <td>A cycle need not represent a nonzero hole; it may itself be a boundary.</td>
 </tr>
 <tr class="odd">
-<td>Boundary <span class="math inline">\(B_p\)</span></td>
+<td><a href="./topics/topic-02/homology-detail.html#boundary-maps-cycles-and-boundaries">Boundary <span class="math inline">\(B_p\)</span></a></td>
 <td>A chain in <span class="math inline">\(\operatorname{im}\partial_{p+1}\)</span>.</td>
 <td>A closed pattern already filled by something one dimension higher.</td>
 <td>“Boundary” here is algebraic, not merely the visible edge of a plotted region.</td>
 </tr>
 <tr class="even">
-<td>Homology <span class="math inline">\(H_p\)</span></td>
-<td>The quotient <span class="math inline">\(Z_p/B_p\)</span>.</td>
-<td>Closed patterns counted only after filled or equivalent versions are identified.</td>
-<td>A class is an equivalence class of cycles, not a privileged loop.</td>
+<td><a href="./topics/topic-02/homology.html#homology">Homology <span class="math inline">\(H_p\)</span></a></td>
+<td>An algebraic invariant of a space; for a simplicial complex it is calculated as the quotient <span class="math inline">\(Z_p/B_p\)</span>.</td>
+<td>It records connected pieces and independent unfilled cycles in each dimension.</td>
+<td>It is coarser than homotopy and depends on the represented space and coefficient system.</td>
 </tr>
 <tr class="odd">
-<td>Betti number <span class="math inline">\(\beta_p\)</span></td>
+<td><a href="./topics/topic-02/homology-detail.html#homology-class">Homology class</a></td>
+<td>An equivalence class <span class="math inline">\([z]=z+B_p\)</span> of cycles that differ by boundaries.</td>
+<td>One topological feature represented by any of several cycles with the same unfilled content.</td>
+<td>A class is not a unique geometric loop; representative cycles can differ by an available boundary.</td>
+</tr>
+<tr class="even">
+<td><a href="./topics/topic-02/homology.html#betti-number">Betti number <span class="math inline">\(\beta_p\)</span></a></td>
 <td>The dimension of <span class="math inline">\(H_p\)</span> over the chosen field.</td>
 <td>The number of independent <span class="math inline">\(p\)</span>-dimensional topological degrees of freedom.</td>
 <td>It is a count at one object or scale and contains no feature identity.</td>
 </tr>
-<tr class="even">
-<td>Euler characteristic <span class="math inline">\(\chi\)</span></td>
+<tr class="odd">
+<td><a href="./topics/topic-02/homology-detail.html#euler-characteristic">Euler characteristic <span class="math inline">\(\chi\)</span></a></td>
 <td>The alternating sum of simplex counts, equivalently Betti numbers for a finite complex.</td>
 <td>A compact accounting checksum for the complex.</td>
 <td>Different homology can share the same Euler characteristic.</td>
@@ -845,12 +1025,6 @@ window.Quarto = {
 <section id="filtrations-and-persistence" class="level2">
 <h2 class="anchored" data-anchor-id="filtrations-and-persistence">Filtrations and persistence</h2>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Mathematical term</th>
@@ -861,97 +1035,109 @@ window.Quarto = {
 </thead>
 <tbody>
 <tr class="odd">
-<td>Filtration</td>
+<td><a href="./topics/topic-03/index.html">Filtration</a></td>
 <td>A nested family <span class="math inline">\(K_a\subseteq K_b\)</span> for <span class="math inline">\(a\leq b\)</span>.</td>
 <td>A controlled sweep through a modelling threshold.</td>
 <td>The parameter is not automatically physical time.</td>
 </tr>
 <tr class="even">
-<td>Filtration function</td>
+<td><a href="./topics/topic-03/detail.html#filtration-functions">Filtration function</a></td>
 <td>A face-monotone value assigned to every simplex.</td>
 <td>The rule deciding when each relation becomes available.</td>
 <td>Birth inherits meaning from this rule, not from topology alone.</td>
 </tr>
 <tr class="odd">
-<td>Čech complex</td>
+<td><a href="./topics/topic-03/detail.html#čech-complexes-and-the-nerve-theorem">Čech complex</a></td>
 <td>The nerve of equal-radius balls centred on a point cloud.</td>
 <td>Record groups whose neighbourhoods share a genuinely common point.</td>
 <td>Joint intersection is stronger than pairwise intersection.</td>
 </tr>
 <tr class="even">
-<td>Vietoris–Rips complex</td>
+<td><a href="./topics/topic-03/detail.html#vietorisrips-complexes">Vietoris–Rips complex</a></td>
 <td>The clique complex on pairs below a distance threshold.</td>
 <td>Infer higher-order groups from pairwise proximity.</td>
 <td>Check whether the parameter denotes radius or pairwise-distance threshold.</td>
 </tr>
 <tr class="odd">
-<td>Inclusion-induced map</td>
+<td><a href="./topics/topic-04/index.html">Inclusion-induced map</a></td>
 <td>The map <span class="math inline">\(H_p(K_a)\to H_p(K_b)\)</span> induced by <span class="math inline">\(K_a\hookrightarrow K_b\)</span>.</td>
 <td>The rule describing what an earlier feature becomes after more simplices are added.</td>
 <td>The map need not be injective; an old class can map to zero.</td>
 </tr>
 <tr class="even">
-<td>Functor</td>
+<td><a href="./topics/topic-03/detail.html#inclusion-maps">Inclusion map</a></td>
+<td>For <span class="math inline">\(K_a\subseteq K_b\)</span>, the map that sends each simplex of <span class="math inline">\(K_a\)</span> to the same simplex in <span class="math inline">\(K_b\)</span>.</td>
+<td>The bookkeeping link that says the earlier complex sits inside the later one.</td>
+<td>It is a map of complexes, not yet the induced map between their homology spaces.</td>
+</tr>
+<tr class="odd">
+<td><a href="./topics/topic-04/detail.html#functor-note">Functor</a></td>
 <td>A rule sending objects to objects and maps to maps while preserving identities and composition.</td>
 <td>A consistent translation that retains both the states and how one state maps to another.</td>
 <td>The word adds no new empirical information; it records a structural compatibility.</td>
 </tr>
-<tr class="odd">
-<td>Persistence module</td>
+<tr class="even">
+<td><a href="./index.html#the-persistent-homology-construction">Persistence module</a></td>
 <td>Vector spaces <span class="math inline">\(H_p(K_a)\)</span> together with all compatible maps across scale.</td>
 <td>Homology with its cross-scale memory retained.</td>
 <td>A sequence of Betti numbers is not a persistence module.</td>
 </tr>
+<tr class="odd">
+<td><a href="./topics/topic-04/index.html">Topological feature</a></td>
+<td>A homology class considered as it appears and persists through a filtration.</td>
+<td>A connected component, loop or cavity being followed across scale.</td>
+<td>It is an algebraic class, not necessarily one unique visible shape or representative cycle.</td>
+</tr>
 <tr class="even">
-<td>Birth</td>
+<td><a href="./topics/topic-04/summaries.html">Birth</a></td>
 <td>The first parameter at which a class appears in the module.</td>
 <td>The threshold where a new independent organisation becomes detectable.</td>
 <td>It is construction-dependent and may arise from sampling or ties.</td>
 </tr>
 <tr class="odd">
-<td>Death</td>
+<td><a href="./topics/topic-04/summaries.html">Death</a></td>
 <td>The parameter where a class merges into an older class or becomes a boundary.</td>
 <td>The threshold where that independent organisation is no longer distinguishable.</td>
 <td>The underlying chain may still exist after its class dies.</td>
 </tr>
 <tr class="even">
-<td>Persistence</td>
+<td><a href="./topics/topic-04/summaries.html">Persistence</a></td>
 <td>Death minus birth for a finite interval.</td>
 <td>The range of thresholds over which a class remains distinguishable.</td>
 <td>Long persistence is not automatically scientific importance.</td>
 </tr>
 <tr class="odd">
-<td>Interval module</td>
+<td><a href="./topics/topic-04/summaries-detail.html#interval-modules">Interval module</a></td>
 <td>A module equal to the field on one interval and zero elsewhere.</td>
 <td>One idealised feature that is alive over one parameter range.</td>
 <td>The full module is usually a direct sum of many intervals.</td>
 </tr>
 <tr class="even">
-<td>Barcode</td>
+<td><a href="./topics/topic-04/summaries.html#two-views-of-the-same-intervals">Barcode</a></td>
 <td>The multiset of intervals in an interval decomposition.</td>
 <td>A timeline-like display of feature lifetimes across scale.</td>
 <td>Classification by barcodes needs suitable one-parameter finiteness or tameness assumptions.</td>
 </tr>
 <tr class="odd">
-<td>Persistence diagram</td>
+<td><a href="./topics/topic-04/summaries.html#two-views-of-the-same-intervals">Persistence diagram</a></td>
 <td>Birth-death points encoding the same interval data.</td>
 <td>A scatter plot of when features appear and disappear.</td>
 <td>Distance from the diagonal measures persistence, not truth or usefulness.</td>
 </tr>
 <tr class="even">
-<td>Representative cycle</td>
+<td><a href="./topics/topic-02/homology-detail.html#boundary-maps-cycles-and-boundaries">Representative cycle</a></td>
 <td>A cycle chosen from a homology class.</td>
 <td>One concrete loop or void boundary used to localise an abstract feature.</td>
 <td>The choice is generally not unique, so its precise location should not be treated as canonical.</td>
 </tr>
 <tr class="odd">
-<td>Essential class</td>
+<td><a href="./topics/topic-04/summaries-detail.html#barcode-and-diagram">Essential class</a></td>
 <td>A class with no finite death in the available filtration.</td>
 <td>Structure that remains after the sweep reaches its endpoint.</td>
 <td>It may be genuinely global or merely censored by a truncated parameter range.</td>
 </tr>
 <tr class="even">
-<td>Stability</td>
+<td><a href="./topics/topic-05/index.html">Stability</a></td>
 <td>A theorem bounding diagram change by an appropriate change in input or filtration.</td>
 <td>Small permitted perturbations cannot arbitrarily move the persistence output.</td>
 <td>Stability does not imply interpretability, significance or predictive value.</td>
@@ -962,12 +1148,6 @@ window.Quarto = {
 <section id="dynamic-data" class="level2">
 <h2 class="anchored" data-anchor-id="dynamic-data">Dynamic data</h2>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Mathematical term</th>
@@ -978,139 +1158,145 @@ window.Quarto = {
 </thead>
 <tbody>
 <tr class="odd">
-<td>Repeated persistence</td>
+<td><a href="./topics/topic-06/detail.html">Snapshot persistence</a></td>
 <td>Separate static persistence computations at successive times or windows.</td>
 <td>A movie of barcode summaries.</td>
 <td>Similar-looking bars are not automatically the same tracked feature.</td>
 </tr>
 <tr class="even">
-<td>Vineyard</td>
+<td><a href="./topics/topic-06/detail.html#dynamic-point-clouds">Dynamic point cloud</a></td>
+<td>A family of finite point sets <span class="math inline">\(X_t\)</span> indexed by physical time or another external variable.</td>
+<td>A cloud whose observed locations, membership or both change from frame to frame.</td>
+<td>The indexing alone supplies no correspondence between points or topological classes.</td>
+</tr>
+<tr class="odd">
+<td><a href="./topics/topic-06/detail.html#betti-surfaces-and-crocker-displays">Betti surface</a></td>
+<td>A function or display of Betti number across external time and filtration scale.</td>
+<td>A two-dimensional view of how feature counts vary through time and resolution.</td>
+<td>It counts classes but does not track their identities.</td>
+</tr>
+<tr class="even">
+<td><a href="./topics/topic-06/detail.html#diagram-stacks">Vineyard proxy</a></td>
+<td>A visual stack of independently computed persistence diagrams.</td>
+<td>A preliminary view of how diagram points appear to move.</td>
+<td>Without justified correspondence it is not a vineyard.</td>
+</tr>
+<tr class="odd">
+<td><a href="./topics/topic-06/index.html#vineyards-follow-pairings-along-a-path-of-filtrations">Vineyard</a></td>
 <td>Trajectories of persistence-diagram points under a changing function.</td>
 <td>Feature summaries traced continuously as data evolve.</td>
 <td>Matching diagram points is additional structure beyond repeated diagrams.</td>
 </tr>
-<tr class="odd">
-<td>Zigzag persistence</td>
+<tr class="even">
+<td><a href="./topics/topic-06/index.html#zigzag-persistence-allow-structure-to-enter-and-leave">Zigzag persistence</a></td>
 <td>Persistence for diagrams whose maps may point forward or backward.</td>
 <td>Track structure when observations or complexes can be added and removed.</td>
 <td>It solves a different problem from an ordinary increasing filtration.</td>
 </tr>
-<tr class="even">
-<td>Multiparameter persistence</td>
+<tr class="odd">
+<td><a href="./topics/topic-06/multiparameter.html#the-high-level-idea">Multiparameter persistence</a></td>
 <td>A module indexed by a partial order with two or more parameters.</td>
 <td>Retain several genuine modelling axes without collapsing them prematurely.</td>
 <td>There is generally no complete barcode classification analogous to the one-parameter case.</td>
 </tr>
-<tr class="odd">
-<td>Simplex tree</td>
-<td>A data structure storing simplices, faces and filtration values in a prefix tree.</td>
-<td>A computational index for querying and updating a filtered complex.</td>
-<td>It is a representation in software, not a new topological object.</td>
-</tr>
 <tr class="even">
-<td>Cubical complex</td>
-<td>A complex built from vertices, edges, pixels, voxels and higher-dimensional cubes.</td>
-<td>A topology-ready representation of gridded images, fields or volumes.</td>
-<td>Cell-value conventions and sublevel direction determine birth meaning.</td>
-</tr>
-<tr class="odd">
-<td>Lower-star filtration</td>
+<td><a href="./topics/topic-03/detail.html#lower-star-filtration">Lower-star filtration</a></td>
 <td>A filtration assigning each simplex the maximum value on its vertices.</td>
 <td>Activate a relation when its highest-valued required vertex becomes available.</td>
 <td>Negating values changes a low-feature question into a high-feature question.</td>
 </tr>
-<tr class="even">
-<td>Bottleneck distance</td>
+<tr class="odd">
+<td><a href="./topics/topic-05/index.html#compare">Bottleneck distance</a></td>
 <td>The minimum possible maximum matching cost between diagrams, allowing diagonal matches.</td>
 <td>The size of the single worst discrepancy after optimal matching.</td>
 <td>It can ignore the accumulated effect of many smaller changes.</td>
 </tr>
-<tr class="odd">
-<td>Wasserstein distance</td>
+<tr class="even">
+<td><a href="./topics/topic-05/index.html#compare">Wasserstein distance</a></td>
 <td>An optimal matching cost that aggregates powered pointwise costs.</td>
 <td>Total diagram discrepancy rather than only the worst match.</td>
 <td>Its value depends on the order, ground metric and treatment of diagonal matches.</td>
 </tr>
-<tr class="even">
-<td>Betti curve</td>
+<tr class="odd">
+<td><a href="./topics/topic-05/index.html#transform">Betti curve</a></td>
 <td>The function counting intervals alive at each filtration value.</td>
 <td>A multiscale feature-count profile.</td>
 <td>It discards interval identity and can map different diagrams to the same curve.</td>
 </tr>
+<tr class="even">
+<td><a href="./topics/topic-05/index.html#transform">Persistence landscape</a></td>
+<td>Ordered functions obtained from the triangular functions associated with persistence intervals.</td>
+<td>A functional representation of interval prominence across scale.</td>
+<td>Truncating levels or discretising the scale axis loses information.</td>
+</tr>
 <tr class="odd">
-<td>Persistence image</td>
+<td><a href="./topics/topic-05/index.html#transform">Persistence image</a></td>
 <td>A weighted, smoothed rasterisation of diagram points.</td>
 <td>A fixed-length feature array for statistics or machine learning.</td>
 <td>Resolution, smoothing and weighting are modelling parameters.</td>
 </tr>
 <tr class="even">
-<td>Persistence entropy</td>
+<td><a href="./topics/topic-05/index.html#transform">Persistence entropy</a></td>
 <td>Shannon entropy of normalised interval lengths, usually for finite intervals.</td>
 <td>A scalar describing how evenly persistence is distributed across features.</td>
 <td>It discards birth locations and feature identity, and conventions for essential or zero-length intervals matter.</td>
 </tr>
 <tr class="odd">
-<td>Mapper</td>
-<td>A graph or simplicial complex built from overlapping bins of a filter function and clusters within their inverse images.</td>
-<td>A compressed atlas of how observations organise along a chosen lens.</td>
-<td>Its topology depends on the filter, cover and clustering, and it is not a persistence diagram.</td>
+<td><a href="./topics/topic-05/index.html#transform">Maximum persistence</a></td>
+<td>The largest finite lifespan <span class="math inline">\(\max_i(d_i-b_i)\)</span> in a selected diagram.</td>
+<td>The lifetime of the single longest-lived class.</td>
+<td>It ignores every other class and depends on filtration units.</td>
 </tr>
 <tr class="even">
-<td>Null model</td>
+<td><a href="./topics/topic-05/index.html#transform">Total persistence</a></td>
+<td>An aggregate such as <span class="math inline">\(\sum_i(d_i-b_i)^q\)</span> over selected finite intervals.</td>
+<td>The accumulated lifetime carried by the diagram.</td>
+<td>Its value depends on the exponent, diagram size and treatment of essential intervals.</td>
+</tr>
+<tr class="odd">
+<td><a href="./topics/topic-05/index.html#validation-begins-with-the-claimed-mechanism">Null model</a></td>
 <td>A probability model representing structure expected without the target mechanism.</td>
 <td>The comparison world against which “unusual” is defined.</td>
 <td>An easy-to-simulate null may preserve the wrong properties.</td>
 </tr>
-<tr class="odd">
-<td>Surrogate data</td>
+<tr class="even">
+<td><a href="./topics/topic-05/index.html#validation-begins-with-the-claimed-mechanism">Surrogate data</a></td>
 <td>Synthetic or transformed observations generated under a null while preserving selected features.</td>
 <td>A controlled negative comparison passed through the same pipeline.</td>
 <td>Validity depends on what is preserved, destroyed and exchangeable.</td>
 </tr>
-<tr class="even">
-<td>CROCKER-style plot</td>
+<tr class="odd">
+<td><a href="./topics/topic-06/detail.html#betti-surfaces-and-crocker-displays">CROCKER-style plot</a></td>
 <td>A display of Betti number or rank across physical time and filtration scale.</td>
 <td>A heat map of how multiscale topological counts evolve.</td>
 <td>It summarises repeated diagrams and does not track class identity.</td>
 </tr>
-<tr class="odd">
-<td>SW1PerS</td>
-<td>A sliding-window persistent-homology method for quantifying periodicity in signals.</td>
+<tr class="even">
+<td><a href="./topics/topic-06/sw1pers.html#the-high-level-idea">SW1PerS</a></td>
+<td>A sliding-window persistent homology method for quantifying periodicity in signals.</td>
 <td>Turn repeated signal phases into a loop-like point cloud and measure its persistence.</td>
 <td>Lag, window dimension, sampling and normalisation shape the result; it is not a generic feature-tracking method.</td>
 </tr>
-<tr class="even">
-<td>Chromatic persistence</td>
-<td>Persistence constructions that retain labels or colours on points.</td>
-<td>Ask how different populations mix, surround or contribute to topological features.</td>
-<td>It changes the construction and requires meaningful labels; ordinary persistence cannot recover labels after they are discarded.</td>
-</tr>
 <tr class="odd">
-<td>Physical time <span class="math inline">\(t\)</span></td>
+<td><a href="./topics/topic-06/detail.html">Physical time <span class="math inline">\(t\)</span></a></td>
 <td>The external index describing when a system is observed.</td>
 <td>Clock time, trial progress or window position.</td>
 <td>It must not be confused with filtration scale.</td>
 </tr>
 <tr class="even">
-<td>Filtration scale <span class="math inline">\(\varepsilon\)</span></td>
+<td><a href="./topics/topic-03/index.html#two-ways-a-filtration-can-arise">Filtration scale <span class="math inline">\(\varepsilon\)</span></a></td>
 <td>The ordered threshold within one persistence calculation.</td>
 <td>The resolution or relation-strength dial used to construct topology.</td>
 <td>It is not necessarily a physical unit unless the construction supports that interpretation.</td>
 </tr>
 <tr class="odd">
-<td>Feature tracking</td>
+<td><a href="./topics/topic-06/index.html">Feature tracking</a></td>
 <td>An explicit correspondence assigning identity to features across an external index.</td>
 <td>Saying which evolving feature is the continuation of which earlier feature.</td>
 <td>Nearest diagram points or similar lifetimes do not automatically establish identity.</td>
 </tr>
 <tr class="even">
-<td>Interleaving</td>
-<td>Compatible shifted maps between persistence modules.</td>
-<td>A controlled way to compare modules while allowing parameter tolerance.</td>
-<td>A small interleaving distance does not uniquely match generators.</td>
-</tr>
-<tr class="odd">
-<td>Vineyard module</td>
+<td><a href="./topics/topic-06/correspondence-detail.html#vineyard-versus-vineyard-module">Vineyard module</a></td>
 <td>A time-indexed family of persistence modules with coherent transport maps.</td>
 <td>Vines plus the algebra describing how feature directions mix through time.</td>
 <td>It is richer than a vineyard and requires additional structure to estimate.</td>
@@ -1120,8 +1306,10 @@ window.Quarto = {
 </section>
 <section id="maintenance-rule" class="level2">
 <h2 class="anchored" data-anchor-id="maintenance-rule">Maintenance rule</h2>
-<p>When a new mathematical term enters the course, add it here with:</p>
+<p>Bold type in the main Reader prose is reserved for a reusable technical term at the point where it is first defined. Such a term belongs in this glossary and its entry links back to that definition. Bold is not used merely for emphasis, audience labels, example names or whole interpretive claims. Short labels inside callouts and margin notes are navigational labels rather than definitions and do not become glossary entries.</p>
+<p>When a new reusable mathematical or computational term enters the course, add it here with:</p>
 <ol type="1">
+<li>a link to its first definition in the Reader;</li>
 <li>a precise definition at the level used in the course;</li>
 <li>an applied translation tied to a data or scientific decision; and</li>
 <li>one sentence stating where that translation can mislead.</li>
@@ -1133,6 +1321,196 @@ window.Quarto = {
 </section>
 
 </main> <!-- /main -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".worked-example").forEach((example) => {
+    if (example.closest("details.reader-example")) return;
+
+    const heading = Array.from(example.children).find((child) =>
+      /^H[2-5]$/.test(child.tagName)
+    );
+    const title = heading
+      ? heading.textContent.trim().replace(/^Worked example:\s*/i, "")
+      : "Expand the example";
+
+    const details = document.createElement("details");
+    details.className = "reader-example";
+
+    const summary = document.createElement("summary");
+    const label = document.createElement("span");
+    label.className = "reader-example-label";
+    label.textContent = "Example";
+    const description = document.createElement("span");
+    description.className = "reader-example-title";
+    description.textContent = title;
+    summary.append(label, description);
+    details.appendChild(summary);
+
+    if (heading) heading.remove();
+    const body = document.createElement("div");
+    body.className = "reader-example-body";
+    while (example.firstChild) body.appendChild(example.firstChild);
+    details.appendChild(body);
+    example.replaceWith(details);
+  });
+});
+</script>
+<script>
+function initialiseCourseSpine() {
+  if (document.querySelector(".course-spine")) return;
+  const path = window.location.pathname;
+  if (/lab\.html$/.test(path)) return;
+
+  const match = path.match(/\/topics\/topic-(\d{2})\//);
+  const topic = match ? Number(match[1]) : null;
+  const isPause = path.includes("/pause-and-take-stock/");
+  const isDetail = /\/(detail|correspondence-detail|homology-detail|summaries-detail|topology-survival-guide|algebra-survival-guide)\.html$/.test(path);
+  const offset = document.querySelector('meta[name="quarto:offset"]')?.content || "";
+
+  const stages = [
+    { label: "Represent and build K", math: "data + constructor → K", short: "Build K", href: `${offset}topics/topic-02/index.html` },
+    { label: "Homology of K", math: "K → H<sub>p</sub>(K; 𝔽)", short: "Homology", href: `${offset}topics/topic-02/homology.html` },
+    { label: "Choose f and filter K", math: "f: K → ℝ; K<sub>a</sub> ⊆ K<sub>b</sub>", short: "Filtration", href: `${offset}topics/topic-03/index.html` },
+    { label: "Persistent homology", math: "φ<sub>a,b</sub> = H<sub>p</sub>(ι<sub>a,b</sub>): V<sub>a</sub> → V<sub>b</sub>", short: "Across scale", href: `${offset}topics/topic-04/index.html` },
+    { label: "Summarise the module", math: "V ≅ ⨁ I<sub>[bℓ,dℓ)</sub>; Bar<sub>p</sub>(V), Dgm<sub>p</sub>(V)", short: "Barcode/diagram", href: `${offset}topics/topic-04/summaries.html` }
+  ];
+
+  const purposes = {
+    1: "Decide what K must represent and which relationships the construction must retain.",
+    2: "Build the homology calculation that will be applied to every complex in the filtration.",
+    3: "Relax one stated rule to construct nested complexes across scale.",
+    4: "Follow what homology classes become as the scale increases.",
+    5: "Decompose the module into feature lifespans and display those intervals as a barcode or persistence diagram."
+  };
+
+  let active = 0;
+  let revisited = [];
+  if (path.includes("/topics/topic-02/homology")) active = 2;
+  else if (path.includes("/topics/topic-02/")) active = 1;
+  else if (path.includes("/topics/topic-03/")) active = 3;
+  else if (path.includes("/topics/topic-04/summaries")) active = 5;
+  else if (path.includes("/topics/topic-04/")) active = 4;
+  else if ((topic && topic >= 5) || isPause) active = 6;
+
+  if (isPause) revisited = [1, 3];
+  else if (topic === 5) revisited = [5];
+  else if (topic === 6 && path.includes("correspondence")) revisited = [3, 4];
+  else if (topic === 6) revisited = [1, 2, 3, 4, 5];
+
+  let purpose = active >= 1 && active <= 5
+    ? purposes[active]
+    : topic === 5
+      ? "Start from the barcode or diagram, then choose a deliberate comparison or transformation."
+      : topic === 6
+        ? path.includes("correspondence")
+          ? "Enrich the filtration and homology stages with justified relationships through external time."
+          : "Repeat the five-stage construction at each snapshot or time window, without assuming feature correspondence."
+        : isPause
+              ? "Audit the representation, constructor and filtration before treating their output as evidence."
+              : "The foundation stages build a filtered object, then persistent homology and its interval encoding.";
+
+  const wrapper = document.createElement("div");
+  wrapper.className = "course-spine";
+  wrapper.setAttribute("aria-label", "Persistent homology course spine");
+
+  const inner = document.createElement("div");
+  inner.className = "course-spine-inner";
+
+  const heading = document.createElement("div");
+  heading.className = "course-spine-heading";
+  heading.innerHTML = `<span>Course spine</span>${isDetail ? '<span class="course-spine-detail">detail</span>' : ""}`;
+
+  const nav = document.createElement("nav");
+  nav.className = "course-spine-stages";
+  nav.setAttribute("aria-label", "Stages in the persistent homology construction");
+
+  const stageLinks = stages.map((stage, index) => {
+    const number = index + 1;
+    const link = document.createElement("a");
+    link.href = stage.href;
+    link.className = "course-spine-stage";
+    link.dataset.stage = String(number);
+    link.innerHTML = `<span class="course-spine-number">${number}</span><span class="course-spine-copy"><span class="course-spine-label">${stage.label}</span><span class="course-spine-math">${stage.math}</span></span>`;
+    nav.appendChild(link);
+    return link;
+  });
+
+  const why = document.createElement("div");
+  why.className = "course-spine-why";
+
+  const mobile = document.createElement("details");
+  mobile.className = "course-spine-mobile";
+  const mobileSummary = document.createElement("summary");
+  const mobileBody = document.createElement("div");
+  mobileBody.className = "course-spine-mobile-body";
+  mobileBody.append(nav.cloneNode(true));
+  mobile.append(mobileSummary, mobileBody);
+
+  inner.append(heading, nav, why, mobile);
+  wrapper.appendChild(inner);
+
+  const content = document.querySelector("#quarto-content");
+  if (!content) return;
+  content.parentNode.insertBefore(wrapper, content);
+
+  const spacer = document.createElement("div");
+  spacer.className = "course-spine-spacer";
+  wrapper.parentNode.insertBefore(spacer, content);
+  document.body.classList.add("has-course-spine");
+
+  function positionSpine() {
+    const header = document.querySelector("#quarto-header");
+    const headerBottom = header ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
+    const stripHeight = wrapper.getBoundingClientRect().height;
+    document.documentElement.style.setProperty("--course-spine-top", `${headerBottom}px`);
+    document.documentElement.style.setProperty("--course-spine-height", `${stripHeight}px`);
+    spacer.style.height = `${stripHeight}px`;
+  }
+
+  positionSpine();
+  window.addEventListener("resize", positionSpine, { passive: true });
+  window.addEventListener("load", positionSpine, { once: true });
+  if (window.ResizeObserver) {
+    const observer = new ResizeObserver(positionSpine);
+    observer.observe(wrapper);
+    const header = document.querySelector("#quarto-header");
+    if (header) observer.observe(header);
+  }
+
+  function setActive(nextActive, nextPurpose = purpose) {
+    active = nextActive;
+    stageLinks.forEach((link, index) => {
+      const number = index + 1;
+      link.classList.toggle("is-active", number === active);
+      link.classList.toggle("is-complete", active > 5 || number < active);
+      link.classList.toggle("is-revisited", revisited.includes(number));
+      if (number === active) link.setAttribute("aria-current", "step");
+      else link.removeAttribute("aria-current");
+    });
+
+    const mobileLinks = mobileBody.querySelectorAll(".course-spine-stage");
+    mobileLinks.forEach((link, index) => {
+      const number = index + 1;
+      link.classList.toggle("is-active", number === active);
+      link.classList.toggle("is-complete", active > 5 || number < active);
+      link.classList.toggle("is-revisited", revisited.includes(number));
+    });
+
+    const activeLabel = active >= 1 && active <= 5 ? stages[active - 1].short : "Construction complete";
+    mobileSummary.textContent = `Course spine · ${activeLabel}${isDetail ? " · detail" : ""}`;
+    why.innerHTML = `<strong>Why this is here:</strong> ${nextPurpose}`;
+  }
+
+  setActive(active);
+
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initialiseCourseSpine, { once: true });
+} else {
+  initialiseCourseSpine();
+}
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -1238,16 +1616,16 @@ window.Quarto = {
     }
     function toggleCodeHandler(show) {
       return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
+        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
+        for (let i=0; i<cellDetails.length; i++) {
+          const details = cellDetails[i];
           if (show) {
             details.open = true;
           } else {
             details.removeAttribute("open");
           }
         }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
         const fromCls = show ? "hidden" : "unhidden";
         const toCls = show ? "unhidden" : "hidden";
         for (let i=0; i<cellCodeDivs.length; i++) {
@@ -1603,109 +1981,138 @@ window.Quarto = {
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">toc:</span><span class="co"> true</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## How to use this glossary</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## Objects and representations</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>The middle column gives an applied intuition, not a replacement definition. The final column records the boundary of that intuition. When a term is used in a scientific claim, return to the precise meaning and name the constructed object.</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Objects and representations</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Mathematical term <span class="pp">|</span> Precise meaning <span class="pp">|</span> Applied or intuitive translation <span class="pp">|</span> Interpretation caution <span class="pp">|</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Topological space <span class="pp">|</span> A set equipped with open sets satisfying the topology axioms. <span class="pp">|</span> A specification of which points count as locally near one another, without requiring numerical distance. <span class="pp">|</span> “Topology” is not a generic synonym for shape or network layout. <span class="pp">|</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Homeomorphism <span class="pp">|</span> A bijection whose forward and inverse maps are continuous. <span class="pp">|</span> A reversible deformation that preserves topological structure. <span class="pp">|</span> The rubber-sheet metaphor is only an intuition, and finite samples are not automatically homeomorphic to latent continuous spaces. <span class="pp">|</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Homotopy equivalence <span class="pp">|</span> Maps in both directions whose composites are homotopic to the corresponding identity maps. <span class="pp">|</span> Two spaces retain the same broad continuous shape after contractible detail is ignored. <span class="pp">|</span> It is weaker than homeomorphism and does not preserve metric geometry. <span class="pp">|</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Topological invariant <span class="pp">|</span> A quantity or algebraic object unchanged under homeomorphism. <span class="pp">|</span> A shape descriptor designed to ignore coordinates and reversible deformation. <span class="pp">|</span> In data analysis it is computed on a constructed representation, not directly on an unknown physical system. <span class="pp">|</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Constructed representation <span class="pp">|</span> A mathematical object built from observations and modelling choices. <span class="pp">|</span> The point cloud, graph, image complex or embedding through which the system is analysed. <span class="pp">|</span> It can amplify, erase or invent apparent organisation relative to the scientific object. <span class="pp">|</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Metric <span class="pp">|</span> A distance function satisfying non-negativity, identity, symmetry and the triangle inequality. <span class="pp">|</span> The rule that decides which observations are similar enough to interact first. <span class="pp">|</span> A convenient metric may be scientifically inappropriate. <span class="pp">|</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Point cloud <span class="pp">|</span> A finite subset of a metric space. <span class="pp">|</span> A collection of sampled states or observations represented as points. <span class="pp">|</span> It is a representation of the system, not automatically the system or attractor itself. <span class="pp">|</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Geometric descriptor <span class="pp">|</span> A quantity or representation measuring a specified metric or coordinate property of a geometric object. <span class="pp">|</span> One deliberately chosen answer to “what makes these shapes look different?”, such as spacing, area, direction or curvature. <span class="pp">|</span> No short list of descriptors is a complete definition of shape; inspect what each retains and discards. <span class="pp">|</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Convex hull <span class="pp">|</span> The smallest convex set containing a specified set of points. <span class="pp">|</span> A tight elastic band placed around the outermost observations. <span class="pp">|</span> It records the outer envelope but cannot detect internal gaps, density or concavity. <span class="pp">|</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Anisotropy <span class="pp">|</span> Dependence of measured properties on direction. <span class="pp">|</span> Evidence that a cloud stretches or organises more strongly along some directions than others. <span class="pp">|</span> A single anisotropy ratio can miss curvature, multiple branches and local changes in direction. <span class="pp">|</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Geometric simplex <span class="pp">|</span> The convex hull of affinely independent vertices. <span class="pp">|</span> A filled-in building block: point, segment, triangle, tetrahedron. <span class="pp">|</span> A drawn triangle and three edges do not specify whether the face is filled. <span class="pp">|</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Abstract simplex <span class="pp">|</span> A finite set of vertices. <span class="pp">|</span> A recorded multiway relation among the listed vertices. <span class="pp">|</span> It need not have physical extent or a unique embedding. <span class="pp">|</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Simplicial complex <span class="pp">|</span> A collection of simplices closed under taking faces. <span class="pp">|</span> A consistent catalogue of relations at every included order. <span class="pp">|</span> Its 1-skeleton does not determine its higher-dimensional simplices. <span class="pp">|</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Geometric realisation $<span class="pp">|</span>K<span class="pp">|</span>$ <span class="pp">|</span> A topological space obtained by realising and gluing the simplices of $K$. <span class="pp">|</span> A spatial version of the abstract incidence data. <span class="pp">|</span> The realisation is not necessarily the observed physical object. <span class="pp">|</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 1-skeleton <span class="pp">|</span> All vertices and edges of a complex. <span class="pp">|</span> The network visible after discarding filled triangles and higher relations. <span class="pp">|</span> Homology of the graph may differ from homology of the full complex. <span class="pp">|</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Clique complex <span class="pp">|</span> The complex containing a simplex for every clique of a graph. <span class="pp">|</span> Treat every mutually pairwise-connected group as one higher-order unit. <span class="pp">|</span> Clique filling is a modelling assumption about higher-order coherence. <span class="pp">|</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Graph cycle rank <span class="pp">|</span> For a finite undirected graph, $E-V+C$, the dimension of its cycle space over a field. <span class="pp">|</span> The number of independent network loops before any higher-dimensional filling is added. <span class="pp">|</span> It is not generally $H_1$ of the clique complex because triangles and higher simplices can fill graph cycles. <span class="pp">|</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="fu">## Homology as linear algebra</span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Mathematical term <span class="pp">|</span> Precise meaning <span class="pp">|</span> Applied or intuitive translation <span class="pp">|</span> Interpretation caution <span class="pp">|</span></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Basis <span class="pp">|</span> A linearly independent spanning set giving every vector unique coordinates. <span class="pp">|</span> The agreed list of elementary pieces used to record a combination. <span class="pp">|</span> Coordinates depend on the selected basis even when the vector does not. <span class="pp">|</span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Span <span class="pp">|</span> All linear combinations of a specified set of vectors. <span class="pp">|</span> Everything that can be assembled from the available building blocks. <span class="pp">|</span> A long generating list may contain redundant vectors. <span class="pp">|</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Kernel <span class="pp">|</span> For $T:V\to W$, the subspace $<span class="sc">\{</span>v:T(v)=0<span class="sc">\}</span>$. <span class="pp">|</span> Input combinations whose effects cancel completely under the map. <span class="pp">|</span> Being in a kernel is relative to a particular map. <span class="pp">|</span></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Image <span class="pp">|</span> For $T:V\to W$, the subspace $<span class="sc">\{</span>T(v):v\in V<span class="sc">\}</span>$. <span class="pp">|</span> Output patterns that the available inputs can actually produce. <span class="pp">|</span> The image need not equal the full codomain. <span class="pp">|</span></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Rank <span class="pp">|</span> The dimension of the image of a linear map. <span class="pp">|</span> The number of independent output directions produced by the map. <span class="pp">|</span> Matrix rank is basis-independent, though the matrix entries are not. <span class="pp">|</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Nullity <span class="pp">|</span> The dimension of the kernel of a linear map. <span class="pp">|</span> The number of independent input directions erased by the map. <span class="pp">|</span> A large nullity has meaning only after the domain and map are named. <span class="pp">|</span></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Quotient vector space $V/W$ <span class="pp">|</span> Equivalence classes under $v\sim v'$ when $v-v'\in W$. <span class="pp">|</span> Treat differences lying in $W$ as irrelevant or already accounted for. <span class="pp">|</span> The slash is not numerical division, and a class has many representatives. <span class="pp">|</span></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Equivalence class $<span class="co">[</span><span class="ot">v</span><span class="co">]</span>$ <span class="pp">|</span> All elements equivalent to $v$ under a specified relation. <span class="pp">|</span> Every representation treated as the same after the agreed differences are ignored. <span class="pp">|</span> A displayed representative is not canonical unless additional structure selects it. <span class="pp">|</span></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Coefficient field <span class="pp">|</span> The field used for chain coefficients, here usually $\mathbb F_2$. <span class="pp">|</span> The arithmetic system used to combine and cancel building blocks. <span class="pp">|</span> Features can depend on coefficients, especially in the presence of torsion. <span class="pp">|</span></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Chain space $C_p$ <span class="pp">|</span> The vector space freely generated by the $p$-simplices. <span class="pp">|</span> All formal selections or combinations of $p$-dimensional pieces. <span class="pp">|</span> A chain is algebraic bookkeeping, not necessarily one connected geometric object. <span class="pp">|</span></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Boundary map $\partial_p$ <span class="pp">|</span> The linear map sending each $p$-simplex to the signed sum of its faces. <span class="pp">|</span> A rule extracting the exposed lower-dimensional boundary of a collection of pieces. <span class="pp">|</span> Over $\mathbb F_2$ signs vanish; over other coefficients orientation matters. <span class="pp">|</span></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Cycle $Z_p$ <span class="pp">|</span> A chain in $\ker\partial_p$. <span class="pp">|</span> A closed algebraic pattern with no remaining boundary. <span class="pp">|</span> A cycle need not represent a nonzero hole; it may itself be a boundary. <span class="pp">|</span></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Boundary $B_p$ <span class="pp">|</span> A chain in $\operatorname{im}\partial_{p+1}$. <span class="pp">|</span> A closed pattern already filled by something one dimension higher. <span class="pp">|</span> “Boundary” here is algebraic, not merely the visible edge of a plotted region. <span class="pp">|</span></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Homology $H_p$ <span class="pp">|</span> The quotient $Z_p/B_p$. <span class="pp">|</span> Closed patterns counted only after filled or equivalent versions are identified. <span class="pp">|</span> A class is an equivalence class of cycles, not a privileged loop. <span class="pp">|</span></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Betti number $\beta_p$ <span class="pp">|</span> The dimension of $H_p$ over the chosen field. <span class="pp">|</span> The number of independent $p$-dimensional topological degrees of freedom. <span class="pp">|</span> It is a count at one object or scale and contains no feature identity. <span class="pp">|</span></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Euler characteristic $\chi$ <span class="pp">|</span> The alternating sum of simplex counts, equivalently Betti numbers for a finite complex. <span class="pp">|</span> A compact accounting checksum for the complex. <span class="pp">|</span> Different homology can share the same Euler characteristic. <span class="pp">|</span></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="fu">## Filtrations and persistence</span></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Mathematical term <span class="pp">|</span> Precise meaning <span class="pp">|</span> Applied or intuitive translation <span class="pp">|</span> Interpretation caution <span class="pp">|</span></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|</span></span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Filtration <span class="pp">|</span> A nested family $K_a\subseteq K_b$ for $a\leq b$. <span class="pp">|</span> A controlled sweep through a modelling threshold. <span class="pp">|</span> The parameter is not automatically physical time. <span class="pp">|</span></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Filtration function <span class="pp">|</span> A face-monotone value assigned to every simplex. <span class="pp">|</span> The rule deciding when each relation becomes available. <span class="pp">|</span> Birth inherits meaning from this rule, not from topology alone. <span class="pp">|</span></span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Čech complex <span class="pp">|</span> The nerve of equal-radius balls centred on a point cloud. <span class="pp">|</span> Record groups whose neighbourhoods share a genuinely common point. <span class="pp">|</span> Joint intersection is stronger than pairwise intersection. <span class="pp">|</span></span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Vietoris–Rips complex <span class="pp">|</span> The clique complex on pairs below a distance threshold. <span class="pp">|</span> Infer higher-order groups from pairwise proximity. <span class="pp">|</span> Check whether the parameter denotes radius or pairwise-distance threshold. <span class="pp">|</span></span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Inclusion-induced map <span class="pp">|</span> The map $H_p(K_a)\to H_p(K_b)$ induced by $K_a\hookrightarrow K_b$. <span class="pp">|</span> The rule describing what an earlier feature becomes after more simplices are added. <span class="pp">|</span> The map need not be injective; an old class can map to zero. <span class="pp">|</span></span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Functor <span class="pp">|</span> A rule sending objects to objects and maps to maps while preserving identities and composition. <span class="pp">|</span> A consistent translation that retains both the states and how one state maps to another. <span class="pp">|</span> The word adds no new empirical information; it records a structural compatibility. <span class="pp">|</span></span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Persistence module <span class="pp">|</span> Vector spaces $H_p(K_a)$ together with all compatible maps across scale. <span class="pp">|</span> Homology with its cross-scale memory retained. <span class="pp">|</span> A sequence of Betti numbers is not a persistence module. <span class="pp">|</span></span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Birth <span class="pp">|</span> The first parameter at which a class appears in the module. <span class="pp">|</span> The threshold where a new independent organisation becomes detectable. <span class="pp">|</span> It is construction-dependent and may arise from sampling or ties. <span class="pp">|</span></span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Death <span class="pp">|</span> The parameter where a class merges into an older class or becomes a boundary. <span class="pp">|</span> The threshold where that independent organisation is no longer distinguishable. <span class="pp">|</span> The underlying chain may still exist after its class dies. <span class="pp">|</span></span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Persistence <span class="pp">|</span> Death minus birth for a finite interval. <span class="pp">|</span> The range of thresholds over which a class remains distinguishable. <span class="pp">|</span> Long persistence is not automatically scientific importance. <span class="pp">|</span></span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Interval module <span class="pp">|</span> A module equal to the field on one interval and zero elsewhere. <span class="pp">|</span> One idealised feature that is alive over one parameter range. <span class="pp">|</span> The full module is usually a direct sum of many intervals. <span class="pp">|</span></span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Barcode <span class="pp">|</span> The multiset of intervals in an interval decomposition. <span class="pp">|</span> A timeline-like display of feature lifetimes across scale. <span class="pp">|</span> Classification by barcodes needs suitable one-parameter finiteness or tameness assumptions. <span class="pp">|</span></span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Persistence diagram <span class="pp">|</span> Birth-death points encoding the same interval data. <span class="pp">|</span> A scatter plot of when features appear and disappear. <span class="pp">|</span> Distance from the diagonal measures persistence, not truth or usefulness. <span class="pp">|</span></span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Representative cycle <span class="pp">|</span> A cycle chosen from a homology class. <span class="pp">|</span> One concrete loop or void boundary used to localise an abstract feature. <span class="pp">|</span> The choice is generally not unique, so its precise location should not be treated as canonical. <span class="pp">|</span></span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Essential class <span class="pp">|</span> A class with no finite death in the available filtration. <span class="pp">|</span> Structure that remains after the sweep reaches its endpoint. <span class="pp">|</span> It may be genuinely global or merely censored by a truncated parameter range. <span class="pp">|</span></span>
-<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Stability <span class="pp">|</span> A theorem bounding diagram change by an appropriate change in input or filtration. <span class="pp">|</span> Small permitted perturbations cannot arbitrarily move the persistence output. <span class="pp">|</span> Stability does not imply interpretability, significance or predictive value. <span class="pp">|</span></span>
-<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a><span class="fu">## Dynamic data</span></span>
-<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Mathematical term <span class="pp">|</span> Precise meaning <span class="pp">|</span> Applied or intuitive translation <span class="pp">|</span> Interpretation caution <span class="pp">|</span></span>
-<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|</span></span>
-<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Repeated persistence <span class="pp">|</span> Separate static persistence computations at successive times or windows. <span class="pp">|</span> A movie of barcode summaries. <span class="pp">|</span> Similar-looking bars are not automatically the same tracked feature. <span class="pp">|</span></span>
-<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Vineyard <span class="pp">|</span> Trajectories of persistence-diagram points under a changing function. <span class="pp">|</span> Feature summaries traced continuously as data evolve. <span class="pp">|</span> Matching diagram points is additional structure beyond repeated diagrams. <span class="pp">|</span></span>
-<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Zigzag persistence <span class="pp">|</span> Persistence for diagrams whose maps may point forward or backward. <span class="pp">|</span> Track structure when observations or complexes can be added and removed. <span class="pp">|</span> It solves a different problem from an ordinary increasing filtration. <span class="pp">|</span></span>
-<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Multiparameter persistence <span class="pp">|</span> A module indexed by a partial order with two or more parameters. <span class="pp">|</span> Retain several genuine modelling axes without collapsing them prematurely. <span class="pp">|</span> There is generally no complete barcode classification analogous to the one-parameter case. <span class="pp">|</span></span>
-<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Simplex tree <span class="pp">|</span> A data structure storing simplices, faces and filtration values in a prefix tree. <span class="pp">|</span> A computational index for querying and updating a filtered complex. <span class="pp">|</span> It is a representation in software, not a new topological object. <span class="pp">|</span></span>
-<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Cubical complex <span class="pp">|</span> A complex built from vertices, edges, pixels, voxels and higher-dimensional cubes. <span class="pp">|</span> A topology-ready representation of gridded images, fields or volumes. <span class="pp">|</span> Cell-value conventions and sublevel direction determine birth meaning. <span class="pp">|</span></span>
-<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Lower-star filtration <span class="pp">|</span> A filtration assigning each simplex the maximum value on its vertices. <span class="pp">|</span> Activate a relation when its highest-valued required vertex becomes available. <span class="pp">|</span> Negating values changes a low-feature question into a high-feature question. <span class="pp">|</span></span>
-<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Bottleneck distance <span class="pp">|</span> The minimum possible maximum matching cost between diagrams, allowing diagonal matches. <span class="pp">|</span> The size of the single worst discrepancy after optimal matching. <span class="pp">|</span> It can ignore the accumulated effect of many smaller changes. <span class="pp">|</span></span>
-<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Wasserstein distance <span class="pp">|</span> An optimal matching cost that aggregates powered pointwise costs. <span class="pp">|</span> Total diagram discrepancy rather than only the worst match. <span class="pp">|</span> Its value depends on the order, ground metric and treatment of diagonal matches. <span class="pp">|</span></span>
-<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Betti curve <span class="pp">|</span> The function counting intervals alive at each filtration value. <span class="pp">|</span> A multiscale feature-count profile. <span class="pp">|</span> It discards interval identity and can map different diagrams to the same curve. <span class="pp">|</span></span>
-<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Persistence image <span class="pp">|</span> A weighted, smoothed rasterisation of diagram points. <span class="pp">|</span> A fixed-length feature array for statistics or machine learning. <span class="pp">|</span> Resolution, smoothing and weighting are modelling parameters. <span class="pp">|</span></span>
-<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Persistence entropy <span class="pp">|</span> Shannon entropy of normalised interval lengths, usually for finite intervals. <span class="pp">|</span> A scalar describing how evenly persistence is distributed across features. <span class="pp">|</span> It discards birth locations and feature identity, and conventions for essential or zero-length intervals matter. <span class="pp">|</span></span>
-<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Mapper <span class="pp">|</span> A graph or simplicial complex built from overlapping bins of a filter function and clusters within their inverse images. <span class="pp">|</span> A compressed atlas of how observations organise along a chosen lens. <span class="pp">|</span> Its topology depends on the filter, cover and clustering, and it is not a persistence diagram. <span class="pp">|</span></span>
-<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Null model <span class="pp">|</span> A probability model representing structure expected without the target mechanism. <span class="pp">|</span> The comparison world against which “unusual” is defined. <span class="pp">|</span> An easy-to-simulate null may preserve the wrong properties. <span class="pp">|</span></span>
-<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Surrogate data <span class="pp">|</span> Synthetic or transformed observations generated under a null while preserving selected features. <span class="pp">|</span> A controlled negative comparison passed through the same pipeline. <span class="pp">|</span> Validity depends on what is preserved, destroyed and exchangeable. <span class="pp">|</span></span>
-<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> CROCKER-style plot <span class="pp">|</span> A display of Betti number or rank across physical time and filtration scale. <span class="pp">|</span> A heat map of how multiscale topological counts evolve. <span class="pp">|</span> It summarises repeated diagrams and does not track class identity. <span class="pp">|</span></span>
-<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> SW1PerS <span class="pp">|</span> A sliding-window persistent-homology method for quantifying periodicity in signals. <span class="pp">|</span> Turn repeated signal phases into a loop-like point cloud and measure its persistence. <span class="pp">|</span> Lag, window dimension, sampling and normalisation shape the result; it is not a generic feature-tracking method. <span class="pp">|</span></span>
-<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Chromatic persistence <span class="pp">|</span> Persistence constructions that retain labels or colours on points. <span class="pp">|</span> Ask how different populations mix, surround or contribute to topological features. <span class="pp">|</span> It changes the construction and requires meaningful labels; ordinary persistence cannot recover labels after they are discarded. <span class="pp">|</span></span>
-<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Physical time $t$ <span class="pp">|</span> The external index describing when a system is observed. <span class="pp">|</span> Clock time, trial progress or window position. <span class="pp">|</span> It must not be confused with filtration scale. <span class="pp">|</span></span>
-<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Filtration scale $\varepsilon$ <span class="pp">|</span> The ordered threshold within one persistence calculation. <span class="pp">|</span> The resolution or relation-strength dial used to construct topology. <span class="pp">|</span> It is not necessarily a physical unit unless the construction supports that interpretation. <span class="pp">|</span></span>
-<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Feature tracking <span class="pp">|</span> An explicit correspondence assigning identity to features across an external index. <span class="pp">|</span> Saying which evolving feature is the continuation of which earlier feature. <span class="pp">|</span> Nearest diagram points or similar lifetimes do not automatically establish identity. <span class="pp">|</span></span>
-<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Interleaving <span class="pp">|</span> Compatible shifted maps between persistence modules. <span class="pp">|</span> A controlled way to compare modules while allowing parameter tolerance. <span class="pp">|</span> A small interleaving distance does not uniquely match generators. <span class="pp">|</span></span>
-<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Vineyard module <span class="pp">|</span> A time-indexed family of persistence modules with coherent transport maps. <span class="pp">|</span> Vines plus the algebra describing how feature directions mix through time. <span class="pp">|</span> It is richer than a vineyard and requires additional structure to estimate. <span class="pp">|</span></span>
-<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a><span class="fu">## Maintenance rule</span></span>
-<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>When a new mathematical term enters the course, add it here with:</span>
-<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>a precise definition at the level used in the course;</span>
-<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>an applied translation tied to a data or scientific decision; and</span>
-<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>one sentence stating where that translation can mislead.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Mathematical term <span class="pp">|</span> Precise meaning <span class="pp">|</span> Applied or intuitive translation <span class="pp">|</span> Interpretation caution <span class="pp">|</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Set</span><span class="co">](topics/topic-01/topology-survival-guide.qmd#sets-and-spaces)</span> <span class="pp">|</span> A collection of elements. <span class="pp">|</span> The collection of items currently being treated as one mathematical object. <span class="pp">|</span> A set alone carries no distance, neighbourhood or continuity structure. <span class="pp">|</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Point</span><span class="co">](topics/topic-01/topology-survival-guide.qmd#sets-and-spaces)</span> <span class="pp">|</span> An element of a set when that set is being treated as a space. <span class="pp">|</span> One possible location, state or observation in the represented space. <span class="pp">|</span> “Point” describes its role in the space, not necessarily a literal spatial dot. <span class="pp">|</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Open set</span><span class="co">](topics/topic-01/topology-survival-guide.qmd#open-sets-and-topology)</span> <span class="pp">|</span> A member of the topology; in a metric space, every included point has a sufficiently small ball contained in the set. <span class="pp">|</span> A region that leaves local room around each of its points. <span class="pp">|</span> Openness belongs to the chosen topology, not to a subset in isolation. <span class="pp">|</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Topology</span><span class="co">](topics/topic-01/topology-survival-guide.qmd#open-sets-and-topology)</span> <span class="pp">|</span> A collection of subsets containing the empty set and whole space and closed under arbitrary unions and finite intersections. <span class="pp">|</span> The declared neighbourhood structure that makes continuity meaningful. <span class="pp">|</span> It is not a generic synonym for shape. <span class="pp">|</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Topological space</span><span class="co">](topics/topic-01/topology-survival-guide.qmd#open-sets-and-topology)</span> <span class="pp">|</span> A set equipped with open sets satisfying the topology axioms. <span class="pp">|</span> A specification of which points count as locally near one another, without requiring numerical distance. <span class="pp">|</span> “Topology” is not a generic synonym for shape or network layout. <span class="pp">|</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Continuous map</span><span class="co">](topics/topic-01/topology-survival-guide.qmd#continuity)</span> <span class="pp">|</span> A map whose preimage of every open set is open. <span class="pp">|</span> A transformation that does not introduce abrupt topological breaks. <span class="pp">|</span> Continuity depends on the topologies on both domain and codomain. <span class="pp">|</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Connected space</span><span class="co">](topics/topic-01/topology-survival-guide.qmd#connectedness-and-paths)</span> <span class="pp">|</span> A space that cannot be separated into two disjoint non-empty open subsets. <span class="pp">|</span> One piece at the level of continuous organisation. <span class="pp">|</span> Connected does not always mean path-connected. <span class="pp">|</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Homeomorphism</span><span class="co">](topics/topic-01/topology-survival-guide.qmd#homeomorphism-the-same-topology)</span> <span class="pp">|</span> A bijection whose forward and inverse maps are continuous. <span class="pp">|</span> A reversible deformation that preserves topological structure. <span class="pp">|</span> The rubber sheet metaphor concerns continuous spaces. A bare finite sample is discrete, so a data analysis first needs a stated finite representation. <span class="pp">|</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Homotopy equivalence</span><span class="co">](topics/topic-01/topology-survival-guide.qmd#homotopy-and-deformation-retracts)</span> <span class="pp">|</span> Maps in both directions whose composites are homotopic to the corresponding identity maps. <span class="pp">|</span> Two spaces retain the same broad continuous shape after contractible detail is ignored. <span class="pp">|</span> It is weaker than homeomorphism and does not preserve metric geometry. <span class="pp">|</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Homotopy</span><span class="co">](topics/topic-01/topology-survival-guide.qmd#homotopy-and-deformation-retracts)</span> <span class="pp">|</span> A continuous deformation from one map to another. <span class="pp">|</span> A continuously varying family of transformations. <span class="pp">|</span> Homotopy relates maps; homotopy equivalence of spaces requires maps in both directions with suitable composites. <span class="pp">|</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Contractible space</span><span class="co">](topics/topic-01/topology-survival-guide.qmd#homotopy-and-deformation-retracts)</span> <span class="pp">|</span> A space homotopy equivalent to a point. <span class="pp">|</span> A space whose topological structure can be continuously collapsed away. <span class="pp">|</span> Contractible does not mean geometrically small. <span class="pp">|</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Deformation retract</span><span class="co">](topics/topic-01/topology-survival-guide.qmd#homotopy-and-deformation-retracts)</span> <span class="pp">|</span> A continuous deformation of a space onto a subspace that keeps every point of the subspace fixed. <span class="pp">|</span> Collapse dispensable material while leaving a chosen structural core unmoved. <span class="pp">|</span> The retract must remain inside the original space throughout the deformation. <span class="pp">|</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Path-connected</span><span class="co">](topics/topic-01/topology-survival-guide.qmd#connectedness-and-paths)</span> <span class="pp">|</span> Every pair of points can be joined by a continuous path lying in the space. <span class="pp">|</span> Any location can be reached continuously from any other without leaving the object. <span class="pp">|</span> Path-connectedness implies connectedness, but the converse can fail for unusual spaces. <span class="pp">|</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Topological invariant</span><span class="co">](topics/topic-01/index.qmd#a-topological-response)</span> <span class="pp">|</span> A quantity or algebraic object unchanged under homeomorphism. <span class="pp">|</span> A shape descriptor designed to ignore coordinates and reversible deformation. <span class="pp">|</span> In data analysis it is computed on a constructed representation, not directly on an unknown physical system. <span class="pp">|</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Constructed representation</span><span class="co">](topics/topic-01/index.qmd#from-continuous-shape-to-finite-data)</span> <span class="pp">|</span> A mathematical object built from observations and modelling choices. <span class="pp">|</span> The point cloud, graph, image complex or embedding through which the system is analysed. <span class="pp">|</span> It can amplify, erase or invent apparent organisation relative to the scientific object. <span class="pp">|</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Metric</span><span class="co">](topics/topic-01/topology-survival-guide.qmd#metrics-and-open-balls)</span> <span class="pp">|</span> A distance function satisfying non-negativity, identity, symmetry and the triangle inequality. <span class="pp">|</span> The rule that decides which observations are similar enough to interact first. <span class="pp">|</span> A convenient metric may be scientifically inappropriate. <span class="pp">|</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Point cloud</span><span class="co">](topics/topic-01/index.qmd#from-continuous-shape-to-finite-data)</span> <span class="pp">|</span> A finite subset of a metric space. <span class="pp">|</span> A collection of sampled states or observations represented as points. <span class="pp">|</span> It is a representation of the system, not automatically the system or attractor itself. <span class="pp">|</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Geometric descriptor</span><span class="co">](topics/topic-01/index.qmd#a-geometric-response)</span> <span class="pp">|</span> A quantity or representation measuring a specified metric or coordinate property of a geometric object. <span class="pp">|</span> One deliberately chosen answer to “what makes these shapes look different?”, such as spacing, area, direction or curvature. <span class="pp">|</span> No short list of descriptors is a complete definition of shape; inspect what each retains and discards. <span class="pp">|</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Convex hull</span><span class="co">](topics/topic-01/index.qmd#a-geometric-response)</span> <span class="pp">|</span> The smallest convex set containing a specified set of points. <span class="pp">|</span> A tight elastic band placed around the outermost observations. <span class="pp">|</span> It records the outer envelope but cannot detect internal gaps, density or concavity. <span class="pp">|</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Anisotropy</span><span class="co">](topics/topic-01/index.qmd#a-geometric-response)</span> <span class="pp">|</span> Dependence of measured properties on direction. <span class="pp">|</span> Evidence that a cloud stretches or organises more strongly along some directions than others. <span class="pp">|</span> A single anisotropy ratio can miss curvature, multiple branches and local changes in direction. <span class="pp">|</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Geometric simplex</span><span class="co">](topics/topic-02/detail.qmd#geometric-realisation-and-triangulation)</span> <span class="pp">|</span> The convex hull of affinely independent vertices. <span class="pp">|</span> A filled-in building block: point, segment, triangle, tetrahedron. <span class="pp">|</span> A drawn triangle and three edges do not specify whether the face is filled. <span class="pp">|</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Abstract simplex</span><span class="co">](topics/topic-02/detail.qmd#simplices-and-complexes)</span> <span class="pp">|</span> A finite set of vertices. <span class="pp">|</span> A recorded multiway relation among the listed vertices. <span class="pp">|</span> It need not have physical extent or a unique embedding. <span class="pp">|</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Vertex</span><span class="co">](topics/topic-02/index.qmd#building-k-vocabulary)</span> <span class="pp">|</span> A 0-simplex and basic element from which higher simplices are formed. <span class="pp">|</span> One observation, state, agent or other basic item in the representation. <span class="pp">|</span> A plotted location is a geometric placement of the vertex, not the abstract vertex itself. <span class="pp">|</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Edge</span><span class="co">](topics/topic-02/index.qmd#building-k-vocabulary)</span> <span class="pp">|</span> A 1-simplex containing two vertices. <span class="pp">|</span> A declaration that two represented items count as related. <span class="pp">|</span> The scientific meaning of the relation comes from the construction. <span class="pp">|</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Filled triangle</span><span class="co">](topics/topic-02/index.qmd#building-k-vocabulary)</span> <span class="pp">|</span> A 2-simplex containing three vertices and all of its faces. <span class="pp">|</span> A coherent three-way relation or filled patch rather than an empty three-edge loop. <span class="pp">|</span> Three pairwise edges do not by themselves force a filled triangle unless the construction says so. <span class="pp">|</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Simplex dimension</span><span class="co">](topics/topic-02/detail.qmd#simplices-and-complexes)</span> <span class="pp">|</span> A $p$-simplex has $p+1$ vertices; vertices, edges and filled triangles are 0-, 1- and 2-simplices. <span class="pp">|</span> The dimension names the order of the filled building block. <span class="pp">|</span> A 2-simplex is filled; a triangular outline contains only 0- and 1-simplices. <span class="pp">|</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Simplicial complex</span><span class="co">](topics/topic-02/index.qmd#building-k-vocabulary)</span> <span class="pp">|</span> A collection of simplices closed under taking faces. <span class="pp">|</span> A consistent catalogue of relations at every included order. <span class="pp">|</span> Its 1-skeleton does not determine its higher-dimensional simplices. <span class="pp">|</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Downward closure</span><span class="co">](topics/topic-02/detail.qmd#simplices-and-complexes)</span> <span class="pp">|</span> Every non-empty face of an included simplex must also belong to the complex. <span class="pp">|</span> A group relation brings all of its required lower-order pieces with it. <span class="pp">|</span> This condition distinguishes a simplicial complex from a general hypergraph. <span class="pp">|</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Geometric realisation $|K|$</span><span class="co">](topics/topic-02/detail.qmd#geometric-realisation-and-triangulation)</span> <span class="pp">|</span> A topological space obtained by realising and gluing the simplices of $K$. <span class="pp">|</span> A spatial version of the abstract incidence data. <span class="pp">|</span> The realisation is not necessarily the observed physical object. <span class="pp">|</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">1-skeleton</span><span class="co">](topics/topic-02/detail.qmd#subcomplexes-inclusions-and-skeletons)</span> <span class="pp">|</span> All vertices and edges of a complex. <span class="pp">|</span> The network visible after discarding filled triangles and higher relations. <span class="pp">|</span> Homology of the graph may differ from homology of the full complex. <span class="pp">|</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Subcomplex</span><span class="co">](topics/topic-02/detail.qmd#subcomplexes-inclusions-and-skeletons)</span> <span class="pp">|</span> A downward-closed subset of the simplices of a complex. <span class="pp">|</span> A smaller valid complex contained within a larger one. <span class="pp">|</span> An arbitrary selection of simplices need not be a subcomplex. <span class="pp">|</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Clique complex</span><span class="co">](topics/topic-02/detail.qmd#clique-complexes)</span> <span class="pp">|</span> The complex containing a simplex for every clique of a graph. <span class="pp">|</span> Treat every mutually pairwise-connected group as one higher-order unit. <span class="pp">|</span> Clique filling is a modelling assumption about higher-order coherence. <span class="pp">|</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Cubical complex</span><span class="co">](pause-and-take-stock/index.qmd#let-the-stored-data-constrain-the-route)</span> <span class="pp">|</span> A complex built from vertices, edges, pixels, voxels and higher-dimensional cubes. <span class="pp">|</span> A topology-ready representation of gridded images, fields or volumes. <span class="pp">|</span> Cell-value conventions and filtration direction determine what birth means. <span class="pp">|</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Triangulation</span><span class="co">](topics/topic-02/detail.qmd#geometric-realisation-and-triangulation)</span> <span class="pp">|</span> A simplicial complex whose geometric realisation represents a given topological space. <span class="pp">|</span> A finite assembly of simplices used to model the continuous object. <span class="pp">|</span> Different triangulations can represent the same space. <span class="pp">|</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Graph cycle rank</span><span class="co">](topics/topic-02/detail.qmd#clique-complexes)</span> <span class="pp">|</span> For a finite undirected graph, $E-V+C$, the dimension of its cycle space over a field. <span class="pp">|</span> The number of independent network loops before any higher-dimensional filling is added. <span class="pp">|</span> It is not generally $H_1$ of the clique complex because triangles and higher simplices can fill graph cycles. <span class="pp">|</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="fu">## Homology as linear algebra</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Mathematical term <span class="pp">|</span> Precise meaning <span class="pp">|</span> Applied or intuitive translation <span class="pp">|</span> Interpretation caution <span class="pp">|</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Basis</span><span class="co">](topics/topic-02/algebra-survival-guide.qmd#vectors-bases-and-coordinate-columns)</span> <span class="pp">|</span> A linearly independent spanning set giving every vector unique coordinates. <span class="pp">|</span> The agreed list of elementary pieces used to record a combination. <span class="pp">|</span> Coordinates depend on the selected basis even when the vector does not. <span class="pp">|</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Span</span><span class="co">](topics/topic-02/algebra-survival-guide.qmd#vectors-bases-and-coordinate-columns)</span> <span class="pp">|</span> All linear combinations of a specified set of vectors. <span class="pp">|</span> Everything that can be assembled from the available building blocks. <span class="pp">|</span> A long generating list may contain redundant vectors. <span class="pp">|</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Kernel</span><span class="co">](topics/topic-02/algebra-survival-guide.qmd#kernel-image-rank-and-nullity)</span> <span class="pp">|</span> For $T:V\to W$, the subspace $<span class="sc">\{</span>v:T(v)=0<span class="sc">\}</span>$. <span class="pp">|</span> Input combinations whose effects cancel completely under the map. <span class="pp">|</span> Being in a kernel is relative to a particular map. <span class="pp">|</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Image</span><span class="co">](topics/topic-02/algebra-survival-guide.qmd#kernel-image-rank-and-nullity)</span> <span class="pp">|</span> For $T:V\to W$, the subspace $<span class="sc">\{</span>T(v):v\in V<span class="sc">\}</span>$. <span class="pp">|</span> Output patterns that the available inputs can actually produce. <span class="pp">|</span> The image need not equal the full codomain. <span class="pp">|</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Rank</span><span class="co">](topics/topic-02/algebra-survival-guide.qmd#kernel-image-rank-and-nullity)</span> <span class="pp">|</span> The dimension of the image of a linear map. <span class="pp">|</span> The number of independent output directions produced by the map. <span class="pp">|</span> Matrix rank is basis-independent, though the matrix entries are not. <span class="pp">|</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Nullity</span><span class="co">](topics/topic-02/algebra-survival-guide.qmd#kernel-image-rank-and-nullity)</span> <span class="pp">|</span> The dimension of the kernel of a linear map. <span class="pp">|</span> The number of independent input directions erased by the map. <span class="pp">|</span> A large nullity has meaning only after the domain and map are named. <span class="pp">|</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Rank-nullity theorem</span><span class="co">](topics/topic-02/algebra-survival-guide.qmd#kernel-image-rank-and-nullity)</span> <span class="pp">|</span> For finite-dimensional $V$, $\dim V=\operatorname{rank}T+\operatorname{nullity}T$. <span class="pp">|</span> Every independent input direction is either retained in the image or lost to the kernel. <span class="pp">|</span> The split is relative to the stated linear map. <span class="pp">|</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Quotient vector space $V/W$</span><span class="co">](topics/topic-02/algebra-survival-guide.qmd#quotients-one-idea-that-may-be-less-familiar)</span> <span class="pp">|</span> Equivalence classes under $v\sim v'$ when $v-v'\in W$. <span class="pp">|</span> Treat differences lying in $W$ as irrelevant or already accounted for. <span class="pp">|</span> The slash is not numerical division, and a class has many representatives. <span class="pp">|</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Equivalence class $[v]$</span><span class="co">](topics/topic-02/algebra-survival-guide.qmd#quotients-one-idea-that-may-be-less-familiar)</span> <span class="pp">|</span> All elements equivalent to $v$ under a specified relation. <span class="pp">|</span> Every representation treated as the same after the agreed differences are ignored. <span class="pp">|</span> A displayed representative is not canonical unless additional structure selects it. <span class="pp">|</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Coefficient field</span><span class="co">](topics/topic-02/algebra-survival-guide.qmd#coefficient-fields)</span> <span class="pp">|</span> The field used for chain coefficients, here usually $\mathbb F_2$. <span class="pp">|</span> The arithmetic system used to combine and cancel building blocks. <span class="pp">|</span> Features can depend on coefficients, especially in the presence of torsion. <span class="pp">|</span></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Chain space $C_p$</span><span class="co">](topics/topic-02/homology-detail.qmd#coefficients-and-chain-spaces)</span> <span class="pp">|</span> The vector space freely generated by the $p$-simplices. <span class="pp">|</span> All formal selections or combinations of $p$-dimensional pieces. <span class="pp">|</span> A chain is algebraic bookkeeping, not necessarily one connected geometric object. <span class="pp">|</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Chain complex</span><span class="co">](topics/topic-02/homology-detail.qmd#chain-complex)</span> <span class="pp">|</span> Vector spaces $C_p$ linked by boundary maps with $\partial_{p-1}\partial_p=0$. <span class="pp">|</span> The simplicial complex recorded dimension by dimension, together with how each layer meets the one below. <span class="pp">|</span> A chain complex is algebraic data derived from $K$; it is not another geometric complex. <span class="pp">|</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Boundary map $\partial_p$</span><span class="co">](topics/topic-02/homology-detail.qmd#boundary-maps-cycles-and-boundaries)</span> <span class="pp">|</span> The linear map sending each $p$-simplex to the signed sum of its faces. <span class="pp">|</span> A rule extracting the exposed lower-dimensional boundary of a collection of pieces. <span class="pp">|</span> Over $\mathbb F_2$ signs vanish; over other coefficients orientation matters. <span class="pp">|</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Cycle $Z_p$</span><span class="co">](topics/topic-02/homology-detail.qmd#boundary-maps-cycles-and-boundaries)</span> <span class="pp">|</span> A chain in $\ker\partial_p$. <span class="pp">|</span> A closed algebraic pattern with no remaining boundary. <span class="pp">|</span> A cycle need not represent a nonzero hole; it may itself be a boundary. <span class="pp">|</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Boundary $B_p$</span><span class="co">](topics/topic-02/homology-detail.qmd#boundary-maps-cycles-and-boundaries)</span> <span class="pp">|</span> A chain in $\operatorname{im}\partial_{p+1}$. <span class="pp">|</span> A closed pattern already filled by something one dimension higher. <span class="pp">|</span> “Boundary” here is algebraic, not merely the visible edge of a plotted region. <span class="pp">|</span></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Homology $H_p$</span><span class="co">](topics/topic-02/homology.qmd#homology)</span> <span class="pp">|</span> An algebraic invariant of a space; for a simplicial complex it is calculated as the quotient $Z_p/B_p$. <span class="pp">|</span> It records connected pieces and independent unfilled cycles in each dimension. <span class="pp">|</span> It is coarser than homotopy and depends on the represented space and coefficient system. <span class="pp">|</span></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Homology class</span><span class="co">](topics/topic-02/homology-detail.qmd#homology-class)</span> <span class="pp">|</span> An equivalence class $<span class="co">[</span><span class="ot">z</span><span class="co">]</span>=z+B_p$ of cycles that differ by boundaries. <span class="pp">|</span> One topological feature represented by any of several cycles with the same unfilled content. <span class="pp">|</span> A class is not a unique geometric loop; representative cycles can differ by an available boundary. <span class="pp">|</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Betti number $\beta_p$</span><span class="co">](topics/topic-02/homology.qmd#betti-number)</span> <span class="pp">|</span> The dimension of $H_p$ over the chosen field. <span class="pp">|</span> The number of independent $p$-dimensional topological degrees of freedom. <span class="pp">|</span> It is a count at one object or scale and contains no feature identity. <span class="pp">|</span></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Euler characteristic $\chi$</span><span class="co">](topics/topic-02/homology-detail.qmd#euler-characteristic)</span> <span class="pp">|</span> The alternating sum of simplex counts, equivalently Betti numbers for a finite complex. <span class="pp">|</span> A compact accounting checksum for the complex. <span class="pp">|</span> Different homology can share the same Euler characteristic. <span class="pp">|</span></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="fu">## Filtrations and persistence</span></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Mathematical term <span class="pp">|</span> Precise meaning <span class="pp">|</span> Applied or intuitive translation <span class="pp">|</span> Interpretation caution <span class="pp">|</span></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|</span></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Filtration</span><span class="co">](topics/topic-03/index.qmd)</span> <span class="pp">|</span> A nested family $K_a\subseteq K_b$ for $a\leq b$. <span class="pp">|</span> A controlled sweep through a modelling threshold. <span class="pp">|</span> The parameter is not automatically physical time. <span class="pp">|</span></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Filtration function</span><span class="co">](topics/topic-03/detail.qmd#filtration-functions)</span> <span class="pp">|</span> A face-monotone value assigned to every simplex. <span class="pp">|</span> The rule deciding when each relation becomes available. <span class="pp">|</span> Birth inherits meaning from this rule, not from topology alone. <span class="pp">|</span></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Čech complex</span><span class="co">](topics/topic-03/detail.qmd#čech-complexes-and-the-nerve-theorem)</span> <span class="pp">|</span> The nerve of equal-radius balls centred on a point cloud. <span class="pp">|</span> Record groups whose neighbourhoods share a genuinely common point. <span class="pp">|</span> Joint intersection is stronger than pairwise intersection. <span class="pp">|</span></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Vietoris–Rips complex</span><span class="co">](topics/topic-03/detail.qmd#vietorisrips-complexes)</span> <span class="pp">|</span> The clique complex on pairs below a distance threshold. <span class="pp">|</span> Infer higher-order groups from pairwise proximity. <span class="pp">|</span> Check whether the parameter denotes radius or pairwise-distance threshold. <span class="pp">|</span></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Inclusion-induced map</span><span class="co">](topics/topic-04/index.qmd)</span> <span class="pp">|</span> The map $H_p(K_a)\to H_p(K_b)$ induced by $K_a\hookrightarrow K_b$. <span class="pp">|</span> The rule describing what an earlier feature becomes after more simplices are added. <span class="pp">|</span> The map need not be injective; an old class can map to zero. <span class="pp">|</span></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Inclusion map</span><span class="co">](topics/topic-03/detail.qmd#inclusion-maps)</span> <span class="pp">|</span> For $K_a\subseteq K_b$, the map that sends each simplex of $K_a$ to the same simplex in $K_b$. <span class="pp">|</span> The bookkeeping link that says the earlier complex sits inside the later one. <span class="pp">|</span> It is a map of complexes, not yet the induced map between their homology spaces. <span class="pp">|</span></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Functor</span><span class="co">](topics/topic-04/detail.qmd#functor-note)</span> <span class="pp">|</span> A rule sending objects to objects and maps to maps while preserving identities and composition. <span class="pp">|</span> A consistent translation that retains both the states and how one state maps to another. <span class="pp">|</span> The word adds no new empirical information; it records a structural compatibility. <span class="pp">|</span></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Persistence module</span><span class="co">](index.qmd#the-persistent-homology-construction)</span> <span class="pp">|</span> Vector spaces $H_p(K_a)$ together with all compatible maps across scale. <span class="pp">|</span> Homology with its cross-scale memory retained. <span class="pp">|</span> A sequence of Betti numbers is not a persistence module. <span class="pp">|</span></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Topological feature</span><span class="co">](topics/topic-04/index.qmd)</span> <span class="pp">|</span> A homology class considered as it appears and persists through a filtration. <span class="pp">|</span> A connected component, loop or cavity being followed across scale. <span class="pp">|</span> It is an algebraic class, not necessarily one unique visible shape or representative cycle. <span class="pp">|</span></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Birth</span><span class="co">](topics/topic-04/summaries.qmd)</span> <span class="pp">|</span> The first parameter at which a class appears in the module. <span class="pp">|</span> The threshold where a new independent organisation becomes detectable. <span class="pp">|</span> It is construction-dependent and may arise from sampling or ties. <span class="pp">|</span></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Death</span><span class="co">](topics/topic-04/summaries.qmd)</span> <span class="pp">|</span> The parameter where a class merges into an older class or becomes a boundary. <span class="pp">|</span> The threshold where that independent organisation is no longer distinguishable. <span class="pp">|</span> The underlying chain may still exist after its class dies. <span class="pp">|</span></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Persistence</span><span class="co">](topics/topic-04/summaries.qmd)</span> <span class="pp">|</span> Death minus birth for a finite interval. <span class="pp">|</span> The range of thresholds over which a class remains distinguishable. <span class="pp">|</span> Long persistence is not automatically scientific importance. <span class="pp">|</span></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Interval module</span><span class="co">](topics/topic-04/summaries-detail.qmd#interval-modules)</span> <span class="pp">|</span> A module equal to the field on one interval and zero elsewhere. <span class="pp">|</span> One idealised feature that is alive over one parameter range. <span class="pp">|</span> The full module is usually a direct sum of many intervals. <span class="pp">|</span></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Barcode</span><span class="co">](topics/topic-04/summaries.qmd#two-views-of-the-same-intervals)</span> <span class="pp">|</span> The multiset of intervals in an interval decomposition. <span class="pp">|</span> A timeline-like display of feature lifetimes across scale. <span class="pp">|</span> Classification by barcodes needs suitable one-parameter finiteness or tameness assumptions. <span class="pp">|</span></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Persistence diagram</span><span class="co">](topics/topic-04/summaries.qmd#two-views-of-the-same-intervals)</span> <span class="pp">|</span> Birth-death points encoding the same interval data. <span class="pp">|</span> A scatter plot of when features appear and disappear. <span class="pp">|</span> Distance from the diagonal measures persistence, not truth or usefulness. <span class="pp">|</span></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Representative cycle</span><span class="co">](topics/topic-02/homology-detail.qmd#boundary-maps-cycles-and-boundaries)</span> <span class="pp">|</span> A cycle chosen from a homology class. <span class="pp">|</span> One concrete loop or void boundary used to localise an abstract feature. <span class="pp">|</span> The choice is generally not unique, so its precise location should not be treated as canonical. <span class="pp">|</span></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Essential class</span><span class="co">](topics/topic-04/summaries-detail.qmd#barcode-and-diagram)</span> <span class="pp">|</span> A class with no finite death in the available filtration. <span class="pp">|</span> Structure that remains after the sweep reaches its endpoint. <span class="pp">|</span> It may be genuinely global or merely censored by a truncated parameter range. <span class="pp">|</span></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Stability</span><span class="co">](topics/topic-05/index.qmd)</span> <span class="pp">|</span> A theorem bounding diagram change by an appropriate change in input or filtration. <span class="pp">|</span> Small permitted perturbations cannot arbitrarily move the persistence output. <span class="pp">|</span> Stability does not imply interpretability, significance or predictive value. <span class="pp">|</span></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="fu">## Dynamic data</span></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Mathematical term <span class="pp">|</span> Precise meaning <span class="pp">|</span> Applied or intuitive translation <span class="pp">|</span> Interpretation caution <span class="pp">|</span></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|</span></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Snapshot persistence</span><span class="co">](topics/topic-06/detail.qmd)</span> <span class="pp">|</span> Separate static persistence computations at successive times or windows. <span class="pp">|</span> A movie of barcode summaries. <span class="pp">|</span> Similar-looking bars are not automatically the same tracked feature. <span class="pp">|</span></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Dynamic point cloud</span><span class="co">](topics/topic-06/detail.qmd#dynamic-point-clouds)</span> <span class="pp">|</span> A family of finite point sets $X_t$ indexed by physical time or another external variable. <span class="pp">|</span> A cloud whose observed locations, membership or both change from frame to frame. <span class="pp">|</span> The indexing alone supplies no correspondence between points or topological classes. <span class="pp">|</span></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Betti surface</span><span class="co">](topics/topic-06/detail.qmd#betti-surfaces-and-crocker-displays)</span> <span class="pp">|</span> A function or display of Betti number across external time and filtration scale. <span class="pp">|</span> A two-dimensional view of how feature counts vary through time and resolution. <span class="pp">|</span> It counts classes but does not track their identities. <span class="pp">|</span></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Vineyard proxy</span><span class="co">](topics/topic-06/detail.qmd#diagram-stacks)</span> <span class="pp">|</span> A visual stack of independently computed persistence diagrams. <span class="pp">|</span> A preliminary view of how diagram points appear to move. <span class="pp">|</span> Without justified correspondence it is not a vineyard. <span class="pp">|</span></span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Vineyard</span><span class="co">](topics/topic-06/index.qmd#vineyards-follow-pairings-along-a-path-of-filtrations)</span> <span class="pp">|</span> Trajectories of persistence-diagram points under a changing function. <span class="pp">|</span> Feature summaries traced continuously as data evolve. <span class="pp">|</span> Matching diagram points is additional structure beyond repeated diagrams. <span class="pp">|</span></span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Zigzag persistence</span><span class="co">](topics/topic-06/index.qmd#zigzag-persistence-allow-structure-to-enter-and-leave)</span> <span class="pp">|</span> Persistence for diagrams whose maps may point forward or backward. <span class="pp">|</span> Track structure when observations or complexes can be added and removed. <span class="pp">|</span> It solves a different problem from an ordinary increasing filtration. <span class="pp">|</span></span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Multiparameter persistence</span><span class="co">](topics/topic-06/multiparameter.qmd#the-high-level-idea)</span> <span class="pp">|</span> A module indexed by a partial order with two or more parameters. <span class="pp">|</span> Retain several genuine modelling axes without collapsing them prematurely. <span class="pp">|</span> There is generally no complete barcode classification analogous to the one-parameter case. <span class="pp">|</span></span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Lower-star filtration</span><span class="co">](topics/topic-03/detail.qmd#lower-star-filtration)</span> <span class="pp">|</span> A filtration assigning each simplex the maximum value on its vertices. <span class="pp">|</span> Activate a relation when its highest-valued required vertex becomes available. <span class="pp">|</span> Negating values changes a low-feature question into a high-feature question. <span class="pp">|</span></span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Bottleneck distance</span><span class="co">](topics/topic-05/index.qmd#compare)</span> <span class="pp">|</span> The minimum possible maximum matching cost between diagrams, allowing diagonal matches. <span class="pp">|</span> The size of the single worst discrepancy after optimal matching. <span class="pp">|</span> It can ignore the accumulated effect of many smaller changes. <span class="pp">|</span></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Wasserstein distance</span><span class="co">](topics/topic-05/index.qmd#compare)</span> <span class="pp">|</span> An optimal matching cost that aggregates powered pointwise costs. <span class="pp">|</span> Total diagram discrepancy rather than only the worst match. <span class="pp">|</span> Its value depends on the order, ground metric and treatment of diagonal matches. <span class="pp">|</span></span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Betti curve</span><span class="co">](topics/topic-05/index.qmd#transform)</span> <span class="pp">|</span> The function counting intervals alive at each filtration value. <span class="pp">|</span> A multiscale feature-count profile. <span class="pp">|</span> It discards interval identity and can map different diagrams to the same curve. <span class="pp">|</span></span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Persistence landscape</span><span class="co">](topics/topic-05/index.qmd#transform)</span> <span class="pp">|</span> Ordered functions obtained from the triangular functions associated with persistence intervals. <span class="pp">|</span> A functional representation of interval prominence across scale. <span class="pp">|</span> Truncating levels or discretising the scale axis loses information. <span class="pp">|</span></span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Persistence image</span><span class="co">](topics/topic-05/index.qmd#transform)</span> <span class="pp">|</span> A weighted, smoothed rasterisation of diagram points. <span class="pp">|</span> A fixed-length feature array for statistics or machine learning. <span class="pp">|</span> Resolution, smoothing and weighting are modelling parameters. <span class="pp">|</span></span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Persistence entropy</span><span class="co">](topics/topic-05/index.qmd#transform)</span> <span class="pp">|</span> Shannon entropy of normalised interval lengths, usually for finite intervals. <span class="pp">|</span> A scalar describing how evenly persistence is distributed across features. <span class="pp">|</span> It discards birth locations and feature identity, and conventions for essential or zero-length intervals matter. <span class="pp">|</span></span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Maximum persistence</span><span class="co">](topics/topic-05/index.qmd#transform)</span> <span class="pp">|</span> The largest finite lifespan $\max_i(d_i-b_i)$ in a selected diagram. <span class="pp">|</span> The lifetime of the single longest-lived class. <span class="pp">|</span> It ignores every other class and depends on filtration units. <span class="pp">|</span></span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Total persistence</span><span class="co">](topics/topic-05/index.qmd#transform)</span> <span class="pp">|</span> An aggregate such as $\sum_i(d_i-b_i)^q$ over selected finite intervals. <span class="pp">|</span> The accumulated lifetime carried by the diagram. <span class="pp">|</span> Its value depends on the exponent, diagram size and treatment of essential intervals. <span class="pp">|</span></span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Null model</span><span class="co">](topics/topic-05/index.qmd#validation-begins-with-the-claimed-mechanism)</span> <span class="pp">|</span> A probability model representing structure expected without the target mechanism. <span class="pp">|</span> The comparison world against which “unusual” is defined. <span class="pp">|</span> An easy-to-simulate null may preserve the wrong properties. <span class="pp">|</span></span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Surrogate data</span><span class="co">](topics/topic-05/index.qmd#validation-begins-with-the-claimed-mechanism)</span> <span class="pp">|</span> Synthetic or transformed observations generated under a null while preserving selected features. <span class="pp">|</span> A controlled negative comparison passed through the same pipeline. <span class="pp">|</span> Validity depends on what is preserved, destroyed and exchangeable. <span class="pp">|</span></span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">CROCKER-style plot</span><span class="co">](topics/topic-06/detail.qmd#betti-surfaces-and-crocker-displays)</span> <span class="pp">|</span> A display of Betti number or rank across physical time and filtration scale. <span class="pp">|</span> A heat map of how multiscale topological counts evolve. <span class="pp">|</span> It summarises repeated diagrams and does not track class identity. <span class="pp">|</span></span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">SW1PerS</span><span class="co">](topics/topic-06/sw1pers.qmd#the-high-level-idea)</span> <span class="pp">|</span> A sliding-window persistent homology method for quantifying periodicity in signals. <span class="pp">|</span> Turn repeated signal phases into a loop-like point cloud and measure its persistence. <span class="pp">|</span> Lag, window dimension, sampling and normalisation shape the result; it is not a generic feature-tracking method. <span class="pp">|</span></span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Physical time $t$</span><span class="co">](topics/topic-06/detail.qmd)</span> <span class="pp">|</span> The external index describing when a system is observed. <span class="pp">|</span> Clock time, trial progress or window position. <span class="pp">|</span> It must not be confused with filtration scale. <span class="pp">|</span></span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Filtration scale $\varepsilon$</span><span class="co">](topics/topic-03/index.qmd#two-ways-a-filtration-can-arise)</span> <span class="pp">|</span> The ordered threshold within one persistence calculation. <span class="pp">|</span> The resolution or relation-strength dial used to construct topology. <span class="pp">|</span> It is not necessarily a physical unit unless the construction supports that interpretation. <span class="pp">|</span></span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Feature tracking</span><span class="co">](topics/topic-06/index.qmd)</span> <span class="pp">|</span> An explicit correspondence assigning identity to features across an external index. <span class="pp">|</span> Saying which evolving feature is the continuation of which earlier feature. <span class="pp">|</span> Nearest diagram points or similar lifetimes do not automatically establish identity. <span class="pp">|</span></span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Vineyard module</span><span class="co">](topics/topic-06/correspondence-detail.qmd#vineyard-versus-vineyard-module)</span> <span class="pp">|</span> A time-indexed family of persistence modules with coherent transport maps. <span class="pp">|</span> Vines plus the algebra describing how feature directions mix through time. <span class="pp">|</span> It is richer than a vineyard and requires additional structure to estimate. <span class="pp">|</span></span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a><span class="fu">## Maintenance rule</span></span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a>Bold type in the main Reader prose is reserved for a reusable technical term at the point</span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a>where it is first defined. Such a term belongs in this glossary and its entry</span>
+<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a>links back to that definition. Bold is not used merely for emphasis, audience</span>
+<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a>labels, example names or whole interpretive claims. Short labels inside</span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a>callouts and margin notes are navigational labels rather than definitions and</span>
+<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a>do not become glossary entries.</span>
+<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a>When a new reusable mathematical or computational term enters the course, add</span>
+<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a>it here with:</span>
+<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>a link to its first definition in the Reader;</span>
+<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>a precise definition at the level used in the course;</span>
+<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>an applied translation tied to a data or scientific decision; and</span>
+<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>one sentence stating where that translation can mislead.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

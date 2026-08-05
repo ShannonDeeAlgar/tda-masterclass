@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 445" role="img" aria-labelledby="title desc">
+  <title id="title">Growing balls and their Čech nerves</title>
+  <desc id="desc">The same five points are shown with balls of three increasing radii. The nerve begins with isolated vertices, gains a triangular edge loop and a separate edge, then fills the triangle and adds a bridge while retaining earlier simplices.</desc>
+  <defs>
+    <style>
+      .panel{fill:#f8fbfb;stroke:#d3e4e3;stroke-width:2}.ball{fill:#65aaa8;fill-opacity:.16;stroke:#5b9a99;stroke-width:1.5}
+      .edge{stroke:#267f82;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;fill:none}.face{fill:#80bfbc;fill-opacity:.45;stroke:#267f82;stroke-width:3.5}
+      .vertex{fill:#fff;stroke:#155f63;stroke-width:3.2}.label{font:650 20px system-ui,sans-serif;fill:#294446;text-anchor:middle}.small{font:16px system-ui,sans-serif;fill:#607477;text-anchor:middle}
+      .arrow{stroke:#789597;stroke-width:2.5;fill:none}
+    </style>
+    <marker id="arrowhead" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#789597"/></marker>
+    <g id="points"><circle class="vertex" cx="75" cy="245" r="7"/><circle class="vertex" cx="135" cy="130" r="7"/><circle class="vertex" cx="195" cy="245" r="7"/><circle class="vertex" cx="275" cy="100" r="7"/><circle class="vertex" cx="320" cy="105" r="7"/></g>
+    <g id="balls20"><circle class="ball" cx="75" cy="245" r="20"/><circle class="ball" cx="135" cy="130" r="20"/><circle class="ball" cx="195" cy="245" r="20"/><circle class="ball" cx="275" cy="100" r="20"/><circle class="ball" cx="320" cy="105" r="20"/></g>
+    <g id="balls68"><circle class="ball" cx="75" cy="245" r="68"/><circle class="ball" cx="135" cy="130" r="68"/><circle class="ball" cx="195" cy="245" r="68"/><circle class="ball" cx="275" cy="100" r="68"/><circle class="ball" cx="320" cy="105" r="68"/></g>
+    <g id="balls80"><circle class="ball" cx="75" cy="245" r="80"/><circle class="ball" cx="135" cy="130" r="80"/><circle class="ball" cx="195" cy="245" r="80"/><circle class="ball" cx="275" cy="100" r="80"/><circle class="ball" cx="320" cy="105" r="80"/></g>
+  </defs>
+  <g transform="translate(10 10)"><rect class="panel" width="400" height="420" rx="24"/><text class="label" x="200" y="38">Strict threshold</text><text class="small" x="200" y="64">disjoint balls; isolated nerve vertices</text><g transform="translate(0 55)"><use href="#balls20"/><use href="#points"/></g></g>
+  <path class="arrow" marker-end="url(#arrowhead)" d="M418 220 H447"/>
+  <g transform="translate(455 10)"><rect class="panel" width="400" height="420" rx="24"/><text class="label" x="200" y="38">Intermediate threshold</text><text class="small" x="200" y="64">pairwise overlaps add nerve edges</text><g transform="translate(0 55)"><use href="#balls68"/><path class="edge" d="M75 245 135 130 195 245Z M275 100 320 105"/><use href="#points"/></g></g>
+  <path class="arrow" marker-end="url(#arrowhead)" d="M863 220 H892"/>
+  <g transform="translate(900 10)"><rect class="panel" width="400" height="420" rx="24"/><text class="label" x="200" y="38">Relaxed threshold</text><text class="small" x="200" y="64">joint overlap fills a simplex; a bridge enters</text><g transform="translate(0 55)"><use href="#balls80"/><polygon class="face" points="75,245 135,130 195,245"/><path class="edge" d="M135 130 275 100 320 105"/><use href="#points"/></g></g>
+</svg>
