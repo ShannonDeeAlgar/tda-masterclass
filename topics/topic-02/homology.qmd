@@ -34,7 +34,7 @@ homology classes in dimension $p$:
 - $\beta_1$ counts independent loop directions; and
 - $\beta_2$ counts independent closed-surface enclosures.
 
-![Classical spaces with different numbers of components, loops and enclosures.](../../assets/topic02-classic-homology.svg?v=2){fig-alt="Two separated components, a circle, a sphere surface and a torus surface. The two independent loop directions on the torus are shown in different colours. Each object is labelled with its first three Betti numbers."}
+![Classical spaces with different numbers of components, loops and enclosures.](../../assets/topic02-classic-homology-v2.svg){fig-alt="Two separated components, a circle, a sphere surface and a torus surface. The two independent loop directions on the torus are shown in different colours. Each object is labelled with its first three Betti numbers."}
 
 ::: {.column-margin .study-note .qualification}
 **Homology and homotopy.** Homology is not a computable version of homotopy.

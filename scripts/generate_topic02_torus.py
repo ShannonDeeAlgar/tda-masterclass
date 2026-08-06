@@ -8,7 +8,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-ASSET = ROOT / "assets/topic02-classic-homology.svg"
+ASSET = ROOT / "assets/topic02-classic-homology-v2.svg"
 START = "  <!-- TORUS PARAMETRIC START -->"
 END = "  <!-- TORUS PARAMETRIC END -->"
 
