@@ -22,6 +22,7 @@ project:
 website:
   title: "TDA for Static and Dynamic Data"
   search: true
+  bread-crumbs: false
   page-navigation: true
   navbar:
     left:
